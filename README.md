@@ -3,6 +3,7 @@ projetinfo-2019-stoneage-sak created by GitHub Classroom
 PROJET :
 
 Iteration 1 : 
+
     Initialisation des données et création de deux joueurs (Une reserve par joueur).
     1 seul ouvrier par joueur.
     Création d'une seule zone. (Qui nous donne une "ressource")
@@ -15,6 +16,7 @@ Le jeu s'arrête au bout d'un tour. Le gagnant est celui qui a le plus de ressou
 
 
 Iteration2 : 
+
    On ajoute la nourriture dans la réserve des joueurs, un multiplicateur d'obtention de nourriture.
 		
    On distingue 2 zones : 
@@ -45,6 +47,7 @@ Iteration 3 :
 
 
 Iteration4 : 
+
 	Ajout des zones Glacière et Hutte (+ leur règle de placements)
 	Ajout de Carte, uniquement les civilisations (10 même carte, +3 pts au compteur / 2 nbr nourriture)
 	Mise à jour du système de comptage des points, élements de la réserve du joueur.
@@ -53,6 +56,7 @@ Iteration4 :
 
 
 Iteration5 : 
+
 	Ajout des zones Carrière, rivière, champs (+ leur règle de placements)
 	Augmentation du nbre d'ouvrier à l'initialisation.
 	Possibilité d'ajouter des joueurs, Maximum 4.
@@ -62,6 +66,7 @@ Iteration5 :
 
 
 Iteration6 : 
+
 	Ajout de la zone Fabrique d'outils (+ règles de placements)
 	Ajout du 2ème type de carte, carte Batiment (10 fois la même)
 	Amélioration de l'IA
@@ -70,6 +75,8 @@ Iteration6 :
 
 
 Iteration7 :
+
+
 	Spécifications des cartes Civilisations et Batiments (bon nbr de carte selon les règles, au moins 10 cartes différentes de chaques)
 	Améliorations de l'IA.
 	Mise à jour du système de comptage des points
@@ -77,6 +84,8 @@ Iteration7 :
 	Le jeu s'arrête quand il n'y a plus de carte Civilisations (le tour s'arrête) ou Batiments
 
 Iteration 8 : 
+
+
 	Compléter les cartes.
 	Simulations 500 partie
 	Traitement Statistiques
