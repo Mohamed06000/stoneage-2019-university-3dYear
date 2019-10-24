@@ -4,7 +4,7 @@ PROJET :
 
 Iteration 1 : 
 
-    Initialisation des données et création de deux joueurs (Une reserve par joueur).
+    Initialisation des données et création de deux joueurs .
     1 seul ouvrier par joueur.
     Création d'une seule zone. (Qui nous donne une "ressource")
     un Compteur de point par joueur
@@ -25,7 +25,7 @@ Iteration2 :
 
    On ajoute la Phase Nourrir dans le tour, 1 Nourriture par ouvrier
 		
-   Le jeu s'arrête au bout d'un tour. Le gagnant est celui qui a le plus de ressources.
+   Le jeu s'arrête quand il n'y a plus de ressource. Le gagnant est celui qui a le plus de ressources.
 
 Iteration 3 :
 
