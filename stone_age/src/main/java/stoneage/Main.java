@@ -9,8 +9,24 @@ public class Main {
 
 
     public static final void main(String[] args) {
-        Main m = new Main();
-        m.play();
+        Main j1 = new Main();
+        Main j2 = new Main();
+
+        System.out.println("Joueur 1 :");
+        j1.play();
+        System.out.println("Joueur 2 :");
+        j2.play();
+
+        System.out.println("_____RESULTAT_____");
+
+       if (j1.inventaireJoueur.getNbRessource() == j2.inventaireJoueur.getNbRessource()) {
+           System.out.println("Egalité !");
+        } else if (j1.inventaireJoueur.getNbRessource() > j2.inventaireJoueur.getNbRessource()){
+           System.out.println("Le joueur 1 gagne !");
+        }else {
+           System.out.println("Le joueur 2 gagne !");
+        }
+        int maxRessource = Math.max(j1.inventaireJoueur.getNbRessource(),j2.inventaireJoueur.getNbRessource());
     }
 
     public Main(){
@@ -20,9 +36,9 @@ public class Main {
     }
 
     protected void play(){
-        System.out.println("Phase de placement des ouvriers");
+        System.out.println("_____PHASE DE PLACEMENT_____");
         phasePlacement(joueur, zone);
-        System.out.println("Phase de récupération des ouvriers");
+        System.out.println("_____PHASE DE RECUPERATION_____");
         phaseRecuperation(joueur, zone);
     }
 
@@ -35,7 +51,7 @@ public class Main {
     }
 
     public void phaseRecuperation(Joueur j, Zone z){
-        z.recuperation(inventaireJoueur);
+        j.recupere(inventaireJoueur,zone);
         System.out.println("Nb d'ouvrier dans la zone "+ z.getNbOuvrierSurZone());
         System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + inventaireJoueur.getNbOuvrier());
         System.out.println("Nb de ressource dans l'inventaire du joueur " + inventaireJoueur.getNbRessource());

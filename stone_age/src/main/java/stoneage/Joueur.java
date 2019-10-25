@@ -1,11 +1,13 @@
 package stoneage;
 
 public class Joueur {
-    public Inventaire placement(Inventaire i){
-        return new Inventaire(i.getNbOuvrier() - 1, i.getNbRessource());
+    public void placement(Inventaire i){
+        i.setNbOuvrier(i.getNbOuvrier() - 1);
+        i.setNbRessource(i.getNbRessource());
     }
 
-    public Inventaire recupere(Inventaire i, Zone z){
-       return new Inventaire(i.getNbOuvrier() + 1, i.getNbRessource() + 1 ) ;
+    public void recupere(Inventaire i, Zone z){
+        i.setNbOuvrier(i.getNbOuvrier() + 1);
+        i.setNbRessource(i.getNbRessource() + 1 ) ;
     }
 }

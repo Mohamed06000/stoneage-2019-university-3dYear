@@ -18,5 +18,6 @@ public class Zone {
 
     public void recuperation(Inventaire inventaireJoueur){
         inventaireJoueur.setNbRessource(inventaireJoueur.getNbRessource() + 1);
+
     }
 }
