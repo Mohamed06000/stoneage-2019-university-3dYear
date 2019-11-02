@@ -1,5 +1,8 @@
 package stoneage;
 
+/**
+ * Classe Joueur qui represente les informations et actions du joueur
+ */
 public class Joueur {
 
     private int num;
@@ -30,11 +33,21 @@ public class Joueur {
         return num;
     }
 
+    /**
+     * Placer ses ouvriers sur la zone
+     * @param i L'inventaire du joueur
+     * @param z La zone choisie
+     */
     public void placement(Inventaire i, Zone z){
         i.subOuvrier(1);
         z.placeOuvrier(1);
     }
 
+    /**
+     * Recuperer ses ouvriers et ressource de la zone
+     * @param i L'inventaire du joueur
+     * @param z La zone choisie
+     */
     public void recupere(Inventaire i, Zone z){
         i.setNbOuvrier(i.getNbOuvrier() + 1);
         i.addRessource();
