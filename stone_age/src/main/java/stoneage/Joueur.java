@@ -5,16 +5,28 @@ public class Joueur {
     private int num;
     private static int nbJoueur;
 
+    /**
+     * Constructeur de la classe Joueur qui accremente un nombre de joueur
+     * en static et assigne un numero de joueur a l'objet instancie
+     */
     public Joueur(){
         nbJoueur ++;
         num = nbJoueur;
     }
 
+    /**
+     * Methode de classe qui recupere le nombre de joueur
+     * @return Le nombre de joueur
+     */
     public static int getNbJoueur(){
         return nbJoueur;
     }
 
-    public int getNom(){
+    /**
+     * Recupere le numero du joueur
+     * @return Le numero du joueur
+     */
+    public int getNum(){
         return num;
     }
 

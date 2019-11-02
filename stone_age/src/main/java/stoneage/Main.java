@@ -40,20 +40,30 @@ public class Main {
         inventaireJoueur = new Inventaire();
     }
 
+    /**
+     * Lancement de la phase de jeu de placement
+     * @param j L'objet de la classe Joueur
+     * @param z L'objet de la classe Zone
+     */
     public void phasePlacement(Joueur j, Zone z){
         j.placement(inventaireJoueur, z);
-        System.out.println("Joueur " + j.getNom() + " :");
+        System.out.println("Joueur " + j.getNum() + " :");
         System.out.println("Nb d'ouvrier dans la zone : "+ z.getNbOuvrierSurZone());
-        System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + j.getNom() + " : " + inventaireJoueur.getNbOuvrier());
-        System.out.println("Nb de ressource dans l'inventaire du joueur " + j.getNom() + " : " + inventaireJoueur.getNbRessource());
+        System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + j.getNum() + " : " + inventaireJoueur.getNbOuvrier());
+        System.out.println("Nb de ressource dans l'inventaire du joueur " + j.getNum() + " : " + inventaireJoueur.getNbRessource());
     }
 
+    /**
+     * Lancement de la phase de jeu de recuperation
+     * @param j L'objet de la classe Joueur
+     * @param z L'objet de la classe Zone
+     */
     public void phaseRecuperation(Joueur j, Zone z){
         j.recupere(inventaireJoueur,z);
-        System.out.println("Joueur " + j.getNom() + " :");
+        System.out.println("Joueur " + j.getNum() + " :");
         System.out.println("Nb d'ouvrier dans la zone : "+ z.getNbOuvrierSurZone());
-        System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + j.getNom() + " : " + inventaireJoueur.getNbOuvrier());
-        System.out.println("Nb de ressource dans l'inventaire du joueur " + j.getNom() + " : " + inventaireJoueur.getNbRessource());
+        System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + j.getNum() + " : " + inventaireJoueur.getNbOuvrier());
+        System.out.println("Nb de ressource dans l'inventaire du joueur " + j.getNum() + " : " + inventaireJoueur.getNbRessource());
     }
 
 }

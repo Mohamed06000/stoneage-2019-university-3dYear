@@ -1,5 +1,8 @@
 package stoneage;
 
+/**
+ * Classe generalise du concept de "zone" du jeu StoneAge
+ */
 public class Zone {
 
     private int nbOuvrierSurZone = 0;
