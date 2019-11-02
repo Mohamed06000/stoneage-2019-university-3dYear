@@ -19,13 +19,13 @@ public class Joueur {
     }
 
     public void placement(Inventaire i, Zone z){
-        i.setNbOuvrier(i.getNbOuvrier() - 1);
+        i.subOuvrier(1);
         z.placeOuvrier(1);
     }
 
     public void recupere(Inventaire i, Zone z){
         i.setNbOuvrier(i.getNbOuvrier() + 1);
-        i.setNbRessource(i.getNbRessource() + 1 ) ;
+        i.addRessource();
         z.retirerOuvrier(1);
     }
 }

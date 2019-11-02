@@ -6,6 +6,7 @@ public class Main {
     private final Inventaire inventaireJoueur;
     private final Joueur joueur;
 
+
     public static final void main(String[] args) {
         Main j1 = new Main();
         Main j2 = new Main();

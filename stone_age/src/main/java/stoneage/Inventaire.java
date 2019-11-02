@@ -12,6 +12,8 @@ public class Inventaire {
         this.nbOuvrier = nbOuvrier;
     }
 
+    public void subOuvrier(int nbOuvrier){ this.nbOuvrier -= nbOuvrier; }
+
     public int getNbRessource() {
         return nbRessource;
     }
@@ -19,6 +21,8 @@ public class Inventaire {
     public void setNbRessource(int nbRessource) {
         this.nbRessource = nbRessource;
     }
+
+    public void addRessource(){ this.nbRessource++; }
 
     public Inventaire(){
         setNbOuvrier(1);
