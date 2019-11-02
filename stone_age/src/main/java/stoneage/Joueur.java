@@ -3,14 +3,14 @@ package stoneage;
 public class Joueur {
 
     private int num;
-    private int nbJoueur;
+    private static int nbJoueur;
 
     public Joueur(){
         nbJoueur ++;
         num = nbJoueur;
     }
 
-    public int getNbJoueur(){
+    public static int getNbJoueur(){
         return nbJoueur;
     }
 
@@ -18,8 +18,9 @@ public class Joueur {
         return num;
     }
 
-    public void placement(Inventaire i){
+    public void placement(Inventaire i, Zone z){
         i.setNbOuvrier(i.getNbOuvrier() - 1);
+        z.placeOuvrier(1);
     }
 
     public void recupere(Inventaire i, Zone z){
