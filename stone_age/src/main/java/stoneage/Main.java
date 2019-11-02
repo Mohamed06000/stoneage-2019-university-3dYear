@@ -26,7 +26,6 @@ public class Main {
         }else {
            System.out.println("Le joueur 2 gagne !");
         }
-        int maxRessource = Math.max(j1.inventaireJoueur.getNbRessource(),j2.inventaireJoueur.getNbRessource());
     }
 
     public Main(){
