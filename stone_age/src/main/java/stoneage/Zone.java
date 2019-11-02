@@ -2,7 +2,7 @@ package stoneage;
 
 public class Zone {
 
-    private int nbOuvrierSurZone;
+    private int nbOuvrierSurZone = 0;
 
     public int getNbOuvrierSurZone() {
         return nbOuvrierSurZone;
@@ -15,6 +15,8 @@ public class Zone {
     public void placeOuvrier(int nbOuvrierAplacer){
         nbOuvrierSurZone += nbOuvrierAplacer;
     }
+
+    public void retirerOuvrier(int nbOuvrierRetirer) { nbOuvrierSurZone -= nbOuvrierRetirer; }
 
     public void recuperation(Inventaire inventaireJoueur){
         inventaireJoueur.setNbRessource(inventaireJoueur.getNbRessource() + 1);
