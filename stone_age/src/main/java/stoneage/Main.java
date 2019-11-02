@@ -1,6 +1,8 @@
 package stoneage;
 
-
+/**
+ * Classe du lancement du jeu
+ */
 public class Main {
 
     private final Inventaire inventaireJoueur;
@@ -35,6 +37,9 @@ public class Main {
         }
     }
 
+    /**
+     * Creation d'un joueur possedant des inforamtions, des actions et un inventaire
+     */
     public Main(){
         joueur = new Joueur();
         inventaireJoueur = new Inventaire();
