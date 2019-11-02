@@ -2,7 +2,7 @@ package stoneage;
 
 public class Inventaire {
     private int nbOuvrier;
-    private int nbRessource;
+    private int nbRessource = 0;
 
     public int getNbOuvrier() {
         return nbOuvrier;
