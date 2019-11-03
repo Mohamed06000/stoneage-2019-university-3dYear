@@ -4,7 +4,14 @@ package stoneage;
  * Classe de l'inventaire du joueur
  */
 public class Inventaire {
+
+    /**
+     * Le nombre d'ouvrier du joueur
+     */
     private int nbOuvrier;
+    /**
+     * Le nombre de ressource du joueur
+     */
     private int nbRessource = 0;
 
     /**

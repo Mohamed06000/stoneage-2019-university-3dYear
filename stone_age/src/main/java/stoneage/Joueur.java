@@ -5,7 +5,13 @@ package stoneage;
  */
 public class Joueur {
 
+    /**
+     * La numero du joueur
+     */
     private int num;
+    /**
+     * Le nombre de joueur de type Joueur
+     */
     private static int nbJoueur;
 
     /**

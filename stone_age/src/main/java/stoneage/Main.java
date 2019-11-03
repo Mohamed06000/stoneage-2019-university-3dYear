@@ -4,7 +4,7 @@ package stoneage;
  * Classe du lancement du jeu
  */
 public class Main {
-
+    
     private final Inventaire inventaireJoueur;
     private final Joueur joueur;
 

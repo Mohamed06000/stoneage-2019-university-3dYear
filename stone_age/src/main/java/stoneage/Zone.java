@@ -5,6 +5,9 @@ package stoneage;
  */
 public class Zone {
 
+    /**
+     * Le nombre d'ouvrier present sur la zone
+     */
     private int nbOuvrierSurZone = 0;
 
     /**
