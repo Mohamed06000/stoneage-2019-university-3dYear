@@ -60,8 +60,8 @@
                             <!-- <overview>${basedir}/src/main/java/jeu421/overview.html</overview> --><!-- à changer : selon que vous avez des descriptions du projet et des packages -->
                             <!-- endroit où seront les fichiers html générés ! attention au .gitignore ! -->
                             <!-- ici, c'est dans src/main/apidocs -->
-                            <outputDirectory>$stone_age/src/main/</outputDirectory>
-                            <reportOutputDirectory>$stone_age/src/main/</reportOutputDirectory>
+                            <outputDirectory>${basedir}/src/main/</outputDirectory>
+                            <reportOutputDirectory>${basedir}/src/main/</reportOutputDirectory>
                         </configuration>
                     </execution>
                     <execution>
@@ -73,7 +73,7 @@
                         <configuration>
                             <!-- endroit où seront les fichiers html générés ! attention au .gitignore ! -->
                             <!-- ici, c'est dans src/test/apidocs -->
-                            <reportOutputDirectory>$stone_age/src/test/</reportOutputDirectory>
+                            <reportOutputDirectory>${basedir}/src/test/</reportOutputDirectory>
                         </configuration>
                     </execution>
                 </executions>
