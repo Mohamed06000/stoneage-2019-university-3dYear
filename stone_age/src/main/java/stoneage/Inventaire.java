@@ -34,7 +34,9 @@ public class Inventaire {
      * Soustrer un nombre d'ouvrier au joueur qu'il veut placer sur une zone
      * @param nbOuvrier Le nombre d'ouvrier
      */
-    public void subOuvrier(int nbOuvrier){ this.nbOuvrier -= nbOuvrier; }
+    public void subOuvrier(int nbOuvrier){
+        this.nbOuvrier -= nbOuvrier;
+    }
 
     /**
      * Recuperer le nombre de ressource du joueur
