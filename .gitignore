@@ -5,9 +5,9 @@
 **/bin/
 
 # pour la javadoc (selon le nom du dossier pouvant la contenir)
-**/javadoc/
-**/apidocs/
-**/testapidocs/
+#**/javadoc/
+#**/apidocs/
+#**/testapidocs/
 
 # pour intellij
 **/*.iml
@@ -24,9 +24,9 @@
 
 
 #pour Eclipse
-**/.project
-**/.classpath
-**/.settings/
+#**/.project
+#**/.classpath
+#**/.settings/
 # les dossiers du workspace eclipse... normalement pas dans le git, à adapter au besoin
 .metadata/
 .recommanders/
