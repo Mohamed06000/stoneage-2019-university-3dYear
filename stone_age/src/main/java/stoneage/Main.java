@@ -64,8 +64,8 @@ public class Main {
      * @param z L'objet de la classe Zone
      */
     public void phaseRecuperation(Joueur j, Zone z){
-        j.recupere(inventaireJoueur,z);
         System.out.println("Joueur " + j.getNum() + " :");
+        j.recupere(inventaireJoueur,z);
         System.out.println("Nb d'ouvrier dans la zone : "+ z.getNbOuvrierSurZone());
         System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + j.getNum() + " : " + inventaireJoueur.getNbOuvrier());
         System.out.println("Nb de ressource dans l'inventaire du joueur " + j.getNum() + " : " + inventaireJoueur.getNbRessource());

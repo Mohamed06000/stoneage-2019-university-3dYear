@@ -1,5 +1,7 @@
 package stoneage;
 
+import java.util.Random ;
+
 /**
  * Classe Joueur qui represente les informations et actions du joueur
  */
@@ -56,7 +58,16 @@ public class Joueur {
      */
     public void recupere(Inventaire i, Zone z){
         i.setNbOuvrier(i.getNbOuvrier() + 1);
+        int valeurDee = dée();
+        System.out.println("La valeur du dée est : " + valeurDee);
         i.addRessource();
         z.retirerOuvrier(1);
+    }
+    public int dée(){
+        Random rand = new Random();
+        int result = 0 ;
+        result = rand.nextInt(6)+1 ;
+        return result ;
+
     }
 }
