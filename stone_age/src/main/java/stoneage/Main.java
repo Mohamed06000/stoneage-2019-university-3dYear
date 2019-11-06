@@ -1,24 +1,36 @@
-package stoneage;
-
+package projet_stone;
 
 public class Main {
 
     private final Inventaire inventaireJoueur;
     private final Joueur joueur;
-    private final Zone zone;
 
 
     public static final void main(String[] args) {
         Main j1 = new Main();
         Main j2 = new Main();
+        Zone zone = new Zone();
+        Main listJoueur[] = {j1,j2};
 
-        System.out.println("Joueur 1 :");
-        j1.play();
-        System.out.println("Joueur 2 :");
-        j2.play();
+        System.out.println("Nb de joueur : " + Joueur.getNbJoueur());
+
+        System.out.println("_____PHASE DE PLACEMENT_____");
+        for (int i=0; i < Joueur.getNbJoueur(); i++){
+            listJoueur[i].phasePlacement(listJoueur[i].joueur, zone);
+        }
+
+        System.out.println("_____PHASE DE RECUPERATION_____");
+        for (int i=0; i < Joueur.getNbJoueur(); i++){
+            listJoueur[i].phaseRecuperation(listJoueur[i].joueur, zone);
+        }
+        
+        System.out.println("_____PHASE NOURRIR____");
+        for (int i=0; i < Joueur.getNbJoueur(); i++){
+            listJoueur[i].phaseNourrir(listJoueur[i].joueur);
+        }
+        
 
         System.out.println("_____RESULTAT_____");
-
        if (j1.inventaireJoueur.getNbRessource() == j2.inventaireJoueur.getNbRessource()) {
            System.out.println("Egalité !");
         } else if (j1.inventaireJoueur.getNbRessource() > j2.inventaireJoueur.getNbRessource()){
@@ -26,35 +38,51 @@ public class Main {
         }else {
            System.out.println("Le joueur 2 gagne !");
         }
-        int maxRessource = Math.max(j1.inventaireJoueur.getNbRessource(),j2.inventaireJoueur.getNbRessource());
     }
 
+    /**
+     * Creation d'un joueur possedant des inforamtions, des actions et un inventaire
+     */
     public Main(){
         joueur = new Joueur();
         inventaireJoueur = new Inventaire();
-        zone = new Zone();
     }
 
-    protected void play(){
-        System.out.println("_____PHASE DE PLACEMENT_____");
-        phasePlacement(joueur, zone);
-        System.out.println("_____PHASE DE RECUPERATION_____");
-        phaseRecuperation(joueur, zone);
-    }
-
+    /**
+     * Lancement de la phase de jeu de placement
+     * @param j L'objet de la classe Joueur
+     * @param z L'objet de la classe Zone
+     */
     public void phasePlacement(Joueur j, Zone z){
-        j.placement(inventaireJoueur);
-        z.placeOuvrier(1);
-        System.out.println("Nb d'ouvrier dans la zone "+ z.getNbOuvrierSurZone());
-        System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + inventaireJoueur.getNbOuvrier());
-        System.out.println("Nb de ressource dans l'inventaire du joueur " + inventaireJoueur.getNbRessource());
+        j.placement(inventaireJoueur, z);
+        System.out.println("Joueur " + j.getNum() + " :");
+        System.out.println("Nb d'ouvrier dans la zone : "+ z.getNbOuvrierSurZone());
+        System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + j.getNum() + " : " + inventaireJoueur.getNbOuvrier());
+        System.out.println("Nb de ressource dans l'inventaire du joueur " + j.getNum() + " : " + inventaireJoueur.getNbRessource());
     }
 
+    /**
+     * Lancement de la phase de jeu de recuperation
+     * @param j L'objet de la classe Joueur
+     * @param z L'objet de la classe Zone
+     */
     public void phaseRecuperation(Joueur j, Zone z){
-        j.recupere(inventaireJoueur,zone);
-        System.out.println("Nb d'ouvrier dans la zone "+ z.getNbOuvrierSurZone());
-        System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + inventaireJoueur.getNbOuvrier());
-        System.out.println("Nb de ressource dans l'inventaire du joueur " + inventaireJoueur.getNbRessource());
+        j.recupere(inventaireJoueur,z);
+        System.out.println("Joueur " + j.getNum() + " :");
+        System.out.println("Nb d'ouvrier dans la zone : "+ z.getNbOuvrierSurZone());
+        System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + j.getNum() + " : " + inventaireJoueur.getNbOuvrier());
+        System.out.println("Nb de ressource dans l'inventaire du joueur " + j.getNum() + " : " + inventaireJoueur.getNbRessource());
+    }
+    
+    /**
+     * Lancement de la phase de jeu "nourrir"
+     * @param j L'objet de la classe Joueur
+     */
+    public void phaseNourrir(Joueur j) {
+    	j.nourrir(inventaireJoueur);
+    	System.out.println(" Quantitée de nouriture pour le joueur "+j.getNum()+" : "+inventaireJoueur.getNbNourriture());
+    	
+    	
     }
 
 }

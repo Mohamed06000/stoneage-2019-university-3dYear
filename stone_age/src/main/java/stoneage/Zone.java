@@ -1,23 +1,43 @@
-package stoneage;
+package projet_stone;
 
+/**
+ * Classe generalise du concept de "zone" du jeu StoneAge
+ */
 public class Zone {
 
-    private int nbOuvrierSurZone;
+    /**
+     * Le nombre d'ouvrier present sur la zone
+     */
+    private int nbOuvrierSurZone = 0;
 
+    /**
+     * Recupérer le  nombre d'ouvrier sur la zone
+     * @return
+     */
     public int getNbOuvrierSurZone() {
         return nbOuvrierSurZone;
     }
 
+    /**
+     * Assigner un nombre d'ouvier sur la zone
+     * @param nbOuvrierSurZone
+     */
     public void setNbOuvrierSurZone(int nbOuvrierSurZone) {
         this.nbOuvrierSurZone = nbOuvrierSurZone;
     }
 
+    /**
+     * Placer un nombre d'ouvrier sur la zone
+     * @param nbOuvrierAplacer
+     */
     public void placeOuvrier(int nbOuvrierAplacer){
         nbOuvrierSurZone += nbOuvrierAplacer;
     }
 
-    public void recuperation(Inventaire inventaireJoueur){
-        inventaireJoueur.setNbRessource(inventaireJoueur.getNbRessource() + 1);
+    /**
+     * retirer un nombre d'ouvrier de la zone
+     * @param nbOuvrierRetirer
+     */
+    public void retirerOuvrier(int nbOuvrierRetirer) { nbOuvrierSurZone -= nbOuvrierRetirer; }
 
-    }
 }
