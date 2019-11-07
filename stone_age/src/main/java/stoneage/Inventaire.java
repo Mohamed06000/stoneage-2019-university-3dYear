@@ -10,7 +10,7 @@ public class Inventaire {
      */
     private int nbOuvrier;
     /**
-     * Le nombre de ressource du joueur
+     *   Le nombre de ressource du joueur
      */
     private int nbRessource = 0;
     
