@@ -46,4 +46,10 @@ public class ZoneVillage implements ZoneInterface {
         nbOuvrierSurZone -= nbOuvrierRetirer;
     }
 
+    @Override
+    public void diminuerRessource() {
+
+    }
+
+
 }

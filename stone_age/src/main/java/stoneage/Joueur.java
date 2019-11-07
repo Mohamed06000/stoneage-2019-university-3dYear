@@ -62,11 +62,13 @@ public class Joueur<get> {
      * @param i L'inventaire du joueur
      * @param z La zone choisie
      */
-    public void recupere(Inventaire i, ZoneRessource z){
+    public void recupere(Inventaire i, ZoneInterface z){
 
         i.setNbOuvrier(i.getNbOuvrier() + 1);
         i.addRessource(z);
-        z.diminuerRessource();
+        if (z instanceof ZoneRessource){
+            z.diminuerRessource();
+        }
         z.retirerOuvrier(1);
 
     }
@@ -75,10 +77,11 @@ public class Joueur<get> {
      * @param i L'inventaire du joueur
      */
     public void nourrir(Inventaire i) {
-    	for (int j=0;j<i.getNbOuvrier();j++) {
-    		i.subNourriture();
-    	}
-
+        if (i.getNbNourriture()>0){
+            for (int j=0;j<i.getNbOuvrier();j++) {
+                i.subNourriture();
+            }
+        }
     }
 
     public void action (){

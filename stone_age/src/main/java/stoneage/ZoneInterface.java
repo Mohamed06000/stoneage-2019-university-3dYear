@@ -5,9 +5,10 @@ package stoneage;
  */
 public interface ZoneInterface {
 
-    public int getNbOuvrierSurZone();
-    public void setNbOuvrierSurZone(int nbOuvrierSurZone);
-    public void placeOuvrier(int nbOuvrierAplacer);
-    public void retirerOuvrier(int nbOuvrierRetirer);
+    int getNbOuvrierSurZone();
+    void setNbOuvrierSurZone(int nbOuvrierSurZone);
+    void placeOuvrier(int nbOuvrierAplacer);
+    void retirerOuvrier(int nbOuvrierRetirer);
+    void diminuerRessource();
 
 }

@@ -59,7 +59,9 @@ public class Inventaire {
      * @param nbOuvrier Le nombre d'ouvrier
      */
     public void subOuvrier(int nbOuvrier){
-        this.nbOuvrier -= nbOuvrier;
+        if (this.nbOuvrier>0) {
+            this.nbOuvrier -= nbOuvrier;
+        }
     }
 
     /**
@@ -96,7 +98,7 @@ public class Inventaire {
      * Constructeur de la classe, on assigne 1 ouvrier par default
      */
     public Inventaire(){
-        setNbOuvrier(1);
+        setNbOuvrier(5);
     }
 
     /**

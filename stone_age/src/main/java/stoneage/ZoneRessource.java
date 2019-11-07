@@ -52,16 +52,11 @@ public class ZoneRessource implements ZoneInterface {
         nbOuvrierSurZone -= nbOuvrierRetirer;
     }
 
-    public  void diminuerRessource()
-    {
-        nbRessourcesZone --;
-
+    public  void diminuerRessource() {
+        if (nbRessourcesZone>0)
+            nbRessourcesZone--;
     }
-    public void augmenterRessource()
-    {
-        nbRessourcesZone ++;
 
-    }
 
 
 }
