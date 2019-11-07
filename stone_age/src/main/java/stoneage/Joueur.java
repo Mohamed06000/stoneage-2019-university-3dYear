@@ -2,6 +2,7 @@ package stoneage;
 
 import java.util.Random ;
 
+
 /**
  * Classe Joueur qui represente les informations et actions du joueur
  */
@@ -57,10 +58,21 @@ public class Joueur {
      * @param z La zone choisie
      */
     public void recupere(Inventaire i, Zone z){
+
         i.setNbOuvrier(i.getNbOuvrier() + 1);
         i.addRessource();
         z.diminuerRessource();
         z.retirerOuvrier(1);
+
+    }
+    /**
+     * Nourrir ses ouvriers (1 nourriture/ouvrier)
+     * @param i L'inventaire du joueur
+     */
+    public void nourrir(Inventaire i) {
+    	for (int j=0;j<i.getNbOuvrier();j++) {
+    		i.subNourriture();
+    	}
 
     }
 
@@ -75,6 +87,5 @@ public class Joueur {
         int result = 0 ;
         result = rand.nextInt(6)+1 ;
         return result ;
-
     }
 }

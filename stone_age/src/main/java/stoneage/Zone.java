@@ -19,6 +19,7 @@ public class Zone {
 
     /**
      * Recupérer le  nombre d'ouvrier sur la zone
+     *
      * @return
      */
     public int getNbOuvrierSurZone() {
@@ -31,6 +32,7 @@ public class Zone {
 
     /**
      * Assigner un nombre d'ouvier sur la zone
+     *
      * @param nbOuvrierSurZone
      */
     public void setNbOuvrierSurZone(int nbOuvrierSurZone) {
@@ -39,16 +41,19 @@ public class Zone {
 
     /**
      * Placer un nombre d'ouvrier sur la zone
+     *
      * @param nbOuvrierAplacer
      */
-    public void placeOuvrier(int nbOuvrierAplacer){
+    public void placeOuvrier(int nbOuvrierAplacer) {
         nbOuvrierSurZone += nbOuvrierAplacer;
     }
 
     /**
      * retirer un nombre d'ouvrier de la zone
+     *
      * @param nbOuvrierRetirer
      */
+<<<<<<< HEAD
     public void retirerOuvrier(int nbOuvrierRetirer) { nbOuvrierSurZone -= nbOuvrierRetirer; }
     
     public  void diminuerRessource()
@@ -70,5 +75,10 @@ public class Zone {
     
     
     
+=======
+    public void retirerOuvrier(int nbOuvrierRetirer) {
+        nbOuvrierSurZone -= nbOuvrierRetirer;
+    }
+>>>>>>> a4a31b3d5474cc4212f69bcf89341d32ec59b409
 
 }

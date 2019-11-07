@@ -11,9 +11,14 @@ public class Inventaire {
      */
     private int nbOuvrier;
     /**
-     * Le nombre de ressource du joueur
+     *  Le nombre de ressource du joueur
      */
     private int nbRessource = 0;
+    
+    /**
+     * La quantitée de nourriture du joueur (debut de jeu = 10 pour tous)
+     */
+    private int nbNourriture=10;
 
     /**
      * Recupere le nombre d'ouvrier du joueur
@@ -21,6 +26,21 @@ public class Inventaire {
      */
     public int getNbOuvrier() {
         return nbOuvrier;
+    }
+    
+    /**
+     * Recupere la quantitée de nourriture du joueur
+     * @return quantitée de nourriture
+     */
+    public int getNbNourriture() {
+    	return nbNourriture;
+    }
+   
+    /**
+     * Soustraire une nourriture
+     */
+    public void subNourriture() {
+    	nbNourriture--;
     }
 
     /**
@@ -32,7 +52,11 @@ public class Inventaire {
     }
 
     /**
+<<<<<<< HEAD
+     * Soustraire un nombre d'ouvrier au joueur qu'il veut placer sur une zone
+=======
      * Soustrer un nombre d'ouvrier au joueur qu'il veut placer sur une zone
+>>>>>>> master
      * @param nbOuvrier Le nombre d'ouvrier
      */
     public void subOuvrier(int nbOuvrier){
