@@ -1,4 +1,4 @@
-package projet_stone;
+package stoneage;
 
 /**
  * Classe generalise du concept de "zone" du jeu StoneAge
@@ -12,6 +12,7 @@ public class Zone {
 
     /**
      * Recupérer le  nombre d'ouvrier sur la zone
+     *
      * @return
      */
     public int getNbOuvrierSurZone() {
@@ -20,6 +21,7 @@ public class Zone {
 
     /**
      * Assigner un nombre d'ouvier sur la zone
+     *
      * @param nbOuvrierSurZone
      */
     public void setNbOuvrierSurZone(int nbOuvrierSurZone) {
@@ -28,16 +30,20 @@ public class Zone {
 
     /**
      * Placer un nombre d'ouvrier sur la zone
+     *
      * @param nbOuvrierAplacer
      */
-    public void placeOuvrier(int nbOuvrierAplacer){
+    public void placeOuvrier(int nbOuvrierAplacer) {
         nbOuvrierSurZone += nbOuvrierAplacer;
     }
 
     /**
      * retirer un nombre d'ouvrier de la zone
+     *
      * @param nbOuvrierRetirer
      */
-    public void retirerOuvrier(int nbOuvrierRetirer) { nbOuvrierSurZone -= nbOuvrierRetirer; }
+    public void retirerOuvrier(int nbOuvrierRetirer) {
+        nbOuvrierSurZone -= nbOuvrierRetirer;
+    }
 
 }

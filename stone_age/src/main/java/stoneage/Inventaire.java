@@ -1,4 +1,4 @@
-package projet_stone;
+package stoneage;
 
 /**
  * Classe de l'inventaire du joueur
@@ -18,7 +18,7 @@ public class Inventaire {
      * La quantitée de nourriture du joueur (debut de jeu = 10 pour tous)
      */
     private int nbNourriture=10;
-    
+
     /**
      * Recupere le nombre d'ouvrier du joueur
      * @return le nombre d'ouvrier
@@ -51,7 +51,11 @@ public class Inventaire {
     }
 
     /**
+<<<<<<< HEAD
      * Soustraire un nombre d'ouvrier au joueur qu'il veut placer sur une zone
+=======
+     * Soustrer un nombre d'ouvrier au joueur qu'il veut placer sur une zone
+>>>>>>> master
      * @param nbOuvrier Le nombre d'ouvrier
      */
     public void subOuvrier(int nbOuvrier){

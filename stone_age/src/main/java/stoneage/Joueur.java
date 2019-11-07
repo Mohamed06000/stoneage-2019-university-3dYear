@@ -1,4 +1,7 @@
-package projet_stone;
+package stoneage;
+
+import java.util.Random ;
+
 
 /**
  * Classe Joueur qui represente les informations et actions du joueur
@@ -59,6 +62,7 @@ public class Joueur {
         i.setNbOuvrier(i.getNbOuvrier() + 1);
         i.addRessource();
         z.retirerOuvrier(1);
+
     }
     /**
      * Nourrir ses ouvriers (1 nourriture/ouvrier)
@@ -68,5 +72,19 @@ public class Joueur {
     	for (int j=0;j<i.getNbOuvrier();j++) {
     		i.subNourriture();
     	}
+
+    }
+
+    public void action (){
+        int valeurDee = dée();
+        System.out.println("La valeur du dée est : " + valeurDee);
+    }
+
+
+    public int dée(){
+        Random rand = new Random();
+        int result = 0 ;
+        result = rand.nextInt(6)+1 ;
+        return result ;
     }
 }
