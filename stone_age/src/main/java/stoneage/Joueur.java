@@ -59,6 +59,7 @@ public class Joueur {
     public void recupere(Inventaire i, Zone z){
         i.setNbOuvrier(i.getNbOuvrier() + 1);
         i.addRessource();
+        z.diminuerRessource();
         z.retirerOuvrier(1);
 
     }

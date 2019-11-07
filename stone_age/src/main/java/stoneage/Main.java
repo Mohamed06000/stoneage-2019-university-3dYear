@@ -14,18 +14,26 @@ public class Main {
         Main j2 = new Main();
         Zone zone = new Zone();
         Main listJoueur[] = {j1,j2};
+        int tour = 1;
 
         System.out.println("Nb de joueur : " + Joueur.getNbJoueur());
+        
 
-        System.out.println("_____PHASE DE PLACEMENT_____");
-        for (int i=0; i < Joueur.getNbJoueur(); i++){
-            listJoueur[i].phasePlacement(listJoueur[i].joueur, zone);
-        }
+        while(zone.getNbRessourceZone()>0) {
+        	System.out.println("Tour :" + tour);
+        	System.out.println("_____PHASE DE PLACEMENT_____");
+            for (int i=0; i < Joueur.getNbJoueur(); i++){
+                listJoueur[i].phasePlacement(listJoueur[i].joueur, zone);
+            }
 
-        System.out.println("_____PHASE DE RECUPERATION_____");
-        for (int i=0; i < Joueur.getNbJoueur(); i++){
-            listJoueur[i].phaseRecuperation(listJoueur[i].joueur, zone);
+            System.out.println("_____PHASE DE RECUPERATION_____");
+            for (int i=0; i < Joueur.getNbJoueur(); i++){
+                listJoueur[i].phaseRecuperation(listJoueur[i].joueur, zone);
+            }
+            tour++;
         }
+        
+        
 
         System.out.println("_____RESULTAT_____");
        if (j1.inventaireJoueur.getNbRessource() == j2.inventaireJoueur.getNbRessource()) {
@@ -54,6 +62,7 @@ public class Main {
         j.placement(inventaireJoueur, z);
         System.out.println("Joueur " + j.getNum() + " :");
         System.out.println("Nb d'ouvrier dans la zone : "+ z.getNbOuvrierSurZone());
+        System.out.println("Nb de ressource dans la zone : "+ z.getNbRessourceZone());
         System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + j.getNum() + " : " + inventaireJoueur.getNbOuvrier());
         System.out.println("Nb de ressource dans l'inventaire du joueur " + j.getNum() + " : " + inventaireJoueur.getNbRessource());
     }
@@ -68,8 +77,12 @@ public class Main {
         j.action() ;
         j.recupere(inventaireJoueur,z);
         System.out.println("Nb d'ouvrier dans la zone : "+ z.getNbOuvrierSurZone());
+        System.out.println("Nb de ressource dans la zone : "+ z.getNbRessourceZone());
         System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + j.getNum() + " : " + inventaireJoueur.getNbOuvrier());
         System.out.println("Nb de ressource dans l'inventaire du joueur " + j.getNum() + " : " + inventaireJoueur.getNbRessource());
     }
+    
+    
+   //public void VerifRessources ()
 
 }
