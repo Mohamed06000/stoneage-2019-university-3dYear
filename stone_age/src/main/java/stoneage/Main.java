@@ -13,17 +13,14 @@ public class Main {
         Main j1 = new Main();
         Main j2 = new Main();
         Zone zone = new Zone();
-<<<<<<< HEAD
+
         Main listJoueur[] = {j1,j2};
         int tour = 1;
-=======
-        Main listJoueur[] = {j1, j2};
->>>>>>> a4a31b3d5474cc4212f69bcf89341d32ec59b409
+
 
         System.out.println("Nb de joueur : " + Joueur.getNbJoueur());
         
 
-<<<<<<< HEAD
         while(zone.getNbRessourceZone()>0) {
         	System.out.println("Tour :" + tour);
         	System.out.println("_____PHASE DE PLACEMENT_____");
@@ -34,26 +31,23 @@ public class Main {
             System.out.println("_____PHASE DE RECUPERATION_____");
             for (int i=0; i < Joueur.getNbJoueur(); i++){
                 listJoueur[i].phaseRecuperation(listJoueur[i].joueur, zone);
+
             }
+            System.out.println("_____PHASE NOURRIR____");
+            for (int i = 0; i < Joueur.getNbJoueur(); i++) {
+                listJoueur[i].phaseNourrir(listJoueur[i].joueur);
+            }
+
+
+
+
+
             tour++;
-=======
-        System.out.println("_____PHASE DE PLACEMENT_____");
-        for (int i = 0; i < Joueur.getNbJoueur(); i++) {
-            listJoueur[i].phasePlacement(listJoueur[i].joueur, zone);
-        }
-
-        System.out.println("_____PHASE DE RECUPERATION_____");
-        for (int i = 0; i < Joueur.getNbJoueur(); i++) {
-            listJoueur[i].phaseRecuperation(listJoueur[i].joueur, zone);
->>>>>>> a4a31b3d5474cc4212f69bcf89341d32ec59b409
         }
         
         
 
-        System.out.println("_____PHASE NOURRIR____");
-        for (int i = 0; i < Joueur.getNbJoueur(); i++) {
-            listJoueur[i].phaseNourrir(listJoueur[i].joueur);
-        }
+
 
         System.out.println("_____RESULTAT_____");
         if (j1.inventaireJoueur.getNbRessource() == j2.inventaireJoueur.getNbRessource()) {
@@ -82,12 +76,9 @@ public class Main {
     public void phasePlacement(Joueur j, Zone z) {
         j.placement(inventaireJoueur, z);
         System.out.println("Joueur " + j.getNum() + " :");
-<<<<<<< HEAD
+
         System.out.println("Nb d'ouvrier dans la zone : "+ z.getNbOuvrierSurZone());
         System.out.println("Nb de ressource dans la zone : "+ z.getNbRessourceZone());
-=======
-        System.out.println("Nb d'ouvrier dans la zone : " + z.getNbOuvrierSurZone());
->>>>>>> a4a31b3d5474cc4212f69bcf89341d32ec59b409
         System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + j.getNum() + " : " + inventaireJoueur.getNbOuvrier());
         System.out.println("Nb de ressource dans l'inventaire du joueur " + j.getNum() + " : " + inventaireJoueur.getNbRessource());
     }
@@ -100,16 +91,11 @@ public class Main {
      */
     public void phaseRecuperation(Joueur j, Zone z) {
         System.out.println("Joueur " + j.getNum() + " :");
-<<<<<<< HEAD
         j.action() ;
         j.recupere(inventaireJoueur,z);
         System.out.println("Nb d'ouvrier dans la zone : "+ z.getNbOuvrierSurZone());
         System.out.println("Nb de ressource dans la zone : "+ z.getNbRessourceZone());
-=======
-        j.action();
-        j.recupere(inventaireJoueur, z);
-        System.out.println("Nb d'ouvrier dans la zone : " + z.getNbOuvrierSurZone());
->>>>>>> a4a31b3d5474cc4212f69bcf89341d32ec59b409
+
         System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + j.getNum() + " : " + inventaireJoueur.getNbOuvrier());
         System.out.println("Nb de ressource dans l'inventaire du joueur " + j.getNum() + " : " + inventaireJoueur.getNbRessource());
     }

@@ -53,7 +53,7 @@ public class Zone {
      *
      * @param nbOuvrierRetirer
      */
-<<<<<<< HEAD
+
     public void retirerOuvrier(int nbOuvrierRetirer) { nbOuvrierSurZone -= nbOuvrierRetirer; }
     
     public  void diminuerRessource()
@@ -66,19 +66,6 @@ public class Zone {
     	nbRessourcesZone ++; 
     	
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-=======
-    public void retirerOuvrier(int nbOuvrierRetirer) {
-        nbOuvrierSurZone -= nbOuvrierRetirer;
-    }
->>>>>>> a4a31b3d5474cc4212f69bcf89341d32ec59b409
+
 
 }
