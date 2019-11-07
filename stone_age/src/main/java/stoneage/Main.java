@@ -4,11 +4,7 @@ package stoneage;
  * Classe du lancement du jeu
  */
 public class Main {
-
-    private final Inventaire inventaireJoueur;
-    private final Joueur joueur;
-
-
+    
     public static final void main(String[] args) {
         Joueur j1 = new Joueur();
         Joueur j2 = new Joueur();
