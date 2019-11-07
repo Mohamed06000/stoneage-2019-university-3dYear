@@ -13,7 +13,8 @@ public class Main {
         Main j1 = new Main();
         Main j2 = new Main();
         Zone zone = new Zone();
-
+        ZoneInterface zoneR = new ZoneRessource();
+        ZoneInterface zoneV = new ZoneVillage();
         Main listJoueur[] = {j1,j2};
         int tour = 1;
 
@@ -37,16 +38,8 @@ public class Main {
             for (int i = 0; i < Joueur.getNbJoueur(); i++) {
                 listJoueur[i].phaseNourrir(listJoueur[i].joueur);
             }
-
-
-
-
-
             tour++;
         }
-        
-        
-
 
 
         System.out.println("_____RESULTAT_____");
@@ -76,9 +69,7 @@ public class Main {
     public void phasePlacement(Joueur j, Zone z) {
         j.placement(inventaireJoueur, z);
         System.out.println("Joueur " + j.getNum() + " :");
-
-        System.out.println("Nb d'ouvrier dans la zone : "+ z.getNbOuvrierSurZone());
-        System.out.println("Nb de ressource dans la zone : "+ z.getNbRessourceZone());
+        System.out.println("Nb d'ouvrier dans la zone : " + z.getNbOuvrierSurZone());
         System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + j.getNum() + " : " + inventaireJoueur.getNbOuvrier());
         System.out.println("Nb de ressource dans l'inventaire du joueur " + j.getNum() + " : " + inventaireJoueur.getNbRessource());
     }
@@ -100,8 +91,7 @@ public class Main {
         System.out.println("Nb de ressource dans l'inventaire du joueur " + j.getNum() + " : " + inventaireJoueur.getNbRessource());
     }
     
-    
-   //public void VerifRessources ()
+
 
     /**
      * Lancement de la phase de jeu "nourrir"
