@@ -4,6 +4,7 @@ package stoneage;
  * Classe de l'inventaire du joueur
  */
 public class Inventaire {
+	
 
     /**
      * Le nombre d'ouvrier du joueur
@@ -99,4 +100,13 @@ public class Inventaire {
         setNbRessource(nRessource);
         setNbOuvrier(nOuvrier);
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
