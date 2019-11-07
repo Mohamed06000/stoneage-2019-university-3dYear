@@ -6,7 +6,7 @@ import java.util.Random ;
 /**
  * Classe Joueur qui represente les informations et actions du joueur
  */
-public class Joueur {
+public class Joueur<get> {
 
     /**
      * La numero du joueur
@@ -16,6 +16,7 @@ public class Joueur {
      * Le nombre de joueur de type Joueur
      */
     private static int nbJoueur;
+    private Inventaire inventaireJoueur = new Inventaire();
 
     /**
      * Constructeur de la classe Joueur qui accremente un nombre de joueur
@@ -40,6 +41,10 @@ public class Joueur {
      */
     public int getNum(){
         return num;
+    }
+
+    public Inventaire getInventaireJoueur() {
+        return inventaireJoueur;
     }
 
     /**
