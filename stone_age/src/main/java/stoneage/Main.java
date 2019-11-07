@@ -65,6 +65,7 @@ public class Main {
      */
     public void phaseRecuperation(Joueur j, Zone z){
         System.out.println("Joueur " + j.getNum() + " :");
+        j.action() ;
         j.recupere(inventaireJoueur,z);
         System.out.println("Nb d'ouvrier dans la zone : "+ z.getNbOuvrierSurZone());
         System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + j.getNum() + " : " + inventaireJoueur.getNbOuvrier());
