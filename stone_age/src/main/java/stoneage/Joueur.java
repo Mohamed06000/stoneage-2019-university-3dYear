@@ -47,7 +47,7 @@ public class Joueur {
      * @param i L'inventaire du joueur
      * @param z La zone choisie
      */
-    public void placement(Inventaire i, Zone z){
+    public void placement(Inventaire i, ZoneInterface z){
         i.subOuvrier(1);
         z.placeOuvrier(1);
     }
@@ -57,10 +57,10 @@ public class Joueur {
      * @param i L'inventaire du joueur
      * @param z La zone choisie
      */
-    public void recupere(Inventaire i, Zone z){
+    public void recupere(Inventaire i, ZoneRessource z){
 
         i.setNbOuvrier(i.getNbOuvrier() + 1);
-        i.addRessource();
+        i.addRessource(z);
         z.diminuerRessource();
         z.retirerOuvrier(1);
 

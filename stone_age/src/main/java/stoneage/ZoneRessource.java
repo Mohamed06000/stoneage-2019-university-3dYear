@@ -9,6 +9,7 @@ public class ZoneRessource implements ZoneInterface {
      * Le nombre d'ouvrier present sur la zone
      */
     private int nbOuvrierSurZone = 0;
+    private int nbRessourcesZone = 10 ;
 
     /**
      * Recupérer le  nombre d'ouvrier sur la zone
@@ -18,6 +19,11 @@ public class ZoneRessource implements ZoneInterface {
     public int getNbOuvrierSurZone() {
         return nbOuvrierSurZone;
     }
+
+    public int getNbRessourceZone() {
+        return nbRessourcesZone;
+    }
+
 
     /**
      * Assigner un nombre d'ouvier sur la zone
@@ -45,5 +51,17 @@ public class ZoneRessource implements ZoneInterface {
     public void retirerOuvrier(int nbOuvrierRetirer) {
         nbOuvrierSurZone -= nbOuvrierRetirer;
     }
+
+    public  void diminuerRessource()
+    {
+        nbRessourcesZone --;
+
+    }
+    public void augmenterRessource()
+    {
+        nbRessourcesZone ++;
+
+    }
+
 
 }

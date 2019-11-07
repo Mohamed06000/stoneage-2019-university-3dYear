@@ -12,8 +12,7 @@ public class Main {
     public static final void main(String[] args) {
         Main j1 = new Main();
         Main j2 = new Main();
-        Zone zone = new Zone();
-        ZoneInterface zoneR = new ZoneRessource();
+        ZoneRessource zoneR = new ZoneRessource();
         ZoneInterface zoneV = new ZoneVillage();
         Main listJoueur[] = {j1,j2};
         int tour = 1;
@@ -22,16 +21,16 @@ public class Main {
         System.out.println("Nb de joueur : " + Joueur.getNbJoueur());
         
 
-        while(zone.getNbRessourceZone()>0) {
+        while(zoneR.getNbRessourceZone()>0) {
         	System.out.println("Tour :" + tour);
         	System.out.println("_____PHASE DE PLACEMENT_____");
             for (int i=0; i < Joueur.getNbJoueur(); i++){
-                listJoueur[i].phasePlacement(listJoueur[i].joueur, zone);
+                listJoueur[i].phasePlacement(listJoueur[i].joueur, zoneR);
             }
 
             System.out.println("_____PHASE DE RECUPERATION_____");
             for (int i=0; i < Joueur.getNbJoueur(); i++){
-                listJoueur[i].phaseRecuperation(listJoueur[i].joueur, zone);
+                listJoueur[i].phaseRecuperation(listJoueur[i].joueur, zoneR);
 
             }
             System.out.println("_____PHASE NOURRIR____");
@@ -66,7 +65,7 @@ public class Main {
      * @param j L'objet de la classe Joueur
      * @param z L'objet de la classe Zone
      */
-    public void phasePlacement(Joueur j, Zone z) {
+    public void phasePlacement(Joueur j, ZoneInterface z) {
         j.placement(inventaireJoueur, z);
         System.out.println("Joueur " + j.getNum() + " :");
         System.out.println("Nb d'ouvrier dans la zone : " + z.getNbOuvrierSurZone());
@@ -76,11 +75,10 @@ public class Main {
 
     /**
      * Lancement de la phase de jeu de recuperation
-     *
-     * @param j L'objet de la classe Joueur
+     *  @param j L'objet de la classe Joueur
      * @param z L'objet de la classe Zone
      */
-    public void phaseRecuperation(Joueur j, Zone z) {
+    public void phaseRecuperation(Joueur j, ZoneRessource z) {
         System.out.println("Joueur " + j.getNum() + " :");
         j.action() ;
         j.recupere(inventaireJoueur,z);

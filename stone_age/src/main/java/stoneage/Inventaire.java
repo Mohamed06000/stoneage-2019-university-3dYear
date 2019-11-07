@@ -81,7 +81,7 @@ public class Inventaire {
     /**
      * Rajouter 1 ressource a l'inventaire du joueur ou 1 ouvrier en fonction de la zone
      **/
-    public void addRessource(Zone z){ 
+    public void addRessource(ZoneInterface z){
         if (z instanceof ZoneRessource){
             this.nbRessource++;
             }
@@ -110,5 +110,5 @@ public class Inventaire {
     }
     
     
-    
+
 }
