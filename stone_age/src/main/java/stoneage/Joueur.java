@@ -61,6 +61,7 @@ public class Joueur {
 
         i.setNbOuvrier(i.getNbOuvrier() + 1);
         i.addRessource();
+        z.diminuerRessource();
         z.retirerOuvrier(1);
 
     }
