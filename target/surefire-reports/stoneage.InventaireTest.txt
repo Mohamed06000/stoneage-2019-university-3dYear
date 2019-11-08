@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: stoneage.InventaireTest
 -------------------------------------------------------------------------------
-Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.031 s - in stoneage.InventaireTest
+Tests run: 6, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.031 s <<< FAILURE! - in stoneage.InventaireTest
+subOuvrier  Time elapsed: 0.024 s  <<< FAILURE!
+java.lang.AssertionError: expected:<3> but was:<4>
+	at stoneage.InventaireTest.subOuvrier(InventaireTest.java:22)
+
