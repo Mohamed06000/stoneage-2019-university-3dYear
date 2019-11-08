@@ -9,6 +9,9 @@ public class ZoneRessource implements ZoneInterface {
      * Le nombre d'ouvrier present sur la zone
      */
     private int nbOuvrierSurZone = 0;
+    /**
+     * Le nombre de ressource de la zone
+     */
     private int nbRessourcesZone = 10 ;
 
     /**
@@ -20,6 +23,10 @@ public class ZoneRessource implements ZoneInterface {
         return nbOuvrierSurZone;
     }
 
+    /**
+     * Recuperer le nombre de ressource de la zone
+     * @return Le nombre de ressource
+     */
     public int getNbRessourceZone() {
         return nbRessourcesZone;
     }
@@ -52,7 +59,10 @@ public class ZoneRessource implements ZoneInterface {
         nbOuvrierSurZone -= nbOuvrierRetirer;
     }
 
-    public  void diminuerRessource() {
+    /**
+     * Diminuer les ressources de la zone
+     */
+    public void diminuerRessource() {
         if (nbRessourcesZone>0)
             nbRessourcesZone--;
     }

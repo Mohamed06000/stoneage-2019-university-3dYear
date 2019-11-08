@@ -84,13 +84,19 @@ public class Joueur<get> {
         }
     }
 
+    /**
+     * Pour l'instant elle affiche la valeur du lancé de dé
+     */
     public void action (){
-        int valeurDee = dée();
+        int valeurDee = dé();
         System.out.println("La valeur du dée est : " + valeurDee);
     }
 
-
-    public int dée(){
+    /**
+     * Lancer un dé
+     * @return Valeur du dé
+     */
+    public int dé(){
         Random rand = new Random();
         int result = 0 ;
         result = rand.nextInt(6)+1 ;

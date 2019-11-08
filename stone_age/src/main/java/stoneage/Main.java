@@ -47,13 +47,6 @@ public class Main {
         }
     }
 
-    /**
-     * Creation d'un joueur possedant des inforamtions, des actions et un inventaire
-     */
-    /*public Main() {
-        joueur = new Joueur();
-        inventaireJoueur = new Inventaire();
-    }*/
 
     /**
      * Lancement de la phase de jeu de placement
