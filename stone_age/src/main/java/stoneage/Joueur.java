@@ -65,11 +65,11 @@ public class Joueur<get> {
     public void recupere(Inventaire i, ZoneInterface z){
 
         i.setNbOuvrier(i.getNbOuvrier() + 1);
-        i.addRessource(z);
-        if (z instanceof ZoneRessource){
+        i.addRessource(z); //suppr
+        if (z instanceof ZoneRessource){//suppr
             z.diminuerRessource();
         }
-        z.retirerOuvrier(1);
+        z.retirerOuvrier(1);//suppr
 
     }
     /**
@@ -82,11 +82,6 @@ public class Joueur<get> {
                 i.subNourriture();
             }
         }
-    }
-
-    public void action (){
-        int valeurDee = dée();
-        System.out.println("La valeur du dée est : " + valeurDee);
     }
 
 

@@ -76,8 +76,19 @@ public class Main {
      */
     public static void phaseRecuperation(Joueur j, ZoneRessource z) {
         System.out.println("Joueur " + j.getNum() + " :");
-        j.action() ;
-        j.recupere(j.getInventaireJoueur(),z);
+        z.gainZone(j);
+        /*public void gainZone(){
+        int somme=0;
+        for(int i=0;i<zone.getNbOuvrierDuJoueur(j.getNum());i++){
+            somme += j.de();
+        }
+        if(somme >= 6)
+            double gain = somme/3;
+        j.getInventaireJoueur().setBois(getBois()+gain);
+        diminuerRessource(gain);
+        retirerOuvrier(getNbOuvrierDuJoueur(j.getNum()));
+}*/
+        j.recupere(j.getInventaireJoueur(),z); //zone.getNbOuvrierDuJoueur(j)
         System.out.println("Nb d'ouvrier dans la zone : "+ z.getNbOuvrierSurZone());
         System.out.println("Nb de ressource dans la zone : "+ z.getNbRessourceZone());
 
