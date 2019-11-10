@@ -4,13 +4,13 @@ package stoneage;
  * Classe de l'inventaire du joueur
  */
 public class Inventaire {
-	
 
     /**
      * Le nombre d'ouvrier du joueur
      */
     private int nbOuvrier;
     /**
+
      *   Le nombre de ressource du joueur
      */
     private int nbRessource = 0;
@@ -52,15 +52,13 @@ public class Inventaire {
     }
 
     /**
-<<<<<<< HEAD
      * Soustraire un nombre d'ouvrier au joueur qu'il veut placer sur une zone
-=======
-     * Soustrer un nombre d'ouvrier au joueur qu'il veut placer sur une zone
->>>>>>> master
      * @param nbOuvrier Le nombre d'ouvrier
      */
     public void subOuvrier(int nbOuvrier){
-        this.nbOuvrier -= nbOuvrier;
+        if (this.nbOuvrier>0) {
+            this.nbOuvrier -= nbOuvrier;
+        }
     }
 
     /**
@@ -80,15 +78,24 @@ public class Inventaire {
     }
 
     /**
-     * Rajouter 1 ressource a l'inventaire du joueur
-     */
-    public void addRessource(){ this.nbRessource++; }
+     * Rajouter 1 ressource a l'inventaire du joueur ou 1 ouvrier en fonction de la zone
+     **/
+    public void addRessource(ZoneInterface z){
+        if (z instanceof ZoneRessource){
+            this.nbRessource++;
+            }
+        else if (z instanceof ZoneVillage){
+            this.nbOuvrier++;
+        }
+        else {
+        }
+    }
 
     /**
      * Constructeur de la classe, on assigne 1 ouvrier par default
      */
     public Inventaire(){
-        setNbOuvrier(1);
+        setNbOuvrier(5);
     }
 
     /**
@@ -102,11 +109,5 @@ public class Inventaire {
     }
     
     
-    
-    
-    
-    
-    
-    
-    
+
 }

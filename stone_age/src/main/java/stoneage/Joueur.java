@@ -6,7 +6,7 @@ import java.util.Random ;
 /**
  * Classe Joueur qui represente les informations et actions du joueur
  */
-public class Joueur {
+public class Joueur<get> {
 
     /**
      * La numero du joueur
@@ -16,6 +16,7 @@ public class Joueur {
      * Le nombre de joueur de type Joueur
      */
     private static int nbJoueur;
+    private Inventaire inventaireJoueur = new Inventaire();
 
     /**
      * Constructeur de la classe Joueur qui accremente un nombre de joueur
@@ -42,12 +43,16 @@ public class Joueur {
         return num;
     }
 
+    public Inventaire getInventaireJoueur() {
+        return inventaireJoueur;
+    }
+
     /**
      * Placer ses ouvriers sur la zone
      * @param i L'inventaire du joueur
      * @param z La zone choisie
      */
-    public void placement(Inventaire i, Zone z){
+    public void placement(Inventaire i, ZoneInterface z){
         i.subOuvrier(1);
         z.placeOuvrier(1);
     }
@@ -57,11 +62,13 @@ public class Joueur {
      * @param i L'inventaire du joueur
      * @param z La zone choisie
      */
-    public void recupere(Inventaire i, Zone z){
+    public void recupere(Inventaire i, ZoneInterface z){
 
         i.setNbOuvrier(i.getNbOuvrier() + 1);
-        i.addRessource();
-        z.diminuerRessource();
+        i.addRessource(z);
+        if (z instanceof ZoneRessource){
+            z.diminuerRessource();
+        }
         z.retirerOuvrier(1);
 
     }
@@ -70,19 +77,26 @@ public class Joueur {
      * @param i L'inventaire du joueur
      */
     public void nourrir(Inventaire i) {
-    	for (int j=0;j<i.getNbOuvrier();j++) {
-    		i.subNourriture();
-    	}
-
+        if (i.getNbNourriture()>0){
+            for (int j=0;j<i.getNbOuvrier();j++) {
+                i.subNourriture();
+            }
+        }
     }
 
+    /**
+     * Pour l'instant elle affiche la valeur du lancé de dé
+     */
     public void action (){
-        int valeurDee = dée();
+        int valeurDee = dé();
         System.out.println("La valeur du dée est : " + valeurDee);
     }
 
-
-    public int dée(){
+    /**
+     * Lancer un dé
+     * @return Valeur du dé
+     */
+    public int dé(){
         Random rand = new Random();
         int result = 0 ;
         result = rand.nextInt(6)+1 ;
