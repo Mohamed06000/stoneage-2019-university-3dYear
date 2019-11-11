@@ -5,16 +5,15 @@ package stoneage;
  */
 public class Inventaire {
 
+
+    private static int nbOuvrierNonPlace;
+
     /**
      * Le nombre d'ouvrier du joueur
      */
     private int nbOuvrier;
     /**
-<<<<<<< HEAD
      *   Le nombre de ressource du joueur
-=======
-     * Le nombre de ressource du joueur
->>>>>>> origin/Baroudi
      */
     private int nbRessource = 0;
     
@@ -22,6 +21,14 @@ public class Inventaire {
      * La quantitée de nourriture du joueur (debut de jeu = 10 pour tous)
      */
     private int nbNourriture=10;
+
+    public static void setNbOuvrierNonPlace(int nbOuvrierNonPlace) {
+        Inventaire.nbOuvrierNonPlace = nbOuvrierNonPlace;
+    }
+
+    public static int getNbOuvrierNonPlace() {
+        return nbOuvrierNonPlace;
+    }
 
     /**
      * Recupere le nombre d'ouvrier du joueur
@@ -99,6 +106,7 @@ public class Inventaire {
      */
     public Inventaire(){
         setNbOuvrier(5);
+        nbOuvrierNonPlace+= nbOuvrier;
     }
 
     /**

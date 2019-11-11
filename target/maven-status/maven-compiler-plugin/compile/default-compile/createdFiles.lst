@@ -1,3 +1,6 @@
-stoneage/ZoneVillage.class
-stoneage/ZoneRessource.class
-stoneage/ZoneInterface.class
+stoneage\Inventaire.class
+stoneage\ZoneVillage.class
+stoneage\ZoneInterface.class
+stoneage\ZoneRessource.class
+stoneage\Joueur.class
+stoneage\Main.class

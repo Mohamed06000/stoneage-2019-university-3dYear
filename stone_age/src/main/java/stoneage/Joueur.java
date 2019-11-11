@@ -1,22 +1,27 @@
 package stoneage;
 
-import java.util.Random ;
+import org.apache.commons.lang.ArrayUtils;
+
+import java.util.* ;
 
 
 /**
  * Classe Joueur qui represente les informations et actions du joueur
  */
-public class Joueur<get> {
+public class Joueur {
+
 
     /**
      * La numero du joueur
      */
     private int num;
+
     /**
      * Le nombre de joueur de type Joueur
      */
     private static int nbJoueur;
     private Inventaire inventaireJoueur = new Inventaire();
+    private ZoneInterface zoneVisit[] = new ZoneInterface[0];
 
     /**
      * Constructeur de la classe Joueur qui accremente un nombre de joueur
@@ -27,13 +32,6 @@ public class Joueur<get> {
         num = nbJoueur;
     }
 
-    /**
-     * Methode de classe qui recupere le nombre de joueur
-     * @return Le nombre de joueur
-     */
-    public static int getNbJoueur(){
-        return nbJoueur;
-    }
 
     /**
      * Recupere le numero du joueur
@@ -43,52 +41,81 @@ public class Joueur<get> {
         return num;
     }
 
+    public ZoneInterface[] getZoneVisit() {
+        return zoneVisit;
+    }
+
+    /**
+     * Methode de classe qui recupere le nombre de joueur
+     * @return Le nombre de joueur
+     */
+    public static int getNbJoueur(){
+        return nbJoueur;
+    }
+
+
     public Inventaire getInventaireJoueur() {
         return inventaireJoueur;
     }
 
     /**
      * Placer ses ouvriers sur la zone
-     * @param i L'inventaire du joueur
      * @param z La zone choisie
      */
-    public void placement(Inventaire i, ZoneInterface z){
-        i.subOuvrier(1);
-        z.placeOuvrier(1);
+    public void placement(ZoneInterface z, int nbOuvrier){
+        inventaireJoueur.subOuvrier(nbOuvrier);
+        Inventaire.setNbOuvrierNonPlace(Inventaire.getNbOuvrierNonPlace()-nbOuvrier);
+        z.placeOuvrier(nbOuvrier, getNum());
+        zoneVisit = Arrays.copyOf(zoneVisit,zoneVisit.length+1);
+        zoneVisit[zoneVisit.length-1] = z;
     }
 
     /**
      * Recuperer ses ouvriers et ressource de la zone
-     * @param i L'inventaire du joueur
      * @param z La zone choisie
      */
-    public void recupere(Inventaire i, ZoneInterface z){
+    public void recupere(ZoneInterface z){
 
-        i.setNbOuvrier(i.getNbOuvrier() + 1);
-        i.addRessource(z); //suppr
+        inventaireJoueur.setNbOuvrier(inventaireJoueur.getNbOuvrier() + z.getNbOuvrierDuJoueurI(getNum()));
+        inventaireJoueur.addRessource(z); //suppr
         if (z instanceof ZoneRessource){//suppr
             z.diminuerRessource();
         }
-        z.retirerOuvrier(1);//suppr
+        z.retirerOuvrier(z.getNbOuvrierDuJoueurI(getNum()), getNum());//suppr
 
     }
     /**
      * Nourrir ses ouvriers (1 nourriture/ouvrier)
-     * @param i L'inventaire du joueur
      */
-    public void nourrir(Inventaire i) {
-        if (i.getNbNourriture()>0){
-            for (int j=0;j<i.getNbOuvrier();j++) {
-                i.subNourriture();
+    public void nourrir() {
+        if (inventaireJoueur.getNbNourriture()>0){
+            for (int j=0;j<inventaireJoueur.getNbOuvrier();j++) {
+                inventaireJoueur.subNourriture();
             }
         }
     }
 
+    /**
+     * Pour l'instant elle affiche la valeur du lancé de dé
+     */
+    public void action (){
+        int valeurDee = dé();
+        System.out.println("La valeur du dée est : " + valeurDee);
+    }
 
-    public int dée(){
+    /**
+     * Lancer un dé
+     * @return Valeur du dé
+     */
+
+    public int dé(){
         Random rand = new Random();
         int result = 0 ;
         result = rand.nextInt(6)+1 ;
         return result ;
+    }
+
+    public void deleteZone(int index){
+        zoneVisit = (ZoneInterface[]) ArrayUtils.remove(zoneVisit, index);
     }
 }

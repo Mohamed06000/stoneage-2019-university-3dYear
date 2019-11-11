@@ -9,6 +9,7 @@ public class ZoneVillage implements ZoneInterface {
      * Le nombre d'ouvrier present sur la zone
      */
     private int nbOuvrierSurZone = 0;
+    private int nbOuvrierDuJoueurI[] = new int[Joueur.getNbJoueur()];
 
     /**
      * Recupérer le  nombre d'ouvrier sur la zone
@@ -28,13 +29,19 @@ public class ZoneVillage implements ZoneInterface {
         this.nbOuvrierSurZone = nbOuvrierSurZone;
     }
 
+    public int getNbOuvrierDuJoueurI(int i) {
+        return nbOuvrierDuJoueurI[i-1];
+    }
+
     /**
      * Placer un nombre d'ouvrier sur la zone
      *
      * @param nbOuvrierAplacer
+     * @param id
      */
-    public void placeOuvrier(int nbOuvrierAplacer) {
+    public void placeOuvrier(int nbOuvrierAplacer, int id) {
         nbOuvrierSurZone += nbOuvrierAplacer;
+        nbOuvrierDuJoueurI[id-1] = nbOuvrierAplacer;
     }
 
     /**
@@ -42,8 +49,9 @@ public class ZoneVillage implements ZoneInterface {
      *
      * @param nbOuvrierRetirer
      */
-    public void retirerOuvrier(int nbOuvrierRetirer) {
+    public void retirerOuvrier(int nbOuvrierRetirer, int id) {
         nbOuvrierSurZone -= nbOuvrierRetirer;
+        nbOuvrierDuJoueurI[id-1] -= nbOuvrierRetirer;
     }
 
     @Override
