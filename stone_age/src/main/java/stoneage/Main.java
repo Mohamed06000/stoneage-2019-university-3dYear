@@ -9,26 +9,27 @@ public class Main {
         Joueur j1 = new Joueur();
         Joueur j2 = new Joueur();
         ZoneRessource zoneR = new ZoneRessource();
-        ZoneInterface zoneV = new ZoneVillage();
+        ZoneVillage zoneV = new ZoneVillage();
+        Champ champ = new Champ();
         Joueur listJoueur[] = {j1,j2};
         int tour = 1;
 
-
         System.out.println("Nb de joueur : " + Joueur.getNbJoueur());
         
-
-        while(zoneR.getNbRessourceZone()>0) {
+        while(zoneR.getNbRessourceZone()>0)
+            {
         	System.out.println("Tour :" + tour);
         	System.out.println("_____PHASE DE PLACEMENT_____");
             for (int i=0; i < Joueur.getNbJoueur(); i++){
-                phasePlacement(listJoueur[i], zoneR);
+                phasePlacement(listJoueur[i], champ);
             }
 
             System.out.println("_____PHASE DE RECUPERATION_____");
             for (int i=0; i < Joueur.getNbJoueur(); i++){
-                phaseRecuperation(listJoueur[i], zoneR);
+                phaseRecuperation(listJoueur[i], champ);
 
             }
+
             System.out.println("_____PHASE NOURRIR____");
             for (int i = 0; i < Joueur.getNbJoueur(); i++) {
                 phaseNourrir(listJoueur[i]);
@@ -60,6 +61,8 @@ public class Main {
         System.out.println("Nb d'ouvrier dans la zone : " + z.getNbOuvrierSurZone());
         System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + j.getNum() + " : " + j.getInventaireJoueur().getNbOuvrier());
         System.out.println("Nb de ressource dans l'inventaire du joueur " + j.getNum() + " : " + j.getInventaireJoueur().getNbRessource());
+        System.out.println("multiplicateur de Nourriture pour le "+ j.getNum()+ " : "+j.getInventaireJoueur().getMultplicateurNourriture() );
+
     }
 
     /**
@@ -67,15 +70,18 @@ public class Main {
      *  @param j L'objet de la classe Joueur
      * @param z L'objet de la classe Zone
      */
-    public static void phaseRecuperation(Joueur j, ZoneRessource z) {
+    public static void phaseRecuperation(Joueur j, ZoneInterface z) {
         System.out.println("Joueur " + j.getNum() + " :");
         j.action() ;
+        z.gainZone(j);
         j.recupere(j.getInventaireJoueur(),z);
         System.out.println("Nb d'ouvrier dans la zone : "+ z.getNbOuvrierSurZone());
-        System.out.println("Nb de ressource dans la zone : "+ z.getNbRessourceZone());
+        //System.out.println("Nb de ressource dans la zone : "+ z.getNbRessourceZone());
 
+        System.out.println("multiplicateur de Nourriture pour le "+ j.getNum()+ " : "+j.getInventaireJoueur().getMultplicateurNourriture() );
         System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + j.getNum() + " : " + j.getInventaireJoueur().getNbOuvrier());
         System.out.println("Nb de ressource dans l'inventaire du joueur " + j.getNum() + " : " + j.getInventaireJoueur().getNbRessource());
+
     }
     
 

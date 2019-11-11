@@ -2,70 +2,35 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d7ef558f-c9bc-493e-8971-2c380b3b5ee6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/$CACHE_FILE$" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/$PRODUCT_WORKSPACE_FILE$" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_13_rc_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_bytebuddy_byte_buddy_1_9_10.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_bytebuddy_byte_buddy_agent_1_9_10.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_5_5_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_5_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_5_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_params_5_5_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_5_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_5_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mockito_mockito_core_3_0_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mockito_mockito_junit_jupiter_3_0_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_objenesis_objenesis_2_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stone_age/src/main/java/stoneage/ZoneInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stone_age/src/main/java/stoneage/ZoneVillage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stone_age/src/test/java/stoneage/ZoneRessourceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stone_age/src/test/java/stoneage/ZoneVillageTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stone_age/src/main/java/stoneage/Champ.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.project" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/stone_age/src/main/java/stoneage/Inventaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/stone_age/src/main/java/stoneage/Inventaire.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stone_age/src/main/java/stoneage/Joueur.java" beforeDir="false" afterPath="$PROJECT_DIR$/stone_age/src/main/java/stoneage/Joueur.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stone_age/src/main/java/stoneage/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/stone_age/src/main/java/stoneage/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stone_age/src/main/java/stoneage/Zone.java" beforeDir="false" afterPath="$PROJECT_DIR$/stone_age/src/main/java/stoneage/ZoneRessource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stone_age/src/test/java/stoneage/InventaireTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/stone_age/src/test/java/stoneage/InventaireTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stone_age/src/test/java/stoneage/JoueurTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/stone_age/src/test/java/stoneage/JoueurTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stone_age/src/test/java/stoneage/MainTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/stone_age/src/test/java/stoneage/ZoneTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stone_age/src/main/java/stoneage/ZoneInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/stone_age/src/main/java/stoneage/ZoneInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stone_age/src/main/java/stoneage/ZoneVillage.java" beforeDir="false" afterPath="$PROJECT_DIR$/stone_age/src/main/java/stoneage/ZoneVillage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/stoneage/Inventaire.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/stoneage/Inventaire.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/stoneage/Joueur.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/stoneage/Joueur.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/stoneage/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/stoneage/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/stoneage/Zone.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/stoneage/Zone.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-stoneage.InventaireTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-stoneage.InventaireTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-stoneage.JoueurTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-stoneage.JoueurTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-stoneage.MainTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-stoneage.MainTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-stoneage.ZoneTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-stoneage.ZoneTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/stoneage.InventaireTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/stoneage.InventaireTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/stoneage.JoueurTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/stoneage.JoueurTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/stoneage.MainTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/stoneage.MainTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/stoneage.ZoneTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/stoneage.ZoneTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/stoneage/InventaireTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/stoneage/InventaireTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/stoneage/JoueurTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/stoneage/JoueurTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/stoneage/MainTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/stoneage/MainTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/stoneage/ZoneTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/stoneage/ZoneTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/stoneage/Zone.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/stoneage/ZoneInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/stoneage/ZoneInterface.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/stoneage/ZoneRessource.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/stoneage/ZoneRessource.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/stoneage/ZoneVillage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/stoneage/ZoneVillage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/stoneage/MainTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/stoneage/ZoneTest.class" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -132,7 +97,7 @@
       <workItem from="1573125045886" duration="956000" />
       <workItem from="1573126043288" duration="2373000" />
       <workItem from="1573418419069" duration="72000" />
-      <workItem from="1573418617486" duration="306000" />
+      <workItem from="1573418617486" duration="14807000" />
     </task>
     <task id="LOCAL-00001" summary="implementation de la phase nourrir + methode nourrir + initialisation quantite nourriture">
       <created>1573125747015</created>

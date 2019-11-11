@@ -21,12 +21,36 @@ public class Inventaire {
     private int nbNourriture=10;
 
     /**
+     *  Le coefiicient multiplicateur pour la Nourriture du joueur (initialiser à (1) ∀ joueur )
+     */
+    private int multplicateurNourriture =0;
+
+    /**
+     * Recupere le multiplicateur de Nourriture du joueur
+     * @return  le multiplicateur de Nourriture
+     */
+    public int getMultplicateurNourriture(){ return multplicateurNourriture; }
+
+    /**
+     * incremente de 1 le multiplicateurNourriture dans l'Inventaire du joueur
+     */
+    public void addMultplicateurNourriture(){  multplicateurNourriture++; }
+
+
+    /**
      * Recupere le nombre d'ouvrier du joueur
      * @return le nombre d'ouvrier
      */
     public int getNbOuvrier() {
         return nbOuvrier;
     }
+
+    /**
+     *
+     * @param nourriture
+     * @return
+     */
+    public void setNbNourriture(int nourriture) {nbNourriture=nourriture;}
     
     /**
      * Recupere la quantitée de nourriture du joueur
