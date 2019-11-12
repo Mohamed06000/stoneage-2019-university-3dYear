@@ -1,21 +1,18 @@
 package stoneage;
 
 /**
- * Classe generalise du concept de "zone" du jeu StoneAge
+ * Classe Ressource generalisee de "zone"
  */
-public class Zone {
+public class ZoneRessource implements ZoneInterface {
 
     /**
      * Le nombre d'ouvrier present sur la zone
      */
     private int nbOuvrierSurZone = 0;
-    
-    private int nbRessourcesZone = 10 ; 
-    
-    
-    
-    
-    
+    /**
+     * Le nombre de ressource de la zone
+     */
+    private int nbRessourcesZone = 10 ;
 
     /**
      * Recupérer le  nombre d'ouvrier sur la zone
@@ -25,10 +22,15 @@ public class Zone {
     public int getNbOuvrierSurZone() {
         return nbOuvrierSurZone;
     }
-    
+
+    /**
+     * Recuperer le nombre de ressource de la zone
+     * @return Le nombre de ressource
+     */
     public int getNbRessourceZone() {
-    	return nbRessourcesZone;
+        return nbRessourcesZone;
     }
+
 
     /**
      * Assigner un nombre d'ouvier sur la zone
@@ -53,32 +55,18 @@ public class Zone {
      *
      * @param nbOuvrierRetirer
      */
-<<<<<<< HEAD
-    public void retirerOuvrier(int nbOuvrierRetirer) { nbOuvrierSurZone -= nbOuvrierRetirer; }
-    
-    public  void diminuerRessource()
-    {
-    	nbRessourcesZone --; 
-    	
-    }
-    public void augmenterRessource()
-    {
-    	nbRessourcesZone ++; 
-    	
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-=======
     public void retirerOuvrier(int nbOuvrierRetirer) {
         nbOuvrierSurZone -= nbOuvrierRetirer;
     }
->>>>>>> a4a31b3d5474cc4212f69bcf89341d32ec59b409
+
+    /**
+     * Diminuer les ressources de la zone
+     */
+    public void diminuerRessource() {
+        if (nbRessourcesZone>0)
+            nbRessourcesZone--;
+    }
+
+
 
 }
