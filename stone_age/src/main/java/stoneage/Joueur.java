@@ -6,7 +6,7 @@ import java.util.Random ;
 /**
  * Classe Joueur qui represente les informations et actions du joueur
  */
-public class Joueur<get> {
+class Joueur {
 
     /**
      * La numero du joueur
@@ -19,10 +19,10 @@ public class Joueur<get> {
     private Inventaire inventaireJoueur = new Inventaire();
 
     /**
-     * Constructeur de la classe Joueur qui accremente un nombre de joueur
+     * Constructeur de la classe Joueur qui incremente un nombre de joueur
      * en static et assigne un numero de joueur a l'objet instancie
      */
-    public Joueur(){
+    Joueur(){
         nbJoueur ++;
         num = nbJoueur;
     }
@@ -49,23 +49,21 @@ public class Joueur<get> {
 
     /**
      * Placer ses ouvriers sur la zone
-     * @param i L'inventaire du joueur
      * @param z La zone choisie
      */
-    public void placement(Inventaire i, ZoneInterface z){
-        i.subOuvrier(1);
+    public void placement(ZoneInterface z){
+        inventaireJoueur.subOuvrier(1);
         z.placeOuvrier(1);
     }
 
     /**
      * Recuperer ses ouvriers et ressource de la zone
-     * @param i L'inventaire du joueur
      * @param z La zone choisie
      */
-    public void recupere(Inventaire i, ZoneInterface z){
+    public void recupere(ZoneInterface z){
 
-        i.setNbOuvrier(i.getNbOuvrier() + 1);
-        i.addRessource(z);
+        inventaireJoueur.setNbOuvrier(inventaireJoueur.getNbOuvrier() + 1);
+        inventaireJoueur.addRessource(z);
         if (z instanceof ZoneRessource){
             z.diminuerRessource();
         }

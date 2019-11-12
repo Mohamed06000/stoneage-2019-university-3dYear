@@ -10,7 +10,7 @@ public class Main {
         Joueur j2 = new Joueur();
         ZoneRessource zoneR = new ZoneRessource();
         ZoneInterface zoneV = new ZoneVillage();
-        Joueur listJoueur[] = {j1,j2};
+        Joueur [] listJoueur = {j1,j2};
         int tour = 1;
 
 
@@ -55,7 +55,7 @@ public class Main {
      * @param z L'objet de la classe Zone
      */
     public static void phasePlacement(Joueur j, ZoneInterface z) {
-        j.placement(j.getInventaireJoueur(), z);
+        j.placement(z);
         System.out.println("Joueur " + j.getNum() + " :");
         System.out.println("Nb d'ouvrier dans la zone : " + z.getNbOuvrierSurZone());
         System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + j.getNum() + " : " + j.getInventaireJoueur().getNbOuvrier());
@@ -70,7 +70,7 @@ public class Main {
     public static void phaseRecuperation(Joueur j, ZoneRessource z) {
         System.out.println("Joueur " + j.getNum() + " :");
         j.action() ;
-        j.recupere(j.getInventaireJoueur(),z);
+        j.recupere(z);
         System.out.println("Nb d'ouvrier dans la zone : "+ z.getNbOuvrierSurZone());
         System.out.println("Nb de ressource dans la zone : "+ z.getNbRessourceZone());
 

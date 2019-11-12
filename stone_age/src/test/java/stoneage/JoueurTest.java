@@ -20,12 +20,12 @@ class JoueurTest {
         ZoneInterface zoneR = new ZoneRessource();
         ZoneInterface zoneV = new ZoneVillage();
         Joueur j = new Joueur();
-        j.placement(j.getInventaireJoueur(), zoneR);
+        j.placement(zoneR);
 
         Assert.assertEquals(4, j.getInventaireJoueur().getNbOuvrier());
         Assert.assertEquals(1, zoneR.getNbOuvrierSurZone());
 
-        j.placement(j.getInventaireJoueur(), zoneR);
+        j.placement(zoneR);
 
         Assert.assertEquals(3, j.getInventaireJoueur().getNbOuvrier());
         Assert.assertEquals(2, zoneR.getNbOuvrierSurZone());
@@ -39,11 +39,11 @@ class JoueurTest {
         ZoneInterface zoneR = new ZoneRessource();
         ZoneInterface zoneV = new ZoneVillage();
         Joueur j = new Joueur();
-        j.placement(j.getInventaireJoueur(), zoneR);
-        j.placement(j.getInventaireJoueur(), zoneV);
+        j.placement(zoneR);
+        j.placement(zoneV);
 
-        j.recupere(j.getInventaireJoueur(), zoneR);
-        j.recupere(j.getInventaireJoueur(), zoneV);
+        j.recupere(zoneR);
+        j.recupere(zoneV);
 
         Assert.assertEquals(6, j.getInventaireJoueur().getNbOuvrier());
         Assert.assertEquals(0, zoneR.getNbOuvrierSurZone());
