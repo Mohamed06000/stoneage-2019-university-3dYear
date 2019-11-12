@@ -71,8 +71,8 @@ public class ZoneHutte implements ZoneInterface {
     }
 
 
-    public void diminuerRessource() {
-
+    public void gainZone(Joueur j){
+        j.getInventaireJoueur().setNbOuvrier(j.getInventaireJoueur().getNbOuvrier()+1);
     }
 
 

@@ -60,11 +60,12 @@ public class ZoneRessource implements ZoneInterface {
     }
 
     /**
-     * Diminuer les ressources de la zone
+     * Diminuer les ressources de la zone et donne une ressource
      */
-    public void diminuerRessource() {
-        if (nbRessourcesZone>0)
-            nbRessourcesZone--;
+    public void gainZone(Joueur j) {
+        if (this.nbRessourcesZone>0)
+            this.nbRessourcesZone--;
+        j.getInventaireJoueur().setNbRessource(j.getInventaireJoueur().getNbRessource()+1);
     }
 
 

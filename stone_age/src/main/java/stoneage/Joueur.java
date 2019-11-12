@@ -64,8 +64,12 @@ class Joueur {
 
         inventaireJoueur.setNbOuvrier(inventaireJoueur.getNbOuvrier() + 1);
         inventaireJoueur.addRessource(z);
+        /*Censé etre z.gainZone (joueur)*/
         if (z instanceof ZoneRessource){
-            z.diminuerRessource();
+            z.gainZone(this);
+        }
+        if (z instanceof ZoneHutte){
+            z.gainZone(this);
         }
         z.retirerOuvrier(1);
 
