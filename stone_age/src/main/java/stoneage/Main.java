@@ -9,7 +9,7 @@ public class Main {
         Joueur j1 = new Joueur();
         Joueur j2 = new Joueur();
         ZoneRessource zoneR = new ZoneRessource();
-        ZoneInterface zoneV = new ZoneVillage();
+        ZoneInterface zoneV = new ZoneHutte();
         Joueur [] listJoueur = {j1,j2};
         int tour = 1;
 

@@ -87,7 +87,7 @@ public class Inventaire {
         if (z instanceof ZoneRessource){
             this.nbRessource++;
             }
-        else if (z instanceof ZoneVillage){
+        else if (z instanceof ZoneHutte){
             this.nbOuvrier++;
         }
         else {

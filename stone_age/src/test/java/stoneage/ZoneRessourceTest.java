@@ -22,7 +22,7 @@ class ZoneRessourceTest {
     @Test
     void placeOuvrier() {
         ZoneRessource zr = new ZoneRessource();
-        ZoneVillage zv = new ZoneVillage();
+        ZoneHutte zv = new ZoneHutte();
         Joueur j = new Joueur();
         j.placement(zr);
         j.placement(zv);
@@ -34,7 +34,7 @@ class ZoneRessourceTest {
     @Test
     void retirerOuvrier() {
         ZoneRessource zr = new ZoneRessource();
-        ZoneVillage zv = new ZoneVillage();
+        ZoneHutte zv = new ZoneHutte();
         Joueur j = new Joueur();
         j.placement(zr);
         j.placement(zv);

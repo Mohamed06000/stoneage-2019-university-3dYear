@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ZoneVillageTest {
+class ZoneHutteTest {
 
     @Test
     void getNbOuvrierSurZone() {
@@ -18,7 +18,7 @@ class ZoneVillageTest {
     @Test
     void placeOuvrier() {
         ZoneRessource zr = new ZoneRessource();
-        ZoneVillage zv = new ZoneVillage();
+        ZoneHutte zv = new ZoneHutte();
         Joueur j = new Joueur();
         j.placement(zr);
         j.placement(zv);
@@ -30,7 +30,7 @@ class ZoneVillageTest {
     @Test
     void retirerOuvrier() {
         ZoneRessource zr = new ZoneRessource();
-        ZoneVillage zv = new ZoneVillage();
+        ZoneHutte zv = new ZoneHutte();
         Joueur j = new Joueur();
         j.placement(zr);
         j.placement(zv);

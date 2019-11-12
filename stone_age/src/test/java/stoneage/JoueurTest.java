@@ -18,7 +18,7 @@ class JoueurTest {
     @Test
     void placement() {
         ZoneInterface zoneR = new ZoneRessource();
-        ZoneInterface zoneV = new ZoneVillage();
+        ZoneInterface zoneV = new ZoneHutte();
         Joueur j = new Joueur();
         j.placement(zoneR);
 
@@ -37,7 +37,7 @@ class JoueurTest {
     @Test
     void recupere() {
         ZoneInterface zoneR = new ZoneRessource();
-        ZoneInterface zoneV = new ZoneVillage();
+        ZoneInterface zoneV = new ZoneHutte();
         Joueur j = new Joueur();
         j.placement(zoneR);
         j.placement(zoneV);
