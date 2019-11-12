@@ -3,8 +3,6 @@ package stoneage;
 /**
  * Classe Ressource generalisee de "zone"
  */
-import java.util.Random ;
-
 public class ZoneRessource implements ZoneInterface {
 
     /**
@@ -17,7 +15,7 @@ public class ZoneRessource implements ZoneInterface {
     private int nbRessourcesZone = 10 ;
 
     /**
-     * RecupÃ©rer le  nombre d'ouvrier sur la zone
+     * Recupérer le  nombre d'ouvrier sur la zone
      *
      * @return
      */
@@ -67,13 +65,6 @@ public class ZoneRessource implements ZoneInterface {
     public void diminuerRessource() {
         if (nbRessourcesZone>0)
             nbRessourcesZone--;
-    }
-    
-    public int de(){
-        Random rand = new Random();
-        int result = 0 ;
-        result = rand.nextInt(6)+1 ;
-        return result ;
     }
 
 

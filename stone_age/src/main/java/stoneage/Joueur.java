@@ -27,6 +27,8 @@ public class Joueur<get> {
         num = nbJoueur;
     }
 
+
+
     /**
      * Methode de classe qui recupere le nombre de joueur
      * @return Le nombre de joueur
@@ -65,38 +67,38 @@ public class Joueur<get> {
     public void recupere(Inventaire i, ZoneInterface z){
 
         i.setNbOuvrier(i.getNbOuvrier() + 1);
-        i.addRessource(z);//ajouter une ressource au joueur 
+        i.addRessource(z);
         if (z instanceof ZoneRessource){
-            z.diminuerRessource();//diminuer unr ressource de la zone
+            z.diminuerRessource();
         }
         z.retirerOuvrier(1);
 
     }
+
     /**
      * Nourrir ses ouvriers (1 nourriture/ouvrier)
      * @param i L'inventaire du joueur
      */
     public void nourrir(Inventaire i) {
-        if (i.getNbNourriture()>0){
-            for (int j=0;j<i.getNbOuvrier();j++) {
-                i.subNourriture();
+        i.setNbNourriture(i.getNbNourriture()+i.getNiveauAgriculture());
+        for (int j = 0; j < i.getNbOuvrier(); j++) {
+                    if(i.getNbNourriture()>0) i.subNourriture();
+                }
             }
-        }
-    }
 
     /**
-     * Pour l'instant elle affiche la valeur du lancÃ© de dÃ©
+     * Pour l'instant elle affiche la valeur du lancé de dé
      */
     public void action (){
-        int valeurDee = de();
-        System.out.println("La valeur du de est : " + valeurDee);
+        int valeurDee = dé();
+        System.out.println("La valeur du dée est : " + valeurDee);
     }
 
     /**
-     * Lancer un dÃ©
-     * @return Valeur du dÃ©
+     * Lancer un dé
+     * @return Valeur du dé
      */
-    public int de(){
+    public int dé(){
         Random rand = new Random();
         int result = 0 ;
         result = rand.nextInt(6)+1 ;

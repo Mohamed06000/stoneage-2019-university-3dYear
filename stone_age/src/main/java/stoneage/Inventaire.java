@@ -3,8 +3,6 @@ package stoneage;
 /**
  * Classe de l'inventaire du joueur
  */
-import java.util.Random ;
-
 public class Inventaire {
 
     /**
@@ -14,36 +12,46 @@ public class Inventaire {
     /**
 
      *   Le nombre de ressource du joueur
-
      */
     private int nbRessource = 0;
     
     /**
-     * La quantitÃ©e de nourriture du joueur (debut de jeu = 10 pour tous)
+     * La quantitée de nourriture du joueur (debut de jeu = 10 pour tous)
      */
     private int nbNourriture=10;
-    
-    
-    /**
-     * Constructeur de la classe, on assigne 1 ouvrier par default
-     */
-    public Inventaire(){
-        setNbOuvrier(5);
-    }
 
     /**
-     * Constructeur de la classe avec 2 parametres
-     * @param nOuvrier Le nombre d'ouvrier a assigner
-     * @param nRessource Le nombre de ressource a assigner
+     *  Le coefiicient multiplicateur pour la Nourriture du joueur (initialiser à (1)  joueur )
      */
-    public Inventaire(int nOuvrier, int nRessource){
-        setNbRessource(nRessource);
-        setNbOuvrier(nOuvrier);
+    private int niveauAgriculture =0;
+
+    /**
+     * Recupere le multiplicateur de Nourriture du joueur
+     * @return  le multiplicateur de Nourriture
+     */
+    public int getNiveauAgriculture(){ return niveauAgriculture; }
+
+    /**
+     * incremente de 1 le multiplicateurNourriture dans l'Inventaire du joueur
+     */
+    public void addNiveauAgriculture(){  niveauAgriculture++; }
+
+
+    /*
+     * incrementer le nbNourriture  par n Nourritures  gagné de la zone chasse pendant la phase recuperation . 
+     */
+    
+    
+    public void addNourriture(int nbNourritures)
+    {
+    	
+    	nbNourriture += nbNourritures ;  
+    	
+    	
     }
     
     
     
-
     /**
      * Recupere le nombre d'ouvrier du joueur
      * @return le nombre d'ouvrier
@@ -51,10 +59,17 @@ public class Inventaire {
     public int getNbOuvrier() {
         return nbOuvrier;
     }
+
+    /**
+     *
+     * @param nourriture
+     * @return
+     */
+    public void setNbNourriture(int nourriture) {nbNourriture=nourriture;}
     
     /**
-     * Recupere la quantitÃ©e de nourriture du joueur
-     * @return quantitÃ©e de nourriture
+     * Recupere la quantitée de nourriture du joueur
+     * @return quantitée de nourriture
      */
     public int getNbNourriture() {
     	return nbNourriture;
@@ -115,7 +130,23 @@ public class Inventaire {
         }
     }
 
-  
+    /**
+     * Constructeur de la classe, on assigne 1 ouvrier par default
+     */
+    public Inventaire(){
+        setNbOuvrier(5);
+    }
+
+    /**
+     * Constructeur de la classe avec 2 parametres
+     * @param nOuvrier Le nombre d'ouvrier a assigner
+     * @param nRessource Le nombre de ressource a assigner
+     */
+    public Inventaire(int nOuvrier, int nRessource){
+        setNbRessource(nRessource);
+        setNbOuvrier(nOuvrier);
+    }
+    
     
 
 }
