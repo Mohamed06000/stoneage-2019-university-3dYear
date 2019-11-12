@@ -6,14 +6,14 @@ package stoneage;
 public class ZoneHutte implements ZoneInterface {
 
     /**
-     * Le nombre d'ouvrier present sur la zone
+     * Le nombre d'ouvrier present sur la zone Hutte
      */
     private static int nbOuvrierSurZone = 0;
 
     /**
-     * Recupérer le  nombre d'ouvrier sur la zone
+     * Recupérer le  nombre d'ouvrier sur la zone Hutte
      *
-     * @return
+     * @return Nombre d'ouvrier sur la Zone Hutte
      */
     public int getNbOuvrierSurZone() {
         return nbOuvrierSurZone;
@@ -70,6 +70,11 @@ public class ZoneHutte implements ZoneInterface {
         nbOuvrierSurZone -= nbOuvrierRetirer;
     }
 
+    /**
+     * Ajoute un ouvrier au joueur j
+     * @param j
+     *
+     */
 
     public void gainZone(Joueur j){
         j.getInventaireJoueur().setNbOuvrier(j.getInventaireJoueur().getNbOuvrier()+1);
