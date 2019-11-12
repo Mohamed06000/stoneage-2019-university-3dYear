@@ -106,7 +106,7 @@ public class Inventaire {
      * @param nOuvrier Le nombre d'ouvrier a assigner
      * @param nRessource Le nombre de ressource a assigner
      */
-    public Inventaire(int nOuvrier, int nRessource){
+    Inventaire(int nOuvrier, int nRessource){
         setNbRessource(nRessource);
         setNbOuvrier(nOuvrier);
     }

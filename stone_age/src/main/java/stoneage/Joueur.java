@@ -16,7 +16,7 @@ class Joueur {
      * Le nombre de joueur de type Joueur
      */
     private static int nbJoueur;
-    private Inventaire inventaireJoueur = new Inventaire();
+    private Inventaire inventaireJoueur = new Inventaire(5,10);
 
     /**
      * Constructeur de la classe Joueur qui incremente un nombre de joueur
