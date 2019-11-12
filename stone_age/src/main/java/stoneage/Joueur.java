@@ -65,9 +65,9 @@ public class Joueur<get> {
     public void recupere(Inventaire i, ZoneInterface z){
 
         i.setNbOuvrier(i.getNbOuvrier() + 1);
-        i.addRessource(z);
+        i.addRessource(z);//ajouter une ressource au joueur 
         if (z instanceof ZoneRessource){
-            z.diminuerRessource();
+            z.diminuerRessource();//diminuer unr ressource de la zone
         }
         z.retirerOuvrier(1);
 
@@ -88,15 +88,15 @@ public class Joueur<get> {
      * Pour l'instant elle affiche la valeur du lancé de dé
      */
     public void action (){
-        int valeurDee = dé();
-        System.out.println("La valeur du dée est : " + valeurDee);
+        int valeurDee = de();
+        System.out.println("La valeur du de est : " + valeurDee);
     }
 
     /**
      * Lancer un dé
      * @return Valeur du dé
      */
-    public int dé(){
+    public int de(){
         Random rand = new Random();
         int result = 0 ;
         result = rand.nextInt(6)+1 ;

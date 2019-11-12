@@ -3,6 +3,8 @@ package stoneage;
 /**
  * Classe de l'inventaire du joueur
  */
+import java.util.Random ;
+
 public class Inventaire {
 
     /**
@@ -10,11 +12,9 @@ public class Inventaire {
      */
     private int nbOuvrier;
     /**
-<<<<<<< HEAD
+
      *   Le nombre de ressource du joueur
-=======
-     * Le nombre de ressource du joueur
->>>>>>> origin/Baroudi
+
      */
     private int nbRessource = 0;
     
@@ -22,6 +22,27 @@ public class Inventaire {
      * La quantitée de nourriture du joueur (debut de jeu = 10 pour tous)
      */
     private int nbNourriture=10;
+    
+    
+    /**
+     * Constructeur de la classe, on assigne 1 ouvrier par default
+     */
+    public Inventaire(){
+        setNbOuvrier(5);
+    }
+
+    /**
+     * Constructeur de la classe avec 2 parametres
+     * @param nOuvrier Le nombre d'ouvrier a assigner
+     * @param nRessource Le nombre de ressource a assigner
+     */
+    public Inventaire(int nOuvrier, int nRessource){
+        setNbRessource(nRessource);
+        setNbOuvrier(nOuvrier);
+    }
+    
+    
+    
 
     /**
      * Recupere le nombre d'ouvrier du joueur
@@ -94,23 +115,7 @@ public class Inventaire {
         }
     }
 
-    /**
-     * Constructeur de la classe, on assigne 1 ouvrier par default
-     */
-    public Inventaire(){
-        setNbOuvrier(5);
-    }
-
-    /**
-     * Constructeur de la classe avec 2 parametres
-     * @param nOuvrier Le nombre d'ouvrier a assigner
-     * @param nRessource Le nombre de ressource a assigner
-     */
-    public Inventaire(int nOuvrier, int nRessource){
-        setNbRessource(nRessource);
-        setNbOuvrier(nOuvrier);
-    }
-    
+  
     
 
 }
