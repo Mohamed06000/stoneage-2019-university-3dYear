@@ -2,6 +2,17 @@ package stoneage;
 
 import java.util.Random;
 
+/**
+ * Classe qui represente la Zone chasse  qui permet de gagner la nourriture pendant chaque phase de recuperation
+ * cette classe herite de la classe ressources zone donc elle herite  :
+ * 
+ * la variable : nbOuvrierSurZone
+ * la methode : getNbOuvrierSurZone()
+ * la methode : setNbOuvrierSurZone()
+ * la methode : placeOuvrier()
+ * la methode : retirerOuvrier()
+ * et on redéfinit les restes :
+ */
 public class Chasse extends ZoneRessource implements ZoneInterface {
 	
     private int nbNourritureSurZone = 10000 ;
