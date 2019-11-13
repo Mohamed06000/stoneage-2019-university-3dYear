@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="stoneage.JoueurTest" time="0.056" tests="7" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="stoneage.ZoneRessourceTest" time="0.1" tests="6" errors="0" skipped="0" failures="0">
   <properties>
     <property name="gopherProxySet" value="false"/>
     <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
@@ -61,11 +61,10 @@
     <property name="java.class.version" value="55.0"/>
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
   </properties>
-  <testcase name="action" classname="stoneage.JoueurTest" time="0"/>
-  <testcase name="getNum" classname="stoneage.JoueurTest" time="0"/>
-  <testcase name="recupere" classname="stoneage.JoueurTest" time="0.009"/>
-  <testcase name="getNbJoueur" classname="stoneage.JoueurTest" time="0.003"/>
-  <testcase name="dée" classname="stoneage.JoueurTest" time="0.002"/>
-  <testcase name="placement" classname="stoneage.JoueurTest" time="0.004"/>
-  <testcase name="nourrir" classname="stoneage.JoueurTest" time="0"/>
+  <testcase name="retirerOuvrier" classname="stoneage.ZoneRessourceTest" time="0.058"/>
+  <testcase name="getNbRessourceZone" classname="stoneage.ZoneRessourceTest" time="0"/>
+  <testcase name="setNbOuvrierSurZone" classname="stoneage.ZoneRessourceTest" time="0.001"/>
+  <testcase name="placeOuvrier" classname="stoneage.ZoneRessourceTest" time="0.001"/>
+  <testcase name="getNbOuvrierSurZone" classname="stoneage.ZoneRessourceTest" time="0.001"/>
+  <testcase name="diminuerRessource" classname="stoneage.ZoneRessourceTest" time="0.003"/>
 </testsuite>

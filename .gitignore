@@ -1,8 +1,8 @@
 # exclusion des dossiers contenant les élements générés
-**/out/
-**/target/
-**/build/
-**/bin/
+./**/out/
+./**/target/
+./**/build/
+./**/bin/
 
 # pour la javadoc (selon le nom du dossier pouvant la contenir)
 #**/javadoc/

@@ -67,6 +67,10 @@ public class ZoneRessource implements ZoneInterface {
             nbRessourcesZone--;
     }
 
+    @Override
+    public void gainZone(Joueur j) {
+
+    }
 
 
 }

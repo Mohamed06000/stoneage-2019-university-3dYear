@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="stoneage.ZoneTest" time="0.058" tests="4" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="stoneage.ZoneTest" time="0.016" tests="4" errors="0" skipped="0" failures="0">
   <properties>
     <property name="gopherProxySet" value="false"/>
     <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
@@ -16,7 +16,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="FR"/>
     <property name="sun.boot.library.path" value="/Applications/IntelliJ IDEA.app/Contents/jbr/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/benabdelkrim/Documents/PROJET/projetinfo-2019-stoneage-sak/target/surefire/surefirebooter9714182340031195650.jar /Users/benabdelkrim/Documents/PROJET/projetinfo-2019-stoneage-sak/target/surefire 2019-11-07T17-23-06_462-jvmRun1 surefire11575327645552880333tmp surefire_017220141565927918588tmp"/>
+    <property name="sun.java.command" value="/Users/benabdelkrim/Documents/PROJET/projetinfo-2019-stoneage-sak/target/surefire/surefirebooter18041761758347840684.jar /Users/benabdelkrim/Documents/PROJET/projetinfo-2019-stoneage-sak/target/surefire 2019-11-08T10-53-12_820-jvmRun1 surefire4109970979314070770tmp surefire_016081992187646476509tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/Users/benabdelkrim/Documents/PROJET/projetinfo-2019-stoneage-sak/target/test-classes:/Users/benabdelkrim/Documents/PROJET/projetinfo-2019-stoneage-sak/target/classes:/Users/benabdelkrim/.m2/repository/org/junit/jupiter/junit-jupiter/5.5.2/junit-jupiter-5.5.2.jar:/Users/benabdelkrim/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.5.2/junit-jupiter-api-5.5.2.jar:/Users/benabdelkrim/.m2/repository/org/apiguardian/apiguardian-api/1.1.0/apiguardian-api-1.1.0.jar:/Users/benabdelkrim/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/Users/benabdelkrim/.m2/repository/org/junit/platform/junit-platform-commons/1.5.2/junit-platform-commons-1.5.2.jar:/Users/benabdelkrim/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.5.2/junit-jupiter-params-5.5.2.jar:/Users/benabdelkrim/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.5.2/junit-jupiter-engine-5.5.2.jar:/Users/benabdelkrim/.m2/repository/org/junit/platform/junit-platform-engine/1.5.2/junit-platform-engine-1.5.2.jar:/Users/benabdelkrim/.m2/repository/org/mockito/mockito-junit-jupiter/3.0.0/mockito-junit-jupiter-3.0.0.jar:/Users/benabdelkrim/.m2/repository/org/mockito/mockito-core/3.0.0/mockito-core-3.0.0.jar:/Users/benabdelkrim/.m2/repository/net/bytebuddy/byte-buddy/1.9.10/byte-buddy-1.9.10.jar:/Users/benabdelkrim/.m2/repository/net/bytebuddy/byte-buddy-agent/1.9.10/byte-buddy-agent-1.9.10.jar:/Users/benabdelkrim/.m2/repository/org/objenesis/objenesis/2.6/objenesis-2.6.jar:/Users/benabdelkrim/.m2/repository/junit/junit/4.13-rc-1/junit-4.13-rc-1.jar:/Users/benabdelkrim/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
@@ -34,7 +34,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="/Users/benabdelkrim/Documents/PROJET/projetinfo-2019-stoneage-sak/target/surefire/surefirebooter9714182340031195650.jar"/>
+    <property name="surefire.real.class.path" value="/Users/benabdelkrim/Documents/PROJET/projetinfo-2019-stoneage-sak/target/surefire/surefirebooter18041761758347840684.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="11.0.4+10-b304.77"/>
@@ -61,8 +61,8 @@
     <property name="java.class.version" value="55.0"/>
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
   </properties>
-  <testcase name="retirerOuvrier" classname="stoneage.ZoneTest" time="0.003"/>
-  <testcase name="setNbOuvrierSurZone" classname="stoneage.ZoneTest" time="0.002"/>
-  <testcase name="placeOuvrier" classname="stoneage.ZoneTest" time="0.018"/>
-  <testcase name="getNbOuvrierSurZone" classname="stoneage.ZoneTest" time="0.02"/>
+  <testcase name="retirerOuvrier" classname="stoneage.ZoneTest" time="0.004"/>
+  <testcase name="setNbOuvrierSurZone" classname="stoneage.ZoneTest" time="0.001"/>
+  <testcase name="placeOuvrier" classname="stoneage.ZoneTest" time="0.001"/>
+  <testcase name="getNbOuvrierSurZone" classname="stoneage.ZoneTest" time="0.001"/>
 </testsuite>

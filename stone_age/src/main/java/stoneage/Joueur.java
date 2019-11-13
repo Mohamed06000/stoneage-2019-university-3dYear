@@ -44,7 +44,7 @@ public class Joueur<get> {
     }
 
     public Inventaire getInventaireJoueur() {
-        return inventaireJoueur;
+        return this.inventaireJoueur;
     }
 
     /**
@@ -96,10 +96,13 @@ public class Joueur<get> {
      * Lancer un dé
      * @return Valeur du dé
      */
+    Random rand = new Random();
     public int dé(){
-        Random rand = new Random();
         int result = 0 ;
         result = rand.nextInt(6)+1 ;
         return result ;
     }
+
+
+
 }

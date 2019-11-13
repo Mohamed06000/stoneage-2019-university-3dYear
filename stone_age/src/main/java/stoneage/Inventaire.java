@@ -17,6 +17,7 @@ public class Inventaire {
 >>>>>>> origin/Baroudi
      */
     private int nbRessource = 0;
+    private int nbRessourceBois ;
     
     /**
      * La quantitée de nourriture du joueur (debut de jeu = 10 pour tous)
@@ -72,6 +73,15 @@ public class Inventaire {
         return nbRessource;
     }
 
+
+    public int getNbRessourceBois(){
+        return this.nbRessourceBois ;
+    }
+
+    public void setNbRessourceBois(int nbRessourceBois) {
+        this.nbRessourceBois = nbRessourceBois;
+    }
+
     /**
      * Assigne le nombre de ressource au joueur
      * @param nbRessource Le nombre de ressource
@@ -93,6 +103,7 @@ public class Inventaire {
         else {
         }
     }
+
 
     /**
      * Constructeur de la classe, on assigne 1 ouvrier par default

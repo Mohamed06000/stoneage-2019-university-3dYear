@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: stoneage.JoueurTest
+Test set: stoneage.ZoneVillageTest
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.056 s - in stoneage.JoueurTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s - in stoneage.ZoneVillageTest

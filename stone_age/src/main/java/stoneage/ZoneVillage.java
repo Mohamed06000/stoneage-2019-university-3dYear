@@ -3,7 +3,7 @@ package stoneage;
 /**
  * Classe generalisee Village de "zone"
  */
-public class ZoneVillage implements ZoneInterface {
+public class  ZoneVillage implements ZoneInterface {
 
     /**
      * Le nombre d'ouvrier present sur la zone
@@ -47,7 +47,12 @@ public class ZoneVillage implements ZoneInterface {
     }
 
 
-    public void diminuerRessource() {
+   public void diminuerRessource() {
+
+    }
+
+    @Override
+    public void gainZone(Joueur j) {
 
     }
 
