@@ -38,7 +38,7 @@ public class Inventaire {
 
 
     /*
-     * incrementer le nbNourriture  par n Nourritures  gagné de la zone chasse pendant la phase recuperation . 
+     * incrementer le nbNourriture  par n Nourritures  gagné de la zone chasse pendant la phase recuperation  . 
      */
     
     

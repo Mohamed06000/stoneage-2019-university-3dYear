@@ -96,7 +96,7 @@ public class Joueur<get> {
 
     /**
      * Lancer un dé
-     * @return Valeur du dé
+     * @return Valeur du dé 
      */
     public int dé(){
         Random rand = new Random();

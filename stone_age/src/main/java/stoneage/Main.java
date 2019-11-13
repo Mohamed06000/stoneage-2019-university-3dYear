@@ -1,7 +1,7 @@
 package stoneage;
 
 /**
- * Classe du lancement du jeu
+ * Classe du lancement du  jeu
  */
 public class Main {
     

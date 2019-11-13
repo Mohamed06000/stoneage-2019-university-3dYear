@@ -1,7 +1,7 @@
 package stoneage;
 
 /**
- * Interface du concept de "zone"
+ * Interface du concept de " zone"
  */
 public interface ZoneInterface {
 

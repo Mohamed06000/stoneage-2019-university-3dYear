@@ -25,7 +25,7 @@ public class ZoneVillage implements ZoneInterface {
     }
 
     /**
-     * Assigner un nombre d'ouvier sur la zone
+     * Assigner un nombre d'ouvier sur  la zone
      *
      * @param nbOuvrierSurZone
      */

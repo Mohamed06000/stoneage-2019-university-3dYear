@@ -51,7 +51,7 @@ public class ZoneRessource implements ZoneInterface {
     }
 
     /**
-     * retirer un nombre d'ouvrier de la zone
+     * retirer un nombre d'ouvrier de la  zone
      *
      * @param nbOuvrierRetirer
      */
