@@ -16,45 +16,15 @@ public class Main {
         Joueur j1 = new Joueur();
         Joueur j2 = new Joueur();
         ZoneRessource zoneR = new ZoneRessource();
-<<<<<<< HEAD
-<<<<<<< HEAD
         ZoneVillage zoneV = new ZoneVillage();
         Champ champ = new Champ();
-<<<<<<< HEAD
         Chasse chasse  = new Chasse();
-=======
->>>>>>> origin/Elarays
-=======
-        ZoneVillage zoneV = new ZoneVillage();
-        ZoneInterface listZone[] = {zoneR, zoneV}; //IA
->>>>>>> origin/mazy
->>>>>>> c843e56bb392d9038b1d127d54689e03ea917c71
         Joueur listJoueur[] = {j1,j2};
-=======
-        ZoneInterface zoneV = new ZoneHutte();
-        Joueur [] listJoueur = {j1,j2};
->>>>>>> Baroudi
+        ZoneInterface zoneH = new ZoneHutte();
+        ZoneInterface listZone[] = {zoneR, zoneV,champ,chasse,zoneH}; //IA
         int tour = 1;
 
         System.out.println("Nb de joueur : " + Joueur.getNbJoueur());
-<<<<<<< HEAD
-        
-        while(tour<3)
-            {
-        	System.out.println("Tour :" + tour);
-        	System.out.println("_____PHASE DE PLACEMENT_____");
-            for (int i=0; i < Joueur.getNbJoueur(); i++){
-                phasePlacement(listJoueur[i], champ);
-            }
-
-            System.out.println("_____PHASE DE RECUPERATION_____");
-            for (int i=0; i < Joueur.getNbJoueur(); i++){
-                phaseRecuperation(listJoueur[i], champ);
-
-            }
-
-            System.out.println("_____PHASE NOURRIR____");
-=======
         System.out.println("Nb d'ouvriers non place : " + Inventaire.getNbOuvrierNonPlace());
 
 
@@ -70,7 +40,7 @@ public class Main {
             recuperationPhase(listJoueur);
 
             System.out.println("================PHASE NOURRIR================");
->>>>>>> origin/mazy
+
             for (int i = 0; i < Joueur.getNbJoueur(); i++) {
                 phaseNourrir(listJoueur[i]);
             }
@@ -79,14 +49,6 @@ public class Main {
 
 
         System.out.println("_____RESULTAT_____");
-<<<<<<< HEAD
-        if (j1.getInventaireJoueur().getNbRessource() == j2.getInventaireJoueur().getNbRessource()) {
-            System.out.println("Egalité !");
-        } else if (j1.getInventaireJoueur().getNbRessource() > j2.getInventaireJoueur().getNbRessource()) {
-            System.out.println("Le joueur 1 gagne !");
-        } else {
-            System.out.println("Le joueur 2 gagne !");
-=======
         resultat(listJoueur);
 
     }
@@ -162,7 +124,6 @@ public class Main {
             else{
                 System.out.println("Le gagnant est le joueur " + listJoueur[listGagnant[i]].getNum());
             }
->>>>>>> c843e56bb392d9038b1d127d54689e03ea917c71
         }
     }
 
@@ -173,16 +134,6 @@ public class Main {
      * @param j L'objet de la classe Joueur
      * @param z L'objet de la classe Zone
      */
-<<<<<<< HEAD
-    public static void phasePlacement(Joueur j, ZoneInterface z) {
-        j.placement(z);
-        System.out.println("Joueur " + j.getNum() + " :");
-        System.out.println("Nb d'ouvrier dans la zone : " + z.getNbOuvrierSurZone());
-        System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + j.getNum() + " : " + j.getInventaireJoueur().getNbOuvrier());
-        System.out.println("Nb de ressource dans l'inventaire du joueur " + j.getNum() + " : " + j.getInventaireJoueur().getNbRessource());
-        System.out.println("niveauAgriculture pour le "+ j.getNum()+ " : "+j.getInventaireJoueur().getNiveauAgriculture() );
-
-=======
     public static void phasePlacement(Joueur j, ZoneInterface z, int nbOuvrier) {
         j.placement(z, nbOuvrier);
         System.out.println("********Joueur " + j.getNum() + "********");
@@ -191,7 +142,6 @@ public class Main {
         System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + j.getNum() + " : " + j.getInventaireJoueur().getNbOuvrier());
         System.out.println("Nb de ressource dans l'inventaire du joueur " + j.getNum() + " : " + j.getInventaireJoueur().getNbRessource());
         System.out.println("Les zones visitÃ©es : " + Arrays.deepToString(j.getZoneVisit()));
->>>>>>> origin/mazy
     }
 
     /**
@@ -200,23 +150,13 @@ public class Main {
      * @param z L'objet de la classe Zone
      */
     public static void phaseRecuperation(Joueur j, ZoneInterface z) {
-<<<<<<< HEAD
         System.out.println("Joueur " + j.getNum() + " :");
         j.action() ;
-<<<<<<< HEAD
-        z.gainZone(j);
-        j.recupere(j.getInventaireJoueur(),z);
-<<<<<<< HEAD
-=======
         z.gainZone(j);
         System.out.println("Nb bois : : " + j.getInventaireJoueur().getNbRessourceBois());
-=======
         j.recupere(z);
->>>>>>> Baroudi
->>>>>>> c843e56bb392d9038b1d127d54689e03ea917c71
         System.out.println("Nb d'ouvrier dans la zone : "+ z.getNbOuvrierSurZone());
         //System.out.println("Nb de ressource dans la zone : "+ z.getNbRessourceZone());
-=======
         System.out.println("********Joueur " + j.getNum() + "********");
         //z.gainZone(j);
         /*public void gainZone(){
@@ -230,15 +170,13 @@ public class Main {
         diminuerRessource(gain);
         retirerOuvrier(getNbOuvrierDuJoueurI(j.getNum()));
 }*/
-        j.recupere(z); //z.getNbOuvrierDuJoueur(j.getNum());
+        //j.recupere(z); //z.getNbOuvrierDuJoueur(j.getNum());
 
         System.out.println("Nb d'ouvrier dans la zone "  + z.getClass().getSimpleName() + " : "+ z.getNbOuvrierSurZone());
         System.out.println("Nb d'ouvrier du joueur " + j.getNum() + " dans la zone " + z.getClass().getSimpleName() + " : " + z.getNbOuvrierDuJoueurI(j.getNum()));
         if (z instanceof ZoneRessource){
             System.out.println("Nb de ressource dans la zone " + z.getClass().getSimpleName() + " : " + ((ZoneRessource) z).getNbRessourceZone());
         }
->>>>>>> origin/mazy
-
         System.out.println("niveauAgriculture pour le "+ j.getNum()+ " : "+j.getInventaireJoueur().getNiveauAgriculture() );
         System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + j.getNum() + " : " + j.getInventaireJoueur().getNbOuvrier());
         System.out.println("Nb de ressource dans l'inventaire du joueur " + j.getNum() + " : " + j.getInventaireJoueur().getNbRessource());
@@ -253,13 +191,8 @@ public class Main {
      * @param j L'objet de la classe Joueur
      */
     public static void phaseNourrir(Joueur j) {
-<<<<<<< HEAD
         j.nourrir(j.getInventaireJoueur());
         System.out.println(" Quantitée de nouriture pour le joueur " + j.getNum() + " : " + j.getInventaireJoueur().getNbNourriture());
-=======
-        j.nourrir();
-        System.out.println(" QuantitÃ©e de nouriture pour le joueur " + j.getNum() + " : " + j.getInventaireJoueur().getNbNourriture());
->>>>>>> c843e56bb392d9038b1d127d54689e03ea917c71
 
     }
 }

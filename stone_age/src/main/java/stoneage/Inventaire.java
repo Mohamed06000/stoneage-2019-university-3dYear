@@ -14,16 +14,7 @@ public class Inventaire {
      */
     private int nbOuvrier;
     /**
-<<<<<<< HEAD
-
      *   Le nombre de ressource du joueur
-<<<<<<< HEAD
-=======
->>>>>>> origin/Elarays
-=======
-     *   Le nombre de ressource du joueur
->>>>>>> origin/mazy
->>>>>>> c843e56bb392d9038b1d127d54689e03ea917c71
      */
     private int nbRessource = 0;
     
