@@ -1,33 +1,47 @@
 
 package stoneage;
 
-import java.util.Random ;
+import org.apache.commons.lang.ArrayUtils;
+
+import java.util.* ;
 
 
 /**
  * Classe Joueur qui represente les informations et actions du joueur
  */
-public class Joueur<get> {
+<<<<<<< HEAD
+class Joueur {
+=======
+public class Joueur {
+
+>>>>>>> origin/mazy
 
     /**
      * La numero du joueur
      */
     private int num;
+
     /**
      * Le nombre de joueur de type Joueur
      */
     private static int nbJoueur;
+<<<<<<< HEAD
+    private Inventaire inventaireJoueur = new Inventaire(5,10);
+=======
     private Inventaire inventaireJoueur = new Inventaire();
+    private ZoneInterface zoneVisit[] = new ZoneInterface[0];
+>>>>>>> origin/mazy
 
     /**
-     * Constructeur de la classe Joueur qui accremente un nombre de joueur
+     * Constructeur de la classe Joueur qui incremente un nombre de joueur
      * en static et assigne un numero de joueur a l'objet instancie
      */
-    public Joueur(){
+    Joueur(){
         nbJoueur ++;
         num = nbJoueur;
     }
 
+<<<<<<< HEAD
 
 
     /**
@@ -37,6 +51,8 @@ public class Joueur<get> {
     public static int getNbJoueur(){
         return nbJoueur;
     }
+=======
+>>>>>>> origin/mazy
 
     /**
      * Recupere le numero du joueur
@@ -46,45 +62,82 @@ public class Joueur<get> {
         return num;
     }
 
+    public ZoneInterface[] getZoneVisit() {
+        return zoneVisit;
+    }
+
+    /**
+     * Methode de classe qui recupere le nombre de joueur
+     * @return Le nombre de joueur
+     */
+    public static int getNbJoueur(){
+        return nbJoueur;
+    }
+
+
     public Inventaire getInventaireJoueur() {
         return inventaireJoueur;
     }
 
     /**
      * Placer ses ouvriers sur la zone
-     * @param i L'inventaire du joueur
      * @param z La zone choisie
      */
-    public void placement(Inventaire i, ZoneInterface z){
-        i.subOuvrier(1);
+<<<<<<< HEAD
+    public void placement(ZoneInterface z){
+        inventaireJoueur.subOuvrier(1);
         z.placeOuvrier(1);
+=======
+    public void placement(ZoneInterface z, int nbOuvrier){
+        inventaireJoueur.subOuvrier(nbOuvrier);
+        Inventaire.setNbOuvrierNonPlace(Inventaire.getNbOuvrierNonPlace()-nbOuvrier);
+        z.placeOuvrier(nbOuvrier, getNum());
+        zoneVisit = Arrays.copyOf(zoneVisit,zoneVisit.length+1);
+        zoneVisit[zoneVisit.length-1] = z;
+>>>>>>> origin/mazy
     }
 
     /**
      * Recuperer ses ouvriers et ressource de la zone
-     * @param i L'inventaire du joueur
      * @param z La zone choisie
      */
-    public void recupere(Inventaire i, ZoneInterface z){
+    public void recupere(ZoneInterface z){
 
-        i.setNbOuvrier(i.getNbOuvrier() + 1);
-        i.addRessource(z);
+<<<<<<< HEAD
+        inventaireJoueur.setNbOuvrier(inventaireJoueur.getNbOuvrier() + 1);
+        inventaireJoueur.addRessource(z);
+        /*CensÃ© etre z.gainZone (joueur)*/
         if (z instanceof ZoneRessource){
-            z.diminuerRessource();
+            z.gainZone(this);
         }
-        z.retirerOuvrier(1);
+        if (z instanceof ZoneHutte){
+            z.gainZone(this);
+=======
+        inventaireJoueur.setNbOuvrier(inventaireJoueur.getNbOuvrier() + z.getNbOuvrierDuJoueurI(getNum()));
+        inventaireJoueur.addRessource(z); //suppr
+        if (z instanceof ZoneRessource){//suppr
+            z.diminuerRessource();
+>>>>>>> origin/mazy
+        }
+        z.retirerOuvrier(z.getNbOuvrierDuJoueurI(getNum()), getNum());//suppr
 
     }
 
     /**
      * Nourrir ses ouvriers (1 nourriture/ouvrier)
-     * @param i L'inventaire du joueur
      */
+<<<<<<< HEAD
     public void nourrir(Inventaire i) {
         i.setNbNourriture(i.getNbNourriture()+i.getNiveauAgriculture());
         for (int j = 0; j < i.getNbOuvrier(); j++) {
                     if(i.getNbNourriture()>0) i.subNourriture();
                 }
+=======
+    public void nourrir() {
+        if (inventaireJoueur.getNbNourriture()>0){
+            for (int j=0;j<inventaireJoueur.getNbOuvrier();j++) {
+                inventaireJoueur.subNourriture();
+>>>>>>> origin/mazy
             }
 
     /**
@@ -99,11 +152,33 @@ public class Joueur<get> {
      * Lancer un dé
      * @return Valeur du dé 
      */
+<<<<<<< HEAD
     public int dé(){
         Random rand = new Random();
+=======
+<<<<<<< HEAD
+    Random rand = new Random();
+    public int dÃ©(){
+=======
+
+    public int dÃ©(){
+        Random rand = new Random();
+>>>>>>> origin/mazy
+>>>>>>> c843e56bb392d9038b1d127d54689e03ea917c71
         int result = 0 ;
         result = rand.nextInt(6)+1 ;
         return result ;
     }
+<<<<<<< HEAD
+=======
+
+<<<<<<< HEAD
+
+=======
+    public void deleteZone(int index){
+        zoneVisit = (ZoneInterface[]) ArrayUtils.remove(zoneVisit, index);
+    }
+>>>>>>> origin/mazy
+>>>>>>> c843e56bb392d9038b1d127d54689e03ea917c71
 }
 

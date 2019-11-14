@@ -6,13 +6,24 @@ package stoneage;
  */
 public class Inventaire {
 
+
+    private static int nbOuvrierNonPlace;
+
     /**
      * Le nombre d'ouvrier du joueur
      */
     private int nbOuvrier;
     /**
+<<<<<<< HEAD
 
      *   Le nombre de ressource du joueur
+<<<<<<< HEAD
+=======
+>>>>>>> origin/Elarays
+=======
+     *   Le nombre de ressource du joueur
+>>>>>>> origin/mazy
+>>>>>>> c843e56bb392d9038b1d127d54689e03ea917c71
      */
     private int nbRessource = 0;
     
@@ -20,6 +31,14 @@ public class Inventaire {
      * La quantitée de nourriture du joueur (debut de jeu = 10 pour tous)
      */
     private int nbNourriture=10;
+
+    public static void setNbOuvrierNonPlace(int nbOuvrierNonPlace) {
+        Inventaire.nbOuvrierNonPlace = nbOuvrierNonPlace;
+    }
+
+    public static int getNbOuvrierNonPlace() {
+        return nbOuvrierNonPlace;
+    }
 
     /**
      *  Le coefiicient multiplicateur pour la Nourriture du joueur (initialiser à (1)  joueur )
@@ -124,7 +143,7 @@ public class Inventaire {
         if (z instanceof ZoneRessource){
             this.nbRessource++;
             }
-        else if (z instanceof ZoneVillage){
+        else if (z instanceof ZoneHutte){
             this.nbOuvrier++;
         }
         else {
@@ -136,6 +155,7 @@ public class Inventaire {
      */
     public Inventaire(){
         setNbOuvrier(5);
+        nbOuvrierNonPlace+= nbOuvrier;
     }
 
     /**
@@ -143,7 +163,7 @@ public class Inventaire {
      * @param nOuvrier Le nombre d'ouvrier a assigner
      * @param nRessource Le nombre de ressource a assigner
      */
-    public Inventaire(int nOuvrier, int nRessource){
+    Inventaire(int nOuvrier, int nRessource){
         setNbRessource(nRessource);
         setNbOuvrier(nOuvrier);
     }

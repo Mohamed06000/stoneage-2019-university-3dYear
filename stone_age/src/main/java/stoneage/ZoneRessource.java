@@ -93,9 +93,21 @@ public class ZoneRessource implements ZoneInterface {
      * Le nombre de ressource de la zone
      */
     private int nbRessourcesZone = 10 ;
+<<<<<<< HEAD
 
     /**
      * Recupérer le  nombre d'ouvrier sur la zone
+=======
+    private int nbOuvrierDuJoueurI[] = new int[Joueur.getNbJoueur()];
+
+    @Override
+    public int getNbOuvrierDuJoueurI(int i) {
+        return nbOuvrierDuJoueurI[i-1];
+    }
+
+    /**
+     * RecupÃ©rer le  nombre d'ouvrier sur la zone
+>>>>>>> c843e56bb392d9038b1d127d54689e03ea917c71
      *
      * @return
      */
@@ -126,6 +138,7 @@ public class ZoneRessource implements ZoneInterface {
      *
      * @param nbOuvrierAplacer
      */
+<<<<<<< HEAD
     public void placeOuvrier(int nbOuvrierAplacer) {
         nbOuvrierSurZone += nbOuvrierAplacer;
     }
@@ -145,9 +158,41 @@ public class ZoneRessource implements ZoneInterface {
     public void diminuerRessource() {
         if (nbRessourcesZone>0)
             nbRessourcesZone--;
+=======
+    public void placeOuvrier(int nbOuvrierAplacer, int id) {
+        nbOuvrierSurZone += nbOuvrierAplacer;
+        nbOuvrierDuJoueurI[id-1] = nbOuvrierAplacer;
+    }
+
+    /**
+     * retirer un nombre d'ouvrier de la zone
+     *
+     * @param nbOuvrierRetirer
+     */
+    public void retirerOuvrier(int nbOuvrierRetirer, int id) {
+        nbOuvrierSurZone -= nbOuvrierRetirer;
+        nbOuvrierDuJoueurI[id-1] -= nbOuvrierRetirer;
+    }
+
+    public int[] getNbOuvrierDuJoueurI() {
+        return nbOuvrierDuJoueurI;
+    }
+
+    /**
+     * Diminuer les ressources de la zone et donne une ressource
+     */
+    public void gainZone(Joueur j) {
+        if (this.nbRessourcesZone>0)
+            this.nbRessourcesZone--;
+        j.getInventaireJoueur().setNbRessource(j.getInventaireJoueur().getNbRessource()+1);
+>>>>>>> c843e56bb392d9038b1d127d54689e03ea917c71
     }
 
 
 
 }
+<<<<<<< HEAD
 >>>>>>> Louay
+=======
+>>>>>>> Baroudi
+>>>>>>> c843e56bb392d9038b1d127d54689e03ea917c71
