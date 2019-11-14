@@ -1,3 +1,4 @@
+
 package stoneage;
 
 import java.util.Random ;
@@ -102,7 +103,6 @@ public class Joueur<get> {
         result = rand.nextInt(6)+1 ;
         return result ;
     }
-
 
 
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package stoneage;
 
 /**
@@ -74,3 +75,4 @@ public class ZoneRessource implements ZoneInterface {
 
 
 }
+

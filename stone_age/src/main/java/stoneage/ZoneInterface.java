@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package stoneage;
 
 /**
@@ -13,3 +14,5 @@ public interface ZoneInterface {
     void gainZone(Joueur j);
 
 }
+
+

@@ -1,5 +1,5 @@
-package stoneage;
 
+package stoneage;
 /**
  * Classe de l'inventaire du joueur
  */
@@ -122,3 +122,4 @@ public class Inventaire {
     
 
 }
+

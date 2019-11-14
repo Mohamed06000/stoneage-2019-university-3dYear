@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 -------------------------------------------------------------------------------
 Test set: stoneage.MainTest
 -------------------------------------------------------------------------------
 Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s - in stoneage.MainTest
+=======
+-------------------------------------------------------------------------------
+Test set: stoneage.MainTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.022 s - in stoneage.MainTest
+>>>>>>> ddaf2f7e7f6eb075639c8b0193ed194776bde9f6
