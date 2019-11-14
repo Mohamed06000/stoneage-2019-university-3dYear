@@ -9,10 +9,10 @@ public class Champ extends ZoneVillage implements ZoneInterface {
     }
 
     /**
-     * methode gainZone qui incremente de 1 le multiplicateurNourriture pour le Joueur j ayant mis un ouvrier sur champ
+     * methode gainZone qui incremente de 1 le NiveauAgriculture pour le Joueur j ayant mis un ouvrier sur champ
      * @param j
      */
     public void gainZone(Joueur j){
-        j.getInventaireJoueur().addMultplicateurNourriture();
+        j.getInventaireJoueur().addNiveauAgriculture();
     }
 }

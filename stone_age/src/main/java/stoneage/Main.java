@@ -61,7 +61,7 @@ public class Main {
         System.out.println("Nb d'ouvrier dans la zone : " + z.getNbOuvrierSurZone());
         System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + j.getNum() + " : " + j.getInventaireJoueur().getNbOuvrier());
         System.out.println("Nb de ressource dans l'inventaire du joueur " + j.getNum() + " : " + j.getInventaireJoueur().getNbRessource());
-        System.out.println("multiplicateur de Nourriture pour le "+ j.getNum()+ " : "+j.getInventaireJoueur().getMultplicateurNourriture() );
+        System.out.println("le niveau d'agriculture pour le "+ j.getNum()+ " : "+j.getInventaireJoueur().getNiveauAgriculture() );
 
     }
 
@@ -78,7 +78,7 @@ public class Main {
         System.out.println("Nb d'ouvrier dans la zone : "+ z.getNbOuvrierSurZone());
         //System.out.println("Nb de ressource dans la zone : "+ z.getNbRessourceZone());
 
-        System.out.println("multiplicateur de Nourriture pour le "+ j.getNum()+ " : "+j.getInventaireJoueur().getMultplicateurNourriture() );
+        System.out.println("le le niveau d'agriculture pour le "+ j.getNum()+ " : "+j.getInventaireJoueur().getNiveauAgriculture() );
         System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + j.getNum() + " : " + j.getInventaireJoueur().getNbOuvrier());
         System.out.println("Nb de ressource dans l'inventaire du joueur " + j.getNum() + " : " + j.getInventaireJoueur().getNbRessource());
 

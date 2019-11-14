@@ -80,7 +80,7 @@ public class Joueur<get> {
      * @param i L'inventaire du joueur
      */
     public void nourrir(Inventaire i) {
-        i.setNbNourriture(i.getNbNourriture()+i.getMultplicateurNourriture());
+        i.setNbNourriture(i.getNbNourriture()+i.getNiveauAgriculture());
         for (int j = 0; j < i.getNbOuvrier(); j++) {
                     if(i.getNbNourriture()>0) i.subNourriture();
                 }

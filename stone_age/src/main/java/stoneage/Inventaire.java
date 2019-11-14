@@ -21,20 +21,20 @@ public class Inventaire {
     private int nbNourriture=10;
 
     /**
-     *  Le coefiicient multiplicateur pour la Nourriture du joueur (initialiser à (1) ∀ joueur )
+     *  Le niveau d'agriculture du joueur (initialiser à (0) ∀ joueur )
      */
-    private int multplicateurNourriture =0;
+    private int niveauAgriculture =0;
 
     /**
-     * Recupere le multiplicateur de Nourriture du joueur
-     * @return  le multiplicateur de Nourriture
+     * Recupere le niveau d'agriculture du joueur
+     * @return  le niveau d'agriculture
      */
-    public int getMultplicateurNourriture(){ return multplicateurNourriture; }
+    public int getNiveauAgriculture(){ return niveauAgriculture; }
 
     /**
-     * incremente de 1 le multiplicateurNourriture dans l'Inventaire du joueur
+     * incremente de 1 le niveau d'agriculture dans l'Inventaire du joueur
      */
-    public void addMultplicateurNourriture(){  multplicateurNourriture++; }
+    public void addNiveauAgriculture(){  niveauAgriculture++; }
 
 
     /**
