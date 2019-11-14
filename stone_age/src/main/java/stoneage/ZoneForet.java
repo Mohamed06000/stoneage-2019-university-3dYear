@@ -1,5 +1,7 @@
 package stoneage;
 
+import org.jetbrains.annotations.NotNull;
+
 public class ZoneForet extends ZoneRessource implements ZoneInterface {
 
     // Le Nombre de Ressource disponible dans la zone Foret.
@@ -40,6 +42,8 @@ public class ZoneForet extends ZoneRessource implements ZoneInterface {
 
     //Vérifie si la Zone foret est pleine.
 
+    @org.jetbrains.annotations.Contract(pure = true)
+
     public static boolean verifeZonePlein(){
         if (ZoneForet.nbOuvrierSurZone == 7){
             return true;
@@ -49,7 +53,7 @@ public class ZoneForet extends ZoneRessource implements ZoneInterface {
 
     // Méthode qui calcule le nombre de Ressource récupérer par le joueur dans la zone.
 
-    public  int  addnbRessourceBois(Joueur j) {
+    public  int  addnbRessourceBois(@NotNull Joueur j) {
         int somme = 0 ;
             for (int k = 0 ; k < j.getInventaireJoueur().getNbOuvrier();k++){
                 somme = somme + j.dé();
@@ -63,7 +67,7 @@ public class ZoneForet extends ZoneRessource implements ZoneInterface {
     }
     // ajoute NbRessourceBois au joueur J.
 
-    public void  gainZone(Joueur j){
+    public void  gainZone(@NotNull Joueur j){
         int i = j.getInventaireJoueur().getNbRessourceBois()+addnbRessourceBois(j);
         j.getInventaireJoueur().setNbRessourceBois(i);
     }

@@ -10,15 +10,12 @@ public class Inventaire {
      */
     private int nbOuvrier;
     /**
-<<<<<<< HEAD
-     *   Le nombre de ressource du joueur
-=======
+
      * Le nombre de ressource du joueur
->>>>>>> origin/Baroudi
      */
     private int nbRessource = 0;
     private int nbRessourceBois ;
-    
+
     /**
      * La quantitée de nourriture du joueur (debut de jeu = 10 pour tous)
      */
@@ -31,7 +28,7 @@ public class Inventaire {
     public int getNbOuvrier() {
         return nbOuvrier;
     }
-    
+
     /**
      * Recupere la quantitée de nourriture du joueur
      * @return quantitée de nourriture
@@ -39,7 +36,7 @@ public class Inventaire {
     public int getNbNourriture() {
     	return nbNourriture;
     }
-   
+
     /**
      * Soustraire une nourriture
      */
