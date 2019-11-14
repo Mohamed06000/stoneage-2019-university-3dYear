@@ -6,10 +6,15 @@ package stoneage;
  */
 public class  ZoneVillage implements ZoneInterface {
 
+
     /**
      * Le nombre d'ouvrier present sur la zone
      */
-    private int nbOuvrierSurZone = 0;
+    private int nbOuvrierSurZone ;
+
+    public ZoneVillage(){
+        this.nbOuvrierSurZone=0;
+    }
 
     /**
      * Recupérer le  nombre d'ouvrier sur la zone
@@ -48,6 +53,7 @@ public class  ZoneVillage implements ZoneInterface {
     }
 
 
+<<<<<<< HEAD
    public void diminuerRessource() {
 
     }
@@ -58,4 +64,7 @@ public class  ZoneVillage implements ZoneInterface {
     }
 
 
+=======
+    public void diminuerRessource() { }
+>>>>>>> origin/Elarays
 }

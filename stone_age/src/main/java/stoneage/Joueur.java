@@ -28,6 +28,8 @@ public class Joueur<get> {
         num = nbJoueur;
     }
 
+
+
     /**
      * Methode de classe qui recupere le nombre de joueur
      * @return Le nombre de joueur
@@ -73,17 +75,17 @@ public class Joueur<get> {
         z.retirerOuvrier(1);
 
     }
+
     /**
      * Nourrir ses ouvriers (1 nourriture/ouvrier)
      * @param i L'inventaire du joueur
      */
     public void nourrir(Inventaire i) {
-        if (i.getNbNourriture()>0){
-            for (int j=0;j<i.getNbOuvrier();j++) {
-                i.subNourriture();
+        i.setNbNourriture(i.getNbNourriture()+i.getNiveauAgriculture());
+        for (int j = 0; j < i.getNbOuvrier(); j++) {
+                    if(i.getNbNourriture()>0) i.subNourriture();
+                }
             }
-        }
-    }
 
     /**
      * Pour l'instant elle affiche la valeur du lancé de dé

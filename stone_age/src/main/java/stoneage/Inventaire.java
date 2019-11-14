@@ -11,7 +11,11 @@ public class Inventaire {
     private int nbOuvrier;
     /**
 
+<<<<<<< HEAD
      * Le nombre de ressource du joueur
+=======
+     *   Le nombre de ressource du joueur
+>>>>>>> origin/Elarays
      */
     private int nbRessource = 0;
     private int nbRessourceBois ;
@@ -22,6 +26,23 @@ public class Inventaire {
     private int nbNourriture=10;
 
     /**
+     *  Le niveau d'agriculture du joueur (initialiser à (0) ∀ joueur )
+     */
+    private int niveauAgriculture =0;
+
+    /**
+     * Recupere le niveau d'agriculture du joueur
+     * @return  le niveau d'agriculture
+     */
+    public int getNiveauAgriculture(){ return niveauAgriculture; }
+
+    /**
+     * incremente de 1 le niveau d'agriculture dans l'Inventaire du joueur
+     */
+    public void addNiveauAgriculture(){  niveauAgriculture++; }
+
+
+    /**
      * Recupere le nombre d'ouvrier du joueur
      * @return le nombre d'ouvrier
      */
@@ -29,6 +50,16 @@ public class Inventaire {
         return nbOuvrier;
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     *
+     * @param nourriture
+     * @return
+     */
+    public void setNbNourriture(int nourriture) {nbNourriture=nourriture;}
+    
+>>>>>>> origin/Elarays
     /**
      * Recupere la quantitée de nourriture du joueur
      * @return quantitée de nourriture
