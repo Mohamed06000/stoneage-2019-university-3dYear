@@ -6,11 +6,17 @@ package stoneage;
  */
 public interface ZoneInterface {
 
+    int getNbOuvrierDuJoueurI(int id);
     int getNbOuvrierSurZone();
     void setNbOuvrierSurZone(int nbOuvrierSurZone);
+<<<<<<< HEAD
     void placeOuvrier(int nbOuvrierAplacer);
     void retirerOuvrier(int nbOuvrierRetirer);
 <<<<<<< HEAD
+=======
+    void placeOuvrier(int nbOuvrierAplacer, int id);
+    void retirerOuvrier(int nbOuvrierRetirer, int id);
+>>>>>>> origin/mazy
     void diminuerRessource();
 <<<<<<< HEAD
     void gainZone(Joueur j);

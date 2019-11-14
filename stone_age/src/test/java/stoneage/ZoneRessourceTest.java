@@ -88,8 +88,13 @@ class ZoneRessourceTest {
         ZoneRessource zr = new ZoneRessource();
         ZoneHutte zv = new ZoneHutte();
         Joueur j = new Joueur();
+<<<<<<< HEAD
         j.placement(zr);
         j.placement(zv);
+=======
+//        j.placement(j.getInventaireJoueur(),zr);
+//        j.placement(j.getInventaireJoueur(),zv);
+>>>>>>> origin/mazy
 
         Assert.assertEquals(1,zr.getNbOuvrierSurZone());
         Assert.assertEquals(1,zv.getNbOuvrierSurZone());
@@ -100,10 +105,17 @@ class ZoneRessourceTest {
         ZoneRessource zr = new ZoneRessource();
         ZoneHutte zv = new ZoneHutte();
         Joueur j = new Joueur();
+<<<<<<< HEAD
         j.placement(zr);
         j.placement(zv);
         j.recupere(zr);
         j.recupere(zv);
+=======
+//        j.placement(j.getInventaireJoueur(),zr);
+//        j.placement(j.getInventaireJoueur(),zv);
+//        j.recupere(j.getInventaireJoueur(),zr);
+//        j.recupere(j.getInventaireJoueur(),zv);
+>>>>>>> origin/mazy
 
         Assert.assertEquals(0,zr.getNbOuvrierSurZone());
         Assert.assertEquals(0,zv.getNbOuvrierSurZone());
@@ -115,8 +127,13 @@ class ZoneRessourceTest {
         ZoneRessource zr = new ZoneRessource();
         Joueur j = new Joueur();
         for (int i=0;i<11;i++){
+<<<<<<< HEAD
             j.placement(zr);
             j.recupere(zr);
+=======
+//            j.placement(j.getInventaireJoueur(),zr);
+//            j.recupere(j.getInventaireJoueur(),zr);
+>>>>>>> origin/mazy
         }
 
         Assert.assertEquals(0,zr.getNbRessourceZone());

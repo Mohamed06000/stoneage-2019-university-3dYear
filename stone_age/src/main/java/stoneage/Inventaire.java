@@ -5,17 +5,24 @@ package stoneage;
  */
 public class Inventaire {
 
+
+    private static int nbOuvrierNonPlace;
+
     /**
      * Le nombre d'ouvrier du joueur
      */
     private int nbOuvrier;
     /**
+<<<<<<< HEAD
 
 <<<<<<< HEAD
      * Le nombre de ressource du joueur
 =======
      *   Le nombre de ressource du joueur
 >>>>>>> origin/Elarays
+=======
+     *   Le nombre de ressource du joueur
+>>>>>>> origin/mazy
      */
     private int nbRessource = 0;
     private int nbRessourceBois ;
@@ -24,6 +31,14 @@ public class Inventaire {
      * La quantitée de nourriture du joueur (debut de jeu = 10 pour tous)
      */
     private int nbNourriture=10;
+
+    public static void setNbOuvrierNonPlace(int nbOuvrierNonPlace) {
+        Inventaire.nbOuvrierNonPlace = nbOuvrierNonPlace;
+    }
+
+    public static int getNbOuvrierNonPlace() {
+        return nbOuvrierNonPlace;
+    }
 
     /**
      *  Le niveau d'agriculture du joueur (initialiser à (0) ∀ joueur )
@@ -138,6 +153,7 @@ public class Inventaire {
      */
     public Inventaire(){
         setNbOuvrier(5);
+        nbOuvrierNonPlace+= nbOuvrier;
     }
 
     /**

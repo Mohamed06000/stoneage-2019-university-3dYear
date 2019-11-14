@@ -93,6 +93,12 @@ public class ZoneRessource implements ZoneInterface {
      * Le nombre de ressource de la zone
      */
     private int nbRessourcesZone = 10 ;
+    private int nbOuvrierDuJoueurI[] = new int[Joueur.getNbJoueur()];
+
+    @Override
+    public int getNbOuvrierDuJoueurI(int i) {
+        return nbOuvrierDuJoueurI[i-1];
+    }
 
     /**
      * Recupérer le  nombre d'ouvrier sur la zone
@@ -126,8 +132,9 @@ public class ZoneRessource implements ZoneInterface {
      *
      * @param nbOuvrierAplacer
      */
-    public void placeOuvrier(int nbOuvrierAplacer) {
+    public void placeOuvrier(int nbOuvrierAplacer, int id) {
         nbOuvrierSurZone += nbOuvrierAplacer;
+        nbOuvrierDuJoueurI[id-1] = nbOuvrierAplacer;
     }
 
     /**
@@ -135,8 +142,13 @@ public class ZoneRessource implements ZoneInterface {
      *
      * @param nbOuvrierRetirer
      */
-    public void retirerOuvrier(int nbOuvrierRetirer) {
+    public void retirerOuvrier(int nbOuvrierRetirer, int id) {
         nbOuvrierSurZone -= nbOuvrierRetirer;
+        nbOuvrierDuJoueurI[id-1] -= nbOuvrierRetirer;
+    }
+
+    public int[] getNbOuvrierDuJoueurI() {
+        return nbOuvrierDuJoueurI;
     }
 
     /**
