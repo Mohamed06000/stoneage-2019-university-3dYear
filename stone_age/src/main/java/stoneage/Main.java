@@ -10,6 +10,7 @@ public class Main {
         Joueur j1 = new Joueur();
         Joueur j2 = new Joueur();
         ZoneRessource zoneR = new ZoneRessource();
+<<<<<<< HEAD
         ZoneVillage zoneV = new ZoneVillage();
 <<<<<<< HEAD
         ZoneForet zonF = new ZoneForet();
@@ -17,6 +18,10 @@ public class Main {
         Champ champ = new Champ();
 >>>>>>> origin/Elarays
         Joueur listJoueur[] = {j1,j2};
+=======
+        ZoneInterface zoneV = new ZoneHutte();
+        Joueur [] listJoueur = {j1,j2};
+>>>>>>> Baroudi
         int tour = 1;
 
         System.out.println("Nb de joueur : " + Joueur.getNbJoueur());
@@ -74,7 +79,7 @@ public class Main {
      * @param z L'objet de la classe Zone
      */
     public static void phasePlacement(Joueur j, ZoneInterface z) {
-        j.placement(j.getInventaireJoueur(), z);
+        j.placement(z);
         System.out.println("Joueur " + j.getNum() + " :");
         System.out.println("Nb d'ouvrier dans la zone : " + z.getNbOuvrierSurZone());
         System.out.println("Nb bois : : " + j.getInventaireJoueur().getNbRessourceBois());
@@ -92,10 +97,14 @@ public class Main {
     public static void phaseRecuperation(Joueur j, ZoneInterface z) {
         System.out.println("Joueur " + j.getNum() + " :");
         j.action() ;
+<<<<<<< HEAD
         z.gainZone(j);
         j.recupere(j.getInventaireJoueur(),z);
         z.gainZone(j);
         System.out.println("Nb bois : : " + j.getInventaireJoueur().getNbRessourceBois());
+=======
+        j.recupere(z);
+>>>>>>> Baroudi
         System.out.println("Nb d'ouvrier dans la zone : "+ z.getNbOuvrierSurZone());
         //System.out.println("Nb de ressource dans la zone : "+ z.getNbRessourceZone());
 

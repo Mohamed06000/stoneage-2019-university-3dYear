@@ -10,12 +10,16 @@ public interface ZoneInterface {
     void setNbOuvrierSurZone(int nbOuvrierSurZone);
     void placeOuvrier(int nbOuvrierAplacer);
     void retirerOuvrier(int nbOuvrierRetirer);
+<<<<<<< HEAD
     void diminuerRessource();
 <<<<<<< HEAD
     void gainZone(Joueur j);
 =======
     default void gainZone(Joueur j){ }
 >>>>>>> origin/Elarays
+=======
+    void gainZone(Joueur j);
+>>>>>>> Baroudi
 
 }
 
