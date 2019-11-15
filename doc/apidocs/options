@@ -1,0 +1,25 @@
+-classpath
+'D:/env/maven/repository/commons-lang/commons-lang/2.6/commons-lang-2.6.jar'
+-encoding
+'utf-8'
+-package
+-sourcepath
+'D:/workspace-intellij/projetinfo-2019-stoneage-sak/stone_age/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2019. All rights reserved.'
+-charset
+'utf-8'
+-d
+'D:/workspace-intellij/projetinfo-2019-stoneage-sak/src/main/apidocs'
+-docencoding
+'utf-8'
+-doctitle
+'StoneAgeSAK 1.0 API'
+-linkoffline
+'https://docs.oracle.com/javase/8/docs/api' 'D:/workspace-intellij/projetinfo-2019-stoneage-sak/target/javadoc-bundle-options'
+-nohelp
+-use
+-version
+-windowtitle
+'StoneAgeSAK 1.0 API'
