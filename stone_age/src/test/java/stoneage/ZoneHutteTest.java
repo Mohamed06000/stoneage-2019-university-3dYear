@@ -17,28 +17,28 @@ class ZoneHutteTest {
 
     @Test
     void placeOuvrier() {
-        ZoneRessource zr = new ZoneRessource();
-        ZoneHutte zv = new ZoneHutte();
-        Joueur j = new Joueur();
-        j.placement(zr,3);
-        j.placement(zv,4);
 
-        Assert.assertEquals(1,zr.getNbOuvrierSurZone());
-        Assert.assertEquals(1,zv.getNbOuvrierSurZone());
+        Joueur j = new Joueur();
+        ZoneHutte hutte = new ZoneHutte();
+
+        hutte.placeOuvrier(2, j.getNum());
+
+        Assert.assertEquals(2, hutte.getNbOuvrierSurZone());
+        Assert.assertEquals(2, hutte.getNbOuvrierDuJoueurI(j.getNum()));
+
     }
 
     @Test
     void retirerOuvrier() {
-        ZoneRessource zr = new ZoneRessource();
-        ZoneHutte zv = new ZoneHutte();
-        Joueur j = new Joueur();
-        j.placement(zr,3);
-        j.placement(zv,4);
-        j.recupere(zr);
-        j.recupere(zv);
 
-        Assert.assertEquals(0,zr.getNbOuvrierSurZone());
-        Assert.assertEquals(0,zv.getNbOuvrierSurZone());
+        Joueur j = new Joueur();
+        ZoneHutte hutte = new ZoneHutte();
+
+        hutte.placeOuvrier(2, j.getNum());
+        hutte.retirerOuvrier(2, j.getNum());
+
+        Assert.assertEquals(0, hutte.getNbOuvrierSurZone());
+        Assert.assertEquals(0, hutte.getNbOuvrierDuJoueurI(j.getNum()));
 
     }
 

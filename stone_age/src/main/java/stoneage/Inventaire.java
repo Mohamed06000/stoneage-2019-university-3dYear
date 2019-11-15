@@ -6,7 +6,9 @@ package stoneage;
  */
 public class Inventaire {
 
-
+    /**
+     * Le nombre n'ouvriers de tous les joueurs non placé sur les zones
+     */
     private static int nbOuvrierNonPlace;
 
     /**
@@ -23,20 +25,39 @@ public class Inventaire {
      */
     private int nbNourriture=10;
 
+    /**
+     * La quantité de la ressource bois du joueur
+     */
     private int nbRessourceBois ;
 
+    /**
+     * Recuperer la quantité de bois du joueur
+     * @return La quantité de bois
+     */
     public int getNbRessourceBois() {
         return nbRessourceBois;
     }
 
+    /**
+     * Modifier la quantité de bois du joueur
+     * @param nbRessourceBois Une quantité de bois
+     */
     public void setNbRessourceBois(int nbRessourceBois) {
         this.nbRessourceBois = nbRessourceBois;
     }
 
+    /**
+     * Modifier le nombre d'ouvriers non placés de tous les joueurs
+     * @param nbOuvrierNonPlace Un nombre d'ouvrier
+     */
     public static void setNbOuvrierNonPlace(int nbOuvrierNonPlace) {
         Inventaire.nbOuvrierNonPlace = nbOuvrierNonPlace;
     }
 
+    /**
+     * Recuperer le nombre d'ouvrier non placé de tous les joueurs
+     * @return Le nombre d'ouvrier
+     */
     public static int getNbOuvrierNonPlace() {
         return nbOuvrierNonPlace;
     }
@@ -53,25 +74,19 @@ public class Inventaire {
     public int getNiveauAgriculture(){ return niveauAgriculture; }
 
     /**
-     * incremente de 1 le multiplicateurNourriture dans l'Inventaire du joueur
+     * Incremente de 1 le multiplicateurNourriture dans l'Inventaire du joueur
      */
     public void addNiveauAgriculture(){  niveauAgriculture++; }
 
 
-    /*
-     * incrementer le nbNourriture  par n Nourritures  gagn� de la zone chasse pendant la phase recuperation  . 
+    /**
+     * Incrementer le nbNourriture  par n Nourritures  gagné de la zone chasse pendant la phase recuperation.
+     * @param nbNourritures Un quantité de nourriture
      */
-    
-    
     public void addNourriture(int nbNourritures)
     {
-    	
-    	nbNourriture += nbNourritures ;  
-    	
-    	
+    	nbNourriture += nbNourritures ;
     }
-    
-    
     
     /**
      * Recupere le nombre d'ouvrier du joueur
@@ -82,8 +97,8 @@ public class Inventaire {
     }
 
     /**
-     *
-     * @param nourriture
+     * Modifier la quantité de nourriture du joueur
+     * @param nourriture Une quantité de nourriture
      * @return
      */
     public void setNbNourriture(int nourriture) {nbNourriture=nourriture;}
@@ -168,7 +183,6 @@ public class Inventaire {
         setNbRessource(nRessource);
         setNbOuvrier(nOuvrier);
     }
-    
-    
+
 
 }

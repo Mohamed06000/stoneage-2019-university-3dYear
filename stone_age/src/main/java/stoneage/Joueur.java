@@ -21,7 +21,15 @@ class Joueur {
      * Le nombre de joueur de type Joueur
      */
     private static int nbJoueur;
+
+    /**
+     * Inventaire du joueur
+     */
     private Inventaire inventaireJoueur = new Inventaire();
+
+    /**
+     * Liste des zones où le joueur a placé ses ouvriers dans un tour
+     */
     private ZoneInterface zoneVisit[] = new ZoneInterface[0];
 
     /**
@@ -51,11 +59,18 @@ class Joueur {
         return num;
     }
 
+    /**
+     * Recupere la liste des zones visités du joueur
+     * @return
+     */
     public ZoneInterface[] getZoneVisit() {
         return zoneVisit;
     }
 
-
+    /**
+     * Recupere l'inventaire du joueur
+     * @return
+     */
     public Inventaire getInventaireJoueur() {
         return inventaireJoueur;
     }
@@ -63,8 +78,8 @@ class Joueur {
     /**
      * Placer ses ouvriers sur la zone
      * @param z La zone choisie
+     * @param nbOuvrier Le nombre d'ouvrier a placer
      */
-
     public void placement(ZoneInterface z, int nbOuvrier){
         inventaireJoueur.subOuvrier(nbOuvrier);
         Inventaire.setNbOuvrierNonPlace(Inventaire.getNbOuvrierNonPlace()-nbOuvrier);
@@ -90,8 +105,8 @@ class Joueur {
 
     /**
      * Nourrir ses ouvriers (1 nourriture/ouvrier)
+     * @param i L'inventaire du joueur
      */
-
     public void nourrir(Inventaire i) {
         i.setNbNourriture(i.getNbNourriture()+i.getNiveauAgriculture());
         for (int j = 0; j < i.getNbOuvrier(); j++) {
@@ -100,13 +115,6 @@ class Joueur {
 
             }
 
-    /**
-     * Pour l'instant elle affiche la valeur du lanc� de d�
-     */
-    public void action (){
-        int valeurDee = de();
-        System.out.println("La valeur du d�e est : " + valeurDee);
-    }
 
     /**
      * Lancer un de
@@ -117,6 +125,7 @@ class Joueur {
     public int de(){
         int result = 0 ;
         result = rand.nextInt(6)+1 ;
+        System.out.println("La valeur du dé est : " + result);
         return result ;
     }
 

@@ -153,7 +153,6 @@ public class Main {
      */
     public static void phaseRecuperation(Joueur j, ZoneInterface z) {
         System.out.println("Joueur " + j.getNum() + " :");
-        j.action() ;
         z.gainZone(j);
         System.out.println("Nb bois : : " + j.getInventaireJoueur().getNbRessourceBois());
         j.recupere(z);

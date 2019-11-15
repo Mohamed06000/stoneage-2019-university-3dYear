@@ -17,34 +17,59 @@ public class ZoneChasse extends ZoneRessource implements ZoneInterface {
 
 
     private static int nbOuvrierSurZone = 0;
-    private int nbOuvrierDuJoueurI[] = new int[Joueur.getNbJoueur()];
 
-    private int nbNourritureSurZone = 10000 ;
+    /**
+     * La liste du nombre d'ouvrier qu'un joueur ait placé sur la zone
+     */
+    public int nbOuvrierDuJoueurI[] = new int[Joueur.getNbJoueur()];
+
+    /**
+     * le nombre de nourriture sur zone
+     */
+    private int nbNourritureSurZone = 12 ;
     public  int resultat_De=0;
 
-    // methode pour retourner le nombre  des nourritures dans la zone chasse 
+    /**
+     *  methode pour retourner le nombre  des nourritures dans la zone chasse
+     * @return nombre de nourriture
+     */
    public int getNbRessourceZone() {
         return nbNourritureSurZone;
     }
 
+    /**
+     * Recuperer le nombre d'ouvrier sur la zone
+     * @return le nombre d'ouvrier
+     */
     public int getNbOuvrierSurZone() {
         return nbOuvrierSurZone;
     }
 
+    /**
+     * Recuperer le nombre d'ouvrier du joueur i sur la zone
+     * @param i le num du joueur
+     * @return le nombre d'ouvriers
+     */
     public int getNbOuvrierDuJoueurI(int i) {
         return nbOuvrierDuJoueurI[i-1];
     }
 
-   
-    // dimminuer les nourriture pour chaque tour
+    /**
+     *dimminuer les nourriture pour chaque tour
+     */
     public void diminuerRessource() {
     	if (nbNourritureSurZone-(resultat_De)>=0)   
     		nbNourritureSurZone-=resultat_De;
     }
 
+    /**
+     * Placer les ouvriers sur la zone
+     * @param nbOuvrierAplacer un nombre d'ouvrier
+     * @param id le num du joueur
+     */
     public void placeOuvrier(int nbOuvrierAplacer, int id) {
         nbOuvrierSurZone += nbOuvrierAplacer;
-        nbOuvrierDuJoueurI[id-1] = nbOuvrierAplacer;
+        nbOuvrierDuJoueurI[id-1] += nbOuvrierAplacer;
     }
 
     /**
@@ -64,10 +89,16 @@ public class ZoneChasse extends ZoneRessource implements ZoneInterface {
      * @param j
      */
  public void  gainZone(Joueur j) {
-	 
-	  resultat_De = j.de() / 2  ;
-	 
-	    j.getInventaireJoueur().addNourriture(resultat_De);
+
+     int somme = 0 ;
+     for (int k = 0 ; k < getNbOuvrierDuJoueurI(j.getNum());k++){
+         somme = somme + j.de();
+     }
+     if (somme > 6) {
+         resultat_De = somme / 2  ;
+         j.getInventaireJoueur().addNourriture(resultat_De);
+     }
+
 	    }	 
 	
     }

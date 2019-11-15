@@ -8,6 +8,7 @@ public class ZoneForet extends ZoneRessource implements ZoneInterface {
 
     private static int nbOuvrierSurZone = 0;
     private int nbOuvrierDuJoueurI[] = new int[Joueur.getNbJoueur()];
+    int somme = 0 ;
 
 
     // @return Nombre d'ouvrier sur la Zone Foret .
@@ -56,8 +57,8 @@ public class ZoneForet extends ZoneRessource implements ZoneInterface {
     // Méthode qui calcule le nombre de Ressource récupérer par le joueur dans la zone.
 
     public  int  addnbRessourceBois(Joueur j) {
-        int somme = 0 ;
-            for (int k = 0 ; k < j.getInventaireJoueur().getNbOuvrier();k++){
+
+            for (int k = 0 ; k < getNbOuvrierDuJoueurI(j.getNum());k++){
                 somme = somme + j.de();
             }
             if (somme > 6) {

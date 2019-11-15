@@ -73,10 +73,6 @@ class JoueurTest {
     }
 
     @Test
-    void action() {
-    }
-
-    @Test
     void dée() {
     }
 
