@@ -6,23 +6,23 @@ En ce qui concerne cette itération (Itération 3) :
 
 	Création de la classe ZoneForet qui représente la zone foret
 
-•	Déclaration et initialisation du champ NbBois dans la classe Inventaire
+  •	Déclaration et initialisation du champ NbBois dans la classe Inventaire
 
-•	Redéfinition de la méthode gainZone() dans la classe ZoneForêt
+  •	Redéfinition de la méthode gainZone() dans la classe ZoneForêt
 
 	Création d'une classe ZoneChamp qui représente la zone Champ
 
-•	Déclaration et initialisation du champ niveauAgrigulture dans la classe Inventaire
+  •	Déclaration et initialisation du champ niveauAgrigulture dans la classe Inventaire
 
-•	Redéfinition de la méthode gainZone() dans la classe ZoneChamp
+  •	Redéfinition de la méthode gainZone() dans la classe ZoneChamp
 
 	Création de la classe ZoneHutte qui représente la hutte
 
-•	Redéfinition de la méthode gainZone() dans la classe  ZoneHutte
+  •	Redéfinition de la méthode gainZone() dans la classe  ZoneHutte
 
 	Création de la classe ZoneChasse qui représente la zone de chasse 
 
-•	Redéfinition de la méthode gainZone() dans la classe ZoneChasse
+  •	Redéfinition de la méthode gainZone() dans la classe ZoneChasse
 
 	Toutes les classes précédentes implémente l’interface ZoneInterface
 
