@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ZoneVillageTest {
-
+/**class ZoneVillageTest {
+/**
     @Test
     void getNbOuvrierSurZone() {
     }
@@ -54,4 +54,4 @@ class ZoneVillageTest {
 
     }
 
-}
+}**/

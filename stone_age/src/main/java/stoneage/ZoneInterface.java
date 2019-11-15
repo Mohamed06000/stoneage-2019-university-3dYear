@@ -11,7 +11,8 @@ public interface ZoneInterface {
     void setNbOuvrierSurZone(int nbOuvrierSurZone);
     void placeOuvrier(int nbOuvrierAplacer, int id);
     void retirerOuvrier(int nbOuvrierRetirer, int id);
-    void gainZone(Joueur j);
+    default void gainZone(Joueur j){ }
+    void diminuerRessource();
 
 }
 

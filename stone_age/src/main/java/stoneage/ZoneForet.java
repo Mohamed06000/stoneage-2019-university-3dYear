@@ -1,21 +1,23 @@
 package stoneage;
 
-import org.jetbrains.annotations.NotNull;
-
 public class ZoneForet extends ZoneRessource implements ZoneInterface {
 
     // Le Nombre de Ressource disponible dans la zone Foret.
 
     //int nbBois=30 ; pour l'instant pas utilisé .
 
-    // le nombre d'ouvrier présent dans la zone Foret.
+    private static int nbOuvrierSurZone = 0;
+    private int nbOuvrierDuJoueurI[] = new int[Joueur.getNbJoueur()];
 
-    private static int nbOuvrierSurZone = 0  ;
 
     // @return Nombre d'ouvrier sur la Zone Foret .
 
     public int getNbOuvrierSurZone() {
         return nbOuvrierSurZone;
+    }
+
+    public int getNbOuvrierDuJoueurI(int i) {
+        return nbOuvrierDuJoueurI[i-1];
     }
 
     // Assigner un nombre d'ouvrier sur la zone
@@ -29,20 +31,20 @@ public class ZoneForet extends ZoneRessource implements ZoneInterface {
         }
     }
 
-    // placer un nombre d'ouvrier dans la Zone .
-
-    public void placeOuvrier(int nbOuvrierAplacer) {
+    public void placeOuvrier(int nbOuvrierAplacer, int id) {
         if (ZoneForet.verifeZonePlein()){
-            throw new java.lang.Error("La Zone Foret est pleine !");
+            throw new java.lang.Error("La Zone Hutte est pleine !");
         }
         else {
-            this.nbOuvrierSurZone = nbOuvrierAplacer;
+            nbOuvrierSurZone += nbOuvrierAplacer;
+            nbOuvrierDuJoueurI[id-1] = nbOuvrierAplacer;
         }
     }
 
-    //Vérifie si la Zone foret est pleine.
-
-    @org.jetbrains.annotations.Contract(pure = true)
+    public void retirerOuvrier(int nbOuvrierRetirer,int id) {
+        nbOuvrierSurZone -= nbOuvrierRetirer;
+        nbOuvrierDuJoueurI[id-1] -= nbOuvrierRetirer;
+    }
 
     public static boolean verifeZonePlein(){
         if (ZoneForet.nbOuvrierSurZone == 7){
@@ -53,10 +55,10 @@ public class ZoneForet extends ZoneRessource implements ZoneInterface {
 
     // Méthode qui calcule le nombre de Ressource récupérer par le joueur dans la zone.
 
-    public  int  addnbRessourceBois(@NotNull Joueur j) {
+    public  int  addnbRessourceBois(Joueur j) {
         int somme = 0 ;
             for (int k = 0 ; k < j.getInventaireJoueur().getNbOuvrier();k++){
-                somme = somme + j.dé();
+                somme = somme + j.de();
             }
             if (somme > 6) {
                 return  somme / 3 ;
@@ -67,7 +69,7 @@ public class ZoneForet extends ZoneRessource implements ZoneInterface {
     }
     // ajoute NbRessourceBois au joueur J.
 
-    public void  gainZone(@NotNull Joueur j){
+    public void  gainZone(Joueur j){
         int i = j.getInventaireJoueur().getNbRessourceBois()+addnbRessourceBois(j);
         j.getInventaireJoueur().setNbRessourceBois(i);
     }

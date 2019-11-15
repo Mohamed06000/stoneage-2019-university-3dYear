@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
+
 package stoneage;
 
 import org.junit.Assert;
@@ -10,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ZoneRessourceTest {
 
-    @Test
+   /** @Test
     void getNbOuvrierSurZone() {
     }
 
@@ -168,5 +166,5 @@ class ZoneRessourceTest {
 <<<<<<< HEAD
 =======
 >>>>>>> Baroudi
->>>>>>> c843e56bb392d9038b1d127d54689e03ea917c71
+>>>>>>> c843e56bb392d9038b1d127d54689e03ea917c71**/
 }

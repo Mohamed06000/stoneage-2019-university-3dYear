@@ -19,9 +19,19 @@ public class Inventaire {
     private int nbRessource = 0;
     
     /**
-     * La quantitée de nourriture du joueur (debut de jeu = 10 pour tous)
+     * La quantite de nourriture du joueur (debut de jeu = 10 pour tous)
      */
     private int nbNourriture=10;
+
+    private int nbRessourceBois ;
+
+    public int getNbRessourceBois() {
+        return nbRessourceBois;
+    }
+
+    public void setNbRessourceBois(int nbRessourceBois) {
+        this.nbRessourceBois = nbRessourceBois;
+    }
 
     public static void setNbOuvrierNonPlace(int nbOuvrierNonPlace) {
         Inventaire.nbOuvrierNonPlace = nbOuvrierNonPlace;
@@ -32,7 +42,7 @@ public class Inventaire {
     }
 
     /**
-     *  Le coefiicient multiplicateur pour la Nourriture du joueur (initialiser à (1)  joueur )
+     *  Le coefiicient multiplicateur pour la Nourriture du joueur (initialiser (1)  joueur )
      */
     private int niveauAgriculture =0;
 
@@ -49,7 +59,7 @@ public class Inventaire {
 
 
     /*
-     * incrementer le nbNourriture  par n Nourritures  gagné de la zone chasse pendant la phase recuperation  . 
+     * incrementer le nbNourriture  par n Nourritures  gagnï¿½ de la zone chasse pendant la phase recuperation  . 
      */
     
     
@@ -79,8 +89,8 @@ public class Inventaire {
     public void setNbNourriture(int nourriture) {nbNourriture=nourriture;}
     
     /**
-     * Recupere la quantitée de nourriture du joueur
-     * @return quantitée de nourriture
+     * Recupere la quantite de nourriture du joueur
+     * @return quantite de nourriture
      */
     public int getNbNourriture() {
     	return nbNourriture;

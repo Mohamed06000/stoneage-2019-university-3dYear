@@ -55,14 +55,6 @@ class Joueur {
         return zoneVisit;
     }
 
-    /**
-     * Methode de classe qui recupere le nombre de joueur
-     * @return Le nombre de joueur
-     */
-    public static int getNbJoueur(){
-        return nbJoueur;
-    }
-
 
     public Inventaire getInventaireJoueur() {
         return inventaireJoueur;
@@ -109,16 +101,16 @@ class Joueur {
             }
 
     /**
-     * Pour l'instant elle affiche la valeur du lancé de dé
+     * Pour l'instant elle affiche la valeur du lancï¿½ de dï¿½
      */
     public void action (){
-        int valeurDee = dé();
-        System.out.println("La valeur du dée est : " + valeurDee);
+        int valeurDee = de();
+        System.out.println("La valeur du dï¿½e est : " + valeurDee);
     }
 
     /**
-     * Lancer un dé
-     * @return Valeur du dé 
+     * Lancer un de
+     * @return Valeur du de
      */
 
     Random rand = new Random();

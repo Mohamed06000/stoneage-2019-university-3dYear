@@ -11,22 +11,28 @@ import java.util.Random;
  * la methode : setNbOuvrierSurZone()
  * la methode : placeOuvrier()
  * la methode : retirerOuvrier()
- * et on redéfinit les restes :
+ * et on redÃ©finit les restes :
  */
-public class Chasse extends ZoneRessource implements ZoneInterface {
-	
-    private int nbNourritureSurZone = 10000 ;
-    
-    public  int resultat_De=0;
-    
+public class ZoneChasse extends ZoneRessource implements ZoneInterface {
 
-    public Chasse(){
-        super();
-    }
+
+    private static int nbOuvrierSurZone = 0;
+    private int nbOuvrierDuJoueurI[] = new int[Joueur.getNbJoueur()];
+
+    private int nbNourritureSurZone = 10000 ;
+    public  int resultat_De=0;
 
     // methode pour retourner le nombre  des nourritures dans la zone chasse 
    public int getNbRessourceZone() {
         return nbNourritureSurZone;
+    }
+
+    public int getNbOuvrierSurZone() {
+        return nbOuvrierSurZone;
+    }
+
+    public int getNbOuvrierDuJoueurI(int i) {
+        return nbOuvrierDuJoueurI[i-1];
     }
 
    
@@ -36,15 +42,30 @@ public class Chasse extends ZoneRessource implements ZoneInterface {
     		nbNourritureSurZone-=resultat_De;
     }
 
+    public void placeOuvrier(int nbOuvrierAplacer, int id) {
+        nbOuvrierSurZone += nbOuvrierAplacer;
+        nbOuvrierDuJoueurI[id-1] = nbOuvrierAplacer;
+    }
+
+    /**
+     * retirer un nombre d'ouvrier de la zone
+     *
+     * @param nbOuvrierRetirer
+     */
+    public void retirerOuvrier(int nbOuvrierRetirer, int id) {
+        nbOuvrierSurZone -= nbOuvrierRetirer;
+        nbOuvrierDuJoueurI[id-1] -= nbOuvrierRetirer;
+    }
+
     
     /**
-     * methode gainZone qui incremente de n Nourritures (grace la lancement  de dé) pour le Joueur j ayant mis un ouvrier sur 
+     * methode gainZone qui incremente de n Nourritures (grace la lancement  de dï¿½) pour le Joueur j ayant mis un ouvrier sur 
      * la zone chasse
      * @param j
      */
  public void  gainZone(Joueur j) {
 	 
-	  resultat_De = de() / 2  ;
+	  resultat_De = j.de() / 2  ;
 	 
 	    j.getInventaireJoueur().addNourriture(resultat_De);
 	    }	 
