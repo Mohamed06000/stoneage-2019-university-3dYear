@@ -4,7 +4,6 @@ package stoneage;
 
 import org.apache.commons.lang.ArrayUtils;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 /**
@@ -15,20 +14,22 @@ public class Main {
     public static final void main(String[] args) {
         Joueur j1 = new Joueur();
         Joueur j2 = new Joueur();
-        ZoneRessource zoneR = new ZoneRessource();
-        ZoneVillage zoneV = new ZoneVillage();
-        Champ champ = new Champ();
-        Chasse chasse  = new Chasse();
         Joueur listJoueur[] = {j1,j2};
-        ZoneInterface zoneH = new ZoneHutte();
-        ZoneInterface listZone[] = {zoneR, zoneV,champ,chasse,zoneH}; //IA
+
+        ZoneRessource ressource = new ZoneRessource();
+        ZoneVillage village = new ZoneVillage();
+        ZoneChamp champ = new ZoneChamp();
+        ZoneChasse chasse = new ZoneChasse();
+        ZoneHutte hutte = new ZoneHutte();
+        ZoneForet foret = new ZoneForet();
+        ZoneInterface listZone[] = {champ, chasse, hutte, foret}; //IA
         int tour = 1;
 
         System.out.println("Nb de joueur : " + Joueur.getNbJoueur());
         System.out.println("Nb d'ouvriers non place : " + Inventaire.getNbOuvrierNonPlace());
 
 
-        while(zoneR.getNbRessourceZone()>0) {
+        while(tour<5) {
             System.out.println("_________________________________________________");
             System.out.println("|                Tour : "+tour+"                      |");
             System.out.println("_________________________________________________");
@@ -58,21 +59,22 @@ public class Main {
 
 
     public static void placementPhase(Joueur[] listJoueur, ZoneInterface[] listZone){
+        Random rand = new Random();
         while(Inventaire.getNbOuvrierNonPlace() > 0){
             for (int i=0; i < Joueur.getNbJoueur(); i++){
                 if (listJoueur[i].getInventaireJoueur().getNbOuvrier()==0)
                     continue;
                 while(true){
-                    int ind = new Random().nextInt(listZone.length); //IA choisit random une zone
+                    int indexZone = rand.nextInt(listZone.length); //IA choisit random une zone
                     System.out.println("Nb d'ouvriers  : " + listJoueur[i].getInventaireJoueur().getNbOuvrier());
                     int nbOuvrier = new Random().nextInt(listJoueur[i].getInventaireJoueur().getNbOuvrier())+1; //IA choisit random le nb d'ouvrier a placer
-                    if(ArrayUtils.contains(listJoueur[i].getZoneVisit(),listZone[ind])==false){
+                    if(ArrayUtils.contains(listJoueur[i].getZoneVisit(),listZone[indexZone])==false){
                         if ((listJoueur[i].getZoneVisit().length+1) == listZone.length){
-                            phasePlacement(listJoueur[i], listZone[ind], listJoueur[i].getInventaireJoueur().getNbOuvrier());
+                            phasePlacement(listJoueur[i], listZone[indexZone], listJoueur[i].getInventaireJoueur().getNbOuvrier());
                             break;
                         }
                         else{
-                            phasePlacement(listJoueur[i], listZone[ind], nbOuvrier);
+                            phasePlacement(listJoueur[i], listZone[indexZone], nbOuvrier);
                             break;
                         }
 
@@ -151,7 +153,6 @@ public class Main {
      */
     public static void phaseRecuperation(Joueur j, ZoneInterface z) {
         System.out.println("Joueur " + j.getNum() + " :");
-        j.action() ;
         z.gainZone(j);
         System.out.println("Nb bois : : " + j.getInventaireJoueur().getNbRessourceBois());
         j.recupere(z);
@@ -192,7 +193,7 @@ public class Main {
      */
     public static void phaseNourrir(Joueur j) {
         j.nourrir(j.getInventaireJoueur());
-        System.out.println(" Quantitée de nouriture pour le joueur " + j.getNum() + " : " + j.getInventaireJoueur().getNbNourriture());
+        System.out.println(" QuantitÃ©e de nouriture pour le joueur " + j.getNum() + " : " + j.getInventaireJoueur().getNbNourriture());
 
     }
 }

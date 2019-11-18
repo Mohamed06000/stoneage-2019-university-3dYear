@@ -3,12 +3,13 @@ package stoneage;
 /**
  * Classe generalisee Village de "zone"
  */
-public class ZoneHutte implements ZoneInterface {
+public class ZoneHutte extends ZoneVillage implements ZoneInterface {
 
     /**
      * Le nombre d'ouvrier present sur la zone Hutte
      */
     private static int nbOuvrierSurZone = 0;
+    private int nbOuvrierDuJoueurI[] = new int[Joueur.getNbJoueur()];
 
     /**
      * Recupérer le  nombre d'ouvrier sur la zone Hutte
@@ -17,6 +18,10 @@ public class ZoneHutte implements ZoneInterface {
      */
     public int getNbOuvrierSurZone() {
         return nbOuvrierSurZone;
+    }
+
+    public int getNbOuvrierDuJoueurI(int i) {
+        return nbOuvrierDuJoueurI[i-1];
     }
 
     /**
@@ -38,7 +43,7 @@ public class ZoneHutte implements ZoneInterface {
      *
      * @param nbOuvrierAplacer
      */
-    public void placeOuvrier(int nbOuvrierAplacer) {
+    public void placeOuvrier(int nbOuvrierAplacer, int id) {
         if (ZoneHutte.verifeZonePlein()){
             throw new java.lang.Error("La Zone Hutte est pleine !");
         }
@@ -46,7 +51,8 @@ public class ZoneHutte implements ZoneInterface {
             throw new java.lang.Error("Il doit y avoir deux personnes dans la Hutte !");
         }
         else {
-            this.nbOuvrierSurZone = nbOuvrierAplacer;
+            nbOuvrierSurZone += nbOuvrierAplacer;
+            nbOuvrierDuJoueurI[id-1] = nbOuvrierAplacer;
         }
     }
 
@@ -66,8 +72,9 @@ public class ZoneHutte implements ZoneInterface {
      *
      * @param nbOuvrierRetirer
      */
-    public void retirerOuvrier(int nbOuvrierRetirer) {
+    public void retirerOuvrier(int nbOuvrierRetirer,int id) {
         nbOuvrierSurZone -= nbOuvrierRetirer;
+        nbOuvrierDuJoueurI[id-1] -= nbOuvrierRetirer;
     }
 
     /**

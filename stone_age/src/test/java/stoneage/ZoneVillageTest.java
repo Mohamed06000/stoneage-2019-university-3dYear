@@ -17,39 +17,21 @@ class ZoneVillageTest {
 
     @Test
     void placeOuvrier() {
-        ZoneRessource zr = new ZoneRessource();
-        ZoneVillage zv = new ZoneVillage();
         Joueur j = new Joueur();
-<<<<<<< HEAD
-        j.placement(j.getInventaireJoueur(),zr);
-        j.placement(j.getInventaireJoueur(),zv);
-=======
-//        j.placement(j.getInventaireJoueur(),zr);
-//        j.placement(j.getInventaireJoueur(),zv);
->>>>>>> c843e56bb392d9038b1d127d54689e03ea917c71
+        ZoneVillage zv = new ZoneVillage();
+        j.placement(zv,5);
 
-        Assert.assertEquals(1,zr.getNbOuvrierSurZone());
-        Assert.assertEquals(1,zv.getNbOuvrierSurZone());
+        Assert.assertEquals(5,zv.getNbOuvrierSurZone());
     }
 
     @Test
     void retirerOuvrier() {
-        ZoneRessource zr = new ZoneRessource();
-        ZoneVillage zv = new ZoneVillage();
         Joueur j = new Joueur();
-<<<<<<< HEAD
-        j.placement(j.getInventaireJoueur(),zr);
-        j.placement(j.getInventaireJoueur(),zv);
-        j.recupere(j.getInventaireJoueur(),zr);
-        j.recupere(j.getInventaireJoueur(),zv);
-=======
-//        j.placement(j.getInventaireJoueur(),zr);
-//        j.placement(j.getInventaireJoueur(),zv);
-//        j.recupere(j.getInventaireJoueur(),zr);
-//        j.recupere(j.getInventaireJoueur(),zv);
->>>>>>> c843e56bb392d9038b1d127d54689e03ea917c71
+        ZoneVillage zv = new ZoneVillage();
 
-        Assert.assertEquals(0,zr.getNbOuvrierSurZone());
+        j.placement(zv,3);
+        j.recupere(zv);
+
         Assert.assertEquals(0,zv.getNbOuvrierSurZone());
 
     }
