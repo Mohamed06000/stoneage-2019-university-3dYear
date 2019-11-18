@@ -7,59 +7,34 @@ package stoneage;
 public class Inventaire {
 
 
-    private static int nbOuvrierNonPlace;
+    private int nbOuvrierNonPlace;
 
     /**
      * Le nombre d'ouvrier du joueur
      */
-    private int nbOuvrier;
-    /**
-     *   Le nombre de ressource du joueur
-     */
-    private int nbRessource = 0;
-    
-    /**
-     * La quantitée de nourriture du joueur (debut de jeu = 10 pour tous)
-     */
-    private int nbNourriture=10;
+    private int nbOuvrier = 5;
+    private int nbNourriture = 5;
+    private int nbBois = 0;
+    private int nbArgile = 0;
+    private int nbPierre = 0;
+    private int nbOr = 0;
+    private int nbOutils = 0;
+    private int niveauAgriculture = 1;
 
-    public static void setNbOuvrierNonPlace(int nbOuvrierNonPlace) {
-        Inventaire.nbOuvrierNonPlace = nbOuvrierNonPlace;
+    public void setNbOuvrierNonPlace(int nbOuvrierNonPlace) {
+        this.nbOuvrierNonPlace = nbOuvrierNonPlace;
     }
 
-    public static int getNbOuvrierNonPlace() {
+    public int getNbOuvrierNonPlace() {
         return nbOuvrierNonPlace;
     }
 
-    /**
-     *  Le coefiicient multiplicateur pour la Nourriture du joueur (initialiser à (1)  joueur )
-     */
-    private int niveauAgriculture =0;
 
     /**
      * Recupere le multiplicateur de Nourriture du joueur
      * @return  le multiplicateur de Nourriture
      */
     public int getNiveauAgriculture(){ return niveauAgriculture; }
-
-    /**
-     * incremente de 1 le multiplicateurNourriture dans l'Inventaire du joueur
-     */
-    public void addNiveauAgriculture(){  niveauAgriculture++; }
-
-
-    /*
-     * incrementer le nbNourriture  par n Nourritures  gagné de la zone chasse pendant la phase recuperation  . 
-     */
-    
-    
-    public void addNourriture(int nbNourritures)
-    {
-    	
-    	nbNourriture += nbNourritures ;  
-    	
-    	
-    }
     
     
     
@@ -79,19 +54,13 @@ public class Inventaire {
     public void setNbNourriture(int nourriture) {nbNourriture=nourriture;}
     
     /**
-     * Recupere la quantitée de nourriture du joueur
-     * @return quantitée de nourriture
+     * Recupere la quantitee de nourriture du joueur
+     * @return quantitee de nourriture
      */
     public int getNbNourriture() {
     	return nbNourriture;
     }
-   
-    /**
-     * Soustraire une nourriture
-     */
-    public void subNourriture() {
-    	nbNourriture--;
-    }
+
 
     /**
      * Assigner un nombre d'ouvrier au joueur
@@ -101,64 +70,71 @@ public class Inventaire {
         this.nbOuvrier = nbOuvrier;
     }
 
-    /**
-     * Soustraire un nombre d'ouvrier au joueur qu'il veut placer sur une zone
-     * @param nbOuvrier Le nombre d'ouvrier
-     */
-    public void subOuvrier(int nbOuvrier){
-        if (this.nbOuvrier>0) {
-            this.nbOuvrier -= nbOuvrier;
-        }
+
+
+    public int getNbBois() {
+        return nbBois;
     }
 
-    /**
-     * Recuperer le nombre de ressource du joueur
-     * @return Le nombre de ressource
-     */
-    public int getNbRessource() {
-        return nbRessource;
+    public void setNbBois(int nbBois) {
+        this.nbBois = nbBois;
     }
 
-    /**
-     * Assigne le nombre de ressource au joueur
-     * @param nbRessource Le nombre de ressource
-     */
-    public void setNbRessource(int nbRessource) {
-        this.nbRessource = nbRessource;
+    public int getNbArgile() {
+        return nbArgile;
     }
 
-    /**
-     * Rajouter 1 ressource a l'inventaire du joueur ou 1 ouvrier en fonction de la zone
-     **/
-    public void addRessource(ZoneInterface z){
-        if (z instanceof ZoneRessource){
-            this.nbRessource++;
-            }
-        else if (z instanceof ZoneHutte){
-            this.nbOuvrier++;
-        }
-        else {
-        }
+    public void setNbArgile(int nbArgile) {
+        this.nbArgile = nbArgile;
     }
+
+    public int getNbPierre() {
+        return nbPierre;
+    }
+
+    public void setNbPierre(int nbPierre) {
+        this.nbPierre = nbPierre;
+    }
+
+    public int getNbOr() {
+        return nbOr;
+    }
+
+    public void setNbOr(int nbOr) {
+        this.nbOr = nbOr;
+    }
+
+    public int getNbOutils() {
+        return nbOutils;
+    }
+
+    public void setNbOutils(int nbOutils) {
+        this.nbOutils = nbOutils;
+    }
+
+    public void setNiveauAgriculture(int niveauAgriculture) {
+        this.niveauAgriculture = niveauAgriculture;
+    }
+
 
     /**
      * Constructeur de la classe, on assigne 1 ouvrier par default
      */
     public Inventaire(){
         setNbOuvrier(5);
-        nbOuvrierNonPlace+= nbOuvrier;
+        setNbOuvrierNonPlace(5);
     }
 
-    /**
-     * Constructeur de la classe avec 2 parametres
-     * @param nOuvrier Le nombre d'ouvrier a assigner
-     * @param nRessource Le nombre de ressource a assigner
-     */
-    Inventaire(int nOuvrier, int nRessource){
-        setNbRessource(nRessource);
-        setNbOuvrier(nOuvrier);
+    /* update OuvierNonPlace quand un place n ouvrier */
+    public void enleveOuvrierNonPlace(int n){
+        nbOuvrierNonPlace -= n;
     }
-    
-    
+
+    /* update OuvrierNonPlace quand un recupere n ouvrier*/
+    public void ajouteOuvrierNonPlace(int n){
+        nbOuvrierNonPlace += n;
+    }
+
+
 
 }
