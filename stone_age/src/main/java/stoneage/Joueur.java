@@ -49,6 +49,12 @@ class Joueur {
     }
 
 
+    //public int getNbOuvrierjoueurI(int id){
+
+    //}
+
+
+
     /**
      * Recupere le numero du joueur
      * @return Le numero du joueur
