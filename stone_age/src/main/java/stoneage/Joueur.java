@@ -76,7 +76,7 @@ class Joueur {
      */
     public void placement(Inventaire inventaire, Zone zone, int nbOuvrier){
         //Inventaire.setNbOuvrierNonPlace(Inventaire.getNbOuvrierNonPlace()-nbOuvrier);
-        zone.placeOuvrierSurZone(inventaire, nbOuvrier, getNum());
+        zone.placeOuvrierSurZone(inventaire, nbOuvrier, getNum()); 
         zoneVisite.add(zone);
         //zoneVisit = Arrays.copyOf(zoneVisit,zoneVisit.length+1);
         //zoneVisit[zoneVisit.length-1] = z;
