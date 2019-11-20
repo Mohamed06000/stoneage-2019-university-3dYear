@@ -22,11 +22,16 @@
 >
 >>    Ajouter des compteurs de ressources dans l'Inventaire
 >
->>    Mettre à jour du Constructeur de la classe Inventaire
+>>    Mise à jour du Constructeur de la classe Inventaire
 >
 >>    Déplacement et update la méthode phaseRecuperation
 >
 >>    Deplacement et update la méthode phasePlacement
+>
+>>    Implementation de la methode gainZone dans Zone
+>
+>>    Modification de la Classe Main celle ci ne contient plus que Partie
+>
 
     
    
