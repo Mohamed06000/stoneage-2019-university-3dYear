@@ -22,10 +22,13 @@ class Joueur {
      */
     private static int nbJoueur;
 
+
+
     /**
      * Liste des zones où le joueur a placé ses ouvriers dans un tour
      */
-    private ZoneInterface zoneVisit[] = new ZoneInterface[0];
+    private final ArrayList<Zone> zoneVisite = new ArrayList<>();
+    //private ZoneInterface zoneVisit[] = new ZoneInterface[0];
 
     /**
      * Constructeur de la classe Joueur qui incremente un nombre de joueur
@@ -58,45 +61,27 @@ class Joueur {
      * Recupere la liste des zones visités du joueur
      * @return
      */
-    public ZoneInterface[] getZoneVisit() {
+    /*public ZoneInterface[] getZoneVisit() {
         return zoneVisit;
-    }
+    }*/
 
-    /**
-     * Recupere l'inventaire du joueur
-     * @return
-     */
-    public Inventaire getInventaireJoueur() {
-        return inventaireJoueur;
+    public ArrayList<Zone> getZoneVisite() {
+        return zoneVisite;
     }
 
     /**
      * Placer ses ouvriers sur la zone
-     * @param z La zone choisie
+     * @param zone La zone choisie
      * @param nbOuvrier Le nombre d'ouvrier a placer
      */
-    public void placement(ZoneInterface z, int nbOuvrier){
-        inventaireJoueur.subOuvrier(nbOuvrier);
-        Inventaire.setNbOuvrierNonPlace(Inventaire.getNbOuvrierNonPlace()-nbOuvrier);
-        z.placeOuvrier(nbOuvrier, getNum());
-        zoneVisit = Arrays.copyOf(zoneVisit,zoneVisit.length+1);
-        zoneVisit[zoneVisit.length-1] = z;
+    public void placement(Inventaire inventaire, Zone zone, int nbOuvrier){
+        //Inventaire.setNbOuvrierNonPlace(Inventaire.getNbOuvrierNonPlace()-nbOuvrier);
+        zone.placeOuvrierSurZone(inventaire, nbOuvrier, getNum());
+        zoneVisite.add(zone);
+        //zoneVisit = Arrays.copyOf(zoneVisit,zoneVisit.length+1);
+        //zoneVisit[zoneVisit.length-1] = z;
     }
 
-    /**
-     * Recuperer ses ouvriers et ressource de la zone
-     * @param z La zone choisie
-     */
-    public void recupere(ZoneInterface z){
-
-        inventaireJoueur.setNbOuvrier(inventaireJoueur.getNbOuvrier() + z.getNbOuvrierDuJoueurI(getNum()));
-        inventaireJoueur.addRessource(z); //suppr
-        if (z instanceof ZoneRessource){//suppr
-            z.diminuerRessource();
-        }
-        z.retirerOuvrier(z.getNbOuvrierDuJoueurI(getNum()), getNum());//suppr
-
-    }
 
     /**
      * Nourrir ses ouvriers (1 nourriture/ouvrier)
@@ -105,7 +90,7 @@ class Joueur {
     public void nourrir(Inventaire i) {
         i.setNbNourriture(i.getNbNourriture()+i.getNiveauAgriculture());
         for (int j = 0; j < i.getNbOuvrier(); j++) {
-                    if(i.getNbNourriture()>0) i.subNourriture();
+                    if(i.getNbNourriture()>0) i.setNbNourriture(-1);
                 }
 
             }
@@ -131,9 +116,5 @@ class Joueur {
         return result ;
     }
 
-
-    public void deleteZone(int index){
-        zoneVisit = (ZoneInterface[]) ArrayUtils.remove(zoneVisit, index);
-    }
 }
 

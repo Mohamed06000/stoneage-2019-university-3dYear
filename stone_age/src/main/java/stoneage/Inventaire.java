@@ -11,7 +11,7 @@ public class Inventaire {
      * Le nombre n'ouvriers de tous les joueurs non placé sur les zones
      */
 
-    private int nbOuvrierNonPlace;
+    private static int nbOuvrierNonPlace;
     /**
      * Le nombre d'ouvrier du joueur
      */
@@ -46,19 +46,20 @@ public class Inventaire {
     private int niveauAgriculture = 1;
 
 
+
     /**
      * Modifier le nombre d'ouvriers non placés de tous les joueurs
-     * @param nbOuvrierNonPlace Un nombre d'ouvrier
+     * @param nbOuvrierNnPlace Un nombre d'ouvrier
      */
-    public  void setNbOuvrierNonPlace(int nbOuvrierNonPlace) {
-        this.nbOuvrierNonPlace = nbOuvrierNonPlace;
+    public static void setNbOuvrierNonPlace(int nbOuvrierNnPlace) {
+        nbOuvrierNonPlace = nbOuvrierNnPlace;
     }
 
     /**
      * Recuperer le nombre d'ouvrier non placé de tous les joueurs
      * @return Le nombre d'ouvrier
      */
-    public int getNbOuvrierNonPlace() { return this.nbOuvrierNonPlace; }
+    public static int getNbOuvrierNonPlace() { return nbOuvrierNonPlace; }
 
     /**
      * Recupere le multiplicateur de Nourriture du joueur
@@ -103,6 +104,7 @@ public class Inventaire {
     public void setNbOuvrier(int nbOuvrier) {
         this.nbOuvrier = nbOuvrier;
     }
+
 
 
     /**
