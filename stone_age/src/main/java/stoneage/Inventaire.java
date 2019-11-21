@@ -22,7 +22,7 @@ public class Inventaire {
     /**
      * La quantitée de la ressource bois du joueur
      */
-    private int nbBois = 0;
+    private int nbBois = 2;
     /**
      * La quantitée d'Argile du joueur
      */
@@ -30,7 +30,7 @@ public class Inventaire {
     /**
      * La quantitée de pierre du joueur
      */
-    private int nbPierre = 0;
+    private int nbPierre = 4;
     /**
      * La quantitée d'or du joueur
      */

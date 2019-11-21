@@ -107,6 +107,11 @@ class Joueur {
         System.out.println("La valeur du d�e est : " + valeurDee);
     }
 
+    public int NBressourceTotal(Inventaire inventaire){
+
+        return inventaire.getNbArgile() + inventaire.getNbBois() + inventaire.getNbOr()+ inventaire.getNbPierre();
+    }
+
     /**
      * Lancer un de
      * @return Valeur du de
