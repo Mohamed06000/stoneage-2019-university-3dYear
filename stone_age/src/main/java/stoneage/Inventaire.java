@@ -45,6 +45,8 @@ public class Inventaire {
      */
     private int niveauAgriculture = 1;
 
+    //le nombre de points total du joueur .
+    private int nbPointTotal = 0 ;
 
 
     /**
@@ -161,6 +163,13 @@ public class Inventaire {
         this.niveauAgriculture = niveauAgriculture;
     }
 
+    public int getNbPointTotal() {
+        return nbPointTotal;
+    }
+
+    public void setNbPointTotal(int nbPointTotal) {
+        this.nbPointTotal = nbPointTotal;
+    }
 
     /**
      * Constructeur de la classe, on assigne 1 ouvrier par default

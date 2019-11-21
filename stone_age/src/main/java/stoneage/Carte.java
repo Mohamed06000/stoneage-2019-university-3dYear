@@ -2,10 +2,14 @@ package stoneage;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-import sun.font.TrueTypeFont;
+
+import java.util.Arrays;
 
 public enum Carte  {
-    CARTE1("Jaune",4,0,0,1,1);
+    CARTE1("Jaune",4,0,0,0,false,1),
+    CARTE2("Jaune",0,0,0,2,false,1),
+    CARTE3("Jaune",0,0,1,0,false,1),
+    CARTE4("Vert",0,0,2,0,false,1);
 
 
 
@@ -14,23 +18,28 @@ public enum Carte  {
     private int nbRessourceBois;
     private int nbRessourceOr;
     private int nbRessourcePierre;
-    private int nbOuvrierMaxSurCarte;
     private int nbOuvrierSurCarte;
     private int Point;
     private int nbOuvrierDuJoueurI[];
+    private static boolean PlaceReserver = false ;
 
 
     @org.jetbrains.annotations.Contract(pure = true)
-    Carte(String couleur, int nbRessourceArgile, int nbRessourceBois, int nbRessourcePierre, int nbOuvrierMaxSurCarte, int Point) {
+    Carte(String couleur, int nbRessourceArgile, int nbRessourceBois, int nbRessourcePierre,int nbRessourceOr,boolean PlaceReserver ,int Point) {
         this.couleur = couleur ;
         this.nbRessourceArgile = nbRessourceArgile;
         this.nbRessourceBois = nbRessourceBois;
         this.nbRessourcePierre= nbRessourcePierre;
-        this.nbOuvrierMaxSurCarte= nbOuvrierMaxSurCarte ;
+        this.nbRessourceOr = nbRessourceOr;
         this.Point = Point ;
         nbOuvrierDuJoueurI= new int[Joueur.getNbJoueur()];
 
     }
+
+    public String  toString(){
+        return ""+couleur+nbRessourceBois+nbRessourceArgile+nbRessourceOr;
+    }
+
 
     @Contract(pure = true)
     //
@@ -58,21 +67,12 @@ public enum Carte  {
         return Point;
     }
 
-    public void setNbOuvrierSurCarte(int nbOuvrierSurCarte) {
-        if ((nbOuvrierSurCarte > 1) || (nbOuvrierSurCarte < 0)){
-            throw new java.lang.Error("Il ne peut pas y avoir plus d'un ouvrier sur une carte !");
-        }
-        else {
-            this.nbOuvrierSurCarte = nbOuvrierSurCarte;
-        }
-        }
-
 
         public void placeOuvrierSurCarte(Inventaire inventaireJoueur, int nbOuvrierAplacer, int id){
-        if((nbOuvrierSurCarte == 0)||(nbOuvrierSurCarte < 2)){
+        if((PlaceReserver == false)||(nbOuvrierAplacer == 1)){
         inventaireJoueur.setNbOuvrier(inventaireJoueur.getNbOuvrier()-nbOuvrierAplacer);
-        this.nbOuvrierSurCarte += nbOuvrierAplacer;
-        nbOuvrierDuJoueurI[id-1] = nbOuvrierAplacer;
+        PlaceReserver = true ;
+        //nbOuvrierDuJoueurI[id-1] = nbOuvrierAplacer;
         }
         else{
             throw new java.lang.Error("Il ne peut pas y avoir plus d'un ouvrier sur cette carte!");
@@ -80,10 +80,48 @@ public enum Carte  {
 
     }
 
-    public void retirerOuvrierSurCarte(@NotNull Inventaire inventaireJoueur, int id){
-        inventaireJoueur.setNbOuvrier(inventaireJoueur.getNbOuvrier() + getNbOuvrierDuJoueurI(id));
-        this.nbOuvrierSurCarte -= getNbOuvrierDuJoueurI(id);
+    public void retirerOuvrierSurCarte(@NotNull Inventaire inventaireJoueur, int id) {
+       inventaireJoueur.setNbOuvrier(inventaireJoueur.getNbOuvrier() +1);
+       PlaceReserver = false ;
+        inventaireJoueur.setNbNourriture(inventaireJoueur.getNbNourriture() - 1);
+
+
     }
+
+    public void gainCarte(Inventaire inventaireJoueur ,Joueur j) {
+        switch (this) {
+            case CARTE1:
+                inventaireJoueur.setNbArgile(inventaireJoueur.getNbArgile() + CARTE1.getNbRessourceArgile());
+                inventaireJoueur.setNbPointTotal(inventaireJoueur.getNbPointTotal() + CARTE1.getPoint());
+                break;
+
+            case CARTE2:
+                inventaireJoueur.setNbArgile(inventaireJoueur.getNbOr() + CARTE2.getNbRessourceOr());
+                inventaireJoueur.setNbPointTotal(inventaireJoueur.getNbPointTotal() + CARTE2.getPoint());
+                break;
+            case CARTE3:
+                inventaireJoueur.setNbArgile(inventaireJoueur.getNbPierre() + CARTE3.getNbRessourcePierre());
+                inventaireJoueur.setNbPointTotal(inventaireJoueur.getNbPointTotal() + CARTE3.getPoint());
+                break;
+            case CARTE4:
+                inventaireJoueur.setNbArgile(inventaireJoueur.getNbPierre() + CARTE4.getNbRessourcePierre());
+                inventaireJoueur.setNbPointTotal(inventaireJoueur.getNbPointTotal() + CARTE4.getPoint());
+                break;
+
+            default:
+                break;
+
+        }
+    }
+
+    public static final void main(String[] args) {
+        for(Carte cart : Carte.values()) {
+            System.out.println(cart);
+        }
+
+    }
+
+
 
 
 
