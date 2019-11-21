@@ -13,8 +13,11 @@ public enum Zone {
     RIVIERE("Or", 12, 6, 0, 7),
     FABRIQUE("Outils", 0, 0, 0, 1),
     HUTTE("Ouvrier", 0, 0, 0, 2),
-    CHAMP("Niveau d'agriculture", 0, 1, 0, 1);
-
+    CHAMP("Niveau d'agriculture", 0, 1, 0, 1),
+    ZONE_CARTE_1("Bois", 1, 1, 0, 1),
+    ZONE_CARTE_2("Argile", 1, 1, 0, 1),
+    ZONE_CARTE_3("Pierre", 1, 1, 0, 1),
+    ZONE_CARTE_4("Or", 1, 1, 0, 1);
 
     private String ressource;
     private int diviseur;
@@ -132,6 +135,37 @@ public enum Zone {
     }
 
 
+
+    /*
+    * methode utilisée dans la methode gainZone pour
+    * les cartes de civilisations
+    * */
+    public void procedure2(Inventaire inventaire, Joueur j) {
+
+        switch (ressource) {
+
+
+            case "Bois":
+                inventaire.setNbBois(inventaire.getNbBois() + nbRessourcesZone);
+                break;
+            case "Argile":
+                inventaire.setNbArgile(inventaire.getNbArgile() + nbRessourcesZone);
+                break;
+            case "Pierre":
+                inventaire.setNbPierre(inventaire.getNbPierre() + nbRessourcesZone);
+                break;
+            case "Or":
+                inventaire.setNbOr(inventaire.getNbOr() + nbRessourcesZone);
+                break;
+
+            default:
+                break;
+        }
+        nbRessourcesZone =0;
+        retirerOuvrierSurZone(inventaire, j.getNum());
+    }
+
+
     public void gainZone(Inventaire inventairejoueur, Joueur j) {
 
         switch (this) {
@@ -160,6 +194,16 @@ public enum Zone {
             case FABRIQUE:
                 inventairejoueur.setNbOutils(inventairejoueur.getNbOutils() + 1);
                 retirerOuvrierSurZone(inventairejoueur, j.getNum());
+                break;
+            case ZONE_CARTE_1:
+
+            case ZONE_CARTE_2:
+
+            case ZONE_CARTE_3:
+
+            case ZONE_CARTE_4:
+
+                procedure2(inventairejoueur, j);
                 break;
         }
     }

@@ -86,6 +86,13 @@ class Joueur {
         //zoneVisit = Arrays.copyOf(zoneVisit,zoneVisit.length+1);
         //zoneVisit[zoneVisit.length-1] = z;
     }
+ public void placement_carte_civilisation(Inventaire inventaire, Carte carte){
+        //Inventaire.setNbOuvrierNonPlace(Inventaire.getNbOuvrierNonPlace()-nbOuvrier);
+        //zone.placeOuvrierSurZone(inventaire, nbOuvrier, getNum());
+       // zoneVisite.add(zone);
+        //zoneVisit = Arrays.copyOf(zoneVisit,zoneVisit.length+1);
+        //zoneVisit[zoneVisit.length-1] = z;
+    }
 
 
     /**

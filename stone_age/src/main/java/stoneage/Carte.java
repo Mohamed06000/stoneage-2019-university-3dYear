@@ -37,7 +37,7 @@ public enum Carte  {
     }
 
     public String  toString(){
-        return ""+couleur+nbRessourceBois+nbRessourceArgile+nbRessourceOr;
+        return ""+couleur+" "+nbRessourceBois+" "+nbRessourceArgile+" "+nbRessourceOr;
     }
 
 
