@@ -83,7 +83,7 @@ public enum Carte  {
     public void retirerOuvrierSurCarte(@NotNull Inventaire inventaireJoueur, int id) {
        inventaireJoueur.setNbOuvrier(inventaireJoueur.getNbOuvrier() +1);
        PlaceReserver = false ;
-        inventaireJoueur.setNbNourriture(inventaireJoueur.getNbNourriture() - 1);
+
 
 
     }

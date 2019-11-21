@@ -14,6 +14,4 @@ public class Plateau {
     public ArrayList<Zone> getZonesPleines() {
         return ZonesPleines;
     }
-
-
 }

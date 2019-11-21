@@ -50,33 +50,39 @@ public class Partie {
     public static void placementPhase(ArrayList joueurs, ArrayList inventaires, ArrayList zoneDispo){
 
         while(Inventaire.getNbOuvrierNonPlace() > 0){
-            for (int i=0; i < Joueur.getNbJoueur(); i++){
+            for (int i=0; i < Joueur.getNbJoueur(); i++)
+            {
                 Joueur joueur = (Joueur) joueurs.get(i);
                 Inventaire inventaire = (Inventaire) inventaires.get(i);
                 if (inventaire.getNbOuvrier()==0)
                     continue;
-                while(true){
+                while(true)
+                {
                     int indexZone = rand.nextInt(zoneDispo.size()); //IA choisit random une zone
                     System.out.println("Nb d'ouvriers  : " + inventaire.getNbOuvrier());
                     int nbOuvrier = new Random().nextInt(inventaire.getNbOuvrier())+1; //IA choisit random le nb d'ouvrier a placer
-                    if(joueur.getZoneVisite().contains(zoneDispo.get(indexZone))==false){
-                        if ((joueur.getZoneVisite().size()+1) == zoneDispo.size()){
+                    if(joueur.getZoneVisite().contains(zoneDispo.get(indexZone))==false)
+                    {
+                        if ((joueur.getZoneVisite().size()+1) == zoneDispo.size())
+                        {
                             phasePlacement(joueur, inventaire, (Zone) zoneDispo.get(indexZone), inventaire.getNbOuvrier());
                             break;
                         }
-                        else{
-                            phasePlacement(joueur, inventaire, (Zone) zoneDispo.get(indexZone), nbOuvrier);
-                            break;
-                        }
-
+                        else
+                            {
+                                phasePlacement(joueur, inventaire, (Zone) zoneDispo.get(indexZone), nbOuvrier);
+                                break;
+                            }
                     }
+                    //if (inventaire.getNbOuvrier()==0) {break;}
+                    }
+
                 }
 
             }
         }
-    }
 
-    public static void recuperationPhase(ArrayList joueurs, ArrayList inventaires){
+    public static void recuperationPhase(ArrayList joueurs, ArrayList inventaires ){
         for (int i=0; i < Joueur.getNbJoueur(); i++){
             Joueur joueur = (Joueur) joueurs.get(i);
             Inventaire inventaire = (Inventaire) inventaires.get(i);
@@ -149,7 +155,7 @@ public class Partie {
      */
     public static void phaseRecuperation(Joueur j, Inventaire inventaire, Zone z) {
         System.out.println("Joueur " + j.getNum() + " :");
-        z.gainZone(j);
+        z.gainZone(inventaire,j);
         //System.out.println("Nb bois : : " + inventaire.getNbRessourceBois());
         z.retirerOuvrierSurZone(inventaire, j.getNum());
         //j.recupere(z);

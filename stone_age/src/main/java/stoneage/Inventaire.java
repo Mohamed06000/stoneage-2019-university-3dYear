@@ -10,7 +10,6 @@ public class Inventaire {
     /**
      * Le nombre n'ouvriers de tous les joueurs non placé sur les zones
      */
-
     private static int nbOuvrierNonPlace;
     /**
      * Le nombre d'ouvrier du joueur
@@ -41,7 +40,7 @@ public class Inventaire {
      */
     private int nbOutils = 0;
     /**
-     *  Le coefficient multiplicateur pour la Nourriture du joueur (initialiser à 1)
+     *  Le niveau d'agriculture du joueur (initialiser à 0)
      */
     private int niveauAgriculture = 1;
 
@@ -64,16 +63,21 @@ public class Inventaire {
     public static int getNbOuvrierNonPlace() { return nbOuvrierNonPlace; }
 
     /**
-     * Recupere le multiplicateur de Nourriture du joueur
-     * @return  le multiplicateur de Nourriture
+     * Recupere le niveau d'agriculture du joueur
+     * @return  NiveauAgriculture le niveau d'agriculture
      */
     public int getNiveauAgriculture(){ return this.niveauAgriculture; }
 
+    /**
+     * Modifier le niveau d'agriculture du joueur
+     * @param niveauAgriculture
+     */
+    public void setNiveauAgriculture(int niveauAgriculture) {this.niveauAgriculture = niveauAgriculture;}
 
     /**
      * Incremente de 1 le multiplicateurNourriture dans l'Inventaire du joueur
      */
-    public void addNiveauAgriculture(){  niveauAgriculture++; }
+    public void addNiveauAgriculture(){ niveauAgriculture++; }
 
     /**
      * Recupere le nombre d'ouvrier du joueur
@@ -91,29 +95,23 @@ public class Inventaire {
     public void setNbNourriture(int nourriture) {this.nbNourriture=nourriture;}
     
     /**
-     * Recupere la quantitee de nourriture du joueur
+     * Recupere la quantité de nourriture du joueur
      * @return quantitee de nourriture
      */
     public int getNbNourriture() {
     	return nbNourriture;
     }
 
-
     /**
      * Assigner un nombre d'ouvrier au joueur
      * @param nbOuvrier Le nombre d'ouvrier
      */
-    public void setNbOuvrier(int nbOuvrier) {
-        this.nbOuvrier = nbOuvrier;
-    }
-
-
+    public void setNbOuvrier(int nbOuvrier) {this.nbOuvrier = nbOuvrier; }
 
     /**
      * Recuperer la quantité de bois du joueur
      * @return La quantité de bois
      */
-
     public int getNbBois() {
         return nbBois;
     }
@@ -122,46 +120,57 @@ public class Inventaire {
      * Modifier la quantité de bois du joueur
      * @param nbBois Une quantité de bois
      */
-
     public void setNbBois(int nbBois) {
         this.nbBois = nbBois;
     }
 
-    public int getNbArgile() {
-        return nbArgile;
-    }
+    /**
+     * Recuperer la quantité d'argile du joueur
+     * @return nbArgile la  quantité d'argile
+     */
+    public int getNbArgile() { return nbArgile; }
 
-    public void setNbArgile(int nbArgile) {
-        this.nbArgile = nbArgile;
-    }
+    /**
+     * Modifier la quantité de d'argile du joueur
+     * @param nbArgile
+     */
+    public void setNbArgile(int nbArgile) { this.nbArgile = nbArgile; }
 
-    public int getNbPierre() {
-        return nbPierre;
-    }
+    /**
+     * Recuperer la quantité de pierre du joueur
+     * @return nbPierre la quantité de pierre
+     */
+    public int getNbPierre() {return nbPierre; }
 
-    public void setNbPierre(int nbPierre) {
-        this.nbPierre = nbPierre;
-    }
+    /**
+     * Modifier la quantité de pierre du joueur
+     * @param nbPierre
+     */
+    public void setNbPierre(int nbPierre) { this.nbPierre = nbPierre; }
 
-    public int getNbOr() {
-        return nbOr;
-    }
+    /**
+     * Recuperer la quantité d'or du joueur
+     * @return nbOr la quantité d'or
+     */
+    public int getNbOr() {return nbOr; }
 
-    public void setNbOr(int nbOr) {
-        this.nbOr = nbOr;
-    }
+    /**
+     * Modifier la quantité d'or du joueur
+     * @param nbOr
+     */
+    public void setNbOr(int nbOr) {this.nbOr = nbOr; }
 
-    public int getNbOutils() {
-        return nbOutils;
-    }
+    /**
+     * Recuperer le nombre d'outils du joueur
+     * @return nbOutils le nombre d'outils
+     */
+    public int getNbOutils() { return nbOutils; }
 
-    public void setNbOutils(int nbOutils) {
-        this.nbOutils = nbOutils;
-    }
-
-    public void setNiveauAgriculture(int niveauAgriculture) {
-        this.niveauAgriculture = niveauAgriculture;
-    }
+    /**
+     * modifier le nombre d'outils du joueur
+     * @param nbOutils
+     */
+    public void setNbOutils(int nbOutils) {this.nbOutils = nbOutils; }
 
     public int getNbPointTotal() {
         return nbPointTotal;
@@ -189,6 +198,5 @@ public class Inventaire {
     public void ajouteOuvrierNonPlace(int n){
         nbOuvrierNonPlace += n;
     }
-
 
 }
