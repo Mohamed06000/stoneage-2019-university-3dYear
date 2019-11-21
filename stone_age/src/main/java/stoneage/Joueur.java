@@ -15,7 +15,7 @@ class Joueur {
     /**
      * La numero du joueur
      */
-    private int num;
+    private int num = 0;
 
     /**
      * Le nombre de joueur de type Joueur
@@ -81,7 +81,7 @@ class Joueur {
      */
     public void placement(Inventaire inventaire, Zone zone, int nbOuvrier){
         //Inventaire.setNbOuvrierNonPlace(Inventaire.getNbOuvrierNonPlace()-nbOuvrier);
-        zone.placeOuvrierSurZone(inventaire, nbOuvrier, getNum());
+        zone.placeOuvrierSurZone(inventaire, nbOuvrier);
         zoneVisite.add(zone);
         //zoneVisit = Arrays.copyOf(zoneVisit,zoneVisit.length+1);
         //zoneVisit[zoneVisit.length-1] = z;
@@ -104,7 +104,7 @@ class Joueur {
      */
     public void action (){
         int valeurDee = de();
-        System.out.println("La valeur du d�e est : " + valeurDee);
+        System.out.println("La valeur du dee est : " + valeurDee);
     }
 
     /**
@@ -119,5 +119,11 @@ class Joueur {
         return result ;
     }
 
+
+    public int choixNbOuvrier(Inventaire inventaire) {
+        int alea = rand.nextInt(inventaire.getNbOuvrier()+1);
+        return alea;
+
+    }
 }
 

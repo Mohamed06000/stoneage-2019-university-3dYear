@@ -1,23 +1,24 @@
 package stoneage;
 
 import org.apache.commons.lang.ArrayUtils;
-import org.w3c.dom.ls.LSOutput;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
 public class Partie {
-    private final ArrayList<Joueur> joueurs = new ArrayList<>(Arrays.asList(new Joueur(), new Joueur()));
-    private final ArrayList<Inventaire> inventaires = new ArrayList<>(Arrays.asList(new Inventaire(), new Inventaire()));
-    private final Plateau plateau = new Plateau();
+    private final int nbJoueur;
+    private final Plateau plateau = new Plateau(2);
     private static Random rand = new Random();
+
+    Partie(int nbJoueur){
+        this.nbJoueur = nbJoueur;
+    }
 
 
     public void jouer() {
         int tour = 1;
-        System.out.println("Nb de joueur : " + Joueur.getNbJoueur());
-        System.out.println("Nb d'ouvriers non place : " + Inventaire.getNbOuvrierNonPlace());
+        System.out.println("Nb de joueur : " + nbJoueur);
+        System.out.println("Nb d'ouvriers total non place : " + plateau.nbOuvrierDispoTotal());
 
 
         while(tour<5) {
@@ -26,18 +27,14 @@ public class Partie {
             System.out.println("_________________________________________________");
 
             System.out.println("================PHASE DE PLACEMENT================");
-            placementPhase(joueurs, inventaires, plateau.getZonesDispo());
+            plateau.placementPhase();
 
             System.out.println("================PHASE DE RECUPERATION================");
-            recuperationPhase(joueurs, inventaires);
+            plateau.recuperationPhase();
 
             System.out.println("================PHASE NOURRIR================");
+            plateau.phaseNourrir();
 
-            for (int i = 0; i < Joueur.getNbJoueur(); i++) {
-                Joueur joueur = (Joueur) joueurs.get(i);
-                Inventaire inventaire = (Inventaire) inventaires.get(i);
-                phaseNourrir(joueur, inventaire);
-            }
             tour++;
         }
 
@@ -46,10 +43,10 @@ public class Partie {
         resultat(joueurs, inventaires);
     }
 
-
+    /*
     public static void placementPhase(ArrayList joueurs, ArrayList inventaires, ArrayList zoneDispo){
 
-        while(Inventaire.getNbOuvrierNonPlace() > 0){
+        while(Inventaire.getNbOuvrierDispo() > 0){
             for (int i=0; i < Joueur.getNbJoueur(); i++)
             {
                 Joueur joueur = (Joueur) joueurs.get(i);
@@ -80,8 +77,8 @@ public class Partie {
                 }
 
             }
-        }
-
+        }*/
+/*
     public static void recuperationPhase(ArrayList joueurs, ArrayList inventaires ){
         for (int i=0; i < Joueur.getNbJoueur(); i++){
             Joueur joueur = (Joueur) joueurs.get(i);
@@ -92,10 +89,10 @@ public class Partie {
                 phaseRecuperation(joueur, inventaire, joueur.getZoneVisite().get(ind));
                 joueur.getZoneVisite().remove(ind);
             }
-            Inventaire.setNbOuvrierNonPlace(Inventaire.getNbOuvrierNonPlace() + inventaire.getNbOuvrier());
+            Inventaire.setNbOuvrierDispo(Inventaire.getNbOuvrierDispo() + inventaire.getNbOuvrier());
         }
     }
-
+*/
     public static void resultat(ArrayList joueurs, ArrayList inventaires){
         int arrayRessource[] = new int[joueurs.size()];
         int max = 0;
@@ -138,8 +135,8 @@ public class Partie {
      * @param j L'objet de la classe Joueur
      * @param z L'objet de la classe Zone
      */
-    public static void phasePlacement(Joueur j, Inventaire inventaire, Zone z, int nbOuvrier) {
-        j.placement(inventaire, z, nbOuvrier);
+
+    public static void AffichePhasePlacement(Joueur j, Inventaire inventaire, Zone z, int nbOuvrier) {
         System.out.println("********Joueur " + j.getNum() + "********");
         System.out.println("Nb d'ouvrier total dans la zone " + z.getClass().getSimpleName() + " : " + z.getNbOuvrierSurZone());
         System.out.println("Nb d'ouvrier du joueur dans la zone " + z.getClass().getSimpleName() + " : " + z.getNbOuvrierDuJoueurI(j.getNum()));
@@ -148,55 +145,55 @@ public class Partie {
         System.out.println("Les zones visitées : " + j.getZoneVisite());
     }
 
-    /**
-     * Lancement de la phase de jeu de recuperation
-     *  @param j L'objet de la classe Joueur
-     * @param z L'objet de la classe Zone
-     */
-    public static void phaseRecuperation(Joueur j, Inventaire inventaire, Zone z) {
-        System.out.println("Joueur " + j.getNum() + " :");
-        z.gainZone(inventaire,j);
-        //System.out.println("Nb bois : : " + inventaire.getNbRessourceBois());
-        z.retirerOuvrierSurZone(inventaire, j.getNum());
-        //j.recupere(z);
-        System.out.println("Nb d'ouvrier dans la zone : "+ z.getNbOuvrierSurZone());
-        //System.out.println("Nb de ressource dans la zone : "+ z.getNbRessourceZone());
-        System.out.println("********Joueur " + j.getNum() + "********");
-        //z.gainZone(j);
-        /*public void gainZone(){
-        int somme=0;
-        for(int i=0;i<z.getNbOuvrierDuJoueurI(j.getNum());i++){
-            somme += j.de();
-        }
-        if(somme >= 6)
-            double gain = somme/3; //formule qui change
-        j.getInventaireJoueur().setBois(getBois()+gain); //si zone est Foret
-        diminuerRessource(gain);
-        retirerOuvrier(getNbOuvrierDuJoueurI(j.getNum()));
-}*/
-        //j.recupere(z); //z.getNbOuvrierDuJoueur(j.getNum());
+//    /**
+//     * Lancement de la phase de jeu de recuperation
+//     *  @param j L'objet de la classe Joueur
+//     * @param z L'objet de la classe Zone
+//     */
+//    public static void phaseRecuperation(Joueur j, Inventaire inventaire, Zone z) {
+//        System.out.println("Joueur " + j.getNum() + " :");
+//        z.gainZone(inventaire,j);
+//        //System.out.println("Nb bois : : " + inventaire.getNbRessourceBois());
+//        z.retirerOuvrierSurZone(inventaire, j.getNum());
+//        //j.recupere(z);
+//        System.out.println("Nb d'ouvrier dans la zone : "+ z.getNbOuvrierSurZone());
+//        //System.out.println("Nb de ressource dans la zone : "+ z.getNbRessourceZone());
+//        System.out.println("********Joueur " + j.getNum() + "********");
+//        //z.gainZone(j);
+//        /*public void gainZone(){
+//        int somme=0;
+//        for(int i=0;i<z.getNbOuvrierDuJoueurI(j.getNum());i++){
+//            somme += j.de();
+//        }
+//        if(somme >= 6)
+//            double gain = somme/3; //formule qui change
+//        j.getInventaireJoueur().setBois(getBois()+gain); //si zone est Foret
+//        diminuerRessource(gain);
+//        retirerOuvrier(getNbOuvrierDuJoueurI(j.getNum()));
+//}*/
+//        //j.recupere(z); //z.getNbOuvrierDuJoueur(j.getNum());
+//
+//        System.out.println("Nb d'ouvrier dans la zone "  + z.getClass().getSimpleName() + " : "+ z.getNbOuvrierSurZone());
+//        System.out.println("Nb d'ouvrier du joueur " + j.getNum() + " dans la zone " + z.getClass().getSimpleName() + " : " + z.getNbOuvrierDuJoueurI(j.getNum()));
+//        /*if (z instanceof ZoneRessource){
+//            System.out.println("Nb de ressource dans la zone " + z.getClass().getSimpleName() + " : " + ((ZoneRessource) z).getNbRessourceZone());
+//        }*/
+//        System.out.println("niveauAgriculture pour le "+ j.getNum()+ " : "+ inventaire.getNiveauAgriculture() );
+//        System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + j.getNum() + " : " + inventaire.getNbOuvrier());
+//        //System.out.println("Nb de ressource dans l'inventaire du joueur " + j.getNum() + " : " + inventaire.getNbRessource());
+//
+//    }
 
-        System.out.println("Nb d'ouvrier dans la zone "  + z.getClass().getSimpleName() + " : "+ z.getNbOuvrierSurZone());
-        System.out.println("Nb d'ouvrier du joueur " + j.getNum() + " dans la zone " + z.getClass().getSimpleName() + " : " + z.getNbOuvrierDuJoueurI(j.getNum()));
-        /*if (z instanceof ZoneRessource){
-            System.out.println("Nb de ressource dans la zone " + z.getClass().getSimpleName() + " : " + ((ZoneRessource) z).getNbRessourceZone());
-        }*/
-        System.out.println("niveauAgriculture pour le "+ j.getNum()+ " : "+ inventaire.getNiveauAgriculture() );
-        System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + j.getNum() + " : " + inventaire.getNbOuvrier());
-        //System.out.println("Nb de ressource dans l'inventaire du joueur " + j.getNum() + " : " + inventaire.getNbRessource());
-
-    }
 
 
-
-    /**
-     * Lancement de la phase de jeu "nourrir"
-     *
-     * @param j L'objet de la classe Joueur
-     */
-    public static void phaseNourrir(Joueur j, Inventaire inventaire) {
-        j.nourrir(inventaire);
-        System.out.println(" Quantitée de nouriture pour le joueur " + j.getNum() + " : " + inventaire.getNbNourriture());
-
-    }
+//    /**
+//     * Lancement de la phase de jeu "nourrir"
+//     *
+//     * @param j L'objet de la classe Joueur
+//     */
+//    public static void phaseNourrir(Joueur j, Inventaire inventaire) {
+//        j.nourrir(inventaire);
+//        System.out.println(" Quantitée de nouriture pour le joueur " + j.getNum() + " : " + inventaire.getNbNourriture());
+//
+//    }
 }

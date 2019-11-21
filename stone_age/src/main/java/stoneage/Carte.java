@@ -1,11 +1,11 @@
 package stoneage;
 
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import sun.font.TrueTypeFont;
+//import org.jetbrains.annotations.Contract;
+//import org.jetbrains.annotations.NotNull;
+//import sun.font.TrueTypeFont;
 
 public enum Carte  {
-    CARTE1("Jaune",4,0,0,1,1);
+   /* CARTE1("Jaune",4,0,0,1,1);
 
 
 
@@ -87,5 +87,5 @@ public enum Carte  {
 
 
 
-
+*/
 }

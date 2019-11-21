@@ -8,9 +8,9 @@ public class Inventaire {
 
 
     /**
-     * Le nombre n'ouvriers de tous les joueurs non placé sur les zones
+     * Le nombre d'ouvriers disponible dans l'inventaire (qui n'a pas été placer)
      */
-    private static int nbOuvrierNonPlace;
+    private static int nbOuvrierDispo;
     /**
      * Le nombre d'ouvrier du joueur
      */
@@ -49,15 +49,15 @@ public class Inventaire {
      * Modifier le nombre d'ouvriers non placés de tous les joueurs
      * @param nbOuvrierNnPlace Un nombre d'ouvrier
      */
-    public static void setNbOuvrierNonPlace(int nbOuvrierNnPlace) {
-        nbOuvrierNonPlace = nbOuvrierNnPlace;
+    public  void setNbOuvrierDispo(int nbOuvrierNnPlace) {
+        nbOuvrierDispo = nbOuvrierNnPlace;
     }
 
     /**
      * Recuperer le nombre d'ouvrier non placé de tous les joueurs
      * @return Le nombre d'ouvrier
      */
-    public static int getNbOuvrierNonPlace() { return nbOuvrierNonPlace; }
+    public  int getNbOuvrierDispo() { return nbOuvrierDispo; }
 
     /**
      * Recupere le niveau d'agriculture du joueur
@@ -175,18 +175,29 @@ public class Inventaire {
      */
     public Inventaire(){
         setNbOuvrier(5);
-        setNbOuvrierNonPlace(5);
+        setNbOuvrierDispo(5);
+    }
+    public Inventaire(Inventaire copie){
+        setNbOuvrier(copie.getNbOuvrier());
+        setNbOutils(copie.getNbOutils());
+        setNbOr(copie.getNbOr());
+        setNbPierre(copie.getNbPierre());
+        setNbArgile(copie.getNbArgile());
+        setNbBois(copie.getNbBois());
+        setNbNourriture(copie.getNbNourriture());
+        setNiveauAgriculture(copie.getNiveauAgriculture());
+        setNbOuvrierDispo(copie.getNbOuvrierDispo());
     }
 
-    /* update OuvierNonPlace quand un place n ouvrier */
-    public void enleveOuvrierNonPlace(int n){
-        nbOuvrierNonPlace -= n;
+    /* update nbOuvrierDispo quand un place n ouvrier */
+    public void enleveOuvrierDispo(int n){
+        nbOuvrierDispo -= n;
     }
 
 
-    /* update OuvrierNonPlace quand un recupere n ouvrier*/
-    public void ajouteOuvrierNonPlace(int n){
-        nbOuvrierNonPlace += n;
+    /* update nbOuvrierDispo quand un recupere n ouvrier*/
+    public void ajouteOuvrierDispo(int n){
+        nbOuvrierDispo += n;
     }
 
 }
