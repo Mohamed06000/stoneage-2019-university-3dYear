@@ -71,6 +71,8 @@ public enum Zone {
      * @param nbOuvrierSurZone
      * @param nbOuvrierMaxSurZone
      */
+
+
     Zone(String ressource, int nbRessourcesZone, int diviseur, int nbOuvrierSurZone, int nbOuvrierMaxSurZone) {
         this.ressource = ressource;
         this.diviseur = diviseur;
