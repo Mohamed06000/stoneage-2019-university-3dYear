@@ -100,7 +100,7 @@ class Joueur {
             }
             
     /**
-     * Pour l'instant elle affiche la valeur du lanc� de d�
+     * Pour l'instant elle affiche la valeur du lancé de dé
      */
     public void action (){
         int valeurDee = de();
