@@ -14,6 +14,13 @@
 >
 >>    ajout d'une Classe Zone
 >
+>>    ajout d'une Classe CarteRessource
+>
+>>    ajout d'une Classe Nourriturecards
+>
+>>    Implémentation methode gainCarte dans la Classe CarteRessource et Nourriturecards
+>
+
     
 > ## Modifications:
 >>    deplacement de la boucle de jeu dans la Classe Partie
@@ -31,6 +38,8 @@
 >>    Implementation de la methode gainZone dans Zone
 >
 >>    Modification de la Classe Main celle ci ne contient plus que Partie
+>
+>>   Légere Modification de la méthode phasePlacement et phaseRecuperation dans la classe CarteRessource
 >
 
     
