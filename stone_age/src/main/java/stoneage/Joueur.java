@@ -64,7 +64,6 @@ class Joueur {
     /*public ZoneInterface[] getZoneVisit() {
         return zoneVisit;
     }*/
-
     public ArrayList<Zone> getZoneVisite() {
         return zoneVisite;
     }
@@ -76,7 +75,7 @@ class Joueur {
      */
     public void placement(Inventaire inventaire, Zone zone, int nbOuvrier){
         //Inventaire.setNbOuvrierNonPlace(Inventaire.getNbOuvrierNonPlace()-nbOuvrier);
-        zone.placeOuvrierSurZone(inventaire, nbOuvrier, getNum()); 
+        zone.placeOuvrierSurZone(inventaire, nbOuvrier, getNum());
         zoneVisite.add(zone);
         //zoneVisit = Arrays.copyOf(zoneVisit,zoneVisit.length+1);
         //zoneVisit[zoneVisit.length-1] = z;
@@ -92,7 +91,6 @@ class Joueur {
         for (int j = 0; j < i.getNbOuvrier(); j++) {
                     if(i.getNbNourriture()>0) i.setNbNourriture(-1);
                 }
-
             }
             
     /**
@@ -107,7 +105,6 @@ class Joueur {
      * Lancer un de
      * @return Valeur du de
      */
-
     Random rand = new Random();
     public int de(){
         int result = 0 ;
