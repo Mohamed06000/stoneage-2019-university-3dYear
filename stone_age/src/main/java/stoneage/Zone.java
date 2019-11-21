@@ -15,7 +15,6 @@ public enum Zone {
     HUTTE("Ouvrier", 0, 0, 0, 2),
     CHAMP("Niveau d'agriculture", 0, 1, 0, 1);
 
-
     private String ressource;
     private int diviseur;
     private int nbOuvrierMaxSurZone; //nb d'ouvrier max sur une zone, -1 = pas de limite.
@@ -68,6 +67,8 @@ public enum Zone {
      * @param nbOuvrierSurZone
      * @param nbOuvrierMaxSurZone
      */
+
+
     Zone(String ressource, int nbRessourcesZone, int diviseur, int nbOuvrierSurZone, int nbOuvrierMaxSurZone) {
         this.ressource = ressource;
         this.diviseur = diviseur;
