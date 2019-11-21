@@ -37,10 +37,6 @@ public enum CarteRessource {
 
     }
 
-    public String toString() {
-        return "" + couleur + nbRessourceBois + nbRessourceArgile + nbRessourceOr;
-    }
-
 
     @Contract(pure = true)
     //
