@@ -88,6 +88,7 @@ class Joueur {
     }
 
 
+
     /**
      * Nourrir ses ouvriers (1 nourriture/ouvrier)
      * @param i L'inventaire du joueur
@@ -105,6 +106,11 @@ class Joueur {
     public void action (){
         int valeurDee = de();
         System.out.println("La valeur du dee est : " + valeurDee);
+    }
+
+    public int NBressourceTotal(Inventaire inventaire){
+
+        return inventaire.getNbArgile() + inventaire.getNbBois() + inventaire.getNbOr()+ inventaire.getNbPierre();
     }
 
     /**
@@ -125,5 +131,6 @@ class Joueur {
         return alea;
 
     }
+
 }
 

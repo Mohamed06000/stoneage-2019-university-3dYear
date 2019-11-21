@@ -22,7 +22,7 @@ public class Inventaire {
     /**
      * La quantitée de la ressource bois du joueur
      */
-    private int nbBois = 0;
+    private int nbBois = 2;
     /**
      * La quantitée d'Argile du joueur
      */
@@ -30,7 +30,7 @@ public class Inventaire {
     /**
      * La quantitée de pierre du joueur
      */
-    private int nbPierre = 0;
+    private int nbPierre = 4;
     /**
      * La quantitée d'or du joueur
      */
@@ -42,7 +42,10 @@ public class Inventaire {
     /**
      *  Le niveau d'agriculture du joueur (initialiser à 0)
      */
-    private int niveauAgriculture = 0;
+    private int niveauAgriculture = 1;
+
+    //le nombre de points total du joueur .
+    private int nbPointTotal = 0 ;
 
 
     /**
@@ -169,6 +172,13 @@ public class Inventaire {
      */
     public void setNbOutils(int nbOutils) {this.nbOutils = nbOutils; }
 
+    public int getNbPointTotal() {
+        return nbPointTotal;
+    }
+
+    public void setNbPointTotal(int nbPointTotal) {
+        this.nbPointTotal = nbPointTotal;
+    }
 
     /**
      * Constructeur de la classe, on assigne 1 ouvrier par default

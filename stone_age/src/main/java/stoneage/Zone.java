@@ -12,8 +12,11 @@ public enum Zone {
     RIVIERE("Or", 12, 6, 0, 7),
     FABRIQUE("Outils", 0, 0, 0, 1),
     HUTTE("Ouvrier", 0, 0, 0, 2),
-    CHAMP("Niveau d'agriculture", 0, 1, 0, 1);
-
+    CHAMP("Niveau d'agriculture", 0, 1, 0, 1),
+    ZONE_CARTE_1("Bois", 1, 1, 0, 1),
+    ZONE_CARTE_2("Argile", 1, 1, 0, 1),
+    ZONE_CARTE_3("Pierre", 1, 1, 0, 1),
+    ZONE_CARTE_4("Or", 1, 1, 0, 1);
 
     private String ressource;
     private int diviseur;
@@ -74,6 +77,8 @@ public enum Zone {
      * @param nbOuvrierSurZone
      * @param nbOuvrierMaxSurZone
      */
+
+
     Zone(String ressource, int nbRessourcesZone, int diviseur, int nbOuvrierSurZone, int nbOuvrierMaxSurZone) {
         this.ressource = ressource;
         this.diviseur = diviseur;
@@ -142,6 +147,8 @@ public enum Zone {
     }
 
 
+
+
     public void gainZone(Inventaire inventairejoueur, Zone zone) {
 
         switch (zone) {
@@ -170,6 +177,16 @@ public enum Zone {
             case FABRIQUE:
                 inventairejoueur.setNbOutils(inventairejoueur.getNbOutils() + 1);
                 retirerOuvrierSurZone(inventairejoueur, inventairejoueur.getNbOuvrier());
+                break;
+            case ZONE_CARTE_1:
+
+            case ZONE_CARTE_2:
+
+            case ZONE_CARTE_3:
+
+            case ZONE_CARTE_4:
+
+                procedure(inventairejoueur,zone);
                 break;
         }
     }
