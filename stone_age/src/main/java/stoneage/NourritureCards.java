@@ -55,21 +55,5 @@ public enum NourritureCards  {
     }
 
 
-
-    public static  void main(String[] args) {
-        for(NourritureCards cart : NourritureCards.values()) {
-            System.out.println(cart);
-        }
-
-    }
-
-
-
-
-
-
-
-
-
-
 }
+
