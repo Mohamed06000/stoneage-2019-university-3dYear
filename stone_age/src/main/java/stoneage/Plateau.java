@@ -39,6 +39,37 @@ public class Plateau {
     }
 
 
+    public void placementPhase(){
+        int nbOuvrierDispoTotal = nbOuvrierDispoTotal();
+        boolean placed = true;
+        boolean disponibiliteZone = true;
+        Joueur IA = new Joueur();
+        Inventaire inventaireIA;
+        int choixNbOuvrier;
+        Zone choixZone;
+
+        while (nbOuvrierDispoTotal>0) {
+            for (int i = 0; i<listeInventaire.size(); i++) {
+                inventaireIA = new Inventaire(listeInventaire.get(i));
+                do {
+                    choixNbOuvrier = IA.choixNbOuvrier(inventaireIA);
+                    choixZone = IA.choixZone(ZonesDispo);
+                    disponibiliteZone = verifierDisponibiliteZone(choixZone, choixNbOuvrier);
+                    if (disponibiliteZone){
+                        listeInventaire.get(i).enleveOuvrierDispo(choixNbOuvrier);
+                        choixZone.placeOuvrierSurZone(listeInventaire.get(i), choixNbOuvrier);
+                        ZoneVisite.get(i).add(choixZone);
+                        placed = false;
+                    }
+
+                }
+                while (placed);
+            }
+        }
+    }
+
+
+
 
 
     public void recuperationPhase(){
@@ -48,7 +79,8 @@ public class Plateau {
                 zoneCourant = ZoneVisite.get(i).get(j);
                 zoneCourant.gainZone(listeInventaire.get(i), zoneCourant);
             }
-        ZoneVisite.get(i).clear();
+            ZoneVisite.get(i).clear();
+            listeInventaire.get(i).ajouteOuvrierDispo(listeInventaire.get(i).getNbOuvrier());
         }
         ZonesPleines.clear();
         ZonesDispo.clear();
@@ -65,6 +97,26 @@ public class Plateau {
         }
     }
 
+
+
+    private boolean verifierDisponibiliteZone(Zone choixZone, int choixNbOuvrier) {
+        if ((ZonesPleines.contains(choixZone)) && (choixNbOuvrier >choixZone.getNbOuvrierMaxSurZone()-choixZone.getNbOuvrierSurZone()) ){
+            return false;
+        }
+        /*verifier et mettre les zones pleines des Dispo dans la liste des zones pleines*/
+        if ((choixZone == Zone.HUTTE) && (choixNbOuvrier!=2)){
+            return false;
+        }
+        return true;
+    }
+
+    protected int nbOuvrierDispoTotal() {
+        int n = 0;
+        for (int i = 0; i<listeInventaire.size(); i++){
+            n += listeInventaire.get(i).getNbOuvrierDispo();
+        }
+        return n;
+    }
 
 
 

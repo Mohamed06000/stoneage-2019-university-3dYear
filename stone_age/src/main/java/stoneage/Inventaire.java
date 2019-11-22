@@ -201,13 +201,13 @@ public class Inventaire {
 
     /* update nbOuvrierDispo quand un place n ouvrier */
     public void enleveOuvrierDispo(int n){
-        nbOuvrierDispo -= n;
+        this.nbOuvrierDispo -= n;
     }
 
 
     /* update nbOuvrierDispo quand un recupere n ouvrier*/
     public void ajouteOuvrierDispo(int n){
-        nbOuvrierDispo += n;
+        this.nbOuvrierDispo += n;
     }
 
 }

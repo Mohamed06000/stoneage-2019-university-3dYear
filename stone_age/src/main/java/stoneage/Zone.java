@@ -41,6 +41,10 @@ public enum Zone {
         return nbRessourcesZone;
     }
 
+    public void setNbRessourcesZone(int nbRessourcesZone) {
+        this.nbRessourcesZone = nbRessourcesZone;
+    }
+
     /**
      * Retourner le nombre d'ouvrier sur la zone
      *
@@ -67,6 +71,8 @@ public enum Zone {
     public int getDiviseur() {
         return diviseur;
     }
+
+
 
     /**
      * Constructeur de Zone
@@ -119,9 +125,9 @@ public enum Zone {
             somme += de();
         }
         if (somme >= 6)
-            gain = somme / diviseur;
+            gain = somme / zone.getDiviseur();
 
-        switch (ressource) {
+        switch (zone.getRessource()) {
 
             case "Nourriture":
                 inventaire.setNbNourriture(inventaire.getNbNourriture() + gain);
@@ -142,7 +148,7 @@ public enum Zone {
             default:
                 break;
         }
-        nbRessourcesZone -= gain;
+        zone.setNbRessourcesZone(zone.getNbRessourcesZone()-gain);
         retirerOuvrierSurZone(inventaire, inventaire.getNbOuvrier());
     }
 

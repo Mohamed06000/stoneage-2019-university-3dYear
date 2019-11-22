@@ -79,6 +79,7 @@ class Joueur {
      * @param zone La zone choisie
      * @param nbOuvrier Le nombre d'ouvrier a placer
      */
+
     public void placement(Inventaire inventaire, Zone zone, int nbOuvrier){
         //Inventaire.setNbOuvrierNonPlace(Inventaire.getNbOuvrierNonPlace()-nbOuvrier);
         zone.placeOuvrierSurZone(inventaire, nbOuvrier);
@@ -125,6 +126,11 @@ class Joueur {
         return result ;
     }
 
+
+    public Zone choixZone(ArrayList<Zone> zonesDispo) {
+        int alea = rand.nextInt(zonesDispo.size()+1);
+        return zonesDispo.get(alea);
+    }
 
     public int choixNbOuvrier(Inventaire inventaire) {
         int alea = rand.nextInt(inventaire.getNbOuvrier()+1);
