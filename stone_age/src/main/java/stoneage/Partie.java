@@ -6,8 +6,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Partie {
-    private final int nbJoueur;
+    private int nbJoueur;
     private final Plateau plateau = new Plateau(2);
+    private int[] score = new int[nbJoueur];
     private static Random rand = new Random();
 
     Partie(int nbJoueur){
@@ -29,6 +30,7 @@ public class Partie {
             System.out.println("================PHASE DE PLACEMENT================");
             plateau.placementPhase();
 
+
             System.out.println("================PHASE DE RECUPERATION================");
             plateau.recuperationPhase();
 
@@ -40,7 +42,9 @@ public class Partie {
 
 
         System.out.println("_____RESULTAT_____");
-        resultat(joueurs, inventaires);
+        resultat(plateau.getListeInventaire());
+        this.indexGagnant(score);
+        this.JoueurGagnant(score);
     }
 
     /*
@@ -93,41 +97,63 @@ public class Partie {
         }
     }
 */
-    public static void resultat(ArrayList joueurs, ArrayList inventaires){
-        int arrayRessource[] = new int[joueurs.size()];
-        int max = 0;
-        int listGagnant[] = {};
-
-
-        for (int i = 0; i < Joueur.getNbJoueur(); i++) {
-            Inventaire inventaire = (Inventaire) inventaires.get(i);
-//            arrayRessource[i] = inventaire.getNbRessource();
-//            if (inventaire.getNbRessource()> max){
-//                max = inventaire.getNbRessource();
+//    public static void resultat(ArrayList joueurs, ArrayList inventaires){
+//        int arrayRessource[] = new int[joueurs.size()];
+//        int max = 0;
+//        int listGagnant[] = {};
+//
+//
+//        for (int i = 0; i < Joueur.getNbJoueur(); i++) {
+//            Inventaire inventaire = (Inventaire) inventaires.get(i);
+////            arrayRessource[i] = inventaire.getNbRessource();
+////            if (inventaire.getNbRessource()> max){
+////                max = inventaire.getNbRessource();
+////            }
+//        }
+//        for (int i=0; i<arrayRessource.length; i++){
+//            if (max == arrayRessource[i]){
+//                listGagnant = ArrayUtils.add(listGagnant,i);
 //            }
-        }
-        for (int i=0; i<arrayRessource.length; i++){
-            if (max == arrayRessource[i]){
-                listGagnant = ArrayUtils.add(listGagnant,i);
-            }
-        }
+//        }
+//
+//        for (int i = 0; i < listGagnant.length; i++) {
+//            if (listGagnant.length>1){
+//                System.out.println("Egalité entre :");
+//                for (int el : listGagnant){
+//                    Joueur joueur = (Joueur) joueurs.get(el);
+//                    System.out.println("joueur " + joueur.getNum());
+//                }
+//                break;
+//            }
+//            else{
+//                Joueur joueur = (Joueur) joueurs.get(listGagnant[i]);
+//                System.out.println("Le gagnant est le joueur " + joueur.getNum());
+//            }
+//        }
+//    }
 
-        for (int i = 0; i < listGagnant.length; i++) {
-            if (listGagnant.length>1){
-                System.out.println("Egalité entre :");
-                for (int el : listGagnant){
-                    Joueur joueur = (Joueur) joueurs.get(el);
-                    System.out.println("joueur " + joueur.getNum());
-                }
-                break;
-            }
-            else{
-                Joueur joueur = (Joueur) joueurs.get(listGagnant[i]);
-                System.out.println("Le gagnant est le joueur " + joueur.getNum());
-            }
+    public void resultat(ArrayList<Inventaire> listInventaire){
+        for (int i = 0; i < listInventaire.size(); i++) {
+            this.score[i] = listInventaire.get(i).calculPoint();
         }
     }
 
+    public int indexGagnant(int[] points){
+        int maxIndex = 0;
+        int max = 0;
+        for (int i = 0; i < points.length; i++) {
+            if (max < points[i]){
+                max = points[i];
+                maxIndex = i;
+            }
+        }
+        return maxIndex;
+    }
+
+    public void JoueurGagnant(int[] points){
+        int gagnant = indexGagnant(points);
+        System.out.println("Le Gagnant est le joueur " + (gagnant+1));
+    }
 
     /**
      * Lancement de la phase de jeu de placement
@@ -136,14 +162,6 @@ public class Partie {
      * @param z L'objet de la classe Zone
      */
 
-    public static void AffichePhasePlacement(Joueur j, Inventaire inventaire, Zone z, int nbOuvrier) {
-        System.out.println("********Joueur " + j.getNum() + "********");
-        System.out.println("Nb d'ouvrier total dans la zone " + z.getClass().getSimpleName() + " : " + z.getNbOuvrierSurZone());
-        System.out.println("Nb d'ouvrier du joueur dans la zone " + z.getClass().getSimpleName() + " : " + z.getNbOuvrierDuJoueurI(j.getNum()));
-        System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + j.getNum() + " : " + inventaire.getNbOuvrier());
-        //System.out.println("Nb de ressource dans l'inventaire du joueur " + j.getNum() + " : " + inventaire.getNbRessource());
-        System.out.println("Les zones visitées : " + j.getZoneVisite());
-    }
 
 //    /**
 //     * Lancement de la phase de jeu de recuperation

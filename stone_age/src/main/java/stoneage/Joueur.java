@@ -94,7 +94,7 @@ class Joueur {
      * Nourrir ses ouvriers (1 nourriture/ouvrier)
      * @param i L'inventaire du joueur
      */
-    public void nourrir(Inventaire i) {
+    public static void nourrir(Inventaire i) {
         i.setNbNourriture(i.getNbNourriture()+i.getNiveauAgriculture());
         for (int j = 0; j < i.getNbOuvrier(); j++) {
                     if(i.getNbNourriture()>0) i.setNbNourriture(-1);
@@ -107,11 +107,6 @@ class Joueur {
     public void action (){
         int valeurDee = de();
         System.out.println("La valeur du dee est : " + valeurDee);
-    }
-
-    public int NBressourceTotal(Inventaire inventaire){
-
-        return inventaire.getNbArgile() + inventaire.getNbBois() + inventaire.getNbOr()+ inventaire.getNbPierre();
     }
 
     /**

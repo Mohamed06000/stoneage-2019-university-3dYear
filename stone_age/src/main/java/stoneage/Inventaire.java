@@ -1,7 +1,6 @@
 
 package stoneage;
 
-
 /**
  * Classe de l'inventaire du joueur
  */
@@ -45,8 +44,8 @@ public class Inventaire {
      */
     private int niveauAgriculture = 1;
 
-    //le nombre de points total du joueur .
-    private int nbPointTotal = 0 ;
+    private int nbPointTotal;
+
 
 
     /**
@@ -173,14 +172,6 @@ public class Inventaire {
      */
     public void setNbOutils(int nbOutils) {this.nbOutils = nbOutils; }
 
-    public int getNbPointTotal() {
-        return nbPointTotal;
-    }
-
-    public void setNbPointTotal(int nbPointTotal) {
-        this.nbPointTotal = nbPointTotal;
-    }
-
     /**
      * Constructeur de la classe, on assigne 1 ouvrier par default
      */
@@ -211,4 +202,19 @@ public class Inventaire {
         this.nbOuvrierDispo += n;
     }
 
+    public int calculPoint(){
+        int point;
+        point = this.getNbArgile()+this.getNbBois()+this.getNbNourriture()+this.getNbOr();
+        point += this.getNbPierre()+this.getNbOutils();
+        return point;
+    }
+
+
+    public int getNbPointTotal() {
+        return nbPointTotal;
+    }
+
+    public void setNbPointTotal(int nbPointTotal) {
+        this.nbPointTotal = nbPointTotal;
+    }
 }

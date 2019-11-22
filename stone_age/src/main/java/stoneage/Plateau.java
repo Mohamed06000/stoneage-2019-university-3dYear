@@ -8,19 +8,17 @@ public class Plateau {
     private static ArrayList<Zone> ZonesPleines;
     private static ArrayList<ArrayList<Zone>> ZoneVisite;
     private Dictionary dicoJoueurs = new Hashtable();
-    /*private static ArrayList<Joueur> listeJoueur;*/
     private static ArrayList<Inventaire> listeInventaire = new ArrayList<Inventaire>();
 
     Plateau(int nbjoueur){
         this.ZonesDispo = new ArrayList<Zone>(Arrays.asList(Zone.values()));
+        this.ZoneVisite = new ArrayList<ArrayList<Zone>>();
         this.ZonesPleines = new ArrayList<Zone>();
         for (int i = 0; i < nbjoueur ; i++) {
             Inventaire inventaire = new Inventaire();
             dicoJoueurs.put(i, inventaire);
             listeInventaire.add(inventaire);
         }
-        this.listeInventaire = new ArrayList<Inventaire>();
-        ZoneVisite = new ArrayList<ArrayList<Zone>>();
         /*this.listeJoueur = new ArrayList<Joueur>();*/
 
     }
@@ -38,6 +36,9 @@ public class Plateau {
         return dicoJoueurs;
     }
 
+    public ArrayList<Inventaire> getListeInventaire() {
+        return listeInventaire;
+    }
 
     public void placementPhase(){
         int nbOuvrierDispoTotal = nbOuvrierDispoTotal();
@@ -56,9 +57,11 @@ public class Plateau {
                     choixZone = IA.choixZone(ZonesDispo);
                     disponibiliteZone = verifierDisponibiliteZone(choixZone, choixNbOuvrier);
                     if (disponibiliteZone){
+                        AfficheInfoJoueur(i,choixZone);
+                        updateStatutZone();
                         listeInventaire.get(i).enleveOuvrierDispo(choixNbOuvrier);
                         choixZone.placeOuvrierSurZone(listeInventaire.get(i), choixNbOuvrier);
-                        ZoneVisite.get(i).add(choixZone);
+                        ZoneVisite.get(i).add(i,choixZone);
                         placed = false;
                     }
 
@@ -69,6 +72,16 @@ public class Plateau {
     }
 
 
+    public static void AfficheInfoJoueur(int numJ, Zone z) {
+        System.out.println("********Joueur " + (numJ+1) + "********");
+        System.out.println("Nb d'ouvrier total dans la zone " + z.getClass().getSimpleName() + " : " + z.getNbOuvrierSurZone());
+        System.out.println("Nb d'ouvrier du joueur dans la zone " + z.getClass().getSimpleName() + " : " + (listeInventaire.get(numJ).getNbOuvrier() - listeInventaire.get(numJ).getNbOuvrierDispo()));
+        System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + numJ + " : " + listeInventaire.get(numJ).getNbOuvrier());
+        //System.out.println("Nb de ressource dans l'inventaire du joueur " + j.getNum() + " : " + inventaire.getNbRessource());
+        if (ZoneVisite.size()>0) {
+            System.out.println("Les zones visitées : " + ZoneVisite.get(numJ));
+        }
+    }
 
 
 
@@ -78,32 +91,42 @@ public class Plateau {
             for (int j = 0; j < ZoneVisite.size(); j++) {
                 zoneCourant = ZoneVisite.get(i).get(j);
                 zoneCourant.gainZone(listeInventaire.get(i), zoneCourant);
+                AfficheInfoJoueur(i,zoneCourant);
             }
             ZoneVisite.get(i).clear();
             listeInventaire.get(i).ajouteOuvrierDispo(listeInventaire.get(i).getNbOuvrier());
         }
         ZonesPleines.clear();
         ZonesDispo.clear();
-        ZonesDispo = (ArrayList<Zone>) Arrays.asList(Zone.values());
+        resetZoneDispo();
+    }
+
+    private void resetZoneDispo() {
+        for (Zone z: Zone.values()) {
+            ZonesDispo.add(z);
+        }
     }
 
     public void phaseNourrir(){
-        Joueur j;
-        int i = 0;
-        for (Enumeration k = dicoJoueurs.keys(); k.hasMoreElements();) {
-            j = (Joueur) k.nextElement();
-            j.nourrir(listeInventaire.get(i));
-            i++;
+        for (int i = 0 ; i < listeInventaire.size(); i++) {
+            Joueur.nourrir(listeInventaire.get(i));
         }
     }
 
 
+    public void updateStatutZone(){
+        for (Zone z : Zone.values()) {
+            if (z.getNbOuvrierSurZone() >= z.getNbOuvrierMaxSurZone()){
+                ZonesPleines.add(z);
+                ZonesDispo.remove(z);
+            }
+        }
+    }
 
     private boolean verifierDisponibiliteZone(Zone choixZone, int choixNbOuvrier) {
         if ((ZonesPleines.contains(choixZone)) && (choixNbOuvrier >choixZone.getNbOuvrierMaxSurZone()-choixZone.getNbOuvrierSurZone()) ){
             return false;
         }
-        /*verifier et mettre les zones pleines des Dispo dans la liste des zones pleines*/
         if ((choixZone == Zone.HUTTE) && (choixNbOuvrier!=2)){
             return false;
         }
@@ -117,7 +140,6 @@ public class Plateau {
         }
         return n;
     }
-
 
 
     public static void main(String[] args) {
@@ -135,6 +157,8 @@ public class Plateau {
         z1.setNbOuvrierSurZone(48);
         System.out.println(z1.getNbOuvrierSurZone());
         System.out.println(z2.getNbOuvrierSurZone());
+        System.out.println(listeInventaire.size());
+
         //System.out.println(ZonesPleines.get(0).getNbOuvrierSurZone());
     }
 }
