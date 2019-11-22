@@ -1,6 +1,7 @@
 
 package stoneage;
 
+
 /**
  * Classe de l'inventaire du joueur
  */
