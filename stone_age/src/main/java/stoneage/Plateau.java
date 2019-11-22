@@ -14,10 +14,13 @@ public class Plateau {
         this.ZonesDispo = new ArrayList<Zone>(Arrays.asList(Zone.values()));
         this.ZoneVisite = new ArrayList<ArrayList<Zone>>();
         this.ZonesPleines = new ArrayList<Zone>();
+        ArrayList<Zone> zp;
         for (int i = 0; i < nbjoueur ; i++) {
             Inventaire inventaire = new Inventaire();
             dicoJoueurs.put(i, inventaire);
             listeInventaire.add(inventaire);
+            zp = new ArrayList<Zone>();
+            ZoneVisite.add(zp);
         }
         /*this.listeJoueur = new ArrayList<Joueur>();*/
 
@@ -61,8 +64,9 @@ public class Plateau {
                         updateStatutZone();
                         listeInventaire.get(i).enleveOuvrierDispo(choixNbOuvrier);
                         choixZone.placeOuvrierSurZone(listeInventaire.get(i), choixNbOuvrier);
-                        ZoneVisite.get(i).add(i,choixZone);
+                        ZoneVisite.get(i).add(choixZone);
                         placed = false;
+                        nbOuvrierDispoTotal-=choixNbOuvrier;
                     }
 
                 }

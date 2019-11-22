@@ -124,7 +124,7 @@ class Joueur {
 
     public Zone choixZone(ArrayList<Zone> zonesDispo) {
         int alea = rand.nextInt(zonesDispo.size()+1);
-        return zonesDispo.get(alea);
+        return zonesDispo.get(1);
     }
 
     public int choixNbOuvrier(Inventaire inventaire) {
