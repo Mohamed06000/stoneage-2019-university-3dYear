@@ -15,7 +15,7 @@ class Joueur {
     /**
      * La numero du joueur
      */
-    private int num;
+    private int num = 0;
 
     /**
      * Le nombre de joueur de type Joueur
@@ -79,27 +79,22 @@ class Joueur {
      * @param zone La zone choisie
      * @param nbOuvrier Le nombre d'ouvrier a placer
      */
+
     public void placement(Inventaire inventaire, Zone zone, int nbOuvrier){
         //Inventaire.setNbOuvrierNonPlace(Inventaire.getNbOuvrierNonPlace()-nbOuvrier);
-        zone.placeOuvrierSurZone(inventaire, nbOuvrier, getNum());
+        zone.placeOuvrierSurZone(inventaire, nbOuvrier);
         zoneVisite.add(zone);
         //zoneVisit = Arrays.copyOf(zoneVisit,zoneVisit.length+1);
         //zoneVisit[zoneVisit.length-1] = z;
     }
- public void placement_carte_civilisation(Inventaire inventaire, Carte carte){
-        //Inventaire.setNbOuvrierNonPlace(Inventaire.getNbOuvrierNonPlace()-nbOuvrier);
-        //zone.placeOuvrierSurZone(inventaire, nbOuvrier, getNum());
-       // zoneVisite.add(zone);
-        //zoneVisit = Arrays.copyOf(zoneVisit,zoneVisit.length+1);
-        //zoneVisit[zoneVisit.length-1] = z;
-    }
+
 
 
     /**
      * Nourrir ses ouvriers (1 nourriture/ouvrier)
      * @param i L'inventaire du joueur
      */
-    public void nourrir(Inventaire i) {
+    public static void nourrir(Inventaire i) {
         i.setNbNourriture(i.getNbNourriture()+i.getNiveauAgriculture());
         for (int j = 0; j < i.getNbOuvrier(); j++) {
                     if(i.getNbNourriture()>0) i.setNbNourriture(-1);
@@ -111,12 +106,7 @@ class Joueur {
      */
     public void action (){
         int valeurDee = de();
-        System.out.println("La valeur du d�e est : " + valeurDee);
-    }
-
-    public int NBressourceTotal(Inventaire inventaire){
-
-        return inventaire.getNbArgile() + inventaire.getNbBois() + inventaire.getNbOr()+ inventaire.getNbPierre();
+        System.out.println("La valeur du dee est : " + valeurDee);
     }
 
     /**
@@ -129,6 +119,18 @@ class Joueur {
         result = rand.nextInt(6)+1 ;
         System.out.println("La valeur du dé est : " + result);
         return result ;
+    }
+
+
+    public Zone choixZone(ArrayList<Zone> zonesDispo) {
+        int alea = rand.nextInt(zonesDispo.size()+1);
+        return zonesDispo.get(alea);
+    }
+
+    public int choixNbOuvrier(Inventaire inventaire) {
+        int alea = rand.nextInt(inventaire.getNbOuvrier()+1);
+        return alea;
+
     }
 
 }

@@ -18,7 +18,6 @@ public enum CarteRessource {
     private int nbRessourceBois;
     private int nbRessourceOr;
     private int nbRessourcePierre;
-    private int nbOuvrierSurCarte;
     private int Point;
     private int nbOuvrierDuJoueurI[];
     private static boolean PlaceReserver = false;
