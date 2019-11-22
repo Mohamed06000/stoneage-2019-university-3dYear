@@ -72,6 +72,7 @@ public enum NourritureCards  {
 
     }
 
+
     public static boolean achatCarte = true;
 
     /**
@@ -146,5 +147,6 @@ public enum NourritureCards  {
     }
 
 }
+
 
 
