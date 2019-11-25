@@ -58,7 +58,7 @@ public class Plateau {
                     choixNbOuvrier = IA.choixNbOuvrier(listeInventaire.get(i));
                     choixZone = IA.choixZone(ZonesDispo);
                     disponibiliteZone = verifierDisponibiliteZone(choixZone, choixNbOuvrier);
-                    if (ZoneVisite.contains(choixZone) & choixZone!=Zone.CHASSE)
+                    if (ZoneVisite.contains(choixZone) & choixZone!=Zone.CHASSE) 
                         continue;
                     if (disponibiliteZone){
                         System.out.println("----AVANT----");
