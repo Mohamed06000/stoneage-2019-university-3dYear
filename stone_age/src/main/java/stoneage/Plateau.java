@@ -51,7 +51,7 @@ public class Plateau {
 
         while (nbOuvrierDispoTotal()>0) { // J'utilise la methode et non plus une variable afin que le compteur s'actualise
             for (int i = 0; i<listeInventaire.size(); i++) {
-                if (listeInventaire.get(i).getNbOuvrier()==0) //S'il a déjà posé tous ses ouvriers, il passe son tour.
+                if (listeInventaire.get(i).getNbOuvrier()==0) //S'il a déjà posé tous ses ouvriers, il passe son tour .
                     continue;
                 do {
                     placed = true;
