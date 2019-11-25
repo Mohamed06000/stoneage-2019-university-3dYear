@@ -44,45 +44,53 @@ public class Plateau {
     }
 
     public void placementPhase(){
-        boolean placed; // J'initialise dans la boucle while pour que le joueur ait plusieurs choix de zone avant de passer à un autre joueur.
         boolean disponibiliteZone;
+        boolean choixZoneValide;
         int choixNbOuvrier;
         Zone choixZone;
 
         while (nbOuvrierDispoTotal()>0) { // J'utilise la methode et non plus une variable afin que le compteur s'actualise
             for (int i = 0; i<listeInventaire.size(); i++) {
-                if (listeInventaire.get(i).getNbOuvrier()==0) //S'il a déjà posé tous ses ouvriers, il passe son tour.
+                System.out.println("------> i = " + i);
+                if (listeInventaire.get(i).getNbOuvrier()==0){ //S'il a déjà posé tous ses ouvriers, il passe son tour.
+                    System.out.println("Avant le do/while i = " + i);
+                    System.out.println(listeInventaire.get(i).getNbOuvrier());
                     continue;
+                }
                 do {
-                    placed = true;
                     choixNbOuvrier = IA.choixNbOuvrier(listeInventaire.get(i));
                     choixZone = IA.choixZone(ZonesDispo);
                     disponibiliteZone = verifierDisponibiliteZone(choixZone, choixNbOuvrier);
-                    if (ZoneVisite.contains(choixZone) & choixZone!=Zone.CHASSE) 
-                        continue;
-                    if (disponibiliteZone){
+                    choixZoneValide = choixZoneValide(choixZone, ZoneVisite, i);
+                    if (disponibiliteZone && choixZoneValide){
                         System.out.println("----AVANT----");
                         AfficheInfoJoueur(i,choixZone);
                         listeInventaire.get(i).enleveOuvrierDispo(choixNbOuvrier);
                         choixZone.placeOuvrierSurZone(listeInventaire.get(i), choixNbOuvrier, i); //J'ajoute le num du joueur en parametre.
                         ZoneVisite.get(i).add(choixZone);
                         updateStatutZone(); // Je fais l'uptade apres la placement et non plus avant afin que l'autre joueur beneficie de l'uptade pour le choix de la zone.
-                        placed = false;
                         System.out.println("----APRES----");
                         AfficheInfoJoueur(i,choixZone);
                     }
 
                 }
-                while (placed);
+                while (!disponibiliteZone);
             }
         }
+    }
+
+    private boolean choixZoneValide(Zone choixZone, ArrayList<ArrayList<Zone>> ZoneVisite, int numJ) {
+        if(ZoneVisite.get(numJ).contains(choixZone) && choixZone!=Zone.CHASSE){
+            return false;
+        } /*Ne peut pas replacer ses ouvriers dans la meme zone*/
+        return true;
     }
 
 
     public static void AfficheInfoJoueur(int numJ, Zone z) {
         System.out.println("********Joueur " + (numJ+1) + "********");
-        System.out.println("Nb d'ouvrier total dans la zone " + z.getRessource() + " : " + z.getNbOuvrierSurZone());
-        System.out.println("Nb d'ouvrier du joueur dans la zone " + z.getRessource() + " : " + z.getNbOuvirerDuJoueur(numJ));
+        System.out.println("Nb d'ouvrier total dans la zone " + z+ " : " + z.getNbOuvrierSurZone());
+        System.out.println("Nb d'ouvrier du joueur dans la zone " + z + " : " + z.getNbOuvirerDuJoueur(numJ));
         System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + (numJ+1) + " : " + listeInventaire.get(numJ).getNbOuvrier());
         //System.out.println("Nb de ressource dans l'inventaire du joueur " + j.getNum() + " : " + inventaire.getNbRessource());
         if (ZoneVisite.get(numJ).size()>0) {

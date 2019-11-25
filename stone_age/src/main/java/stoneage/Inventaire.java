@@ -73,7 +73,7 @@ public class Inventaire {
      * @return
      */
     public void setNbNourriture(int nourriture) {this.nbNourriture=nourriture;}
-    
+
     /**
      * Recupere la quantité de nourriture du joueur
      * @return quantitee de nourriture
