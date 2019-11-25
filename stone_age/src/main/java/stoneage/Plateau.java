@@ -9,6 +9,7 @@ public class Plateau {
     private static ArrayList<ArrayList<Zone>> ZoneVisite;
     private Dictionary dicoJoueurs = new Hashtable();
     private static ArrayList<Inventaire> listeInventaire = new ArrayList<Inventaire>();
+    Joueur IA = new Joueur();
 
 
     Plateau(int nbjoueur){
@@ -45,7 +46,6 @@ public class Plateau {
     public void placementPhase(){
         boolean placed; // J'initialise dans la boucle while pour que le joueur ait plusieurs choix de zone avant de passer à un autre joueur.
         boolean disponibiliteZone;
-        Joueur IA = new Joueur();
         int choixNbOuvrier;
         Zone choixZone;
 
@@ -58,6 +58,8 @@ public class Plateau {
                     choixNbOuvrier = IA.choixNbOuvrier(listeInventaire.get(i));
                     choixZone = IA.choixZone(ZonesDispo);
                     disponibiliteZone = verifierDisponibiliteZone(choixZone, choixNbOuvrier);
+                    if (ZoneVisite.contains(choixZone) & choixZone!=Zone.CHASSE)
+                        continue;
                     if (disponibiliteZone){
                         System.out.println("----AVANT----");
                         AfficheInfoJoueur(i,choixZone);
@@ -94,8 +96,13 @@ public class Plateau {
         Zone zoneCourant;
         for (int i = 0; i < listeInventaire.size() ; i++) {
             for (int j = 0; j < ZoneVisite.get(i).size(); j++) { // Je parcoure la taille de la sous-liste et non plus de la liste afin d'eviter Out-Bound
-                zoneCourant = ZoneVisite.get(i).get(j); // Ici a changer afin de recuperer dans une zone aleatoire.
+                zoneCourant = IA.choixZone(ZoneVisite.get(i));
+                System.out.println("----AVANT----");
+                AfficheInfoJoueur(i,zoneCourant);
+                //zoneCourant = ZoneVisite.get(i).get(j); // Ici a changer afin de recuperer dans une zone aleatoire.
                 zoneCourant.gainZone(listeInventaire.get(i),i); // J'ajoute le num du joueur.
+                System.out.println("----APRES----");
+                ZoneVisite.remove(zoneCourant);
                 AfficheInfoJoueur(i,zoneCourant);
             }
             ZoneVisite.get(i).clear();
@@ -128,7 +135,7 @@ public class Plateau {
     }
 
     private boolean verifierDisponibiliteZone(Zone choixZone, int choixNbOuvrier) {
-        if ((ZonesPleines.contains(choixZone)) && (choixNbOuvrier >choixZone.getNbOuvrierMaxSurZone()-choixZone.getNbOuvrierSurZone()) ){
+        if ((ZonesPleines.contains(choixZone)) | (choixNbOuvrier >choixZone.getNbOuvrierMaxSurZone()-choixZone.getNbOuvrierSurZone()) ){
             return false;
         }
         if ((choixZone == Zone.HUTTE) && (choixNbOuvrier!=2)){
