@@ -70,12 +70,12 @@ class Joueur {
 
 
     public Zone choixZone(ArrayList<Zone> zonesDispo) {
-        int alea = rand.nextInt(zonesDispo.size());
+        int alea = rand.nextInt(zonesDispo.size()); // Sans +1 a l'interieur de rand sinon ca peut retourner alea=8 alors qu'on a index max = 7.
         return zonesDispo.get(alea);
     }
 
     public int choixNbOuvrier(Inventaire inventaire) {
-        int alea = rand.nextInt(inventaire.getNbOuvrier())+1;
+        int alea = rand.nextInt(inventaire.getNbOuvrier())+1; //le +1 a l'exterieur de rand sinon ca peut retourner 0.
         return alea;
 
     }

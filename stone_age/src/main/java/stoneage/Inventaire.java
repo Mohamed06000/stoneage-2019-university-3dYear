@@ -174,8 +174,7 @@ public class Inventaire {
 
     public int calculPoint(){
         int point;
-        point = this.getNbArgile()+this.getNbBois()+this.getNbNourriture()+this.getNbOr();
-        point += this.getNbPierre()+this.getNbOutils();
+        point = this.getNbArgile()+this.getNbBois()+this.getNbNourriture()+this.getNbOr()+this.getNbPierre()+this.getNbOutils();
         return point;
     }
 

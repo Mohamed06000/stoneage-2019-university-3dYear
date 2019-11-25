@@ -6,7 +6,7 @@ import java.util.Random;
 // Une enum Zone representant les differentes zones du jeu
 
 public enum Zone {
-    CHASSE("Nourriture", 12, 2, 0, Integer.MAX_VALUE),
+    CHASSE("Nourriture", 12, 2, 0, Integer.MAX_VALUE), //-1 marche pas, donc MAX_VALUE ok !
     FORET("Bois", 12, 3, 0, 7),
     GLACIERE("Argile", 12, 4, 0, 7),
     CARRIERE("Pierre", 12, 5, 0, 7),
@@ -17,10 +17,10 @@ public enum Zone {
 
     private String ressource;
     private int diviseur;
-    private int nbOuvrierMaxSurZone; //nb d'ouvrier max sur une zone, -1 = pas de limite.
+    private int nbOuvrierMaxSurZone; //nb d'ouvrier max sur une zone
     private int nbOuvrierSurZone;
     private int nbRessourcesZone;
-    private ArrayList<Integer> nbOuvirerDuJoueur = new ArrayList<Integer>();
+    private ArrayList<Integer> nbOuvirerDuJoueur = new ArrayList<Integer>(); //Pour savoir cb d'ouvriers le joueur i a placé sur la zone z.
 
 
     public int getNbOuvirerDuJoueur(int i) {
@@ -94,7 +94,7 @@ public enum Zone {
         this.nbOuvrierMaxSurZone = nbOuvrierMaxSurZone;
         this.nbOuvrierSurZone = nbOuvrierSurZone;
         this.nbRessourcesZone = nbRessourcesZone;
-        for (int i = 0; i < Partie.getNbJoueur(); i++) {
+        for (int i = 0; i < Partie.getNbJoueur(); i++) { //Initialisation de la liste nbOuvrierDuJoueur par des valeurs 0.
             this.nbOuvirerDuJoueur.add(0);
         }
     }
@@ -103,13 +103,13 @@ public enum Zone {
 
     public void placeOuvrierSurZone(Inventaire inventaireJoueur, int nbOuvrierAplacer, int nJoueur) {
         this.nbOuvrierSurZone += nbOuvrierAplacer;
-        this.nbOuvirerDuJoueur.set(nJoueur, nbOuvrierAplacer);
+        this.nbOuvirerDuJoueur.set(nJoueur, nbOuvrierAplacer); //set permet de remplacer un element à un index donné contrairement a add.
     }
 
     public void retirerOuvrierSurZone(Inventaire inventaireJoueur, int nbOuvrierAretirer, int nJoueur) {
         inventaireJoueur.setNbOuvrier(inventaireJoueur.getNbOuvrier() + nbOuvrierAretirer);
         this.nbOuvrierSurZone -= nbOuvrierAretirer;
-        this.nbOuvirerDuJoueur.set(nJoueur, 0);
+        this.nbOuvirerDuJoueur.set(nJoueur, 0); // On réinitialise a 0 une fois les ouvriers récuperés.
     }
 
     Random rand = new Random();
@@ -128,7 +128,7 @@ public enum Zone {
         int somme = 0;
         int gain = 0;
 
-        for (int i = 0; i < this.getNbOuvirerDuJoueur(nJoueur); i++) {
+        for (int i = 0; i < this.getNbOuvirerDuJoueur(nJoueur); i++) { //Le nbOuvrierDuJoueur sur la zone en question et non pas de tous ses ouvriers.
             somme += de();
         }
         if (somme >= 6)

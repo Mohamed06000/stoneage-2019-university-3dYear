@@ -18,7 +18,7 @@ public class Plateau {
         ArrayList<Zone> zp;
         for (int i = 0; i < nbjoueur ; i++) {
             Inventaire inventaire = new Inventaire();
-            dicoJoueurs.put(i, inventaire);
+            dicoJoueurs.put(i, inventaire); //Non utilisé, donc utilité ?
             listeInventaire.add(inventaire);
             zp = new ArrayList<Zone>();
             ZoneVisite.add(zp);
@@ -43,15 +43,15 @@ public class Plateau {
     }
 
     public void placementPhase(){
-        boolean placed;
+        boolean placed; // J'initialise dans la boucle while pour que le joueur ait plusieurs choix de zone avant de passer à un autre joueur.
         boolean disponibiliteZone;
         Joueur IA = new Joueur();
         int choixNbOuvrier;
         Zone choixZone;
 
-        while (nbOuvrierDispoTotal()>0) {
+        while (nbOuvrierDispoTotal()>0) { // J'utilise la methode et non plus une variable afin que le compteur s'actualise
             for (int i = 0; i<listeInventaire.size(); i++) {
-                if (listeInventaire.get(i).getNbOuvrier()==0)
+                if (listeInventaire.get(i).getNbOuvrier()==0) //S'il a déjà posé tous ses ouvriers, il passe son tour.
                     continue;
                 do {
                     placed = true;
@@ -62,9 +62,9 @@ public class Plateau {
                         System.out.println("----AVANT----");
                         AfficheInfoJoueur(i,choixZone);
                         listeInventaire.get(i).enleveOuvrierDispo(choixNbOuvrier);
-                        choixZone.placeOuvrierSurZone(listeInventaire.get(i), choixNbOuvrier, i);
+                        choixZone.placeOuvrierSurZone(listeInventaire.get(i), choixNbOuvrier, i); //J'ajoute le num du joueur en parametre.
                         ZoneVisite.get(i).add(choixZone);
-                        updateStatutZone();
+                        updateStatutZone(); // Je fais l'uptade apres la placement et non plus avant afin que l'autre joueur beneficie de l'uptade pour le choix de la zone.
                         placed = false;
                         System.out.println("----APRES----");
                         AfficheInfoJoueur(i,choixZone);
@@ -93,9 +93,9 @@ public class Plateau {
     public void recuperationPhase(){
         Zone zoneCourant;
         for (int i = 0; i < listeInventaire.size() ; i++) {
-            for (int j = 0; j < ZoneVisite.get(i).size(); j++) {
-                zoneCourant = ZoneVisite.get(i).get(j);
-                zoneCourant.gainZone(listeInventaire.get(i),i);
+            for (int j = 0; j < ZoneVisite.get(i).size(); j++) { // Je parcoure la taille de la sous-liste et non plus de la liste afin d'eviter Out-Bound
+                zoneCourant = ZoneVisite.get(i).get(j); // Ici a changer afin de recuperer dans une zone aleatoire.
+                zoneCourant.gainZone(listeInventaire.get(i),i); // J'ajoute le num du joueur.
                 AfficheInfoJoueur(i,zoneCourant);
             }
             ZoneVisite.get(i).clear();
@@ -140,7 +140,7 @@ public class Plateau {
     protected int nbOuvrierDispoTotal() {
         int n = 0;
         for (int i = 0; i<listeInventaire.size(); i++){
-            n += listeInventaire.get(i).getNbOuvrier();
+            n += listeInventaire.get(i).getNbOuvrier(); //On reste que sur nbOuvriers et on ne travaille plus avec nbOuvriersDispo
         }
         return n;
     }
