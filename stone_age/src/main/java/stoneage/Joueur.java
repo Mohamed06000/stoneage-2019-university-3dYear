@@ -23,13 +23,6 @@ class Joueur {
     private static int nbJoueur;
 
 
-
-    /**
-     * Liste des zones où le joueur a placé ses ouvriers dans un tour
-     */
-    private final ArrayList<Zone> zoneVisite = new ArrayList<>();
-    //private ZoneInterface zoneVisit[] = new ZoneInterface[0];
-
     /**
      * Constructeur de la classe Joueur qui incremente un nombre de joueur
      * en static et assigne un numero de joueur a l'objet instancie
@@ -40,20 +33,6 @@ class Joueur {
     }
 
 
-    /**
-     * Methode de classe qui recupere le nombre de joueur
-     * @return Le nombre de joueur
-     */
-    public static int getNbJoueur(){
-        return nbJoueur;
-    }
-
-
-    //public int getNbOuvrierjoueurI(int id){
-
-    //}
-
-
 
     /**
      * Recupere le numero du joueur
@@ -61,31 +40,6 @@ class Joueur {
      */
     public int getNum(){
         return num;
-    }
-
-    /**
-     * Recupere la liste des zones visités du joueur
-     * @return
-     */
-    /*public ZoneInterface[] getZoneVisit() {
-        return zoneVisit;
-    }*/
-    public ArrayList<Zone> getZoneVisite() {
-        return zoneVisite;
-    }
-
-    /**
-     * Placer ses ouvriers sur la zone
-     * @param zone La zone choisie
-     * @param nbOuvrier Le nombre d'ouvrier a placer
-     */
-
-    public void placement(Inventaire inventaire, Zone zone, int nbOuvrier){
-        //Inventaire.setNbOuvrierNonPlace(Inventaire.getNbOuvrierNonPlace()-nbOuvrier);
-        zone.placeOuvrierSurZone(inventaire, nbOuvrier);
-        zoneVisite.add(zone);
-        //zoneVisit = Arrays.copyOf(zoneVisit,zoneVisit.length+1);
-        //zoneVisit[zoneVisit.length-1] = z;
     }
 
 
@@ -100,14 +54,7 @@ class Joueur {
                     if(i.getNbNourriture()>0) i.setNbNourriture(-1);
                 }
             }
-            
-    /**
-     * Pour l'instant elle affiche la valeur du lancé de dé
-     */
-    public void action (){
-        int valeurDee = de();
-        System.out.println("La valeur du dee est : " + valeurDee);
-    }
+
 
     /**
      * Lancer un de
@@ -123,12 +70,12 @@ class Joueur {
 
 
     public Zone choixZone(ArrayList<Zone> zonesDispo) {
-        int alea = rand.nextInt(zonesDispo.size()+1);
-        return zonesDispo.get(1);
+        int alea = rand.nextInt(zonesDispo.size());
+        return zonesDispo.get(alea);
     }
 
     public int choixNbOuvrier(Inventaire inventaire) {
-        int alea = rand.nextInt(inventaire.getNbOuvrier()+1);
+        int alea = rand.nextInt(inventaire.getNbOuvrier())+1;
         return alea;
 
     }

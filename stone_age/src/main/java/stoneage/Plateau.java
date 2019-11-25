@@ -10,6 +10,7 @@ public class Plateau {
     private Dictionary dicoJoueurs = new Hashtable();
     private static ArrayList<Inventaire> listeInventaire = new ArrayList<Inventaire>();
 
+
     Plateau(int nbjoueur){
         this.ZonesDispo = new ArrayList<Zone>(Arrays.asList(Zone.values()));
         this.ZoneVisite = new ArrayList<ArrayList<Zone>>();
@@ -22,10 +23,8 @@ public class Plateau {
             zp = new ArrayList<Zone>();
             ZoneVisite.add(zp);
         }
-        /*this.listeJoueur = new ArrayList<Joueur>();*/
 
     }
-
 
     public ArrayList<Zone> getZonesDispo() {
         return ZonesDispo;
@@ -44,29 +43,31 @@ public class Plateau {
     }
 
     public void placementPhase(){
-        int nbOuvrierDispoTotal = nbOuvrierDispoTotal();
-        boolean placed = true;
-        boolean disponibiliteZone = true;
+        boolean placed;
+        boolean disponibiliteZone;
         Joueur IA = new Joueur();
-        Inventaire inventaireIA;
         int choixNbOuvrier;
         Zone choixZone;
 
-        while (nbOuvrierDispoTotal>0) {
+        while (nbOuvrierDispoTotal()>0) {
             for (int i = 0; i<listeInventaire.size(); i++) {
-                inventaireIA = new Inventaire(listeInventaire.get(i));
+                if (listeInventaire.get(i).getNbOuvrier()==0)
+                    continue;
                 do {
-                    choixNbOuvrier = IA.choixNbOuvrier(inventaireIA);
+                    placed = true;
+                    choixNbOuvrier = IA.choixNbOuvrier(listeInventaire.get(i));
                     choixZone = IA.choixZone(ZonesDispo);
                     disponibiliteZone = verifierDisponibiliteZone(choixZone, choixNbOuvrier);
                     if (disponibiliteZone){
+                        System.out.println("----AVANT----");
                         AfficheInfoJoueur(i,choixZone);
-                        updateStatutZone();
                         listeInventaire.get(i).enleveOuvrierDispo(choixNbOuvrier);
-                        choixZone.placeOuvrierSurZone(listeInventaire.get(i), choixNbOuvrier);
+                        choixZone.placeOuvrierSurZone(listeInventaire.get(i), choixNbOuvrier, i);
                         ZoneVisite.get(i).add(choixZone);
+                        updateStatutZone();
                         placed = false;
-                        nbOuvrierDispoTotal-=choixNbOuvrier;
+                        System.out.println("----APRES----");
+                        AfficheInfoJoueur(i,choixZone);
                     }
 
                 }
@@ -78,11 +79,11 @@ public class Plateau {
 
     public static void AfficheInfoJoueur(int numJ, Zone z) {
         System.out.println("********Joueur " + (numJ+1) + "********");
-        System.out.println("Nb d'ouvrier total dans la zone " + z.getClass().getSimpleName() + " : " + z.getNbOuvrierSurZone());
-        System.out.println("Nb d'ouvrier du joueur dans la zone " + z.getClass().getSimpleName() + " : " + (listeInventaire.get(numJ).getNbOuvrier() - listeInventaire.get(numJ).getNbOuvrierDispo()));
-        System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + numJ + " : " + listeInventaire.get(numJ).getNbOuvrier());
+        System.out.println("Nb d'ouvrier total dans la zone " + z.getRessource() + " : " + z.getNbOuvrierSurZone());
+        System.out.println("Nb d'ouvrier du joueur dans la zone " + z.getRessource() + " : " + z.getNbOuvirerDuJoueur(numJ));
+        System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + (numJ+1) + " : " + listeInventaire.get(numJ).getNbOuvrier());
         //System.out.println("Nb de ressource dans l'inventaire du joueur " + j.getNum() + " : " + inventaire.getNbRessource());
-        if (ZoneVisite.size()>0) {
+        if (ZoneVisite.get(numJ).size()>0) {
             System.out.println("Les zones visitées : " + ZoneVisite.get(numJ));
         }
     }
@@ -92,13 +93,12 @@ public class Plateau {
     public void recuperationPhase(){
         Zone zoneCourant;
         for (int i = 0; i < listeInventaire.size() ; i++) {
-            for (int j = 0; j < ZoneVisite.size(); j++) {
+            for (int j = 0; j < ZoneVisite.get(i).size(); j++) {
                 zoneCourant = ZoneVisite.get(i).get(j);
-                zoneCourant.gainZone(listeInventaire.get(i), zoneCourant);
+                zoneCourant.gainZone(listeInventaire.get(i),i);
                 AfficheInfoJoueur(i,zoneCourant);
             }
             ZoneVisite.get(i).clear();
-            listeInventaire.get(i).ajouteOuvrierDispo(listeInventaire.get(i).getNbOuvrier());
         }
         ZonesPleines.clear();
         ZonesDispo.clear();
@@ -140,29 +140,8 @@ public class Plateau {
     protected int nbOuvrierDispoTotal() {
         int n = 0;
         for (int i = 0; i<listeInventaire.size(); i++){
-            n += listeInventaire.get(i).getNbOuvrierDispo();
+            n += listeInventaire.get(i).getNbOuvrier();
         }
         return n;
-    }
-
-
-    public static void main(String[] args) {
-        /*ZonesDispo.get(1).setNbOuvrierSurZone(4);
-        ZonesPleines.add(ZonesDispo.get(1));
-        ZonesDispo.remove(0);
-        //ZonesPleines.get(0).setNbOuvrierSurZone(4);*/
-        Plateau p = new Plateau(2);
-        p.getZonesDispo();
-        Zone z1 = Zone.CHASSE;
-        Zone z2 = Zone.CHASSE;
-        System.out.println(z1.getNbOuvrierSurZone());
-        z1.setNbOuvrierSurZone(3);
-        System.out.println(z1.getNbOuvrierSurZone());
-        z1.setNbOuvrierSurZone(48);
-        System.out.println(z1.getNbOuvrierSurZone());
-        System.out.println(z2.getNbOuvrierSurZone());
-        System.out.println(listeInventaire.size());
-
-        //System.out.println(ZonesPleines.get(0).getNbOuvrierSurZone());
     }
 }

@@ -1,11 +1,12 @@
 package stoneage;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 // Une enum Zone representant les differentes zones du jeu
 
 public enum Zone {
-    CHASSE("Nourriture", 12, 2, 0, -1),
+    CHASSE("Nourriture", 12, 2, 0, Integer.MAX_VALUE),
     FORET("Bois", 12, 3, 0, 7),
     GLACIERE("Argile", 12, 4, 0, 7),
     CARRIERE("Pierre", 12, 5, 0, 7),
@@ -19,6 +20,12 @@ public enum Zone {
     private int nbOuvrierMaxSurZone; //nb d'ouvrier max sur une zone, -1 = pas de limite.
     private int nbOuvrierSurZone;
     private int nbRessourcesZone;
+    private ArrayList<Integer> nbOuvirerDuJoueur = new ArrayList<Integer>();
+
+
+    public int getNbOuvirerDuJoueur(int i) {
+        return  nbOuvirerDuJoueur.get(i);
+    }
 
     /**
      * Modifie le nombre d'ouvrier dans la zone
@@ -87,18 +94,22 @@ public enum Zone {
         this.nbOuvrierMaxSurZone = nbOuvrierMaxSurZone;
         this.nbOuvrierSurZone = nbOuvrierSurZone;
         this.nbRessourcesZone = nbRessourcesZone;
+        for (int i = 0; i < 2; i++) {
+            this.nbOuvirerDuJoueur.add(0);
+        }
     }
 
 
 
-    public void placeOuvrierSurZone(Inventaire inventaireJoueur, int nbOuvrierAplacer) {
-        inventaireJoueur.setNbOuvrier(inventaireJoueur.getNbOuvrier() - nbOuvrierAplacer);
+    public void placeOuvrierSurZone(Inventaire inventaireJoueur, int nbOuvrierAplacer, int nJoueur) {
         this.nbOuvrierSurZone += nbOuvrierAplacer;
+        this.nbOuvirerDuJoueur.set(nJoueur, nbOuvrierAplacer);
     }
 
-    public void retirerOuvrierSurZone(Inventaire inventaireJoueur, int nbOuvrierAretirer) {
+    public void retirerOuvrierSurZone(Inventaire inventaireJoueur, int nbOuvrierAretirer, int nJoueur) {
         inventaireJoueur.setNbOuvrier(inventaireJoueur.getNbOuvrier() + nbOuvrierAretirer);
         this.nbOuvrierSurZone -= nbOuvrierAretirer;
+        this.nbOuvirerDuJoueur.set(nJoueur, 0);
     }
 
     Random rand = new Random();
@@ -113,17 +124,17 @@ public enum Zone {
      *
      * @param inventaire
      */
-    public void procedure(Inventaire inventaire, Zone zone) {
+    public void procedure(Inventaire inventaire, int nJoueur) {
         int somme = 0;
         int gain = 0;
 
-        for (int i = 0; i < zone.getNbOuvrierSurZone(); i++) {
+        for (int i = 0; i < this.getNbOuvirerDuJoueur(nJoueur); i++) {
             somme += de();
         }
         if (somme >= 6)
-            gain = somme / zone.getDiviseur();
+            gain = somme / this.getDiviseur();
 
-        switch (zone.getRessource()) {
+        switch (this.getRessource()) {
 
             case "Nourriture":
                 inventaire.setNbNourriture(inventaire.getNbNourriture() + gain);
@@ -144,16 +155,16 @@ public enum Zone {
             default:
                 break;
         }
-        zone.setNbRessourcesZone(zone.getNbRessourcesZone()-gain);
-        retirerOuvrierSurZone(inventaire, inventaire.getNbOuvrier());
+        this.setNbRessourcesZone(this.getNbRessourcesZone()-gain);
+        retirerOuvrierSurZone(inventaire, getNbOuvirerDuJoueur(nJoueur), nJoueur);
     }
 
 
 
 
-    public void gainZone(Inventaire inventairejoueur, Zone zone) {
+    public void gainZone(Inventaire inventairejoueur, int nJoueur) {
 
-        switch (zone) {
+        switch (this) {
             case CHASSE:
 
             case FORET:
@@ -163,22 +174,22 @@ public enum Zone {
             case CARRIERE:
 
             case RIVIERE:
-                procedure(inventairejoueur, zone);
+                procedure(inventairejoueur, nJoueur);
                 break;
 
             case CHAMP:
                 inventairejoueur.addNiveauAgriculture();
-                retirerOuvrierSurZone(inventairejoueur, inventairejoueur.getNbOuvrier());
+                retirerOuvrierSurZone(inventairejoueur, getNbOuvirerDuJoueur(nJoueur), nJoueur);
                 break;
 
             case HUTTE:
                 inventairejoueur.setNbOuvrier(inventairejoueur.getNbOuvrier() + 1);
-                retirerOuvrierSurZone(inventairejoueur, inventairejoueur.getNbOuvrier());
+                retirerOuvrierSurZone(inventairejoueur, getNbOuvirerDuJoueur(nJoueur), nJoueur);
                 break;
 
             case FABRIQUE:
                 inventairejoueur.setNbOutils(inventairejoueur.getNbOutils() + 1);
-                retirerOuvrierSurZone(inventairejoueur, inventairejoueur.getNbOuvrier());
+                retirerOuvrierSurZone(inventairejoueur, getNbOuvirerDuJoueur(nJoueur), nJoueur);
                 break;
 
 
