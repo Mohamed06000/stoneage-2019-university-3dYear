@@ -6,17 +6,22 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Partie {
-    private int nbJoueur;
-    private final Plateau plateau = new Plateau(2);
+
+    private static int nbJoueur;
+    private final Plateau plateau;
     private int[] score;
     private static Random rand = new Random();
 
     Partie(int nbJoueur){
         this.nbJoueur = nbJoueur;
+        plateau = new Plateau(nbJoueur);
         score = new int[nbJoueur];
     }
 
 
+    public static int getNbJoueur() {
+        return nbJoueur;
+    }
     public void jouer() {
         int tour = 1;
         System.out.println("Nb de joueur : " + nbJoueur);

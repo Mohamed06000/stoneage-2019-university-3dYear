@@ -94,7 +94,7 @@ public enum Zone {
         this.nbOuvrierMaxSurZone = nbOuvrierMaxSurZone;
         this.nbOuvrierSurZone = nbOuvrierSurZone;
         this.nbRessourcesZone = nbRessourcesZone;
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < Partie.getNbJoueur(); i++) {
             this.nbOuvirerDuJoueur.add(0);
         }
     }
