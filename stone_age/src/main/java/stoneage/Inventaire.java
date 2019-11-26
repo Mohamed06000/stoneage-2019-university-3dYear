@@ -5,12 +5,6 @@ package stoneage;
  * Classe de l'inventaire du joueur
  */
 public class Inventaire {
-
-
-    /**
-     * Le nombre d'ouvriers disponible dans l'inventaire (qui n'a pas été placer)
-     */
-    private int nbOuvrierDispo;
     /**
      * Le nombre d'ouvrier du joueur
      */
@@ -45,22 +39,6 @@ public class Inventaire {
     private int niveauAgriculture = 1;
 
     private int nbPointTotal;
-
-
-
-    /**
-     * Modifier le nombre d'ouvriers non placés de tous les joueurs
-     * @param nbOuvrierNnPlace Un nombre d'ouvrier
-     */
-    public  void setNbOuvrierDispo(int nbOuvrierNnPlace) {
-        nbOuvrierDispo = nbOuvrierNnPlace;
-    }
-
-    /**
-     * Recuperer le nombre d'ouvrier non placé de tous les joueurs
-     * @return Le nombre d'ouvrier
-     */
-    public  int getNbOuvrierDispo() { return nbOuvrierDispo; }
 
     /**
      * Recupere le niveau d'agriculture du joueur
@@ -177,35 +155,22 @@ public class Inventaire {
      */
     public Inventaire(){
         setNbOuvrier(5);
-        setNbOuvrierDispo(5);
-    }
-    public Inventaire(Inventaire copie){
-        setNbOuvrier(copie.getNbOuvrier());
-        setNbOutils(copie.getNbOutils());
-        setNbOr(copie.getNbOr());
-        setNbPierre(copie.getNbPierre());
-        setNbArgile(copie.getNbArgile());
-        setNbBois(copie.getNbBois());
-        setNbNourriture(copie.getNbNourriture());
-        setNiveauAgriculture(copie.getNiveauAgriculture());
-        setNbOuvrierDispo(copie.getNbOuvrierDispo());
     }
 
     /* update nbOuvrierDispo quand un place n ouvrier */
     public void enleveOuvrierDispo(int n){
-        this.nbOuvrierDispo -= n;
+        this.nbOuvrier -= n;
     }
 
 
     /* update nbOuvrierDispo quand un recupere n ouvrier*/
     public void ajouteOuvrierDispo(int n){
-        this.nbOuvrierDispo += n;
+        this.nbOuvrier += n;
     }
 
     public int calculPoint(){
         int point;
-        point = this.getNbArgile()+this.getNbBois()+this.getNbNourriture()+this.getNbOr();
-        point += this.getNbPierre()+this.getNbOutils();
+        point = this.getNbArgile()+this.getNbBois()+this.getNbNourriture()+this.getNbOr()+this.getNbPierre()+this.getNbOutils();
         return point;
     }
 
