@@ -6,7 +6,7 @@
 | *Nom et Prenom* | *Pseudo* |
 | ------ | ------ |
 | Baroudi Aymen | Jaguar 16 |
-| Benabdelkarim Mohmed | Mohamed0002 |
+| Benabdelkarim Mohamed | Mohamed0002 |
 | Belhassen Louay | mohamedlouay |
 | Elarays Said | Elarays |
 | Mazy Mohamed | Mohamed06000 |
@@ -135,7 +135,7 @@ ___
 >
 > Mise à jour du système de comptage des points.
 >
-> Simulation sur 10 partri.
+> Simulation sur 10 parti.
 >
 > Le jeu s'arrête quand il n'y a plus de carte Civilisations (le tour s'arrête) ou Batiments.
 ---
