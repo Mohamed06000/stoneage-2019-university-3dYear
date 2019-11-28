@@ -7,13 +7,15 @@ import java.util.* ;
 
 
 /**
- * Classe Joueur qui represente les informations et actions du joueur
+ * La classe qui représente les informations et actions du joueur
  */
-
 class Joueur {
 
+
+    //CHAMPS
+
     /**
-     * La numero du joueur
+     * Le numero du joueur
      */
     private int num = 0;
 
@@ -22,17 +24,16 @@ class Joueur {
      */
     private static int nbJoueur;
 
-
-
     /**
-     * Liste des zones où le joueur a placé ses ouvriers dans un tour
+     * Objet de type Random
      */
-    private final ArrayList<Zone> zoneVisite = new ArrayList<>();
-    //private ZoneInterface zoneVisit[] = new ZoneInterface[0];
+    Random rand = new Random();
+
+
+    //CONSTRUCTEUR
 
     /**
-     * Constructeur de la classe Joueur qui incremente un nombre de joueur
-     * en static et assigne un numero de joueur a l'objet instancie
+     * Constructeur de la classe
      */
     Joueur(){
         nbJoueur ++;
@@ -40,20 +41,7 @@ class Joueur {
     }
 
 
-    /**
-     * Methode de classe qui recupere le nombre de joueur
-     * @return Le nombre de joueur
-     */
-    public static int getNbJoueur(){
-        return nbJoueur;
-    }
-
-
-    //public int getNbOuvrierjoueurI(int id){
-
-    //}
-
-
+    //METHODES
 
     /**
      * Recupere le numero du joueur
@@ -64,73 +52,65 @@ class Joueur {
     }
 
     /**
-     * Recupere la liste des zones visités du joueur
-     * @return
-     */
-    /*public ZoneInterface[] getZoneVisit() {
-        return zoneVisit;
-    }*/
-    public ArrayList<Zone> getZoneVisite() {
-        return zoneVisite;
-    }
-
-    /**
-     * Placer ses ouvriers sur la zone
-     * @param zone La zone choisie
-     * @param nbOuvrier Le nombre d'ouvrier a placer
-     */
-
-    public void placement(Inventaire inventaire, Zone zone, int nbOuvrier){
-        //Inventaire.setNbOuvrierNonPlace(Inventaire.getNbOuvrierNonPlace()-nbOuvrier);
-        zone.placeOuvrierSurZone(inventaire, nbOuvrier);
-        zoneVisite.add(zone);
-        //zoneVisit = Arrays.copyOf(zoneVisit,zoneVisit.length+1);
-        //zoneVisit[zoneVisit.length-1] = z;
-    }
-
-
-
-    /**
      * Nourrir ses ouvriers (1 nourriture/ouvrier)
      * @param i L'inventaire du joueur
      */
-    public static void nourrir(Inventaire i) {
+    public void nourrir(Inventaire i) {
         i.setNbNourriture(i.getNbNourriture()+i.getNiveauAgriculture());
         for (int j = 0; j < i.getNbOuvrier(); j++) {
                     if(i.getNbNourriture()>0) i.setNbNourriture(-1);
-                }
-            }
 
-    /**
-     * Pour l'instant elle affiche la valeur du lancé de dé
-     */
-    public void action (){
-        int valeurDee = de();
-        System.out.println("La valeur du dee est : " + valeurDee);
+        }
     }
 
     /**
      * Lancer un de
      * @return Valeur du de
      */
-    Random rand = new Random();
     public int de(){
         int result = 0 ;
         result = rand.nextInt(6)+1 ;
-        System.out.println("La valeur du dé est : " + result);
         return result ;
     }
 
-
+    /**
+     * Choisit la zone de placement
+     * @param zonesDispo Les zones disponibles au placement
+     * @return Une zone
+     */
     public Zone choixZone(ArrayList<Zone> zonesDispo) {
-        int alea = rand.nextInt(zonesDispo.size()+1);
+        int alea = rand.nextInt(zonesDispo.size()); // Sans +1 a l'interieur de rand sinon ca peut retourner alea=8 alors qu'on a index max = 7.
         return zonesDispo.get(alea);
     }
 
-    public int choixNbOuvrier(Inventaire inventaire) {
-        int alea = rand.nextInt(inventaire.getNbOuvrier()+1);
-        return alea;
+    /**
+     * Choisit le nombre d'ouvrier à placer
+     * @param inventaire L'inventaire du joueur
+     * @param choixZone La zone choisit
+     * @return Un nombre d'ouvriers
+     */
+    public int choixNbOuvrier(Inventaire inventaire, Zone choixZone) {
 
+        int alea=0;
+
+        switch (choixZone) {
+            case FORET:
+            case CHASSE:
+            case GLACIERE:
+            case CARRIERE:
+            case RIVIERE:
+                alea = rand.nextInt(inventaire.getNbOuvrier()) + 1; //le +1 a l'exterieur de rand sinon ca peut retourner 0.
+                break;
+            case HUTTE:
+                alea = 2;
+                break;
+            case CHAMP:
+            case FABRIQUE:
+                alea = 1;
+                break;
+        }
+
+        return alea;
     }
 
 }
