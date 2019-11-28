@@ -92,6 +92,7 @@ public class Inventaire {
      */
     public void setNbOuvrier(int nbOuvrier) {this.nbOuvrier = nbOuvrier; }
 
+
     /**
      * Recupere la quantité de nourriture du joueur
      * @return quantitee de nourriture
@@ -192,7 +193,8 @@ public class Inventaire {
      */
     public int calculPoint(){
         int point;
-        point = this.getNbArgile()+this.getNbBois()+this.getNbNourriture()+this.getNbOr()+this.getNbPierre()+this.getNbOutils();
+        point = this.getNbArgile()+this.getNbBois()+this.getNbNourriture()+this.getNbOr();
+        point += this.getNbPierre()+this.getNbOutils();
         return point;
     }
 }

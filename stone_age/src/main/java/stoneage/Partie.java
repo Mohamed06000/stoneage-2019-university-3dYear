@@ -58,9 +58,9 @@ public class Partie {
         System.out.println("Nb d'ouvriers total non place : " + plateau.nbOuvrierDispoTotal());
 
 
-        while(tour<5) {
+        while(tour<3) {
             System.out.println("_________________________________________________");
-            System.out.println("|                Tour : "+tour+"                      |");
+            System.out.println("|                TOUR : "+tour+"                      |");
             System.out.println("_________________________________________________");
 
             System.out.println("================PHASE DE PLACEMENT================");
@@ -79,8 +79,8 @@ public class Partie {
 
         System.out.println("_____RESULTAT_____");
         resultat(plateau.getListeInventaire());
-        this.indexGagnant(score);
-        this.JoueurGagnant(score);
+        int max = this.indexGagnant(score);
+        this.JoueurGagnant(score, plateau.getListeInventaire().get(max));
     }
 
     /**
@@ -117,5 +117,16 @@ public class Partie {
             }
         }
         return maxIndex;
+    }
+    public void JoueurGagnant(int[] points, Inventaire inventaire){
+        int gagnant = indexGagnant(points);
+        System.out.println("Le Gagnant est le joueur " + (gagnant+1) + " avec "+ score[gagnant] + " points.");
+        System.out.println("Nombre d'ouvrier : " + inventaire.getNbOuvrier());
+        System.out.println("Nombre d'outils : " + inventaire.getNbOutils());
+        System.out.println("Nombre d'or : " + inventaire.getNbOr());
+        System.out.println("Nombre de nourriture : " + inventaire.getNbNourriture());
+        System.out.println("Nombre de bois : " + inventaire.getNbBois());
+        System.out.println("Nombre d'argile : " + inventaire.getNbArgile());
+        System.out.println("Nombre de pierre : " + inventaire.getNbPierre());
     }
 }

@@ -11,7 +11,7 @@ import java.util.*;
  */
 public class Main {
     public static final void main(String[] args) {
-        Partie partie = new Partie(4);
+        Partie partie = new Partie(2);
         partie.jouer();
     }
 }
