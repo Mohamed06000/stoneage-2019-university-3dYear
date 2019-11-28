@@ -7,20 +7,8 @@ import java.util.Random;
 /**
  * La classe enum qui gère les differentes zone du jeu
  */
-public enum Zone {
+public class Zone {
 
-    //ENUM
-
-    CHASSE("Nourriture", 12, 2, 0, Integer.MAX_VALUE), //-1 marche pas, donc MAX_VALUE ok !
-    FORET("Bois", 12, 3, 0, 7),
-    GLACIERE("Argile", 12, 4, 0, 7),
-    CARRIERE("Pierre", 12, 5, 0, 7),
-    RIVIERE("Or", 12, 6, 0, 7),
-    FABRIQUE("Outils", 0, 0, 0, 1),
-    HUTTE("Ouvrier", 0, 0, 0, 2),
-    CHAMP("Niveau d'agriculture", 0, 1, 0, 1);
-
-    //CHAMPS
 
     /**
      * Un objet de Random
@@ -28,9 +16,9 @@ public enum Zone {
     Random rand = new Random();
 
     /**
-     * Le nom de la ressource
+     * La Ressource ressource
      */
-    private String ressource;
+    private Ressource ressource;
 
     /**
      * La valeur du diviseur pour le calcul du gain
@@ -68,18 +56,36 @@ public enum Zone {
      * @param nbOuvrierSurZone Le nombre d'ouvriers sur la zone
      * @param nbOuvrierMaxSurZone Le nombre d'ouviers maximum sur la zone
      */
-    Zone(String ressource, int nbRessourcesZone, int diviseur, int nbOuvrierSurZone, int nbOuvrierMaxSurZone) {
+    Zone(Ressource ressource, int nbRessourcesZone, int diviseur, int nbOuvrierSurZone, int nbOuvrierMaxSurZone) {
         this.ressource = ressource;
-        this.diviseur = diviseur;
-        this.nbOuvrierMaxSurZone = nbOuvrierMaxSurZone;
-        this.nbOuvrierSurZone = nbOuvrierSurZone;
         this.nbRessourcesZone = nbRessourcesZone;
+        this.diviseur = diviseur;
+        this.nbOuvrierSurZone = nbOuvrierSurZone;
+        this.nbOuvrierMaxSurZone = nbOuvrierMaxSurZone;
         for (int i = 0; i < Partie.getNbJoueur(); i++) { //Initialisation de la liste nbOuvrierDuJoueur par des valeurs 0.
             this.nbOuvirerDuJoueur.add(0);
         }
     }
 
     //METHODES
+
+    @Override
+    public String toString() {
+        switch (this.getRessource()) {
+            case OR:
+                return "RIVIERE";
+            case BOIS:
+                return "FORET";
+            case NOURRITURE:
+                return "CHASSE";
+            case PIERRE:
+                return "CARRIERE";
+            case ARGILE:
+                return "GLAISIERE";
+            default:
+                return "K-OU";
+        }
+    }
 
     /**
      * Récupère le nombre d'ouvriers du joueur placés sur la zone
@@ -118,7 +124,7 @@ public enum Zone {
      * Récupère le nom de la ressource de la zone
      * @return le nom de la ressource
      */
-    public String getRessource() {
+    public Ressource getRessource() {
         return ressource;
     }
 
@@ -181,47 +187,11 @@ public enum Zone {
 
     /**
      * Lance la procédure de gain des zones
-     * @param inventairejoueur L'inventaire du joueur
-     * @param nJoueur Le numéro du joueur
-     */
-    public void gainZone(Inventaire inventairejoueur, int nJoueur) {
-
-        switch (this) {
-            case CHASSE:
-
-            case FORET:
-
-            case GLACIERE:
-
-            case CARRIERE:
-
-            case RIVIERE:
-                procedure(inventairejoueur, nJoueur);
-                break;
-
-            case CHAMP:
-                inventairejoueur.setNiveauAgriculture(inventairejoueur.getNiveauAgriculture()+1);
-                retirerOuvrierSurZone(inventairejoueur, getNbOuvirerDuJoueur(nJoueur), nJoueur);
-                break;
-
-            case HUTTE:
-                inventairejoueur.setNbOuvrier(inventairejoueur.getNbOuvrier() + 1);
-                retirerOuvrierSurZone(inventairejoueur, getNbOuvirerDuJoueur(nJoueur), nJoueur);
-                break;
-
-            case FABRIQUE:
-                inventairejoueur.setNbOutils(inventairejoueur.getNbOutils() + 1);
-                retirerOuvrierSurZone(inventairejoueur, getNbOuvirerDuJoueur(nJoueur), nJoueur);
-                break;
-        }
-    }
-
-    /**
-     * Calcule du gain des zones ressources
      * @param inventaire L'inventaire du joueur
      * @param nJoueur Le numéro du joueur
      */
-    public void procedure(Inventaire inventaire, int nJoueur) {
+    public void gainZone(Inventaire inventaire, int nJoueur) {
+        /* gainZone renvoie un entier nb de ressources gagnées /// c'est dans plateau qu'on gere l'attribution des gains*/
         int somme = 0;
         int gain = 0;
 
@@ -233,19 +203,19 @@ public enum Zone {
 
         switch (this.getRessource()) {
 
-            case "Nourriture":
+            case OR:
                 inventaire.setNbNourriture(inventaire.getNbNourriture() + gain);
                 break;
-            case "Bois":
+            case NOURRITURE:
                 inventaire.setNbBois(inventaire.getNbBois() + gain);
                 break;
-            case "Argile":
+            case BOIS:
                 inventaire.setNbArgile(inventaire.getNbArgile() + gain);
                 break;
-            case "Pierre":
+            case ARGILE:
                 inventaire.setNbPierre(inventaire.getNbPierre() + gain);
                 break;
-            case "Or":
+            case PIERRE:
                 inventaire.setNbOr(inventaire.getNbOr() + gain);
                 break;
 
@@ -255,4 +225,20 @@ public enum Zone {
         this.setNbRessourcesZone(this.getNbRessourcesZone()-gain);
         retirerOuvrierSurZone(inventaire, getNbOuvirerDuJoueur(nJoueur), nJoueur);
     }
+
+//            case CHAMP:
+//                inventairejoueur.setNiveauAgriculture(inventairejoueur.getNiveauAgriculture()+1);
+//                retirerOuvrierSurZone(inventairejoueur, getNbOuvirerDuJoueur(nJoueur), nJoueur);
+//                break;
+//
+//            case HUTTE:
+//                inventairejoueur.setNbOuvrier(inventairejoueur.getNbOuvrier() + 1);
+//                retirerOuvrierSurZone(inventairejoueur, getNbOuvirerDuJoueur(nJoueur), nJoueur);
+//                break;
+//
+//            case FABRIQUE:
+//                inventairejoueur.setNbOutils(inventairejoueur.getNbOutils() + 1);
+//                retirerOuvrierSurZone(inventairejoueur, getNbOuvirerDuJoueur(nJoueur), nJoueur);
+//
+
 }
