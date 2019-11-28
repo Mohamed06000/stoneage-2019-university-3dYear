@@ -16,12 +16,12 @@ public class Inventaire {
     /**
      * La quantitee de nourriture du joueur (debut de jeu = 10 pour tous)
      */
-    private int nbNourriture = 5;
+    private int nbNourriture = 12;
 
     /**
      * La quantitée de la ressource bois du joueur
      */
-    private int nbBois = 2;
+    private int nbBois = 0;
 
     /**
      * La quantitée d'Argile du joueur
@@ -31,7 +31,7 @@ public class Inventaire {
     /**
      * La quantitée de pierre du joueur
      */
-    private int nbPierre = 4;
+    private int nbPierre = 0;
 
     /**
      * La quantitée d'or du joueur
@@ -92,7 +92,6 @@ public class Inventaire {
      */
 
     public void setNbOuvrier(int nbOuvrier) {this.nbOuvrier = nbOuvrier; }
-
 
     /**
      * Recupere la quantité de nourriture du joueur
@@ -199,7 +198,11 @@ public class Inventaire {
         return point;
     }
 
-
+    /**
+     * Réinitialise les ressources
+     * @param i L'index du tableau
+     * @param valeur La valeur à affecter
+     */
     public void restRessource ( int  i,int valeur ){
         int tab[] = {nbBois,nbArgile,nbPierre,nbOr} ;
         tab[i] = valeur ;

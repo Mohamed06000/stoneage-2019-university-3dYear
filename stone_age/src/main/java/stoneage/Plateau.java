@@ -23,7 +23,6 @@ public class Plateau {
      * La liste des zones visitées par le joueur
      */
     private ArrayList<ArrayList<Zone>> ZoneVisitees;
-    private Dictionary dicoJoueurs = new Hashtable();
     /**
      * Liste des inventaires des joueurs
      */
@@ -33,7 +32,7 @@ public class Plateau {
      */
     Joueur IA = new Joueur();
     /**
-     * le premier joueur à commencer le tour
+     * La liste des numéro des joueurs
      */
     private ArrayList<Integer> tableauJoueur;
 
@@ -51,7 +50,6 @@ public class Plateau {
         ArrayList<Zone> zp;
         for (int i = 0; i < nbjoueur ; i++) {
             Inventaire inventaire = new Inventaire();
-            dicoJoueurs.put(i, inventaire); //Non utilisé, donc utilité ?
             listeInventaire.add(inventaire);
             zp = new ArrayList<Zone>();
             ZoneVisitees.add(zp);
@@ -78,10 +76,6 @@ public class Plateau {
         return ZonesPleines;
     }
 
-    public Dictionary getDicoJoueurs() {
-        return dicoJoueurs;
-    }
-
     /**
      * Récupère la liste des inventaires
      * @return Les inventaires
@@ -102,7 +96,6 @@ public class Plateau {
         return n;
     }
 
-
     /**
      * Lance la phase de placement
      */
@@ -111,7 +104,7 @@ public class Plateau {
         boolean placed;
         int choixNbOuvrier;
         Zone choixZone;
-        
+
 
         while (nbOuvrierDispoTotal()>0) { // J'utilise la methode et non plus une variable afin que le compteur s'actualise
             for (int i : tableauJoueur) {
@@ -231,6 +224,10 @@ public class Plateau {
         return true;
     }
 
+    /**
+     * Permutation de l'ordre du premier joueur à jouer
+     * @param tableauJoueur Le tableau des numéros des joueurs
+     */
     public void swap (ArrayList<Integer> tableauJoueur) {
         int a;
         for (int i =0;i < tableauJoueur.size()-1; i++) {

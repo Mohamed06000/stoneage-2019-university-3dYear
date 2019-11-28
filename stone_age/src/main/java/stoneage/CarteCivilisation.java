@@ -4,6 +4,8 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 public enum CarteCivilisation {
+
+
     CARTE1("Jaune", 4, 0, 0, 0, false, 1, 1),
     CARTE2("Jaune", 0, 0, 0, 2, false, 2, 1),
     CARTE3("Jaune", 0, 0, 1, 0, false, 3, 1),
@@ -28,7 +30,6 @@ public enum CarteCivilisation {
     private boolean PlaceReserver = false;
     private int prix;
     private int nbRessourceNourriture ;
-
 
     @org.jetbrains.annotations.Contract(pure = true)
     CarteCivilisation(String couleur, int nbRessourceArgile, int nbRessourceBois, int nbRessourcePierre, int nbRessourceOr, boolean PlaceReserver, int prix, int Point) {
@@ -84,9 +85,9 @@ public enum CarteCivilisation {
 
     /**
      * on place un ouvrier sur la carte.
-     * @param inventaireJoueur
-     * @param nbOuvrierAplacer
-     * @param id
+     * @param inventaireJoueur L'inventaire du joueur
+     * @param nbOuvrierAplacer Le nombre a placer
+     * @param id Le numéro du joueur
      */
     public void placeOuvrierSurCarte(Inventaire inventaireJoueur, int nbOuvrierAplacer, int id) {
         if ((PlaceReserver == false) || (nbOuvrierAplacer == 1)) {
@@ -101,10 +102,9 @@ public enum CarteCivilisation {
 
     /**
      * on retire un ouvrier sur la carte.
-     * @param inventaireJoueur
-     * @param id
+     * @param inventaireJoueur L'inventaire du joueur
+     * @param id Le numéro du joueur
      */
-
     public void retirerOuvrierSurCarte(@NotNull Inventaire inventaireJoueur, int id) {
         inventaireJoueur.setNbOuvrier(inventaireJoueur.getNbOuvrier() + 1);
         PlaceReserver = false;
@@ -115,8 +115,8 @@ public enum CarteCivilisation {
 
     /**
      * méthode qui permet au Joueur  de payer la carte si celui ci posséde les ressources suffisantes .
-     * @param inventaireJoueur
-     * @param j
+     * @param inventaireJoueur L'inventaire du joueur
+     * @param j Le joueur
      */
     public void payement(Inventaire inventaireJoueur, Joueur j) {
         int somme = 0;
@@ -160,8 +160,8 @@ public enum CarteCivilisation {
 
     /**
      * methode qui permet au joueur d'acquérir la carte ;
-     * @param inventaireJoueur
-     * @param j
+     * @param inventaireJoueur L'inventaire du joueur
+     * @param j le joueur
      */
     public void gainCarte(Inventaire inventaireJoueur, Joueur j) {
         switch (this) {

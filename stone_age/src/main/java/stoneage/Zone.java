@@ -219,6 +219,7 @@ public enum Zone {
     /**
      * Calcule du gain des zones ressources
      * @param inventaire L'inventaire du joueur
+     * @param nJoueur Le numéro du joueur
      */
     public void procedure(Inventaire inventaire, int nJoueur) {
         int somme = 0;
