@@ -60,7 +60,7 @@ ___
 >  Mise à jour du contenu de la réserve. (par l'ajout des différentes ressources)
 >
 > Le jeu s'arrête dès qu'un joueur arrive à au moins 30 points à la fin d'un tour.
- - Gagnant ---> max de points
+>- Gagnant ---> max de points
 >
 > Mise en place d'une IA Basique.
 
