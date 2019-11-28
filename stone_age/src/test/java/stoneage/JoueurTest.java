@@ -7,32 +7,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class JoueurTest {
 
     @Test
-    void getNbJoueur() {
-    }
-
-    @Test
-    void getNum() {
-    }
-
-    @Test
-    void placement() {
-
-
-    }
-
-    @Test
-    void recupere() {
-
-
-    }
-
-    @Test
     void nourrir() {
+        Inventaire inventaire = new Inventaire();
+        Joueur IA = new Joueur();
+
+        IA.nourrir(inventaire);
+        //inventaire.setNbOuvrier(-1);
+        assertEquals(7, inventaire.getNbNourriture());
 
     }
-
-    @Test
-    void dée() {
-    }
-
 }

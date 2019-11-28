@@ -58,7 +58,7 @@ class Joueur {
     public void nourrir(Inventaire i) {
         i.setNbNourriture(i.getNbNourriture()+i.getNiveauAgriculture());
         for (int j = 0; j < i.getNbOuvrier(); j++) {
-                    if(i.getNbNourriture()>0) i.setNbNourriture(-1);
+                    if(i.getNbNourriture()>0) i.setNbNourriture(i.getNbNourriture()-1);
 
         }
     }

@@ -204,8 +204,22 @@ public class Inventaire {
      * @param valeur La valeur à affecter
      */
     public void restRessource ( int  i,int valeur ){
-        int tab[] = {nbBois,nbArgile,nbPierre,nbOr} ;
-        tab[i] = valeur ;
+
+        switch (i){
+
+            case 0 :
+                setNbBois(valeur);
+                break;
+            case 1:
+                setNbArgile(valeur);
+                break;
+            case 2:
+                setNbPierre(valeur);
+                break;
+            case 3:
+                setNbOr(valeur);
+                break;
+        }
     }
 
 }

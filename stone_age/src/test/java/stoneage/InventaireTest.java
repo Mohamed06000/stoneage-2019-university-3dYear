@@ -1,33 +1,31 @@
 package stoneage;
 
+import org.junit.jupiter.api.Test;
 
-import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 class InventaireTest {
 
     @Test
-    void getNbOuvrier() {
+    void calculPoint() {
+        Inventaire inventaire = new Inventaire();
+        inventaire.setNbBois(3);
+
+        assertEquals(15, inventaire.calculPoint());
     }
 
     @Test
-    void setNbOuvrier() {
-    }
+    void restRessource(){
 
-    @Test
-    void subOuvrier() {
 
-    }
+        Inventaire inventaire = new Inventaire();
+        int[] tab = new int[4];
+        tab[0] = inventaire.getNbBois();
+        tab[1] = inventaire.getNbArgile();
+        tab[2] = inventaire.getNbPierre();
+        tab[3] = inventaire.getNbOr();
+        inventaire.restRessource(0,3);
 
-    @Test
-    void getNbRessource() {
-    }
-
-    @Test
-    void setNbRessource() {
-    }
-
-    @Test
-    void addRessource() {
-
+        assertEquals(3, inventaire.getNbBois());
     }
 }
