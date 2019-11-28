@@ -100,7 +100,7 @@ class Joueur {
                     if(i.getNbNourriture()>0) i.setNbNourriture(-1);
                 }
             }
-            
+
     /**
      * Pour l'instant elle affiche la valeur du lancé de dé
      */

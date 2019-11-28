@@ -93,7 +93,7 @@ public class Inventaire {
      * @return
      */
     public void setNbNourriture(int nourriture) {this.nbNourriture=nourriture;}
-    
+
     /**
      * Recupere la quantité de nourriture du joueur
      * @return quantitee de nourriture
@@ -217,4 +217,11 @@ public class Inventaire {
     public void setNbPointTotal(int nbPointTotal) {
         this.nbPointTotal = nbPointTotal;
     }
+
+    public void restRessource ( int  i,int valeur ){
+        int tab[] = {nbBois,nbArgile,nbPierre,nbOr} ;
+        tab[i] = valeur ;
+    }
+
+
 }

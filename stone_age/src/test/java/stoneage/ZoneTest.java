@@ -8,6 +8,7 @@ class ZoneTest {
 
     @Test
     void placeOuvrierSurZone() {
+
     }
 
     @Test
