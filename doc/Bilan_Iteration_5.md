@@ -1,6 +1,8 @@
 # Bilan de l'iteration 5
 
-### *Dans cette iteration nous avons* :
+---
+---
+ ###  *Dans cette iteration nous avons*
 * [x] Corrigé le bug dans choixZone dans la classe Joueur,
  
 * [x] Debuggé la boucle de jeu
@@ -26,10 +28,12 @@
   
 * [x] Suppression des attributs ~~Static~~ inutile .
  
- 
- 
- 
+ ---
+ ---
+  ### *les objectifs non atteints de cette interation*
  
 * [ ] Adapter le placement lorsqu’il y a 2 ou 3 joueurs,
 * [ ] Effectué les tests unitaires,
+---
+***
 
