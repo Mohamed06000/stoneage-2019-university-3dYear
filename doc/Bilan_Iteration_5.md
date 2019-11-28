@@ -6,13 +6,13 @@
 * [x] Debuggé la boucle de jeu
   - pour plus de 2 joueurs,
   
-* [x] Geré les contraintes de placements pour 4 joueurs,
+* [x] Géré les contraintes de placements pour 4 joueurs,
 
 * [x] Adapter nbOuvriers en fonction du choix de Zone et non plus l'inverse,
 
-* [x] implimenté la permutaion des joueurs a chaque tour → le firstPlayer change a chaque tour,
+* [x] Implémenté la permutaion des joueurs à chaque tour → le firstPlayer change à chaque tour,
 
-* [x] implimenté la contraine → Le Joueur ne peux pas placer 2 fois au même endroit,
+* [x] Implémenté la contrainte → Le joueur ne peut pas placer 2 fois au même endroit,
 
 * [x] Refactory implementation des zones ressources,
 * [x] Refactory implementation des zones villages,
@@ -21,8 +21,8 @@
   - suppression de l'~~Enum~~ CarteRessource,
   
 * [x] Reglé la gestion de l'affichage
-  - une seule partie  →  deroulé  detaillé,
-  - plusieures parties  →  deroulé muet,
+  - une seule partie  →  déroulé détaillé,
+  - plusieures parties  →  déroulé muet,
   
 * [x] Suppression des attributs ~~Static~~ inutile .
  
