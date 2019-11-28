@@ -2,91 +2,109 @@
 package stoneage;
 
 /**
- * Classe de l'inventaire du joueur
+ * La classe de l'inventaire du joueur
  */
 public class Inventaire {
 
+    //CHAMPS
 
     /**
      * Le nombre d'ouvrier du joueur
      */
-    private int nbOuvrier = 5;
+    private int nbOuvrier;
+
     /**
      * La quantitee de nourriture du joueur (debut de jeu = 10 pour tous)
      */
     private int nbNourriture = 5;
+
     /**
      * La quantitée de la ressource bois du joueur
      */
     private int nbBois = 2;
+
     /**
      * La quantitée d'Argile du joueur
      */
     private int nbArgile = 0;
+
     /**
      * La quantitée de pierre du joueur
      */
     private int nbPierre = 4;
+
     /**
      * La quantitée d'or du joueur
      */
     private int nbOr = 0;
+
     /**
      * La quantité d'outils du joueur
      */
     private int nbOutils = 0;
-    /**
-     *  Le niveau d'agriculture du joueur (initialiser à 0)
-     */
-    private int niveauAgriculture = 1;
 
+    /**
+     *  Le niveau d'agriculture du joueur
+     */
+    private int niveauAgriculture = 0;
+
+    /**
+     * Nombre de points du joueur
+     */
     private int nbPointTotal;
+
+
+    //CONSTRUCTEUR
+
+    /**
+     * Constructeur de la classe
+     */
+    public Inventaire(){
+        this.nbOuvrier = 5;
+    }
+
+
+    //METHODES
 
     /**
      * Recupere le niveau d'agriculture du joueur
-     * @return  NiveauAgriculture le niveau d'agriculture
+     * @return  Le niveau d'agriculture
      */
     public int getNiveauAgriculture(){ return this.niveauAgriculture; }
 
     /**
-     * Modifier le niveau d'agriculture du joueur
-     * @param niveauAgriculture
+     * Affecte un nombre au niveau d'agriculture du joueur
+     * @param niveauAgriculture Un nombre
      */
     public void setNiveauAgriculture(int niveauAgriculture) {this.niveauAgriculture = niveauAgriculture;}
 
     /**
-     * Incremente de 1 le multiplicateurNourriture dans l'Inventaire du joueur
-     */
-    public void addNiveauAgriculture(){ niveauAgriculture++; }
-
-    /**
      * Recupere le nombre d'ouvrier du joueur
-     * @return le nombre d'ouvrier
+     * @return Le nombre d'ouvrier
      */
     public int getNbOuvrier() {
         return nbOuvrier;
     }
 
     /**
-     * Modifier la quantité de nourriture du joueur
-     * @param nourriture Une quantité de nourriture
-     * @return
+     * Affecte un nombre d'ouvrier au joueur
+     * @param nbOuvrier Le nombre d'ouvrier
      */
-    public void setNbNourriture(int nourriture) {this.nbNourriture=nourriture;}
-    
+    public void setNbOuvrier(int nbOuvrier) {this.nbOuvrier = nbOuvrier; }
+
     /**
      * Recupere la quantité de nourriture du joueur
      * @return quantitee de nourriture
      */
     public int getNbNourriture() {
-    	return nbNourriture;
+        return nbNourriture;
     }
 
     /**
-     * Assigner un nombre d'ouvrier au joueur
-     * @param nbOuvrier Le nombre d'ouvrier
+     * Affecte une quantité de nourriture au joueur
+     * @param nourriture Une quantité de nourriture
      */
-    public void setNbOuvrier(int nbOuvrier) {this.nbOuvrier = nbOuvrier; }
+    public void setNbNourriture(int nourriture) {this.nbNourriture=nourriture;}
 
     /**
      * Recuperer la quantité de bois du joueur
@@ -97,7 +115,7 @@ public class Inventaire {
     }
 
     /**
-     * Modifier la quantité de bois du joueur
+     * Affecte une quantité de bois au joueur
      * @param nbBois Une quantité de bois
      */
     public void setNbBois(int nbBois) {
@@ -106,84 +124,75 @@ public class Inventaire {
 
     /**
      * Recuperer la quantité d'argile du joueur
-     * @return nbArgile la  quantité d'argile
+     * @return La quantité d'argile
      */
     public int getNbArgile() { return nbArgile; }
 
     /**
-     * Modifier la quantité de d'argile du joueur
-     * @param nbArgile
+     * Affecte une quantité de d'argile au joueur
+     * @param nbArgile La quantité d'argile
      */
     public void setNbArgile(int nbArgile) { this.nbArgile = nbArgile; }
 
     /**
      * Recuperer la quantité de pierre du joueur
-     * @return nbPierre la quantité de pierre
+     * @return La quantité de pierre
      */
     public int getNbPierre() {return nbPierre; }
 
     /**
-     * Modifier la quantité de pierre du joueur
-     * @param nbPierre
+     * Affecte une quantité de pierre au joueur
+     * @param nbPierre Une quantité de pierre
      */
     public void setNbPierre(int nbPierre) { this.nbPierre = nbPierre; }
 
     /**
      * Recuperer la quantité d'or du joueur
-     * @return nbOr la quantité d'or
+     * @return La quantité d'or
      */
     public int getNbOr() {return nbOr; }
 
     /**
-     * Modifier la quantité d'or du joueur
-     * @param nbOr
+     * Affecte une quantité d'or au joueur
+     * @param nbOr Une quantité d'or
      */
     public void setNbOr(int nbOr) {this.nbOr = nbOr; }
 
     /**
      * Recuperer le nombre d'outils du joueur
-     * @return nbOutils le nombre d'outils
+     * @return Le nombre d'outils
      */
     public int getNbOutils() { return nbOutils; }
 
     /**
-     * modifier le nombre d'outils du joueur
-     * @param nbOutils
+     * Affecte un nombre d'outils au joueur
+     * @param nbOutils Un nombre d'outils
      */
     public void setNbOutils(int nbOutils) {this.nbOutils = nbOutils; }
 
     /**
-     * Constructeur de la classe, on assigne 1 ouvrier par default
+     * Récupère le nombre de points du joueur
+     * @return Un nombre de points
      */
-    public Inventaire(){
-        setNbOuvrier(5);
-    }
-
-
-
-    /* update nbOuvrierDispo quand un place n ouvrier */
-    public void enleveOuvrierDispo(int n){
-        this.nbOuvrier -= n;
-    }
-
-
-    /* update nbOuvrierDispo quand un recupere n ouvrier*/
-    public void ajouteOuvrierDispo(int n){
-        this.nbOuvrier += n;
-    }
-
-    public int calculPoint(){
-        int point;
-        point = this.getNbArgile()+this.getNbBois()+this.getNbNourriture()+this.getNbOr()+this.getNbPierre()+this.getNbOutils();
-        return point;
-    }
-
-
     public int getNbPointTotal() {
         return nbPointTotal;
     }
 
+    /**
+     * Affecte un nombre de points au joueur
+     * @param nbPointTotal Un nombre de points
+     */
     public void setNbPointTotal(int nbPointTotal) {
         this.nbPointTotal = nbPointTotal;
+    }
+
+    /**
+     * Calcule les points du joueur
+     * @return Un nombre de points
+     */
+    public int calculPoint(){
+        int point;
+        point = this.getNbArgile()+this.getNbBois()+this.getNbNourriture()+this.getNbOr()+this.getNbPierre()+this.getNbOutils();
+        return point;
     }
 }

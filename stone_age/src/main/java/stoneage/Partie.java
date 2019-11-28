@@ -5,13 +5,33 @@ import org.apache.commons.lang.ArrayUtils;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * La classe qui gère le déroulement du jeu
+ */
 public class Partie {
 
-    private static int nbJoueur;
-    private final Plateau plateau;
-    private int[] score;
-    private static Random rand = new Random();
+    //CHAMPS
 
+    /**
+     * Le nombre de joueur
+     */
+    private static int nbJoueur;
+    /**
+     * Objet qui represente le plateau de jeu
+     */
+    private final Plateau plateau;
+    /**
+     * Liste des scores des joueurs
+     */
+    private int[] score;
+
+
+    //CONSTRUCTEUR
+
+    /**
+     * Constructeur de la classe
+     * @param nbJoueur Le nombre de joueurs
+     */
     Partie(int nbJoueur){
         this.nbJoueur = nbJoueur;
         plateau = new Plateau(nbJoueur);
@@ -19,9 +39,19 @@ public class Partie {
     }
 
 
+    //METHODES
+
+    /**
+     * Récupère le nombre de joueurs
+     * @return Le nombre de joueurs
+     */
     public static int getNbJoueur() {
         return nbJoueur;
     }
+
+    /**
+     * Lance la boucle du jeu
+     */
     public void jouer() {
         int tour = 1;
         System.out.println("Nb de joueur : " + nbJoueur);
@@ -53,48 +83,30 @@ public class Partie {
         this.JoueurGagnant(score);
     }
 
-
-//    public static void resultat(ArrayList joueurs, ArrayList inventaires){
-//        int arrayRessource[] = new int[joueurs.size()];
-//        int max = 0;
-//        int listGagnant[] = {};
-//
-//
-//        for (int i = 0; i < Joueur.getNbJoueur(); i++) {
-//            Inventaire inventaire = (Inventaire) inventaires.get(i);
-////            arrayRessource[i] = inventaire.getNbRessource();
-////            if (inventaire.getNbRessource()> max){
-////                max = inventaire.getNbRessource();
-////            }
-//        }
-//        for (int i=0; i<arrayRessource.length; i++){
-//            if (max == arrayRessource[i]){
-//                listGagnant = ArrayUtils.add(listGagnant,i);
-//            }
-//        }
-//
-//        for (int i = 0; i < listGagnant.length; i++) {
-//            if (listGagnant.length>1){
-//                System.out.println("Egalité entre :");
-//                for (int el : listGagnant){
-//                    Joueur joueur = (Joueur) joueurs.get(el);
-//                    System.out.println("joueur " + joueur.getNum());
-//                }
-//                break;
-//            }
-//            else{
-//                Joueur joueur = (Joueur) joueurs.get(listGagnant[i]);
-//                System.out.println("Le gagnant est le joueur " + joueur.getNum());
-//            }
-//        }
-//    }
-
+    /**
+     * Stocke les scores des joueurs dans la liste score
+     * @param listInventaire La liste des inventaires
+     */
     public void resultat(ArrayList<Inventaire> listInventaire){
         for (int i = 0; i < listInventaire.size(); i++) {
             this.score[i] = listInventaire.get(i).calculPoint();
         }
     }
 
+    /**
+     * Affiche le gagnant du jeu
+     * @param points La liste des scores
+     */
+    public void JoueurGagnant(int[] points){
+        int gagnant = indexGagnant(points);
+        System.out.println("Le Gagnant est le joueur " + (gagnant+1));
+    }
+
+    /**
+     * Récupère le numero du joueur gagnant
+     * @param points La liste des scores
+     * @return Le numéro du joueur gagnant
+     */
     public int indexGagnant(int[] points){
         int maxIndex = 0;
         int max = 0;
@@ -105,10 +117,5 @@ public class Partie {
             }
         }
         return maxIndex;
-    }
-
-    public void JoueurGagnant(int[] points){
-        int gagnant = indexGagnant(points);
-        System.out.println("Le Gagnant est le joueur " + (gagnant+1));
     }
 }
