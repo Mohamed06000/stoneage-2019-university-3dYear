@@ -118,8 +118,8 @@ ___
 >
 > Le jeu s'arrête quand il n'y a plus de carte Civilisations (le tour s'arrête) ou Batiments.
 > Spécifications des cartes Civilisations 
-> - (bon nbr de carte) 
-> - (Haut de carte : Différents bonus; Bas de carte : différents multiplicateur (selon les règles)).
+> - bon nbr de carte
+> - Haut de carte : Différents bonus; Bas de carte : différents multiplicateur (selon les règles).
 >
 > Le jeu s'arrête quand il n'y a plus de carte ou un joueur dépasse 30 pts.
 
@@ -129,7 +129,7 @@ ___
 ### *Iteration 7* :
 
 >Spécifications des cartes Civilisations et Batiments. 
-> - (bon nbr de carte selon les règles, au moins 10 cartes différentes de chaques)
+> - bon nbr de carte selon les règles, au moins 10 cartes différentes de chaques
 >
 > Améliorations de l'IA.
 >
@@ -138,15 +138,15 @@ ___
 > Simulation sur 10 parti.
 >
 > Le jeu s'arrête quand il n'y a plus de carte Civilisations (le tour s'arrête) ou Batiments.
----
-___
-
-### *Iteration 8* : 
+>
 > Compléter les cartes.
 >
 > Simulations 500 partie.
 >
 > Traitement des Statistiques.
+---
+___
+
 	
 
 
