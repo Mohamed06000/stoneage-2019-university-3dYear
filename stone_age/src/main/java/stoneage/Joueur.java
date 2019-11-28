@@ -90,26 +90,8 @@ class Joueur {
      * @return Un nombre d'ouvriers
      */
     public int choixNbOuvrier(Inventaire inventaire, Zone choixZone) {
-
-        int alea=0;
-
-        switch (choixZone) {
-            case FORET:
-            case CHASSE:
-            case GLACIERE:
-            case CARRIERE:
-            case RIVIERE:
-                alea = rand.nextInt(inventaire.getNbOuvrier()) + 1; //le +1 a l'exterieur de rand sinon ca peut retourner 0.
-                break;
-            case HUTTE:
-                alea = 2;
-                break;
-            case CHAMP:
-            case FABRIQUE:
-                alea = 1;
-                break;
-        }
-
+        int alea;
+        alea = rand.nextInt(inventaire.getNbOuvrier()) + 1; //le +1 a l'exterieur de rand sinon ca peut retourner 0.
         return alea;
     }
 
