@@ -32,6 +32,10 @@ public class Plateau {
      * L'IA qui fait les choix de jeu
      */
     Joueur IA = new Joueur();
+    /**
+     * le premier joueur à commencer le tour
+     */
+    private ArrayList<Integer> tableauJoueur;
 
     //CONSTRUTEUR
 
@@ -43,6 +47,7 @@ public class Plateau {
         this.ZonesDispo = new ArrayList<Zone>(Arrays.asList(Zone.values()));
         this.ZoneVisitees = new ArrayList<ArrayList<Zone>>();
         this.ZonesPleines = new ArrayList<Zone>();
+        this.tableauJoueur = new ArrayList<Integer>();
         ArrayList<Zone> zp;
         for (int i = 0; i < nbjoueur ; i++) {
             Inventaire inventaire = new Inventaire();
@@ -50,6 +55,7 @@ public class Plateau {
             listeInventaire.add(inventaire);
             zp = new ArrayList<Zone>();
             ZoneVisitees.add(zp);
+            tableauJoueur.add(i);
         }
 
     }
@@ -96,6 +102,7 @@ public class Plateau {
         return n;
     }
 
+
     /**
      * Lance la phase de placement
      */
@@ -104,14 +111,13 @@ public class Plateau {
         boolean placed;
         int choixNbOuvrier;
         Zone choixZone;
+        
 
         while (nbOuvrierDispoTotal()>0) { // J'utilise la methode et non plus une variable afin que le compteur s'actualise
-            for (int i = 0; i<listeInventaire.size(); i++) {
-                if (listeInventaire.get(i).getNbOuvrier()==0) //S'il a déjà posé tous ses ouvriers, il passe son tour .
-                System.out.println("------> i = " + i);
+            for (int i : tableauJoueur) {
                 if (listeInventaire.get(i).getNbOuvrier()==0){ //S'il a déjà posé tous ses ouvriers, il passe son tour.
-                    System.out.println("Avant le do/while i = " + i);
-                    System.out.println(listeInventaire.get(i).getNbOuvrier());
+                    //System.out.println("Avant le do/while i = " + i);
+                    //System.out.println(listeInventaire.get(i).getNbOuvrier());
                     continue;
                 }
                 do {
@@ -142,7 +148,7 @@ public class Plateau {
      */
     public void recuperationPhase(){
         Zone zoneCourant;
-        for (int i = 0; i < listeInventaire.size() ; i++) {
+        for (int i :tableauJoueur) {
             while(ZoneVisitees.get(i).size()>0) { // Je parcoure la taille de la sous-liste et non plus de la liste afin d'eviter Out-Bound
                 zoneCourant = IA.choixZone(ZoneVisitees.get(i));
                 //System.out.println("----AVANT----");
@@ -164,9 +170,10 @@ public class Plateau {
      * Lance la phase nourrir
      */
     public void phaseNourrir(){
-        for (int i = 0 ; i < listeInventaire.size(); i++) {
+        for (int i :tableauJoueur) {
             IA.nourrir(listeInventaire.get(i));
         }
+        swap(tableauJoueur);
     }
 
     /**
@@ -223,6 +230,15 @@ public class Plateau {
             return false;
         return true;
     }
+
+    public void swap (ArrayList<Integer> tableauJoueur) {
+        int a;
+        for (int i =0;i < tableauJoueur.size()-1; i++) {
+            Collections.swap(tableauJoueur, i, i+1);
+
+        }
+    }
+
 
 
 }

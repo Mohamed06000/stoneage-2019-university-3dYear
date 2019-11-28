@@ -59,7 +59,7 @@ public class Partie {
         System.out.println("Nb d'ouvriers total non place : " + plateau.nbOuvrierDispoTotal());
 
 
-        while(tour<3) {
+        while(tour<6) {
             System.out.println("_________________________________________________");
             System.out.println("|                TOUR : "+tour+"                      |");
             System.out.println("_________________________________________________");
