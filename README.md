@@ -13,6 +13,8 @@
 
 
 
+---
+___
 
 ### *Iteration 1*  : 
 > Initialisation des données et création de deux joueurs.
