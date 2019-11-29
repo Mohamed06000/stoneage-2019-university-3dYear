@@ -4,7 +4,7 @@ import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 
 /**
- * Classe du lacement du Jeu .
+ * Classe du lacement du Jeu
  */
 public class Main {
     public  static  final  void main(String[] args){
