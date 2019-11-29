@@ -135,8 +135,9 @@ public class Plateau {
 
     /**
      * Lance la phase de placement
+     * @param affichage Si l'affichage se fait
      */
-    public void placementPhase(){
+    public void placementPhase(boolean affichage){
         boolean disponibiliteZone;
         boolean placed;
         int choixNbOuvrier;
@@ -159,12 +160,14 @@ public class Plateau {
                         //System.out.println("----AVANT----");
                         //AfficheInfoJoueur(i,choixZone);
                         listeInventaire.get(i).setNbOuvrier(listeInventaire.get(i).getNbOuvrier() - choixNbOuvrier);
-                        choixZone.placeOuvrierSurZone(listeInventaire.get(i), choixNbOuvrier, i); //J'ajoute le num du joueur en parametre.
+                        choixZone.placeOuvrierSurZone(choixNbOuvrier, i); //J'ajoute le num du joueur en parametre.
                         ZoneVisitees.get(i).add(choixZone);
                         updateStatutZone(); // Je fais l'uptade apres la placement et non plus avant afin que l'autre joueur beneficie de l'uptade pour le choix de la zone.
                         placed = false;
                         //System.out.println("----APRES----");
-                        AfficheInfoJoueur(i,choixZone, ZoneVisitees, listeInventaire.get(i));
+                        if(affichage){
+                            AfficheInfoJoueur(i,choixZone, ZoneVisitees, listeInventaire.get(i));
+                        }
                     }
 
                 }
@@ -175,8 +178,9 @@ public class Plateau {
 
     /**
      * Lance la phase de récupération
+     * @param affichage Si l'affichage se fait
      */
-    public void recuperationPhase(){
+    public void recuperationPhase(boolean affichage){
         Zone zoneCourant;
         for (int i :tableauFirstPlayer) {
             while(ZoneVisitees.get(i).size()>0) { // Je parcoure la taille de la sous-liste et non plus de la liste afin d'eviter Out-Bound
@@ -187,7 +191,9 @@ public class Plateau {
                 zoneCourant.gainZone(listeInventaire.get(i),i); // J'ajoute le num du joueur.
                 //System.out.println("----APRES----");
                 ZoneVisitees.get(i).remove(zoneCourant);
-                AfficheInfoJoueur(i,zoneCourant, ZoneVisitees, listeInventaire.get(i));
+                if(affichage){
+                    AfficheInfoJoueur(i,zoneCourant, ZoneVisitees, listeInventaire.get(i));
+                }
             }
             ZoneVisitees.get(i).clear();
         }
