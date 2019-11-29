@@ -17,7 +17,6 @@
 * [x] Implémenté la contrainte → Le joueur ne peut pas placer 2 fois au même endroit,
 
 * [x] Refactory implementation des zones ressources,
-* [x] Refactory implementation des zones villages,
   - suppression de ~~Enum~~ pour les zones,
  
   
@@ -33,6 +32,7 @@
  
 * [ ] Adapter le placement lorsqu’il y a 2 ou 3 joueurs,
 * [ ] Effectué les tests unitaires,
+* [ ] Refactory implementation des zones villages,
 * [ ] Refactory implementation des cartes civilisation,
 * [ ] suppression de l'~~Enum~~ CarteRessource,
 
