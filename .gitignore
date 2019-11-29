@@ -1,21 +1,13 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 # exclusion des dossiers contenant les élements générés
 ./**/out/
 ./**/target/
 ./**/build/
 ./**/bin/
-=======
-# exclusion des dossiers contenant les élements générés
-**/out/
-**/target/
-**/build/
-**/bin/
->>>>>>> Louay
 
 # pour la javadoc (selon le nom du dossier pouvant la contenir)
 #**/javadoc/
-#**/apidocs/
+**/apidocs/
 #**/testapidocs/
 
 # pour intellij
