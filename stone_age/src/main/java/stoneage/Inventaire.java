@@ -60,6 +60,16 @@ public class Inventaire {
      */
     private ArrayList<Integer> outils;
 
+    /**
+     * La liste des outils dispo du joueur
+     */
+    private ArrayList<Integer> outilsDispo;
+
+    /**
+     * La liste des outils non-dispo du joueur
+     */
+    private ArrayList<Integer> outilsNonDispo;
+
 
     //CONSTRUCTEUR
 
@@ -76,10 +86,20 @@ public class Inventaire {
         this.nbOutils = 0;
         this.niveauAgriculture = 0;
         this.outils = new ArrayList<Integer>();
+        this.outilsDispo = new ArrayList<Integer>();
+        this.outilsNonDispo = new ArrayList<Integer>();
     }
 
 
     //METHODES
+
+    /**
+     * Récupère la liste des outils non-dispo du joueur
+     * @return La liste des outils
+     */
+    public ArrayList<Integer> getOutilsNonDispo() {
+        return outilsNonDispo;
+    }
 
     /**
      * Récupère la liste des outils du joueur
@@ -87,6 +107,14 @@ public class Inventaire {
      */
     public ArrayList<Integer> getOutils() {
         return outils;
+    }
+
+    /**
+     * Récupère la liste des outils dispo du joueur
+     * @return La liste des outils
+     */
+    public ArrayList<Integer> getOutilsDispo() {
+        return outilsDispo;
     }
 
     /**

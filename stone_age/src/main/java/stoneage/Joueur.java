@@ -1,8 +1,6 @@
 
 package stoneage;
 
-import org.apache.commons.lang.ArrayUtils;
-
 import java.util.* ;
 
 
@@ -90,7 +88,6 @@ class Joueur {
         }
     }
 
-
     /**
      * Lancer un de
      * @return Valeur du de
@@ -121,6 +118,24 @@ class Joueur {
         int alea;
         alea = rand.nextInt(inventaire.getNbOuvrier()) + 1; //le +1 a l'exterieur de rand sinon ca peut retourner 0.
         return alea;
+    }
+
+    public boolean choixOutils() {
+        return rand.nextBoolean();
+    }
+
+    public int choixNbOutils(Inventaire inventaire) {
+        int sommeOutils =0;
+        int nbOutilsUtilisé = rand.nextInt(inventaire.getOutilsDispo().size())+1;
+
+        for (int i = 0; i < nbOutilsUtilisé ; i++) {
+            int indice = rand.nextInt(inventaire.getOutilsDispo().size());
+            sommeOutils += inventaire.getOutilsDispo().get(indice);
+            inventaire.getOutilsNonDispo().set(indice,inventaire.getOutilsDispo().get(indice));
+            inventaire.getOutilsDispo().remove(indice);
+        }
+
+        return sommeOutils;
     }
 
 }

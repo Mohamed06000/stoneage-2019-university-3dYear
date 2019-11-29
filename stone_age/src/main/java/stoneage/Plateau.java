@@ -180,7 +180,7 @@ public class Plateau {
         for (int i :tableauFirstPlayer) {
             while(ZoneVisitees.get(i).size()>0) { // Je parcoure la taille de la sous-liste et non plus de la liste afin d'eviter Out-Bound
                 zoneCourant = IA.choixZone(ZoneVisitees.get(i));
-                zoneCourant.gainZone(listeInventaire.get(i),i); // J'ajoute le num du joueur.
+                zoneCourant.gainZone(listeInventaire.get(i),i,IA); // J'ajoute le num du joueur.
                 ZoneVisitees.get(i).remove(zoneCourant);
                 if(affichage){
                     AfficheInfoJoueur(i,zoneCourant, ZoneVisitees, listeInventaire.get(i));
@@ -197,6 +197,7 @@ public class Plateau {
     public void phaseNourrir(){
         for (int i :tableauFirstPlayer) {
             IA.nourrir(listeInventaire.get(i));
+            resetOutils(i);
         }
         swap(tableauFirstPlayer);
     }
@@ -219,11 +220,23 @@ public class Plateau {
     }
 
     /**
+     * Restaure la liste des outils disponibles
+     */
+    public void resetOutils(int i) {
+        listeInventaire.get(i).getOutilsNonDispo().clear();
+        listeInventaire.get(i).getOutilsDispo().clear();
+        for (int o : listeInventaire.get(i).getOutils()) {
+            listeInventaire.get(i).getOutilsDispo().add(o);
+        }
+    }
+
+    /**
      * Restaure la liste des zones disponibles
      */
     private void resetZone() {
         ZonesPleines.clear();
         ZonesDispo.clear();
+        //ZonesDispo.addAll(Arrays.asList(tabAllZone));
         for (Zone z: tabAllZone) {
             ZonesDispo.add(z);
         }
@@ -255,9 +268,7 @@ public class Plateau {
         if ((ZonesPleines.contains(choixZone)) | (choixNbOuvrier > choixZone.getNbOuvrierMaxSurZone()-choixZone.getNbOuvrierSurZone()) | (listeInventaire.get(i).getNbOuvrier()<choixNbOuvrier) ){
             return false;
         }
-        if (ZoneVisitees.get(i).contains(choixZone) & choixZone!=Chasse)
-            return false;
-        return true;
+        return !(ZoneVisitees.get(i).contains(choixZone) & choixZone != Chasse);
     }
 
     /**
