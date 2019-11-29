@@ -123,7 +123,7 @@ ___
 > - bon nbr de carte
 > - Haut de carte : Différents bonus; Bas de carte : différents multiplicateur (selon les règles).
 >
-> Le jeu s'arrête quand il n'y a plus de carte ou un joueur dépasse 30 pts.
+> Le jeu s'arrête quand il n'y a moins de 4 cartes civilisations ou l'une des piles batiments est vide
 
 ---
 ___
