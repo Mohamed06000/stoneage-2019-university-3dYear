@@ -118,6 +118,8 @@ ___
 >
 > Amélioration de l'IA.
 >
+> Le joueur peut avoir le choix de ne pas choisir de nourrir tous ses ouvriers.
+>
 > Le jeu s'arrête quand il n'y a plus de carte Civilisations (le tour s'arrête) ou Batiments.
 > Spécifications des cartes Civilisations 
 > - bon nbr de carte
