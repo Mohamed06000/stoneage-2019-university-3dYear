@@ -203,19 +203,24 @@ public class Zone {
         switch (this.getRessource()) {
 
             case OR:
-                inventaire.setNbNourriture(inventaire.getNbNourriture() + gain);
+                inventaire.setNbOr(inventaire.getNbOr() + gain);
+
                 break;
             case NOURRITURE:
-                inventaire.setNbBois(inventaire.getNbBois() + gain);
+                inventaire.setNbNourriture(inventaire.getNbNourriture() + gain);
+
                 break;
             case BOIS:
-                inventaire.setNbArgile(inventaire.getNbArgile() + gain);
+                inventaire.setNbBois(inventaire.getNbBois() + gain);
+
                 break;
             case ARGILE:
-                inventaire.setNbPierre(inventaire.getNbPierre() + gain);
+                inventaire.setNbArgile(inventaire.getNbArgile() + gain);
+
                 break;
             case PIERRE:
-                inventaire.setNbOr(inventaire.getNbOr() + gain);
+                inventaire.setNbPierre(inventaire.getNbPierre() + gain);
+
                 break;
 
             default:
