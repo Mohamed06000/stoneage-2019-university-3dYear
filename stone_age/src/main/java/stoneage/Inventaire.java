@@ -222,4 +222,7 @@ public class Inventaire {
         }
     }
 
+    public int getNbRessourceTotal() {
+        return getNbNourriture()+getNbBois()+getNbArgile()+getNbPierre()+getNbOr();
+    }
 }

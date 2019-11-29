@@ -58,10 +58,38 @@ class Joueur {
     public void nourrir(Inventaire i) {
         i.setNbNourriture(i.getNbNourriture()+i.getNiveauAgriculture());
         for (int j = 0; j < i.getNbOuvrier(); j++) {
-                    if(i.getNbNourriture()>0) i.setNbNourriture(i.getNbNourriture()-1);
+            if (i.getNbNourriture()==0) { //Si le joueur doit nourrir encore des ouvriers mais n'a plus de nourriture
+                boolean choixChange = rand.nextBoolean(); // Aleatoirement il choisit ou non d'echanger des ressources pour nourrir ses ouvriers
+                if (choixChange && i.getNbRessourceTotal()>0) { //Si il choisit d'echanger et qu'il a de quoi echanger
+                    for (int k = 0; k < i.getNbOuvrier()-j ; k++) { // On boucle sur le nombre d'ouvriers pas nourrir
+                        if (i.getNbBois()>0) { //On commencer par changer avec la ressource la moins prestigieuse
+                            i.setNbBois(i.getNbBois()-1);
+                            continue;
+                        }
+                        else if (i.getNbArgile()>0) {
+                            i.setNbArgile(i.getNbArgile()-1);
+                            continue;
+                        }
+                        else if (i.getNbPierre()>0) {
+                            i.setNbPierre(i.getNbPierre()-1);
+                            continue;
+                        }
+                        else if (i.getNbOr()>0) {
+                            i.setNbOr(i.getNbOr()-1);
+                            continue;
+                        }
+                    }
+                }
+                else { // S'il choisit de pas changer
+                    i.setNbPointTotal(i.getNbPointTotal()-10);
+                }
+            }
+            if(i.getNbNourriture()>0)
+                i.setNbNourriture(i.getNbNourriture()-1);
 
         }
     }
+
 
     /**
      * Lancer un de
