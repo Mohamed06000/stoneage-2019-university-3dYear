@@ -17,7 +17,6 @@ class InventaireTest {
     @Test
     void restRessource(){
 
-
         Inventaire inventaire = new Inventaire();
         int[] tab = new int[4];
         tab[0] = inventaire.getNbBois();

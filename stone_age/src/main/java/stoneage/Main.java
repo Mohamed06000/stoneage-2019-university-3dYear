@@ -15,8 +15,9 @@ public class Main {
             e.printStackTrace();
         }
 
-        Partie partie = new Partie(4,false) ;
-        partie.jouer() ;
+        Partie partie;
+//        partie = new Partie(4,false) ;
+//        partie.jouer() ;
 
         System.out.println("Simulation 500 parties");
         for (int i = 0; i < 500; i++) {

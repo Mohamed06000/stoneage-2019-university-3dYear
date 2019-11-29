@@ -147,8 +147,6 @@ public class Plateau {
         while (nbOuvrierDispoTotal()>0) { // J'utilise la methode et non plus une variable afin que le compteur s'actualise
             for (int i : tableauFirstPlayer) {
                 if (listeInventaire.get(i).getNbOuvrier()==0){ //S'il a déjà posé tous ses ouvriers, il passe son tour.
-                    //System.out.println("Avant le do/while i = " + i);
-                    //System.out.println(listeInventaire.get(i).getNbOuvrier());
                     continue;
                 }
                 do {
@@ -157,14 +155,11 @@ public class Plateau {
                     choixNbOuvrier = IA.choixNbOuvrier(listeInventaire.get(i), choixZone);
                     disponibiliteZone = verifierDisponibiliteZone(choixZone, choixNbOuvrier,i);
                     if (disponibiliteZone){
-                        //System.out.println("----AVANT----");
-                        //AfficheInfoJoueur(i,choixZone);
                         listeInventaire.get(i).setNbOuvrier(listeInventaire.get(i).getNbOuvrier() - choixNbOuvrier);
                         choixZone.placeOuvrierSurZone(choixNbOuvrier, i); //J'ajoute le num du joueur en parametre.
                         ZoneVisitees.get(i).add(choixZone);
                         updateStatutZone(); // Je fais l'uptade apres la placement et non plus avant afin que l'autre joueur beneficie de l'uptade pour le choix de la zone.
                         placed = false;
-                        //System.out.println("----APRES----");
                         if(affichage){
                             AfficheInfoJoueur(i,choixZone, ZoneVisitees, listeInventaire.get(i));
                         }
@@ -185,11 +180,7 @@ public class Plateau {
         for (int i :tableauFirstPlayer) {
             while(ZoneVisitees.get(i).size()>0) { // Je parcoure la taille de la sous-liste et non plus de la liste afin d'eviter Out-Bound
                 zoneCourant = IA.choixZone(ZoneVisitees.get(i));
-                //System.out.println("----AVANT----");
-                //AfficheInfoJoueur(i,zoneCourant);
-                //zoneCourant = ZoneVisite.get(i).get(j); // Ici a changer afin de recuperer dans une zone aleatoire.
                 zoneCourant.gainZone(listeInventaire.get(i),i); // J'ajoute le num du joueur.
-                //System.out.println("----APRES----");
                 ZoneVisitees.get(i).remove(zoneCourant);
                 if(affichage){
                     AfficheInfoJoueur(i,zoneCourant, ZoneVisitees, listeInventaire.get(i));
@@ -222,7 +213,6 @@ public class Plateau {
         System.out.println("Nb d'ouvrier total dans la zone " + z.getRessource() + " : " + z.getNbOuvrierSurZone());
         System.out.println("Nb d'ouvrier du joueur dans la zone " + z.getRessource() + " : " + z.getNbOuvirerDuJoueur(numJ));
         System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + (numJ+1) + " : " + inventaire.getNbOuvrier());
-        //System.out.println("Nb de ressource dans l'inventaire du joueur " + j.getNum() + " : " + inventaire.getNbRessource());
         if (ZoneVisitees.get(numJ).size()>0) {
             System.out.println("Les zones visitées : " + (ZoneVisitees.get(numJ)));
         }
@@ -252,12 +242,6 @@ public class Plateau {
                 iter.remove();
             }
         }
-//        for (Zone z : ZonesDispo) {
-//            if (z.getNbOuvrierSurZone() >= z.getNbOuvrierMaxSurZone()){
-//                ZonesPleines.add(z);
-//                ZonesDispo.remove(z);
-//            }
-//        }
     }
 
     /**
