@@ -18,9 +18,8 @@
 
 * [x] Refactory implementation des zones ressources,
 * [x] Refactory implementation des zones villages,
-* [x] Refactory implementation des cartes civilisation,
-  - suppression de ~~Enum~~ pour les cartes Civilisation et pour les zones,
-  - suppression de l'~~Enum~~ CarteRessource,
+  - suppression de ~~Enum~~ pour les zones,
+ 
   
 * [x] Reglé la gestion de l'affichage
   - une seule partie  →  déroulé détaillé,
@@ -34,6 +33,9 @@
  
 * [ ] Adapter le placement lorsqu’il y a 2 ou 3 joueurs,
 * [ ] Effectué les tests unitaires,
+* [ ] Refactory implementation des cartes civilisation,
+* [ ] suppression de l'~~Enum~~ CarteRessource,
+
 ---
 ***
 
