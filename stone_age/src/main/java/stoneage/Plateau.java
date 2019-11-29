@@ -272,6 +272,20 @@ public class Plateau {
         }
     }
 
-
+//    public boolean verifierNbCarteCivilisation() {
+//        if ((carteCivilisationPioche.size()+carteCivilisationDispo.size())<4)
+//            return false;
+//        else
+//            return true;
+//    }
+//
+//    public boolean verifierNbCarteBatiment() {
+//        for (int i = 0; i < carteBatiment.size(); i++) {
+//            if (carteBatiment.get(i).size()<1) {
+//                return false;
+//            }
+//        }
+//        return true;
+//    }
 
 }
