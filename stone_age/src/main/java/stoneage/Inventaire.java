@@ -1,6 +1,8 @@
 
 package stoneage;
 
+import java.util.ArrayList;
+
 /**
  * La classe de l'inventaire du joueur
  */
@@ -16,42 +18,47 @@ public class Inventaire {
     /**
      * La quantitee de nourriture du joueur (debut de jeu = 10 pour tous)
      */
-    private int nbNourriture = 12;
+    private int nbNourriture;
 
     /**
      * La quantitée de la ressource bois du joueur
      */
-    private int nbBois = 0;
+    private int nbBois;
 
     /**
      * La quantitée d'Argile du joueur
      */
-    private int nbArgile = 0;
+    private int nbArgile;
 
     /**
      * La quantitée de pierre du joueur
      */
-    private int nbPierre = 0;
+    private int nbPierre;
 
     /**
      * La quantitée d'or du joueur
      */
-    private int nbOr = 0;
+    private int nbOr;
 
     /**
      * La quantité d'outils du joueur
      */
-    private int nbOutils = 0;
+    private int nbOutils;
 
     /**
      *  Le niveau d'agriculture du joueur
      */
-    private int niveauAgriculture = 0;
+    private int niveauAgriculture;
 
     /**
      * Nombre de points du joueur
      */
     private int nbPointTotal;
+
+    /**
+     * La liste des outils du joueur
+     */
+    private ArrayList<Integer> outils;
 
 
     //CONSTRUCTEUR
@@ -61,10 +68,26 @@ public class Inventaire {
      */
     public Inventaire(){
         this.nbOuvrier = 5;
+        this.nbNourriture = 12;
+        this.nbBois = 0;
+        this.nbArgile = 0;
+        this.nbPierre = 0;
+        this.nbOr = 0;
+        this.nbOutils = 0;
+        this.niveauAgriculture = 0;
+        this.outils = new ArrayList<Integer>();
     }
 
 
     //METHODES
+
+    /**
+     * Récupère la liste des outils du joueur
+     * @return La liste des outils
+     */
+    public ArrayList<Integer> getOutils() {
+        return outils;
+    }
 
     /**
      * Recupere le niveau d'agriculture du joueur
@@ -222,6 +245,10 @@ public class Inventaire {
         }
     }
 
+    /**
+     * Rècupère le nombre de ressource total du joueur
+     * @return Le nombre de ressource
+     */
     public int getNbRessourceTotal() {
         return getNbNourriture()+getNbBois()+getNbArgile()+getNbPierre()+getNbOr();
     }
