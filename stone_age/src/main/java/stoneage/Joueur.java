@@ -80,6 +80,7 @@ class Joueur {
                 }
                 else { // S'il choisit de pas changer
                     i.setNbPointTotal(i.getNbPointTotal()-10);
+                    break;
                 }
             }
             if(i.getNbNourriture()>0)
@@ -120,8 +121,13 @@ class Joueur {
         return alea;
     }
 
-    public boolean choixOutils() {
-        return rand.nextBoolean();
+    public boolean choixOutils(Inventaire inventaire) {
+        if (inventaire.getOutilsDispo().size()>0) {
+            return rand.nextBoolean();
+        }
+        else {
+            return false;
+        }
     }
 
     public int choixNbOutils(Inventaire inventaire) {

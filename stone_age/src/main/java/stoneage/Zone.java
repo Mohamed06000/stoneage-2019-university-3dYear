@@ -198,7 +198,7 @@ public class Zone {
             somme += de();
         }
 
-        if (IA.choixOutils()){
+        if (IA.choixOutils(inventaire)){
             somme += IA.choixNbOutils(inventaire);
         }
 

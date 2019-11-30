@@ -72,18 +72,19 @@ class ZoneTest {
         Zone zone = new Zone(Ressource.OR,6,2,0,10);
         zone.placeOuvrierSurZone(6, 0);
         Inventaire i =new Inventaire();
-        zone.gainZone(i,0);
+        Joueur IA = new Joueur();
+        zone.gainZone(i,0, IA);
 
         zone = new Zone(Ressource.PIERRE,6,2,0,10);
         zone.placeOuvrierSurZone(6, 0);
-        zone.gainZone(i,0);
+        zone.gainZone(i,0, IA);
         assertTrue(i.getNbOr()>0);
         assertTrue(i.getNbPierre()>0);
 
 
         zone = new Zone(Ressource.ARGILE,6,2,0,10);
         zone.placeOuvrierSurZone(6, 0);
-        zone.gainZone(i,0);
+        zone.gainZone(i,0, IA);
         assertTrue(i.getNbOr()>0);
         assertTrue(i.getNbPierre()>0);
         assertTrue(i.getNbArgile()>0);
@@ -91,7 +92,7 @@ class ZoneTest {
 
         zone = new Zone(Ressource.BOIS,6,2,0,10);
         zone.placeOuvrierSurZone(6, 0);
-        zone.gainZone(i,0);
+        zone.gainZone(i,0,IA);
         assertTrue(i.getNbOr()>0);
         assertTrue(i.getNbPierre()>0);
         assertTrue(i.getNbArgile()>0);

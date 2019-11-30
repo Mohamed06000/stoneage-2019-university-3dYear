@@ -65,7 +65,11 @@ public class Plateau {
      */
     private ArrayList<Integer> tableauFirstPlayer;
 
+    /**
+     * Le tableau de toutes les zones
+     */
     private Zone [] tabAllZone;
+
     //CONSTRUTEUR
 
     /**
@@ -233,7 +237,7 @@ public class Plateau {
     /**
      * Restaure la liste des zones disponibles
      */
-    private void resetZone() {
+    public void resetZone() {
         ZonesPleines.clear();
         ZonesDispo.clear();
         //ZonesDispo.addAll(Arrays.asList(tabAllZone));
@@ -264,7 +268,7 @@ public class Plateau {
      * @param i Le numéro du joueur
      * @return True ou False
      */
-    private boolean verifierDisponibiliteZone(Zone choixZone, int choixNbOuvrier, int i) {
+    public boolean verifierDisponibiliteZone(Zone choixZone, int choixNbOuvrier, int i) {
         if ((ZonesPleines.contains(choixZone)) | (choixNbOuvrier > choixZone.getNbOuvrierMaxSurZone()-choixZone.getNbOuvrierSurZone()) | (listeInventaire.get(i).getNbOuvrier()<choixNbOuvrier) ){
             return false;
         }
