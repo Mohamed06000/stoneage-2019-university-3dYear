@@ -1,7 +1,6 @@
 package stoneage;
 
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 /**
@@ -30,7 +29,7 @@ public class Plateau {
     /**
      * Zone Glaciere
      */
-    private Zone Glaciere;
+    private Zone Glaisiere;
 
     /**
      * Zone Carriere
@@ -80,9 +79,9 @@ public class Plateau {
         this.Riviere = new Zone(Ressource.OR, 12, 6, 0, 7);
         this.Chasse = new Zone(Ressource.NOURRITURE, 12, 2, 0, Integer.MAX_VALUE);
         this.Foret = new Zone(Ressource.BOIS, 12, 3, 0, 7);
-        this.Glaciere = new Zone(Ressource.ARGILE, 12, 4, 0, 7);
+        this.Glaisiere = new Zone(Ressource.ARGILE, 12, 4, 0, 7);
         this.Carriere = new Zone(Ressource.PIERRE, 12, 5, 0, 7);
-        this.tabAllZone = new Zone[] {this.Riviere, this.Chasse, this.Foret, this.Glaciere, this.Carriere};
+        this.tabAllZone = new Zone[] {this.Riviere, this.Chasse, this.Foret, this.Glaisiere, this.Carriere};
         this.ZonesDispo = new ArrayList<Zone>(Arrays.asList(tabAllZone));
         this.ZoneVisitees = new ArrayList<ArrayList<Zone>>();
         this.ZonesPleines = new ArrayList<Zone>();
