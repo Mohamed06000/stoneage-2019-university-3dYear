@@ -9,8 +9,7 @@ import java.util.*;
 public class Plateau {
 
     //CHAMPS
-
-
+    
     /**
      * Zone riviere
      */
@@ -183,7 +182,12 @@ public class Plateau {
         for (int i :tableauFirstPlayer) {
             while(ZoneVisitees.get(i).size()>0) { // Je parcoure la taille de la sous-liste et non plus de la liste afin d'eviter Out-Bound
                 zoneCourant = IA.choixZone(ZoneVisitees.get(i));
-                zoneCourant.gainZone(listeInventaire.get(i),i,IA); // J'ajoute le num du joueur.
+                if (IA.choixUtiliser()) { //IA choisit d'utiliser ses ouvriers ou non --> && verifier si getNbRessourde>=prixCarte
+                    zoneCourant.gainZone(listeInventaire.get(i),i,IA); // J'ajoute le num du joueur.
+                }
+                else {
+                    zoneCourant.retirerOuvrierSurZone(listeInventaire.get(i), zoneCourant.getNbOuvirerDuJoueur(i), i);
+                }
                 ZoneVisitees.get(i).remove(zoneCourant);
                 if(affichage){
                     AfficheInfoJoueur(i,zoneCourant, ZoneVisitees, listeInventaire.get(i));

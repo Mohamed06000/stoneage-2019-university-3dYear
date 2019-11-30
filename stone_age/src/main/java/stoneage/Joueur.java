@@ -121,6 +121,11 @@ class Joueur {
         return alea;
     }
 
+    /**
+     * Choisit s'il utiliser ses outils
+     * @param inventaire Inventaire du joueur
+     * @return Un boolean
+     */
     public boolean choixOutils(Inventaire inventaire) {
         if (inventaire.getOutilsDispo().size()>0) {
             return rand.nextBoolean();
@@ -130,11 +135,16 @@ class Joueur {
         }
     }
 
+    /**
+     * Récupère la somme des outils utilisés
+     * @param inventaire L'inventaire du joueur
+     * @return La somme des outils
+     */
     public int choixNbOutils(Inventaire inventaire) {
         int sommeOutils =0;
-        int nbOutilsUtilisé = rand.nextInt(inventaire.getOutilsDispo().size())+1;
+        int nbOutilsUtilise = rand.nextInt(inventaire.getOutilsDispo().size())+1;
 
-        for (int i = 0; i < nbOutilsUtilisé ; i++) {
+        for (int i = 0; i < nbOutilsUtilise ; i++) {
             int indice = rand.nextInt(inventaire.getOutilsDispo().size());
             sommeOutils += inventaire.getOutilsDispo().get(indice);
             inventaire.getOutilsNonDispo().set(indice,inventaire.getOutilsDispo().get(indice));
@@ -142,6 +152,14 @@ class Joueur {
         }
 
         return sommeOutils;
+    }
+
+    /**
+     * Choisit s'il utilise ses ouvriers
+     * @return Un boolean
+     */
+    public boolean choixUtiliser() {
+        return true;
     }
 
 }
