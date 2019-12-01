@@ -83,7 +83,18 @@ public class Plateau {
      */
     private Zone [] tabAllZone;
 
-    
+    ArrayList<Cartebatiment> listeCarteB = new ArrayList<Cartebatiment>();
+    ArrayList<Cartebatiment> listeCarteVisible;
+    Cartebatiment[] listeCarteTotale;
+    ArrayList<Cartebatiment> listeCarteReserve;
+
+    private Cartebatiment carte1;
+    private Cartebatiment carte2;
+    private Cartebatiment carte3;
+    private Cartebatiment carte4;
+
+
+
     //CONSTRUTEUR
 
     /**
@@ -91,6 +102,14 @@ public class Plateau {
      * @param nbjoueur Le nombre de joueurs dans le jeu
      */
     Plateau(int nbjoueur){
+        this.carte1=new Cartebatiment(10,new ArrayList<Ressource>(Arrays.asList(Ressource.BOIS,Ressource.BOIS,Ressource.ARGILE)));
+        this.carte2=new Cartebatiment(11,new ArrayList<Ressource>(Arrays.asList(Ressource.BOIS,Ressource.BOIS,Ressource.PIERRE)));
+        this.carte3=new Cartebatiment(11,new ArrayList<Ressource>(Arrays.asList(Ressource.BOIS,Ressource.ARGILE,Ressource.ARGILE)));
+        this.carte4=new Cartebatiment(12,new ArrayList<Ressource>(Arrays.asList(Ressource.BOIS,Ressource.BOIS,Ressource.OR)));
+        this.listeCarteTotale= new Cartebatiment[] {this.carte1,this.carte2,this.carte3,this.carte4};
+        this.listeCarteVisible= new ArrayList<Cartebatiment>(Arrays.asList(listeCarteTotale));
+        this.listeCarteReserve=new ArrayList<Cartebatiment>();
+        this.listeCarteVisible=new ArrayList<Cartebatiment>();
         this.Riviere = new Zone(Ressource.OR, 12, 6, 0, 7);
         this.Chasse = new Zone(Ressource.NOURRITURE, 12, 2, 0, Integer.MAX_VALUE);
         this.Foret = new Zone(Ressource.BOIS, 12, 3, 0, 7);
@@ -114,6 +133,7 @@ public class Plateau {
         }
 
     }
+
 
 
     //METHODES
