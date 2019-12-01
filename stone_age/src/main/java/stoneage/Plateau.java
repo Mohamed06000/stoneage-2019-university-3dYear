@@ -34,7 +34,22 @@ public class Plateau {
      * Zone Carriere
      */
     private Zone Carriere;
-    
+
+    /**
+     * Zone Carriere
+     */
+    private Zone Champ;
+
+    /**
+     * Zone Carriere
+     */
+    private Zone Hutte;
+
+    /**
+     * Zone Carriere
+     */
+    private Zone FabriqueOutils;
+
     /**
      * La liste des zones disponibles au placement
      */
@@ -81,6 +96,9 @@ public class Plateau {
         this.Foret = new Zone(Ressource.BOIS, 12, 3, 0, 7);
         this.Glaisiere = new Zone(Ressource.ARGILE, 12, 4, 0, 7);
         this.Carriere = new Zone(Ressource.PIERRE, 12, 5, 0, 7);
+        this.Champ = new ZoneVillage(Ressource.OR,1,1,0,1,0);
+        this.FabriqueOutils = new ZoneVillage(Ressource.OR,1,1,0,1,1);
+        this.Hutte = new ZoneVillage(Ressource.OR,1,1,0,1,2);
         this.tabAllZone = new Zone[] {this.Riviere, this.Chasse, this.Foret, this.Glaisiere, this.Carriere};
         this.ZonesDispo = new ArrayList<Zone>(Arrays.asList(tabAllZone));
         this.ZoneVisitees = new ArrayList<ArrayList<Zone>>();

@@ -16,13 +16,13 @@ public class Main {
         }
 
         Partie partie;
-//        partie = new Partie(4,false) ;
-//        partie.jouer() ;
-
-        System.out.println("Simulation 500 parties");
-        for (int i = 0; i < 500; i++) {
-            partie = new Partie(2, false);
-            partie.jouer();
-        }
+        partie = new Partie(4,false) ;
+        partie.jouer() ;
+//
+//        System.out.println("Simulation 500 parties");
+//        for (int i = 0; i < 500; i++) {
+//            partie = new Partie(2, false);
+//            partie.jouer();
+//        }
     }
 }
