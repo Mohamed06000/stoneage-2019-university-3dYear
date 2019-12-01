@@ -236,20 +236,4 @@ public class Zone {
         this.setNbRessourcesZone(this.getNbRessourcesZone()-gain);
         retirerOuvrierSurZone(inventaire, getNbOuvirerDuJoueur(nJoueur), nJoueur);
     }
-
-//            case CHAMP:
-//                inventairejoueur.setNiveauAgriculture(inventairejoueur.getNiveauAgriculture()+1);
-//                retirerOuvrierSurZone(inventairejoueur, getNbOuvirerDuJoueur(nJoueur), nJoueur);
-//                break;
-//
-//            case HUTTE:
-//                inventairejoueur.setNbOuvrier(inventairejoueur.getNbOuvrier() + 1);
-//                retirerOuvrierSurZone(inventairejoueur, getNbOuvirerDuJoueur(nJoueur), nJoueur);
-//                break;
-//
-//            case FABRIQUE:
-//                inventairejoueur.setNbOutils(inventairejoueur.getNbOutils() + 1);
-//                retirerOuvrierSurZone(inventairejoueur, getNbOuvirerDuJoueur(nJoueur), nJoueur);
-//
-
 }

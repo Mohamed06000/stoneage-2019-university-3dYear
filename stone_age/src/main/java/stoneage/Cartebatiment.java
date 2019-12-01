@@ -1,12 +1,15 @@
 package stoneage;
 
-import org.jetbrains.annotations.NotNull;
 
-import java.lang.reflect.Array;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 
-public class Cartebatiment {
 
+/**
+ * Classe qui represente les cartes btiment
+ */
+public class Cartebatiment {
     int nbRessourceApayer;
     int point;
     int emplacement;
@@ -15,6 +18,14 @@ public class Cartebatiment {
 
 
 
+
+
+    /**
+     *Constructeur de Cartebatiment
+     * @param point
+     * @param ressource
+     */
+    @Contract(pure = true)
     Cartebatiment(int point , ArrayList<Ressource> ressource){
         this.emplacement=1;
         this.nbRessourceApayer=3;
@@ -22,7 +33,14 @@ public class Cartebatiment {
         this.ressource=ressource;
         this.PlaceReserver=false;
 
+
     }
+
+    /**
+     *Methode de placement d'ouvrier sur une carte batiment
+     * @param inventaireJoueur
+     * @param nbOuvrierAplacer
+     */
     public void placeOuvrierSurCarte(Inventaire inventaireJoueur, int nbOuvrierAplacer) {
         if (nbOuvrierAplacer == 1) {
             inventaireJoueur.setNbOuvrier(inventaireJoueur.getNbOuvrier() - 1);
@@ -30,20 +48,26 @@ public class Cartebatiment {
         }
     }
 
+
+
+    /**
+     *Methode pour retirer ouvrier sur une carte batiment
+     * @param inventaireJoueur
+     */
     public void retirerOuvrierSurCarte(@NotNull Inventaire inventaireJoueur) {
         inventaireJoueur.setNbOuvrier(inventaireJoueur.getNbOuvrier() + 1);
         this.PlaceReserver = false;
     }
 
 
+
     /**
-     * méthode qui permet au Joueur  de payer la carte si celui ci posséde les ressources suffisantes .
+     * Méthode qui permet au Joueur  de payer la carte si celui ci posséde les ressources suffisantes .
      * @param inventaireJoueur L'inventaire du joueur
      * @param j Le joueur
      */
     public void payement(Inventaire inventaireJoueur, Joueur j) {
-        int somme = 0;
-        int[] tab = new int[4];
+
         int nbargile = 0;
         int nbbois = 0;
         int nbor = 0;
@@ -76,4 +100,3 @@ public class Cartebatiment {
     }
 
 }
-
