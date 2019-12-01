@@ -191,7 +191,7 @@ public class Zone {
      * @param inventaire L'inventaire du joueur
      * @param nJoueur Le numéro du joueur
      */
-    public void gainZone(Inventaire inventaire, int nJoueur) {
+    public void gainZone(Inventaire inventaire, int nJoueur, Joueur IA) {
         /* gainZone renvoie un entier nb de ressources gagnées /// c'est dans plateau qu'on gere l'attribution des gains*/
         int somme = 0;
         int gain = 0;
@@ -199,25 +199,35 @@ public class Zone {
         for (int i = 0; i < this.getNbOuvirerDuJoueur(nJoueur); i++) { //Le nbOuvrierDuJoueur sur la zone en question et non pas de tous ses ouvriers.
             somme += de();
         }
+
+        if (IA.choixOutils(inventaire)){
+            somme += IA.choixNbOutils(inventaire);
+        }
+
         if (somme >= 6)
             gain = somme / this.getDiviseur();
 
         switch (this.getRessource()) {
 
             case OR:
-                inventaire.setNbNourriture(inventaire.getNbNourriture() + gain);
+                inventaire.setNbOr(inventaire.getNbOr() + gain);
+
                 break;
             case NOURRITURE:
-                inventaire.setNbBois(inventaire.getNbBois() + gain);
+                inventaire.setNbNourriture(inventaire.getNbNourriture() + gain);
+
                 break;
             case BOIS:
-                inventaire.setNbArgile(inventaire.getNbArgile() + gain);
+                inventaire.setNbBois(inventaire.getNbBois() + gain);
+
                 break;
             case ARGILE:
-                inventaire.setNbPierre(inventaire.getNbPierre() + gain);
+                inventaire.setNbArgile(inventaire.getNbArgile() + gain);
+
                 break;
             case PIERRE:
-                inventaire.setNbOr(inventaire.getNbOr() + gain);
+                inventaire.setNbPierre(inventaire.getNbPierre() + gain);
+
                 break;
 
             default:

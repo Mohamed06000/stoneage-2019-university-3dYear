@@ -4,7 +4,7 @@ import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 
 /**
- * Classe du lacement du Jeu .
+ * Classe du lacement du Jeu
  */
 public class Main {
     public  static  final  void main(String[] args){
@@ -15,7 +15,18 @@ public class Main {
             e.printStackTrace();
         }
 
-        Partie partie = new Partie(2) ;
+
+       // Partie partie = new Partie(2) ;
+        //partie.jouer() ;
+
+        Partie partie;
+        partie = new Partie(4,true) ;
         partie.jouer() ;
+
+  //      System.out.println("Simulation 500 parties");
+  //      for (int i = 0; i < 500; i++) {
+   //         partie = new Partie(2, false);
+   //         partie.jouer();
+    //    }
     }
 }

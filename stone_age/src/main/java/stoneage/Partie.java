@@ -16,7 +16,9 @@ public class Partie {
     /**
      * Le nombre de joueur
      */
+
     private static int nbJoueur = 4;
+
     /**
      * Objet qui represente le plateau de jeu
      */
@@ -26,6 +28,8 @@ public class Partie {
      */
     private int[] score;
 
+    private boolean affichage = false;
+
 
     //CONSTRUCTEUR
 
@@ -33,10 +37,11 @@ public class Partie {
      * Constructeur de la classe
      * @param nbJoueur Le nombre de joueurs
      */
-    Partie(int nbJoueur){
+    Partie(int nbJoueur, boolean affichage){
         this.nbJoueur = nbJoueur;
         plateau = new Plateau(nbJoueur);
         score = new int[nbJoueur];
+        this.affichage = affichage;
     }
 
 
@@ -59,19 +64,24 @@ public class Partie {
         System.out.println("Nb d'ouvriers total non place : " + plateau.nbOuvrierDispoTotal());
 
 
-        while(tour<6) {
+        while(tour<6) { //plateau.verifierNbCarteCivilisation() && plateau.verifierNbCarteBatiment()
+            if (affichage){
             System.out.println("_________________________________________________");
             System.out.println("|                TOUR : "+tour+"                      |");
             System.out.println("_________________________________________________");
 
             System.out.println("================PHASE DE PLACEMENT================");
-            plateau.placementPhase();
+            }
 
+            plateau.placementPhase(affichage);
 
+            if (affichage){
             System.out.println("================PHASE DE RECUPERATION================");
-            plateau.recuperationPhase();
-
+            }
+            plateau.recuperationPhase(affichage);
+            if(affichage){
             System.out.println("================PHASE NOURRIR================");
+            }
             plateau.phaseNourrir();
 
             tour++;
