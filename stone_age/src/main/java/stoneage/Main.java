@@ -15,7 +15,7 @@ public class Main {
             e.printStackTrace();
         }
 
-        Partie partie = new Partie(4) ;
+        Partie partie = new Partie(2) ;
         partie.jouer() ;
     }
 }

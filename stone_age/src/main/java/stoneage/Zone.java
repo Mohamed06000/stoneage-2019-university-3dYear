@@ -154,13 +154,14 @@ public class Zone {
 
     /**
      * Place un nombre d'ouvriers sur la zone
-     * @param inventaireJoueur L'inventaire du joueur qui place
      * @param nbOuvrierAplacer Le nombre d'ouvriers que le joueur place
      * @param nJoueur Le numéro du joueur
      */
-    public void placeOuvrierSurZone(Inventaire inventaireJoueur, int nbOuvrierAplacer, int nJoueur) {
+    public void placeOuvrierSurZone(int nbOuvrierAplacer, int nJoueur) {
+        if (nbOuvrierAplacer>0){
         this.nbOuvrierSurZone += nbOuvrierAplacer;
         this.nbOuvirerDuJoueur.set(nJoueur, getNbOuvirerDuJoueur(nJoueur) + nbOuvrierAplacer); //set permet de remplacer un element à un index donné contrairement a add.
+        }
     }
 
     /**

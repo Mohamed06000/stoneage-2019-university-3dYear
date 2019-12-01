@@ -139,6 +139,8 @@ public class Plateau {
     public void placementPhase(){
         boolean disponibiliteZone;
         boolean placed;
+        boolean twoPlayers= (listeInventaire.size()==2);
+        boolean threePlayers= (listeInventaire.size()==3);
         int choixNbOuvrier;
         Zone choixZone;
 
@@ -159,8 +161,9 @@ public class Plateau {
                         //System.out.println("----AVANT----");
                         //AfficheInfoJoueur(i,choixZone);
                         listeInventaire.get(i).setNbOuvrier(listeInventaire.get(i).getNbOuvrier() - choixNbOuvrier);
-                        choixZone.placeOuvrierSurZone(listeInventaire.get(i), choixNbOuvrier, i); //J'ajoute le num du joueur en parametre.
+                        choixZone.placeOuvrierSurZone(choixNbOuvrier, i); //J'ajoute le num du joueur en parametre.
                         ZoneVisitees.get(i).add(choixZone);
+                        if (twoPlayers && choixZone!=Chasse) {ZonesPleines.add(choixZone);}
                         updateStatutZone(); // Je fais l'uptade apres la placement et non plus avant afin que l'autre joueur beneficie de l'uptade pour le choix de la zone.
                         placed = false;
                         //System.out.println("----APRES----");
@@ -213,8 +216,8 @@ public class Plateau {
      */
     public static void AfficheInfoJoueur(int numJ, Zone z, ArrayList<ArrayList<Zone>> ZoneVisitees, Inventaire inventaire) {
         System.out.println("********Joueur " + (numJ+1) + "********");
-        System.out.println("Nb d'ouvrier total dans la zone " + z.getRessource() + " : " + z.getNbOuvrierSurZone());
-        System.out.println("Nb d'ouvrier du joueur dans la zone " + z.getRessource() + " : " + z.getNbOuvirerDuJoueur(numJ));
+        System.out.println("Nb d'ouvrier total dans la zone " + z + " : " + z.getNbOuvrierSurZone());
+        System.out.println("Nb d'ouvrier du joueur dans la zone " + z + " : " + z.getNbOuvirerDuJoueur(numJ));
         System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + (numJ+1) + " : " + inventaire.getNbOuvrier());
         //System.out.println("Nb de ressource dans l'inventaire du joueur " + j.getNum() + " : " + inventaire.getNbRessource());
         if (ZoneVisitees.get(numJ).size()>0) {
