@@ -1,31 +1,21 @@
 package stoneage;
 
 import org.jetbrains.annotations.NotNull;
+import java.util.Random;
+
 
 import java.util.ArrayList;
 
 public class CarteCivilisation {
+	
+    static Random rand = new Random();
+
 
 	public enum Couleur {
 		VERTE, JAUNE;
 	}
 	
 	
-	 public  static  final  void main(String[] args){
-		 
-		 CarteCivilisation carte1 = new CarteCivilisation(5, Couleur.VERTE, Ressource.BOIS);
-		 Inventaire i = new Inventaire() ;
-		 
-		 i.setNbBois(1);
-		 i.setNbArgile(1);
-		 i.setNbOr(2);
-		 
-		 System.out.println(carte1.payement(i, 2));
-		 
-		 
-		 
-		 
-	 }
 
 	
 
@@ -171,7 +161,12 @@ public class CarteCivilisation {
 		{
 			retirerOuvrierSurCarte(i);
 			i.stockCards.add(this);
-			// cards.remove(positionCards);
+			
+			gainCarte(i);
+			
+			
+			
+			Plateau.cards.remove(positionCards);
 
 		} else {
 
@@ -179,7 +174,89 @@ public class CarteCivilisation {
 
 		}
 	}
-	//
+	
+	
+	private void gainCarte(Inventaire i ) {
+
+		Ressource r = this.getressourceCarte();
+		
+		switch(r) {
+		  case OR:
+			  
+			  i.setNbOr(this.nbRessourceCarte);
+			  
+		    break;
+		  case NOURRITURE:
+			  i.setNbNourriture(this.nbRessourceCarte);
+			  break;
+		  case ARGILE:
+			  i.setNbArgile(this.nbRessourceCarte);
+			  break;
+		  case BOIS:
+			  i.setNbBois(this.nbRessourceCarte);
+			  break;
+		  case PIERRE:
+			  i.setNbPierre(this.nbRessourceCarte);
+		    break;
+		    // code block
+			  
+			  /*  OR,
+			    NOURRITURE,
+			    BOIS,
+			    ARGILE,
+			    PIERRE,
+			    POINT,
+			    OUTIL,
+			    AGRICULTURE;
+			    */
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+
+	public static void main(String[] args)
+	{
+		CarteCivilisation.de();
+		
+		
+	}
+	
+	public static void de()
+	{	
+		
+		int nbJoueur = Partie.getNbJoueur();
+		int resultat =0 ; 
+		
+		for (int i=0;i<nbJoueur;i++)
+		{
+			resultat+=rand.nextInt(6)+1;
+		}
+		
+		
+		
+		
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+		
+	}
 
 	public static ArrayList<CarteCivilisation> CreationCarte() {
 
@@ -198,6 +275,11 @@ public class CarteCivilisation {
 		cards.add(new CarteCivilisation(3, Couleur.VERTE, Ressource.POINT));
 		cards.add(new CarteCivilisation(3, Couleur.VERTE, Ressource.POINT));
 		cards.add(new CarteCivilisation(3, Couleur.VERTE, Ressource.POINT));
+		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.OUTIL));
+		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.AGRICULTURE));
+		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.AGRICULTURE));
+		
+		
 		
 
 		return cards;

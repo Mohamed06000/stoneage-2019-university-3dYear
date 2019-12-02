@@ -53,6 +53,14 @@ public class Plateau {
      * Zone FabriqueOutils
      */
     private Zone FabriqueOutils;
+    
+    /*
+     * tableau qui contient toutes les cartes de civilisations .
+     * */
+    
+    
+   public static  ArrayList<CarteCivilisation> cards=CarteCivilisation.CreationCarte();
+
 
     /**
      * La liste des zones disponibles au placement
