@@ -16,6 +16,26 @@ public class CarteCivilisation {
 	}
 	
 	
+	
+	public static void main(String[] args)
+	{
+			CarteCivilisation carte1 =new CarteCivilisation(5, Couleur.VERTE, Ressource.BOIS);
+			Inventaire i = new Inventaire();
+			
+			i.setNbBois(5);
+			
+			carte1.placeOuvrierSurCarte(i);
+			
+			carte1.recupererCarte(i, 0);
+			
+			
+			
+		
+	}
+	
+
+	
+	
 
 	
 
@@ -72,11 +92,11 @@ public class CarteCivilisation {
 	 * @param inventaireJoueur
 	 * @param nbOuvrierAplacer
 	 */
-	public void placeOuvrierSurCarte(Inventaire inventaireJoueur, int nbOuvrierAplacer) {
-		if (nbOuvrierAplacer == 1) {
+	public void placeOuvrierSurCarte(Inventaire inventaireJoueur) {
+		
 			inventaireJoueur.setNbOuvrier(inventaireJoueur.getNbOuvrier() - 1);
 			setPlaceReservee(true);
-		} 
+		
 
 	}
 
@@ -164,8 +184,6 @@ public class CarteCivilisation {
 			
 			gainCarte(i);
 			
-			
-			
 			Plateau.cards.remove(positionCards);
 
 		} else {
@@ -197,18 +215,17 @@ public class CarteCivilisation {
 			  break;
 		  case PIERRE:
 			  i.setNbPierre(this.nbRessourceCarte);
+			  break;
+		  case POINT:
+			  i.setNbPointTotal(this.nbRessourceCarte);
+			  break;
+		  case OUTIL:
+			  i.setNbOutils(this.nbRessourceCarte);
+			  break;
+		  case AGRICULTURE:
+			  i.setNiveauAgriculture(this.nbRessourceCarte);
 		    break;
-		    // code block
-			  
-			  /*  OR,
-			    NOURRITURE,
-			    BOIS,
-			    ARGILE,
-			    PIERRE,
-			    POINT,
-			    OUTIL,
-			    AGRICULTURE;
-			    */
+		  
 		}
 		
 		
@@ -222,12 +239,7 @@ public class CarteCivilisation {
 		
 	}
 
-	public static void main(String[] args)
-	{
-		CarteCivilisation.de();
-		
-		
-	}
+
 	
 	public static void de()
 	{	
@@ -243,13 +255,6 @@ public class CarteCivilisation {
 		
 		
 		
-        
-        
-        
-        
-        
-        
-        
         
         
         
