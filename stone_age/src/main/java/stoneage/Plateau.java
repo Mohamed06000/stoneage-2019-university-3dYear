@@ -380,7 +380,7 @@ public class Plateau {
      */
     public static void AfficheInfoJoueur(int numJ, Zone z, ArrayList<ArrayList<Zone>> ZoneVisitees, Inventaire inventaire) {
         System.out.println("********Joueur " + (numJ+1) + "********");
-        System.out.println("Nb d'ouvrier total dans la zone " + z + " : " + z.getNbOuvrierSurZone());
+            System.out.println("Nb d'ouvrier total dans la zone " + z + " : " + z.getNbOuvrierSurZone());
         System.out.println("Nb d'ouvrier du joueur dans la zone " + z + " : " + z.getNbOuvirerDuJoueur(numJ));
         System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + (numJ+1) + " : " + inventaire.getNbOuvrier());
         if (ZoneVisitees.get(numJ).size()>0) {

@@ -88,4 +88,17 @@ public class ZoneVillage extends Zone{
 
     }
 
+    @Override
+    public String toString() {
+        switch (this.getType_zone()){
+            case 0:
+                return "CHAMP";
+            case 1:
+                return "FABRIQUE";
+            case 2:
+                return "HUTTE";
+            default:
+                return "BEUG";
+        }
+    }
 }
