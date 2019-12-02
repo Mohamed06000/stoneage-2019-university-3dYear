@@ -179,6 +179,7 @@ public class CarteCivilisation {
 
 		}
 	}
+	//
 
 	public static ArrayList<CarteCivilisation> CreationCarte() {
 
