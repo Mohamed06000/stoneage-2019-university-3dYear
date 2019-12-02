@@ -60,6 +60,7 @@ public class Inventaire {
      * tableau qui contient les cartes des civilisations gagnées par le joueur
      * */
 
+     ArrayList<CarteCivilisation> stockCards = new ArrayList<CarteCivilisation>();
 
     //CONSTRUCTEUR
 
