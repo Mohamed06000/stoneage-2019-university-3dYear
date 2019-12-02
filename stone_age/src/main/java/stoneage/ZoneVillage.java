@@ -19,12 +19,17 @@ public class ZoneVillage extends Zone{
      */
     private ArrayList<Integer> nbOuvirerDuJoueur = new ArrayList<Integer>(); //Pour savoir cb d'ouvriers le joueur i a placé sur la zone z.
 
+    public int getType_zone() {
+        return type_zone;
+    }
+
     /**
      * ZoneVillage est 0 si c'est le Champ
      * ZoneVillage est 1 si c'est la Fabrique d'outils
      * ZoneVillage est 2 si c'est la Hutte
      */
     private int type_zone;
+
 
 
     /**
@@ -72,7 +77,10 @@ public class ZoneVillage extends Zone{
             }
         }
         else {
-            inventaire.setNbOuvrier(inventaire.getNbOuvrier()+1);
+            if (inventaire.getNbOuvrierTotal()<10){
+                inventaire.setNbOuvrier(inventaire.getNbOuvrier()+1);
+                inventaire.setNbOuvrierTotal(inventaire.getNbOuvrierTotal()+1);
+            }
         }
         retirerOuvrierSurZone(inventaire, getNbOuvirerDuJoueur(nJoueur), nJoueur);
 

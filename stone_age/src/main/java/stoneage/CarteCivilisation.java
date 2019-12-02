@@ -1,6 +1,5 @@
 package stoneage;
 
-import jdk.internal.loader.Resource;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;

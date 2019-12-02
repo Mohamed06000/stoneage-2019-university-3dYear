@@ -12,6 +12,8 @@ public class Inventaire {
 
     //CHAMPS
 
+    private int nbOuvrierTotal;
+
     /**
      * Le nombre d'ouvrier du joueur
      */
@@ -86,6 +88,7 @@ public class Inventaire {
      */
     public Inventaire(){
         this.nbOuvrier = 5;
+        this.nbOuvrierTotal=nbOuvrier;
         this.nbNourriture = 12;
         this.nbBois = 0;
         this.nbArgile = 0;
@@ -100,6 +103,15 @@ public class Inventaire {
 
 
     //METHODES
+
+
+    public int getNbOuvrierTotal() {
+        return nbOuvrierTotal;
+    }
+
+    public void setNbOuvrierTotal(int nbOuvrierTotal) {
+        this.nbOuvrierTotal = nbOuvrierTotal;
+    }
 
     /**
      * Récupère la liste des outils non-dispo du joueur

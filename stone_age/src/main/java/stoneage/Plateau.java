@@ -427,7 +427,6 @@ public class Plateau {
             ZonesDispo.add(z);
         }
     }
-
     /**
      * Restaure la liste des zones disponibles
      */
