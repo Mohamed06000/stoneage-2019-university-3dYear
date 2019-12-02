@@ -172,9 +172,9 @@ public class Plateau {
         this.Foret = new Zone(Ressource.BOIS, 12, 3, 0, 7);
         this.Glaisiere = new Zone(Ressource.ARGILE, 12, 4, 0, 7);
         this.Carriere = new Zone(Ressource.PIERRE, 12, 5, 0, 7);
-        this.Champ = new ZoneVillage(1,1,0);
-        this.FabriqueOutils = new ZoneVillage(1,1,1);
-        this.Hutte = new ZoneVillage(1,1,2);
+        this.Champ = new ZoneVillage(0,1,0);
+        this.FabriqueOutils = new ZoneVillage(0,1,1);
+        this.Hutte = new ZoneVillage(0,2,2);
         this.tabAllZone = new Zone[] {this.Riviere, this.Chasse, this.Foret, this.Glaisiere, this.Carriere,this.Champ,this.FabriqueOutils,this.Hutte};
         this.ZonesDispo = new ArrayList<Zone>(Arrays.asList(tabAllZone));
         this.ZoneVisitees = new ArrayList<ArrayList<Zone>>();
@@ -288,7 +288,7 @@ public class Plateau {
                             placed = false;
                             if(affichage)
                             {
-                                AfficheInfoJoueur(i,choixZone, ZoneVisitees, listeInventaire.get(i));
+                                AfficheInfoJoueur(i,choixZone, ZoneVisitees,CarteVisitees, listeInventaire.get(i));
                             }
                             if(accVillage==2){ ZonesDispo.remove(ZonesDispo.size()-1);}
 
@@ -301,7 +301,7 @@ public class Plateau {
                         placed = false;
                         if(affichage)
                         {
-                            AfficheInfoJoueur(i,choixCarte, CarteVisitees, listeInventaire.get(i));
+                            AfficheInfoJoueur(i,choixCarte,ZoneVisitees, CarteVisitees, listeInventaire.get(i));
                         }
                     }
 
@@ -334,7 +334,7 @@ public class Plateau {
                     }
                     ZoneVisitees.get(i).remove(zoneCourant);
                     if(affichage){
-                        AfficheInfoJoueur(i,zoneCourant, ZoneVisitees, listeInventaire.get(i));
+                        AfficheInfoJoueur(i,zoneCourant, ZoneVisitees, CarteVisitees,listeInventaire.get(i));
                     }
                 }
 
@@ -348,7 +348,7 @@ public class Plateau {
                     }
                     CarteVisitees.get(i).remove(carteCourant);
                     if(affichage){
-                        AfficheInfoJoueur(i,carteCourant, CarteVisitees, listeInventaire.get(i));
+                        AfficheInfoJoueur(i,carteCourant,ZoneVisitees, CarteVisitees, listeInventaire.get(i));
                     }
                 }
 
@@ -378,32 +378,34 @@ public class Plateau {
      * @param ZoneVisitees La  liste des zones visitées par le joueur
      * @param inventaire L'inventaire du joueur
      */
-    public static void AfficheInfoJoueur(int numJ, Zone z, ArrayList<ArrayList<Zone>> ZoneVisitees, Inventaire inventaire) {
+    public static void AfficheInfoJoueur(int numJ, Zone z, ArrayList<ArrayList<Zone>> ZoneVisitees,ArrayList<ArrayList<Cartebatiment>> CarteVisitees, Inventaire inventaire) {
         System.out.println("********Joueur " + (numJ+1) + "********");
-        System.out.println("Nb d'ouvrier total dans la zone " + z + " : " + z.getNbOuvrierSurZone());
+            System.out.println("Nb d'ouvrier total dans la zone " + z + " : " + z.getNbOuvrierSurZone());
         System.out.println("Nb d'ouvrier du joueur dans la zone " + z + " : " + z.getNbOuvirerDuJoueur(numJ));
         System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + (numJ+1) + " : " + inventaire.getNbOuvrier());
         if (ZoneVisitees.get(numJ).size()>0) {
             System.out.println("Les zones visitées : " + (ZoneVisitees.get(numJ)));
         }
-    }
-
-    /**
-     * Affiche les informations du joueur
-     * @param numJ Le numero du joueur
-     //* @param z Une zone
-     //* @param ZoneVisitees La  liste des zones visitées par le joueur
-     * @param inventaire L'inventaire du joueur
-     */
-    public static void AfficheInfoJoueur(int numJ, Cartebatiment carte, ArrayList<ArrayList<Cartebatiment>> CarteVisitees, Inventaire inventaire) {
-        System.out.println("********Joueur " + (numJ+1) + "********");
-        //System.out.println("Nb d'ouvrier total dans la zone " + carte + " : " + carte.getNbOuvrierSurZone());
-        //System.out.println("Nb d'ouvrier du joueur dans la zone " + carte + " : " + z.getNbOuvirerDuJoueur(numJ));
-        System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + (numJ+1) + " : " + inventaire.getNbOuvrier());
         if (CarteVisitees.get(numJ).size()>0) {
-            System.out.println("Les zones visitées : " + (CarteVisitees.get(numJ)));
+            System.out.println("Les cartes visitées : " + (CarteVisitees.get(numJ)));
         }
     }
+
+    public static void AfficheInfoJoueur(int numJ, Cartebatiment c, ArrayList<ArrayList<Zone>> ZoneVisitees,ArrayList<ArrayList<Cartebatiment>> CarteVisitees, Inventaire inventaire) {
+        System.out.println("********Joueur " + (numJ+1) + "********");
+       // System.out.println("Nb d'ouvrier total dans la zone " + z + " : " + z.getNbOuvrierSurZone());
+        //System.out.println("Nb d'ouvrier du joueur dans la zone " + z + " : " + z.getNbOuvirerDuJoueur(numJ));
+        System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + (numJ+1) + " : " + inventaire.getNbOuvrier());
+        if (ZoneVisitees.get(numJ).size()>0) {
+            System.out.println("Les zones visitées : " + (ZoneVisitees.get(numJ)));
+        }
+        if (CarteVisitees.get(numJ).size()>0) {
+            System.out.println("Les cartes visitées : " + (CarteVisitees.get(numJ)));
+        }
+    }
+
+
+
 
     /**
      * Restaure la liste des outils disponibles
@@ -427,7 +429,6 @@ public class Plateau {
             ZonesDispo.add(z);
         }
     }
-
     /**
      * Restaure la liste des zones disponibles
      */

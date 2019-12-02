@@ -32,12 +32,13 @@ public class CarteCivilisation {
 	private Ressource ressourceCarte;
 	private int nbRessourceCarte;
 	private Couleur couleur;
-	private boolean placeReservee = false;
+	private boolean PlaceReserver = false;
 
 	CarteCivilisation(int nbRessourceCarte, Couleur couleur, Ressource ressourceCarte) {
 		this.nbRessourceCarte = nbRessourceCarte;
 		this.couleur = couleur;
 		this.ressourceCarte = ressourceCarte;
+		this.PlaceReserver=false;
 	}
 
 	//setter
@@ -50,7 +51,7 @@ public class CarteCivilisation {
 	}
 
 	public void setPlaceReservee(boolean placeReservee) {
-		this.placeReservee = placeReservee;
+		this.PlaceReserver = placeReservee;
 	}
 
 	public void setressourceCarte(Ressource ressourceCarte) {
@@ -71,7 +72,7 @@ public class CarteCivilisation {
 		return this.ressourceCarte;
 	}
 	public boolean isPlaceReservee() {
-		return this.placeReservee;
+		return this.PlaceReserver;
 	}
 
 	//methode de classe :
@@ -82,11 +83,13 @@ public class CarteCivilisation {
 	 * @param nbOuvrierAplacer
 	 */
 	public void placeOuvrierSurCarte(Inventaire inventaireJoueur, int nbOuvrierAplacer) {
-		if ((isPlaceReservee() == false) && (nbOuvrierAplacer == 1)) {
+		if (nbOuvrierAplacer == 1) {
 			inventaireJoueur.setNbOuvrier(inventaireJoueur.getNbOuvrier() - 1);
 			setPlaceReservee(true);
 		} 
+
 	}
+
 
 	/**
 	 *
@@ -94,7 +97,7 @@ public class CarteCivilisation {
 	 */
 	public void retirerOuvrierSurCarte(@NotNull Inventaire inventaireJoueur) {
 		inventaireJoueur.setNbOuvrier(inventaireJoueur.getNbOuvrier() + 1);
-		this.placeReservee = false;
+		this.PlaceReserver = false;
 
 	}
 
@@ -107,7 +110,6 @@ public class CarteCivilisation {
 	/**
 	 * méthode qui permet au Joueur  de payer la carte si celui ci posséde les ressources suffisantes .
 	 * @param inventaireJoueur
-	 * @param j
 	 */
 	public boolean payement(Inventaire inventaireJoueur, int positionCards) {
 		int somme = inventaireJoueur.getNbRessourceTotal();

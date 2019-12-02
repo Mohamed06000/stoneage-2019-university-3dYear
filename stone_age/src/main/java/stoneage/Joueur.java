@@ -128,21 +128,16 @@ class Joueur {
     public int choixNbOuvrier(Inventaire inventaire, Zone choixZone) {
             int alea=0;
 
-            switch (choixZone.getRessource()) {
-                case BOIS:
-                case NOURRITURE:
-                case ARGILE:
-                case PIERRE:
-                case OR:
-                    alea = rand.nextInt(inventaire.getNbOuvrier()) + 1; //le +1 a l'exterieur de rand sinon ca peut retourner 0.
-                    break;
-                case OUVRIER:
-                    alea = 2;
-                    break;
-                case NIVEAUAGR:
-                case OUTIL:
+            if (choixZone instanceof Zone) {
+                alea = rand.nextInt(inventaire.getNbOuvrier()) + 1; //le +1 a l'exterieur de rand sinon ca peut retourner 0.
+            }
+            else {
+                if (choixZone.getClass().getSimpleName().equals("Champ") | choixZone.getClass().getSimpleName().equals("Fabrique")){
                     alea = 1;
-                    break;
+                }
+                if (choixZone.getClass().getSimpleName().equals("Hutte")) {
+                    alea = 2;
+                }
             }
 
             return alea;

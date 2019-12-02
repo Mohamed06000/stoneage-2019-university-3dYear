@@ -19,12 +19,17 @@ public class ZoneVillage extends Zone{
      */
     private ArrayList<Integer> nbOuvirerDuJoueur = new ArrayList<Integer>(); //Pour savoir cb d'ouvriers le joueur i a placé sur la zone z.
 
+    public int getType_zone() {
+        return type_zone;
+    }
+
     /**
      * ZoneVillage est 0 si c'est le Champ
      * ZoneVillage est 1 si c'est la Fabrique d'outils
      * ZoneVillage est 2 si c'est la Hutte
      */
     private int type_zone;
+
 
 
     /**
@@ -42,40 +47,58 @@ public class ZoneVillage extends Zone{
             inventaire.setNiveauAgriculture(inventaire.getNiveauAgriculture()+1);
         }
         else if (this.type_zone==1){
-            inventaire.setNbOutils(inventaire.getNbOutils()+1);
-            for (int i = 0; i < 3; i++) {
-                if (inventaire.getNbOutils()<4) {
-                    if (inventaire.getOutils().get(i)<1) {
-                        inventaire.getOutils().set(i, 1);
-                        break;
+            if (inventaire.getNbOutils()<12){
+                inventaire.setNbOutils(inventaire.getNbOutils()+1);
+                for (int i = 0; i < 3; i++) {
+                    if (inventaire.getNbOutils()<4) {
+                        if (inventaire.getOutils().get(i)<1) {
+                            inventaire.getOutils().set(i, 1);
+                            break;
+                        }
                     }
-                }
-                if (inventaire.getNbOutils()>=3 && inventaire.getNbOutils()<7) {
-                    if (inventaire.getOutils().get(i)<2) {
-                        inventaire.getOutils().set(i, 2);
-                        break;
+                    if (inventaire.getNbOutils()>=3 && inventaire.getNbOutils()<7) {
+                        if (inventaire.getOutils().get(i)<2) {
+                            inventaire.getOutils().set(i, 2);
+                            break;
+                        }
                     }
-                }
-                if (inventaire.getNbOutils()>=6 && inventaire.getNbOutils()<10) {
-                    if (inventaire.getOutils().get(i)<3) {
-                        inventaire.getOutils().set(i, 3);
-                        break;
+                    if (inventaire.getNbOutils()>=6 && inventaire.getNbOutils()<10) {
+                        if (inventaire.getOutils().get(i)<3) {
+                            inventaire.getOutils().set(i, 3);
+                            break;
+                        }
                     }
-                }
-                if (inventaire.getNbOutils()>=9 && inventaire.getNbOutils()<13) {
-                    if (inventaire.getOutils().get(i)<4) {
-                        inventaire.getOutils().set(i, 4);
-                        break;
+                    if (inventaire.getNbOutils()>=9 && inventaire.getNbOutils()<13) {
+                        if (inventaire.getOutils().get(i)<4) {
+                            inventaire.getOutils().set(i, 4);
+                            break;
+                        }
                     }
-                }
 
+                }
             }
         }
         else {
-            inventaire.setNbOuvrier(inventaire.getNbOuvrier()+1);
+            if (inventaire.getNbOuvrierTotal()<10){
+                inventaire.setNbOuvrier(inventaire.getNbOuvrier()+1);
+                inventaire.setNbOuvrierTotal(inventaire.getNbOuvrierTotal()+1);
+            }
         }
         retirerOuvrierSurZone(inventaire, getNbOuvirerDuJoueur(nJoueur), nJoueur);
 
     }
 
+    @Override
+    public String toString() {
+        switch (this.getType_zone()){
+            case 0:
+                return "CHAMP";
+            case 1:
+                return "FABRIQUE";
+            case 2:
+                return "HUTTE";
+            default:
+                return "BEUG";
+        }
+    }
 }
