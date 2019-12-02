@@ -103,10 +103,14 @@ class Joueur {
         return rand.nextInt(2)+1;
     }
 
-    public Cartebatiment choixCarte(ArrayList<Cartebatiment> carteDispo) {
+    public Cartebatiment choixCartePlacement(ArrayList<ArrayList<Cartebatiment>> listeCarteTotale) {
+        int alea = rand.nextInt(listeCarteTotale.size()); // Sans +1 a l'interieur de rand sinon ca peut retourner alea=8 alors qu'on a index max = 7.
+        return listeCarteTotale.get(alea).get(0);
+    }
 
-        int alea = rand.nextInt(carteDispo.size()); // Sans +1 a l'interieur de rand sinon ca peut retourner alea=8 alors qu'on a index max = 7.
-        return carteDispo.get(alea);
+    public Cartebatiment choixCarteRecuperation(ArrayList<Cartebatiment> CarteVisitees) {
+        int alea = rand.nextInt(CarteVisitees.size());
+        return CarteVisitees.get(alea);
     }
 
     /**
@@ -156,6 +160,10 @@ class Joueur {
         else {
             return false;
         }
+    }
+
+    public int choixNbRessource(){
+        return rand.nextInt(7)+1;
     }
 
     /**
