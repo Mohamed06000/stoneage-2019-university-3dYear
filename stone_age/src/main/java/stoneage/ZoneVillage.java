@@ -47,33 +47,35 @@ public class ZoneVillage extends Zone{
             inventaire.setNiveauAgriculture(inventaire.getNiveauAgriculture()+1);
         }
         else if (this.type_zone==1){
-            inventaire.setNbOutils(inventaire.getNbOutils()+1);
-            for (int i = 0; i < 3; i++) {
-                if (inventaire.getNbOutils()<4) {
-                    if (inventaire.getOutils().get(i)<1) {
-                        inventaire.getOutils().set(i, 1);
-                        break;
+            if (inventaire.getNbOutils()<12){
+                inventaire.setNbOutils(inventaire.getNbOutils()+1);
+                for (int i = 0; i < 3; i++) {
+                    if (inventaire.getNbOutils()<4) {
+                        if (inventaire.getOutils().get(i)<1) {
+                            inventaire.getOutils().set(i, 1);
+                            break;
+                        }
                     }
-                }
-                if (inventaire.getNbOutils()>=3 && inventaire.getNbOutils()<7) {
-                    if (inventaire.getOutils().get(i)<2) {
-                        inventaire.getOutils().set(i, 2);
-                        break;
+                    if (inventaire.getNbOutils()>=3 && inventaire.getNbOutils()<7) {
+                        if (inventaire.getOutils().get(i)<2) {
+                            inventaire.getOutils().set(i, 2);
+                            break;
+                        }
                     }
-                }
-                if (inventaire.getNbOutils()>=6 && inventaire.getNbOutils()<10) {
-                    if (inventaire.getOutils().get(i)<3) {
-                        inventaire.getOutils().set(i, 3);
-                        break;
+                    if (inventaire.getNbOutils()>=6 && inventaire.getNbOutils()<10) {
+                        if (inventaire.getOutils().get(i)<3) {
+                            inventaire.getOutils().set(i, 3);
+                            break;
+                        }
                     }
-                }
-                if (inventaire.getNbOutils()>=9 && inventaire.getNbOutils()<13) {
-                    if (inventaire.getOutils().get(i)<4) {
-                        inventaire.getOutils().set(i, 4);
-                        break;
+                    if (inventaire.getNbOutils()>=9 && inventaire.getNbOutils()<13) {
+                        if (inventaire.getOutils().get(i)<4) {
+                            inventaire.getOutils().set(i, 4);
+                            break;
+                        }
                     }
-                }
 
+                }
             }
         }
         else {

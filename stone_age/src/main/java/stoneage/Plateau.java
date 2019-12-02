@@ -172,9 +172,9 @@ public class Plateau {
         this.Foret = new Zone(Ressource.BOIS, 12, 3, 0, 7);
         this.Glaisiere = new Zone(Ressource.ARGILE, 12, 4, 0, 7);
         this.Carriere = new Zone(Ressource.PIERRE, 12, 5, 0, 7);
-        this.Champ = new ZoneVillage(1,1,0);
-        this.FabriqueOutils = new ZoneVillage(1,1,1);
-        this.Hutte = new ZoneVillage(1,1,2);
+        this.Champ = new ZoneVillage(0,1,0);
+        this.FabriqueOutils = new ZoneVillage(0,1,1);
+        this.Hutte = new ZoneVillage(0,2,2);
         this.tabAllZone = new Zone[] {this.Riviere, this.Chasse, this.Foret, this.Glaisiere, this.Carriere,this.Champ,this.FabriqueOutils,this.Hutte};
         this.ZonesDispo = new ArrayList<Zone>(Arrays.asList(tabAllZone));
         this.ZoneVisitees = new ArrayList<ArrayList<Zone>>();
