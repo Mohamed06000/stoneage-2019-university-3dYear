@@ -1,6 +1,5 @@
 package stoneage;
 
-import jdk.internal.loader.Resource;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -10,6 +9,25 @@ public class CarteCivilisation {
 	public enum Couleur {
 		VERTE, JAUNE;
 	}
+	
+	
+	 public  static  final  void main(String[] args){
+		 
+		 CarteCivilisation carte1 = new CarteCivilisation(5, Couleur.VERTE, Ressource.BOIS);
+		 Inventaire i = new Inventaire() ;
+		 
+		 i.setNbBois(1);
+		 i.setNbArgile(1);
+		 i.setNbOr(2);
+		 
+		 System.out.println(carte1.payement(i, 2));
+		 
+		 
+		 
+		 
+	 }
+
+	
 
 	private Ressource ressourceCarte;
 	private int nbRessourceCarte;
@@ -67,14 +85,7 @@ public class CarteCivilisation {
 		if ((isPlaceReservee() == false) && (nbOuvrierAplacer == 1)) {
 			inventaireJoueur.setNbOuvrier(inventaireJoueur.getNbOuvrier() - 1);
 			setPlaceReservee(true);
-		} else {
-			if (isPlaceReservee() == true) {
-				throw new java.lang.Error("la carte est deja reservée !");
-			} else {
-				throw new java.lang.Error("on peut pas placer plus qu'un ouvrier sur une carte");
-
-			}
-		}
+		} 
 	}
 
 	/**
@@ -99,7 +110,7 @@ public class CarteCivilisation {
 	 * @param j
 	 */
 	public boolean payement(Inventaire inventaireJoueur, int positionCards) {
-		int somme = 0;
+		int somme = inventaireJoueur.getNbRessourceTotal();
 		int prix = positionCards + 1; // le tableau commence de 0 donc le prix est tjrs egale position de la carte + 1
 		int[] tab = new int[4];
 		tab[0] = inventaireJoueur.getNbBois();
@@ -107,9 +118,7 @@ public class CarteCivilisation {
 		tab[2] = inventaireJoueur.getNbPierre();
 		tab[3] = inventaireJoueur.getNbOr();
 
-		for (int k = 0; k<tab.length; k++) {
-			somme += tab[k];
-		}
+		
 
 		if (somme<prix) {
 			return false;
@@ -172,18 +181,21 @@ public class CarteCivilisation {
 	public static ArrayList<CarteCivilisation> CreationCarte() {
 
 		ArrayList<CarteCivilisation> cards = new ArrayList<CarteCivilisation> ();
+		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.NOURRITURE));
 		cards.add(new CarteCivilisation(5, Couleur.VERTE, Ressource.PIERRE));
+		cards.add(new CarteCivilisation(3, Couleur.VERTE, Ressource.NOURRITURE));
 		cards.add(new CarteCivilisation(2, Couleur.VERTE, Ressource.PIERRE));
-		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.PIERRE));
-		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.OR));
 		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.ARGILE));
+		cards.add(new CarteCivilisation(4, Couleur.VERTE, Ressource.NOURRITURE));
 		cards.add(new CarteCivilisation(7, Couleur.VERTE, Ressource.NOURRITURE));
 		cards.add(new CarteCivilisation(2, Couleur.VERTE, Ressource.NOURRITURE));
-		cards.add(new CarteCivilisation(4, Couleur.VERTE, Ressource.NOURRITURE));
+		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.OR));
 		cards.add(new CarteCivilisation(5, Couleur.VERTE, Ressource.NOURRITURE));
-		cards.add(new CarteCivilisation(3, Couleur.VERTE, Ressource.NOURRITURE));
-		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.NOURRITURE));
-		cards.add(new CarteCivilisation(3, Couleur.VERTE, Ressource.NOURRITURE));
+		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.PIERRE));
+		cards.add(new CarteCivilisation(3, Couleur.VERTE, Ressource.POINT));
+		cards.add(new CarteCivilisation(3, Couleur.VERTE, Ressource.POINT));
+		cards.add(new CarteCivilisation(3, Couleur.VERTE, Ressource.POINT));
+		
 
 		return cards;
 	}

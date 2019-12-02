@@ -6,4 +6,5 @@ public enum Ressource {
     BOIS,
     ARGILE,
     PIERRE,
+    POINT;
 }
