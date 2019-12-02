@@ -23,6 +23,7 @@ public class Cartebatiment {
     }
 
     private boolean PlaceReserver;
+    private int type_carte;
 
 
     /**
@@ -35,15 +36,17 @@ public class Cartebatiment {
         this.nbOuvrierSurCarte = 1;
         this.nbRessourceApayer = 3;
         this.point = point;
+        this.type_carte=1;
         this.ressource = ressource;
         this.PlaceReserver = false;
 
     }
 
-    Cartebatiment(int nbRessourceApayer, int nbRessourceDiff) {
+    Cartebatiment(int nbRessourceApayer, int nbRessourceDiff, int type_carte) {
         this.nbOuvrierSurCarte = 1;
         this.nbRessourceApayer = nbRessourceApayer;
         this.point = point;
+        this.type_carte=type_carte;
         this.nbRessourceDiff = nbRessourceDiff;
         this.PlaceReserver = false;
 
@@ -82,11 +85,12 @@ public class Cartebatiment {
      *
      * @param inventaireJoueur L'inventaire du joueur
      */
-    public void payement(Inventaire inventaireJoueur) {
+    public void payement(Inventaire inventaireJoueur, int choixNbRessource) {
 
 
-        if (nbRessourceDiff == 7) {
-            for (int i = 0; i < nbRessourceApayer; i++) {
+        if (this.type_carte==3) {
+
+            for (int i = 0; i < choixNbRessource; i++) {
                 if (inventaireJoueur.getNbBois() > 0) {
                     inventaireJoueur.setNbBois(inventaireJoueur.getNbBois() - 1);
                     point += 1 * 3;
@@ -106,9 +110,61 @@ public class Cartebatiment {
             }
         }
 
-        if (nbRessourceDiff >= 1 && nbRessourceDiff < 5) {
-
-        } else {
+        if (this.type_carte==2) {
+            switch (nbRessourceDiff) {
+                case 1 :
+                    if (inventaireJoueur.getNbBois() > 0) {
+                        inventaireJoueur.setNbBois(inventaireJoueur.getNbBois() - 1);
+                        point += 1 * 3;
+                    }
+                case 2 :
+                    for (int i = 0; i < 2; i++) {
+                        if (inventaireJoueur.getNbBois() > 0) {
+                            inventaireJoueur.setNbBois(inventaireJoueur.getNbBois() - 1);
+                            point += 1 * 3;
+                        }
+                        if (inventaireJoueur.getNbArgile() > 0) {
+                            inventaireJoueur.setNbArgile(inventaireJoueur.getNbArgile() - 1);
+                            point += 1 * 4;
+                        }
+                    }
+                case 3:
+                    for (int i = 0; i < 3; i++) {
+                        if (inventaireJoueur.getNbBois() > 0) {
+                            inventaireJoueur.setNbBois(inventaireJoueur.getNbBois() - 1);
+                            point += 1 * 3;
+                        }
+                        if (inventaireJoueur.getNbArgile() > 0) {
+                            inventaireJoueur.setNbArgile(inventaireJoueur.getNbArgile() - 1);
+                            point += 1 * 4;
+                        }
+                        if (inventaireJoueur.getNbPierre() > 0) {
+                            inventaireJoueur.setNbPierre(inventaireJoueur.getNbPierre() - 1);
+                            point += 1 * 5;
+                        }
+                    }
+                case 4 :
+                    for (int i = 0; i < 4; i++) {
+                        if (inventaireJoueur.getNbBois() > 0) {
+                            inventaireJoueur.setNbBois(inventaireJoueur.getNbBois() - 1);
+                            point += 1 * 3;
+                        }
+                        if (inventaireJoueur.getNbArgile() > 0) {
+                            inventaireJoueur.setNbArgile(inventaireJoueur.getNbArgile() - 1);
+                            point += 1 * 4;
+                        }
+                        if (inventaireJoueur.getNbPierre() > 0) {
+                            inventaireJoueur.setNbPierre(inventaireJoueur.getNbPierre() - 1);
+                            point += 1 * 5;
+                        }
+                        if (inventaireJoueur.getNbOr() > 0) {
+                            inventaireJoueur.setNbOr(inventaireJoueur.getNbOr() - 1);
+                            point += 1 * 6;
+                        }
+                    }
+            }
+        }
+        if (this.type_carte==1){
             int nbargile = 0;
             int nbbois = 0;
             int nbor = 0;
@@ -144,7 +200,12 @@ public class Cartebatiment {
     }
 
     public String toString() {
-        return "Carte Batiment";
+        if (nbRessourceDiff==7)
+            return "CarteBatiment1-7";
+        if (nbRessourceDiff>=1 && nbRessourceDiff<5)
+            return "CarteBatiment-5";
+        else
+            return "CarteBatiment-3";
     }
 }
 

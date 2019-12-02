@@ -307,6 +307,6 @@ public class Inventaire {
      * @return Le nombre de ressource
      */
     public int getNbRessourceTotal() {
-        return getNbNourriture()+getNbBois()+getNbArgile()+getNbPierre()+getNbOr();
+        return getNbBois()+getNbArgile()+getNbPierre()+getNbOr();
     }
 }
