@@ -3,7 +3,6 @@ package stoneage;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * La classe de l'inventaire du joueur
@@ -59,8 +58,7 @@ public class Inventaire {
      */
     private int nbPointTotal;
 
-    /*
-     * 
+    /**
      * tableau qui contient les cartes des civilisations gagnées par le joueur
      * */
 
