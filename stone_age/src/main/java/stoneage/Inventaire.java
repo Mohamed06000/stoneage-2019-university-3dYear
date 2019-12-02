@@ -1,6 +1,8 @@
 
 package stoneage;
 
+import java.util.ArrayList;
+
 /**
  * La classe de l'inventaire du joueur
  */
@@ -53,6 +55,11 @@ public class Inventaire {
      */
     private int nbPointTotal;
 
+    /*
+     * 
+     * tableau qui contient les cartes des civilisations gagnées par le joueur
+     * */
+
 
     //CONSTRUCTEUR
 
@@ -84,6 +91,18 @@ public class Inventaire {
      */
     public int getNbOuvrier() {
         return nbOuvrier;
+    }
+    
+    public String toString() {
+    	return "nb d'ouvrier= " +nbOuvrier+
+    		     "\nnb bois = " +nbBois+
+    		     "\nnbd'Argile = " +nbArgile+
+    		     "\nnb Pierre = " +nbPierre+
+    		     "\nnb d'or  = " +nbOr+
+    		     "\nnb d'outils  = " +nbOutils+
+    		     "\nnb nourriture = " +nbNourriture+
+    		     "\nLe niveau d'agriculture = " +niveauAgriculture+
+    		     "\nnb de points  = " +nbPointTotal ;
     }
 
     /**
