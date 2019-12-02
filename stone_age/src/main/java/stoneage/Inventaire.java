@@ -2,6 +2,8 @@
 package stoneage;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * La classe de l'inventaire du joueur
@@ -9,6 +11,8 @@ import java.util.ArrayList;
 public class Inventaire {
 
     //CHAMPS
+
+    private int nbOuvrierTotal;
 
     /**
      * Le nombre d'ouvrier du joueur
@@ -84,6 +88,7 @@ public class Inventaire {
      */
     public Inventaire(){
         this.nbOuvrier = 5;
+        this.nbOuvrierTotal=nbOuvrier;
         this.nbNourriture = 12;
         this.nbBois = 0;
         this.nbArgile = 0;
@@ -91,13 +96,22 @@ public class Inventaire {
         this.nbOr = 0;
         this.nbOutils = 0;
         this.niveauAgriculture = 0;
-        this.outils = new ArrayList<Integer>();
-        this.outilsDispo = new ArrayList<Integer>();
-        this.outilsNonDispo = new ArrayList<Integer>();
+        this.outils = new ArrayList<Integer>(Arrays.asList(0,0,0));
+        this.outilsDispo = new ArrayList<Integer>(Arrays.asList(0,0,0));
+        this.outilsNonDispo = new ArrayList<Integer>(Arrays.asList(0,0,0));
     }
 
 
     //METHODES
+
+
+    public int getNbOuvrierTotal() {
+        return nbOuvrierTotal;
+    }
+
+    public void setNbOuvrierTotal(int nbOuvrierTotal) {
+        this.nbOuvrierTotal = nbOuvrierTotal;
+    }
 
     /**
      * Récupère la liste des outils non-dispo du joueur
@@ -262,8 +276,7 @@ public class Inventaire {
      */
     public int calculPoint(){
         int point;
-        point = this.getNbArgile()+this.getNbBois()+this.getNbNourriture()+this.getNbOr();
-        point += this.getNbPierre()+this.getNbOutils();
+        point = this.getNbArgile()+this.getNbBois()+this.getNbNourriture()+this.getNbOr()+this.getNbPierre()+this.getNbOutils();
         return point;
     }
 

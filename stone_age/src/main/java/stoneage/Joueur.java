@@ -99,6 +99,16 @@ class Joueur {
         return result ;
     }
 
+    public int choixCarteOuZone() {
+        return rand.nextInt(2)+1;
+    }
+
+    public Cartebatiment choixCarte(ArrayList<Cartebatiment> carteDispo) {
+
+        int alea = rand.nextInt(carteDispo.size()); // Sans +1 a l'interieur de rand sinon ca peut retourner alea=8 alors qu'on a index max = 7.
+        return carteDispo.get(alea);
+    }
+
     /**
      * Choisit la zone de placement
      * @param zonesDispo Les zones disponibles au placement
@@ -116,10 +126,23 @@ class Joueur {
      * @return Un nombre d'ouvriers
      */
     public int choixNbOuvrier(Inventaire inventaire, Zone choixZone) {
-        int alea;
-        alea = rand.nextInt(inventaire.getNbOuvrier()) + 1; //le +1 a l'exterieur de rand sinon ca peut retourner 0.
-        return alea;
-    }
+            int alea=0;
+
+            if (choixZone instanceof Zone) {
+                alea = rand.nextInt(inventaire.getNbOuvrier()) + 1; //le +1 a l'exterieur de rand sinon ca peut retourner 0.
+            }
+            else {
+                if (choixZone.getClass().getSimpleName()=="Champ" |choixZone.getClass().getSimpleName()=="Fabrique"){
+                    alea = 1;
+                }
+                if (choixZone.getClass().getSimpleName()=="Hutte") {
+                    alea = 2;
+                }
+            }
+
+            return alea;
+        }
+
 
     /**
      * Choisit s'il utiliser ses outils
@@ -147,7 +170,7 @@ class Joueur {
         for (int i = 0; i < nbOutilsUtilise ; i++) {
             int indice = rand.nextInt(inventaire.getOutilsDispo().size());
             sommeOutils += inventaire.getOutilsDispo().get(indice);
-            inventaire.getOutilsNonDispo().set(indice,inventaire.getOutilsDispo().get(indice));
+            inventaire.getOutilsNonDispo().add(inventaire.getOutilsDispo().get(indice));
             inventaire.getOutilsDispo().remove(indice);
         }
 
