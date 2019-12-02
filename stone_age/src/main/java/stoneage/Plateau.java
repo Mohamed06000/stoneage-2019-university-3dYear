@@ -1,6 +1,7 @@
 package stoneage;
 
 
+import java.awt.*;
 import java.util.*;
 
 /**
@@ -72,6 +73,9 @@ public class Plateau {
     ArrayList<Cartebatiment> listeCarteVisible;
     Cartebatiment[] listeCarteTotale;
     ArrayList<Cartebatiment> listeCarteReserve;
+    ArrayList<Cartebatiment> listecartetotal;
+
+
 
     private Cartebatiment carte1;
     private Cartebatiment carte2;
@@ -155,6 +159,15 @@ public class Plateau {
         }
         return n;
     }
+
+    /**
+     *
+     */
+    public void melanger(){
+        Collections.shuffle(listecartetotal);
+    }
+
+
 
     /**
      * Lance la phase de placement
