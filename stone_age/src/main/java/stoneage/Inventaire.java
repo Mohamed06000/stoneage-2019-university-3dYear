@@ -78,6 +78,8 @@ public class Inventaire {
      */
     private ArrayList<Integer> outilsNonDispo;
 
+    private ArrayList<Cartebatiment> cartesBatiments;
+
 
     //CONSTRUCTEUR
 
@@ -97,11 +99,16 @@ public class Inventaire {
         this.outils = new ArrayList<Integer>(Arrays.asList(0,0,0));
         this.outilsDispo = new ArrayList<Integer>(Arrays.asList(0,0,0));
         this.outilsNonDispo = new ArrayList<Integer>(Arrays.asList(0,0,0));
+        this.cartesBatiments = new ArrayList<>();
     }
 
 
     //METHODES
 
+
+    public ArrayList<Cartebatiment> getCartesBatiments() {
+        return cartesBatiments;
+    }
 
     public int getNbOuvrierTotal() {
         return nbOuvrierTotal;

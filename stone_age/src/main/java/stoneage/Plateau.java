@@ -335,9 +335,10 @@ public class Plateau {
 
                 if (choixCarteOuZone==2 && CarteVisitees.get(i).size()>0){
                     carteCourant = IA.choixCarteRecuperation(CarteVisitees.get(i));
-                    if (listeInventaire.get(i).getNbRessourceTotal()>=carteCourant.getNbRessourceApayer()) {
+                    if (listeInventaire.get(i).getNbRessourceTotal()>=carteCourant.getNbRessourceApayer() && IA.choixUtiliser()) {
                         int choixNbRessource = IA.choixNbRessource();
                         carteCourant.payement(listeInventaire.get(i),choixNbRessource);
+                        listeInventaire.get(i).getCartesBatiments().add(carteCourant);
                         for (int j = 0; j < listeCarteTotale.size(); j++) {
                             if (listeCarteTotale.get(j).contains(carteCourant)){
                                 listeCarteTotale.get(j).remove(carteCourant);
@@ -491,14 +492,14 @@ public class Plateau {
 //        else
 //            return true;
 //    }
-//
-//    public boolean verifierNbCarteBatiment() {
-//        for (int i = 0; i < carteBatiment.size(); i++) {
-//            if (carteBatiment.get(i).size()<1) {
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
+
+    public boolean verifierNbCarteBatiment() {
+        for (int i = 0; i < listeCarteTotale.size(); i++) {
+            if (listeCarteTotale.get(i).size()<1) {
+                return false;
+            }
+        }
+        return true;
+    }
 
 }
