@@ -5,5 +5,5 @@ public enum Ressource {
     NOURRITURE,
     BOIS,
     ARGILE,
-    PIERRE
+    PIERRE,
 }

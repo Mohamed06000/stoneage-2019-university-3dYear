@@ -1,5 +1,6 @@
 package stoneage;
 
+
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
@@ -7,7 +8,7 @@ import java.util.Collection;
 
 
 /**
- *
+ * Classe qui represente les cartes btiment
  */
 public class Cartebatiment {
     int nbRessourceApayer;
@@ -17,8 +18,11 @@ public class Cartebatiment {
     private boolean PlaceReserver ;
 
 
+
+
+
     /**
-     *
+     *Constructeur de Cartebatiment
      * @param point
      * @param ressource
      */
@@ -29,10 +33,12 @@ public class Cartebatiment {
         this.point=point;
         this.ressource=ressource;
         this.PlaceReserver=false;
+
+
     }
 
     /**
-     *
+     *Methode de placement d'ouvrier sur une carte batiment
      * @param inventaireJoueur
      * @param nbOuvrierAplacer
      */
@@ -43,8 +49,10 @@ public class Cartebatiment {
         }
     }
 
+
+
     /**
-     *
+     *Methode pour retirer ouvrier sur une carte batiment
      * @param inventaireJoueur
      */
     public void retirerOuvrierSurCarte(@NotNull Inventaire inventaireJoueur) {
@@ -52,12 +60,15 @@ public class Cartebatiment {
         this.PlaceReserver = false;
     }
 
+
+
     /**
-     * méthode qui permet au Joueur  de payer la carte si celui ci posséde les ressources suffisantes .
+     * Méthode qui permet au Joueur  de payer la carte si celui ci posséde les ressources suffisantes .
      * @param inventaireJoueur L'inventaire du joueur
      * @param j Le joueur
      */
     public void payement(Inventaire inventaireJoueur, Joueur j) {
+
         int nbargile = 0;
         int nbbois = 0;
         int nbor = 0;
@@ -90,7 +101,6 @@ public class Cartebatiment {
     }
 
     }
-
 
 
 

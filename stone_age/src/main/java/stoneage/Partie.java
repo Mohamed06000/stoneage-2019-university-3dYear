@@ -16,7 +16,9 @@ public class Partie {
     /**
      * Le nombre de joueur
      */
-    private static int nbJoueur = 2;
+
+    private static int nbJoueur = 4;
+
     /**
      * Objet qui represente le plateau de jeu
      */

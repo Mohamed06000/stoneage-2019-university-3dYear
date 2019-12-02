@@ -1,7 +1,5 @@
 package stoneage;
 
-
-import java.awt.*;
 import java.util.*;
 
 /**
@@ -9,7 +7,11 @@ import java.util.*;
  */
 public class Plateau {
 
+
     //CHAMPS
+
+    boolean twoPlayers= (Partie.getNbJoueur()==2);
+    boolean threePlayers= (Partie.getNbJoueur()==3);
 
     /**
      * Zone riviere
@@ -35,7 +37,22 @@ public class Plateau {
      * Zone Carriere
      */
     private Zone Carriere;
-    
+
+    /**
+     * Zone Champ
+     */
+    private Zone Champ;
+
+    /**
+     * Zone Hutte
+     */
+    private Zone Hutte;
+
+    /**
+     * Zone FabriqueOutils
+     */
+    private Zone FabriqueOutils;
+
     /**
      * La liste des zones disponibles au placement
      */
@@ -69,19 +86,33 @@ public class Plateau {
      */
     private Zone [] tabAllZone;
 
-    ArrayList<Cartebatiment> listeCarteB = new ArrayList<Cartebatiment>();
-    ArrayList<Cartebatiment> listeCarteVisible;
-    Cartebatiment[] listeCarteTotale;
-    ArrayList<Cartebatiment> listeCarteReserve;
-    ArrayList<Cartebatiment> listecartetotal;
+    /**
+     * La liste de tout les cartes batiment visible sur le plateau
+     */
+    private ArrayList<Cartebatiment> listeCarteVisible;
 
+    /**
+     * La liste de toutes les cartes batiment
+     */
+    private  Cartebatiment[] cartetotale;
 
+    /**
+     * Liste qui contient le deck des cartes batiment construit grace a la liste cartetotale
+     */
+    private ArrayList<Cartebatiment> listeCarteTotale;
 
+    /**
+     * Liste des cartes batiments acheteé , plus disponible dans le deck ni sur le plateau
+     */
+    private ArrayList<Cartebatiment> listeCarteReserve;
+
+    /**
+     * Creation de cartes batiments
+     */
     private Cartebatiment carte1;
     private Cartebatiment carte2;
     private Cartebatiment carte3;
     private Cartebatiment carte4;
-
 
 
     //CONSTRUTEUR
@@ -91,24 +122,30 @@ public class Plateau {
      * @param nbjoueur Le nombre de joueurs dans le jeu
      */
     Plateau(int nbjoueur){
+
         this.carte1=new Cartebatiment(10,new ArrayList<Ressource>(Arrays.asList(Ressource.BOIS,Ressource.BOIS,Ressource.ARGILE)));
         this.carte2=new Cartebatiment(11,new ArrayList<Ressource>(Arrays.asList(Ressource.BOIS,Ressource.BOIS,Ressource.PIERRE)));
         this.carte3=new Cartebatiment(11,new ArrayList<Ressource>(Arrays.asList(Ressource.BOIS,Ressource.ARGILE,Ressource.ARGILE)));
         this.carte4=new Cartebatiment(12,new ArrayList<Ressource>(Arrays.asList(Ressource.BOIS,Ressource.BOIS,Ressource.OR)));
-        this.listeCarteTotale= new Cartebatiment[] {this.carte1,this.carte2,this.carte3,this.carte4};
-        this.listeCarteVisible= new ArrayList<Cartebatiment>(Arrays.asList(listeCarteTotale));
+        this.cartetotale= new Cartebatiment[]{this.carte1,this.carte2,this.carte3,this.carte4};
+        this.listeCarteTotale= new ArrayList<Cartebatiment>(Arrays.asList(cartetotale));
+        this.listeCarteVisible= new ArrayList<Cartebatiment>(Arrays.asList(cartetotale));
         this.listeCarteReserve=new ArrayList<Cartebatiment>();
-        this.listeCarteVisible=new ArrayList<Cartebatiment>();
+
         this.Riviere = new Zone(Ressource.OR, 12, 6, 0, 7);
         this.Chasse = new Zone(Ressource.NOURRITURE, 12, 2, 0, Integer.MAX_VALUE);
         this.Foret = new Zone(Ressource.BOIS, 12, 3, 0, 7);
         this.Glaisiere = new Zone(Ressource.ARGILE, 12, 4, 0, 7);
         this.Carriere = new Zone(Ressource.PIERRE, 12, 5, 0, 7);
-        this.tabAllZone = new Zone[] {this.Riviere, this.Chasse, this.Foret, this.Glaisiere, this.Carriere};
+        this.Champ = new ZoneVillage(1,1,0);
+        this.FabriqueOutils = new ZoneVillage(1,1,1);
+        this.Hutte = new ZoneVillage(1,1,2);
+        this.tabAllZone = new Zone[] {this.Riviere, this.Chasse, this.Foret, this.Glaisiere, this.Carriere,this.Champ,this.FabriqueOutils,this.Hutte};
         this.ZonesDispo = new ArrayList<Zone>(Arrays.asList(tabAllZone));
         this.ZoneVisitees = new ArrayList<ArrayList<Zone>>();
         this.ZonesPleines = new ArrayList<Zone>();
         this.tableauFirstPlayer = new ArrayList<Integer>();
+
         ArrayList<Zone> zp;
         for (int i = 0; i < nbjoueur ; i++) {
             Inventaire inventaire = new Inventaire();
@@ -119,6 +156,7 @@ public class Plateau {
         }
 
     }
+
 
 
 
@@ -160,20 +198,17 @@ public class Plateau {
         return n;
     }
 
-    /**
-     *
-     */
-    public void melanger(){
-        Collections.shuffle(listecartetotal);
-    }
-
-
 
     /**
      * Lance la phase de placement
      * @param affichage Si l'affichage se fait
      */
     public void placementPhase(boolean affichage){
+        /**
+         * Accumulateur pour savoir quand deux zones village sont occupeés affin de supprimer le 3eme !
+         */
+        int accVillage=0;
+
         boolean disponibiliteZone;
         boolean placed;
         int choixNbOuvrier;
@@ -193,16 +228,25 @@ public class Plateau {
                     if (disponibiliteZone){
                         listeInventaire.get(i).setNbOuvrier(listeInventaire.get(i).getNbOuvrier() - choixNbOuvrier);
                         choixZone.placeOuvrierSurZone(choixNbOuvrier, i); //J'ajoute le num du joueur en parametre.
-                        ZoneVisitees.get(i).add(choixZone);
+                         ZoneVisitees.get(i).add(choixZone);
+                        if (twoPlayers && choixZone!=Chasse) { ZonesPleines.add(choixZone);}
+                        if (twoPlayers| threePlayers)
+                        {
+                            if (choixZone instanceof ZoneVillage) { accVillage++; }
+                        }
                         updateStatutZone(); // Je fais l'uptade apres la placement et non plus avant afin que l'autre joueur beneficie de l'uptade pour le choix de la zone.
                         placed = false;
-                        if(affichage){
+                        if(affichage)
+                        {
                             AfficheInfoJoueur(i,choixZone, ZoneVisitees, listeInventaire.get(i));
                         }
+                        if(accVillage==2){ ZonesDispo.remove(ZonesDispo.size()-1);}
+
                     }
 
                 }
                 while (placed);
+
             }
         }
     }
@@ -252,8 +296,8 @@ public class Plateau {
      */
     public static void AfficheInfoJoueur(int numJ, Zone z, ArrayList<ArrayList<Zone>> ZoneVisitees, Inventaire inventaire) {
         System.out.println("********Joueur " + (numJ+1) + "********");
-        System.out.println("Nb d'ouvrier total dans la zone " + z.getRessource() + " : " + z.getNbOuvrierSurZone());
-        System.out.println("Nb d'ouvrier du joueur dans la zone " + z.getRessource() + " : " + z.getNbOuvirerDuJoueur(numJ));
+        System.out.println("Nb d'ouvrier total dans la zone " + z + " : " + z.getNbOuvrierSurZone());
+        System.out.println("Nb d'ouvrier du joueur dans la zone " + z + " : " + z.getNbOuvirerDuJoueur(numJ));
         System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + (numJ+1) + " : " + inventaire.getNbOuvrier());
         if (ZoneVisitees.get(numJ).size()>0) {
             System.out.println("Les zones visitées : " + (ZoneVisitees.get(numJ)));
@@ -295,6 +339,18 @@ public class Plateau {
                 ZonesPleines.add(z);
                 iter.remove();
             }
+
+            if (threePlayers && ZonesDispo.contains(z)){
+                int acc=0;
+                for (int i = 0; i <3; i++) {
+                    if (z.getNbOuvirerDuJoueur(i)>0){acc++;}
+                }
+                if (acc==2)
+                {
+                    ZonesPleines.add(z);
+                    iter.remove();
+                }
+            }
         }
     }
 
@@ -311,6 +367,8 @@ public class Plateau {
         }
         return !(ZoneVisitees.get(i).contains(choixZone) & choixZone != Chasse);
     }
+
+
 
     /**
      * Permutation de l'ordre du premier joueur à jouer

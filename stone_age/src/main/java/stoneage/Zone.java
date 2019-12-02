@@ -67,6 +67,23 @@ public class Zone {
         }
     }
 
+
+    /**
+     * 2eme Constructeur pour les zones Village
+     * @param nbOuvrierSurZone
+     * @param nbOuvrierMaxSurZone
+     */
+
+    Zone(int nbOuvrierSurZone, int nbOuvrierMaxSurZone) {
+        this.nbOuvrierSurZone = nbOuvrierSurZone;
+        this.nbOuvrierMaxSurZone = nbOuvrierMaxSurZone;
+        for (int i = 0; i < Partie.getNbJoueur(); i++) { //Initialisation de la liste nbOuvrierDuJoueur par des valeurs 0.
+            this.nbOuvirerDuJoueur.add(0);
+        }
+    }
+
+
+
     //METHODES
 
     @Override
@@ -158,8 +175,10 @@ public class Zone {
      * @param nJoueur Le numéro du joueur
      */
     public void placeOuvrierSurZone(int nbOuvrierAplacer, int nJoueur) {
+        if (nbOuvrierAplacer>0){
         this.nbOuvrierSurZone += nbOuvrierAplacer;
         this.nbOuvirerDuJoueur.set(nJoueur, getNbOuvirerDuJoueur(nJoueur) + nbOuvrierAplacer); //set permet de remplacer un element à un index donné contrairement a add.
+        }
     }
 
     /**
@@ -234,20 +253,4 @@ public class Zone {
         this.setNbRessourcesZone(this.getNbRessourcesZone()-gain);
         retirerOuvrierSurZone(inventaire, getNbOuvirerDuJoueur(nJoueur), nJoueur);
     }
-
-//            case CHAMP:
-//                inventairejoueur.setNiveauAgriculture(inventairejoueur.getNiveauAgriculture()+1);
-//                retirerOuvrierSurZone(inventairejoueur, getNbOuvirerDuJoueur(nJoueur), nJoueur);
-//                break;
-//
-//            case HUTTE:
-//                inventairejoueur.setNbOuvrier(inventairejoueur.getNbOuvrier() + 1);
-//                retirerOuvrierSurZone(inventairejoueur, getNbOuvirerDuJoueur(nJoueur), nJoueur);
-//                break;
-//
-//            case FABRIQUE:
-//                inventairejoueur.setNbOutils(inventairejoueur.getNbOutils() + 1);
-//                retirerOuvrierSurZone(inventairejoueur, getNbOuvirerDuJoueur(nJoueur), nJoueur);
-//
-
 }

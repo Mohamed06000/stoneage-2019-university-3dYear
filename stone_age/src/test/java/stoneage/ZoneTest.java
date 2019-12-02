@@ -8,7 +8,6 @@ class ZoneTest {
 
     @Test
     void placeOuvrierSurZone() {
-
         int actual;
         int nbOuvrierInitial;
         int nbOuvrierAplacer = 5;
@@ -35,11 +34,38 @@ class ZoneTest {
         assertEquals(5, zone.getNbOuvirerDuJoueur(1));
         assertEquals(5,zone.getNbOuvirerDuJoueur(0));
 
+        zone.placeOuvrierSurZone(nbOuvrierAplacer, 0);
+
+        assertEquals(5, zone.getNbOuvirerDuJoueur(0));
+        assertEquals(5,zone.getNbOuvrierSurZone());
+
+        zone = new Zone(Ressource.OR,6,2,2,10);
+        zone.placeOuvrierSurZone(nbOuvrierAplacer, 0);
+
+        assertEquals(5, zone.getNbOuvirerDuJoueur(0));
+        assertEquals(7,zone.getNbOuvrierSurZone());
+
+        zone = new Zone(Ressource.OR,6,2,2,15);
+        nbOuvrierInitial =  zone.getNbOuvrierSurZone();
+        zone.placeOuvrierSurZone(nbOuvrierAplacer, 0);
+        zone.placeOuvrierSurZone(nbOuvrierAplacer, 1);
+
+        actual = zone.getNbOuvirerDuJoueur(0) + zone.getNbOuvirerDuJoueur(1) + nbOuvrierInitial;
+        assertEquals(12, actual);
+        assertEquals(5, zone.getNbOuvirerDuJoueur(1));
+        assertEquals(5,zone.getNbOuvirerDuJoueur(0));
+
 
     }
 
     @Test
     void retirerOuvrierSurZone() {
+
+    }
+
+    @Test
+    void de() {
+
         Inventaire i =new Inventaire();
         Zone zone = new Zone(Ressource.OR,6,2,0,10);
         zone.placeOuvrierSurZone(3, 0);
@@ -60,8 +86,6 @@ class ZoneTest {
         zone.retirerOuvrierSurZone(i,6,0);
         assertEquals(0,zone.getNbOuvirerDuJoueur(0));
 
-
-
     }
 
 
@@ -69,6 +93,7 @@ class ZoneTest {
 
     @Test
     void gainZone() {
+
         Zone zone = new Zone(Ressource.OR,6,2,0,10);
         zone.placeOuvrierSurZone(6, 0);
         Inventaire i =new Inventaire();
@@ -97,10 +122,6 @@ class ZoneTest {
         assertTrue(i.getNbPierre()>0);
         assertTrue(i.getNbArgile()>0);
         assertTrue(i.getNbBois()>0);
-
-
-
-
 
     }
 }
