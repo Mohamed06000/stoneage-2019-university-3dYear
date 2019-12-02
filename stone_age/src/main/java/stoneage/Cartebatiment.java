@@ -4,6 +4,7 @@ package stoneage;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
+import java.util.Collection;
 
 
 /**
@@ -147,4 +148,8 @@ public class Cartebatiment {
         inventaireJoueur.setNbPointTotal(inventaireJoueur.getNbPointTotal()+point);
     }
 
-}
+    }
+
+
+
+

@@ -29,15 +29,11 @@ public class ZoneVillage extends Zone{
 
     /**
      * Constructeur de la classe
-     *
-     * @param ressource           Le nom de la ressource
-     * @param nbRessourcesZone    Le nombre de ressource de la zone
-     * @param diviseur            Le diviseur de gain de la zone
      * @param nbOuvrierSurZone    Le nombre d'ouvriers sur la zone
      * @param nbOuvrierMaxSurZone Le nombre d'ouviers maximum sur la zone
      */
-    ZoneVillage(Ressource ressource, int nbRessourcesZone, int diviseur, int nbOuvrierSurZone, int nbOuvrierMaxSurZone, int type_zone) {
-        super(ressource, nbRessourcesZone, diviseur, nbOuvrierSurZone, nbOuvrierMaxSurZone);
+    ZoneVillage(int nbOuvrierSurZone, int nbOuvrierMaxSurZone, int type_zone) {
+        super( nbOuvrierSurZone, nbOuvrierMaxSurZone);
         this.type_zone = type_zone;
     }
 

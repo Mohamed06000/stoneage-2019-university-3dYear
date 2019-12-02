@@ -57,6 +57,12 @@ public class Inventaire {
      */
     private int nbPointTotal;
 
+    /*
+     * 
+     * tableau qui contient les cartes des civilisations gagnées par le joueur
+     * */
+
+     ArrayList<CarteCivilisation> stockCards = new ArrayList<CarteCivilisation>();
     /**
      * La liste des outils du joueur
      */
@@ -137,6 +143,18 @@ public class Inventaire {
      */
     public int getNbOuvrier() {
         return nbOuvrier;
+    }
+    
+    public String toString() {
+    	return "nb d'ouvrier= " +nbOuvrier+
+    		     "\nnb bois = " +nbBois+
+    		     "\nnbd'Argile = " +nbArgile+
+    		     "\nnb Pierre = " +nbPierre+
+    		     "\nnb d'or  = " +nbOr+
+    		     "\nnb d'outils  = " +nbOutils+
+    		     "\nnb nourriture = " +nbNourriture+
+    		     "\nLe niveau d'agriculture = " +niveauAgriculture+
+    		     "\nnb de points  = " +nbPointTotal ;
     }
 
     /**

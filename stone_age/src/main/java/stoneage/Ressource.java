@@ -6,7 +6,4 @@ public enum Ressource {
     BOIS,
     ARGILE,
     PIERRE,
-    OUTIL,
-    OUVRIER,
-    NIVEAUAGR,
 }

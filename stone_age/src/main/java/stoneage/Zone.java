@@ -67,6 +67,23 @@ public class Zone {
         }
     }
 
+
+    /**
+     * 2eme Constructeur pour les zones Village
+     * @param nbOuvrierSurZone
+     * @param nbOuvrierMaxSurZone
+     */
+
+    Zone(int nbOuvrierSurZone, int nbOuvrierMaxSurZone) {
+        this.nbOuvrierSurZone = nbOuvrierSurZone;
+        this.nbOuvrierMaxSurZone = nbOuvrierMaxSurZone;
+        for (int i = 0; i < Partie.getNbJoueur(); i++) { //Initialisation de la liste nbOuvrierDuJoueur par des valeurs 0.
+            this.nbOuvirerDuJoueur.add(0);
+        }
+    }
+
+
+
     //METHODES
 
     @Override
