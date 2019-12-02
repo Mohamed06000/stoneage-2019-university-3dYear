@@ -2,6 +2,8 @@
 package stoneage;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * La classe de l'inventaire du joueur
@@ -85,9 +87,9 @@ public class Inventaire {
         this.nbOr = 0;
         this.nbOutils = 0;
         this.niveauAgriculture = 0;
-        this.outils = new ArrayList<Integer>();
-        this.outilsDispo = new ArrayList<Integer>();
-        this.outilsNonDispo = new ArrayList<Integer>();
+        this.outils = new ArrayList<Integer>(Arrays.asList(0,0,0));
+        this.outilsDispo = new ArrayList<Integer>(Arrays.asList(0,0,0));
+        this.outilsNonDispo = new ArrayList<Integer>(Arrays.asList(0,0,0));
     }
 
 
@@ -244,8 +246,7 @@ public class Inventaire {
      */
     public int calculPoint(){
         int point;
-        point = this.getNbArgile()+this.getNbBois()+this.getNbNourriture()+this.getNbOr();
-        point += this.getNbPierre()+this.getNbOutils();
+        point = this.getNbArgile()+this.getNbBois()+this.getNbNourriture()+this.getNbOr()+this.getNbPierre()+this.getNbOutils();
         return point;
     }
 

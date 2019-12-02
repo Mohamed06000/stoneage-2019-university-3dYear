@@ -82,6 +82,12 @@ public class Zone {
                 return "CARRIERE";
             case ARGILE:
                 return "GLAISIERE";
+            case OUTIL:
+                return "FRABRIQUE";
+            case OUVRIER:
+                return "HUTTE";
+            case NIVEAUAGR:
+                return "CHAMP";
             default:
                 return "K-OU";
         }
