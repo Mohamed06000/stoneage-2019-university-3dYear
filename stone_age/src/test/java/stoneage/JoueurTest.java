@@ -11,9 +11,14 @@ class JoueurTest {
         Inventaire inventaire = new Inventaire();
         Joueur IA = new Joueur();
 
+//        IA.nourrir(inventaire);
+//        inventaire.setNbOuvrier(-1);
+//        assertEquals(7, inventaire.getNbNourriture());
+
+        inventaire.setNbNourriture(4);
+//        inventaire.setNbBois(1);
         IA.nourrir(inventaire);
-        //inventaire.setNbOuvrier(-1);
-        assertEquals(7, inventaire.getNbNourriture());
+        assertEquals(-10, inventaire.getNbPointTotal());
 
     }
 }

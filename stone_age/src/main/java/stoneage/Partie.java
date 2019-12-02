@@ -16,7 +16,9 @@ public class Partie {
     /**
      * Le nombre de joueur
      */
-    private static int nbJoueur = 2;
+
+    private static int nbJoueur = 4;
+
     /**
      * Objet qui represente le plateau de jeu
      */
@@ -62,7 +64,7 @@ public class Partie {
         System.out.println("Nb d'ouvriers total non place : " + plateau.nbOuvrierDispoTotal());
 
 
-        while(tour<6) {
+        while(tour<6) { //plateau.verifierNbCarteCivilisation() && plateau.verifierNbCarteBatiment()
             if (affichage){
             System.out.println("_________________________________________________");
             System.out.println("|                TOUR : "+tour+"                      |");

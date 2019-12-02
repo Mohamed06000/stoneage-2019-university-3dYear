@@ -158,8 +158,10 @@ public class Zone {
      * @param nJoueur Le numéro du joueur
      */
     public void placeOuvrierSurZone(int nbOuvrierAplacer, int nJoueur) {
+        if (nbOuvrierAplacer>0){
         this.nbOuvrierSurZone += nbOuvrierAplacer;
         this.nbOuvirerDuJoueur.set(nJoueur, getNbOuvirerDuJoueur(nJoueur) + nbOuvrierAplacer); //set permet de remplacer un element à un index donné contrairement a add.
+        }
     }
 
     /**
@@ -189,7 +191,7 @@ public class Zone {
      * @param inventaire L'inventaire du joueur
      * @param nJoueur Le numéro du joueur
      */
-    public void gainZone(Inventaire inventaire, int nJoueur) {
+    public void gainZone(Inventaire inventaire, int nJoueur, Joueur IA) {
         /* gainZone renvoie un entier nb de ressources gagnées /// c'est dans plateau qu'on gere l'attribution des gains*/
         int somme = 0;
         int gain = 0;
@@ -197,6 +199,11 @@ public class Zone {
         for (int i = 0; i < this.getNbOuvirerDuJoueur(nJoueur); i++) { //Le nbOuvrierDuJoueur sur la zone en question et non pas de tous ses ouvriers.
             somme += de();
         }
+
+        if (IA.choixOutils(inventaire)){
+            somme += IA.choixNbOutils(inventaire);
+        }
+
         if (somme >= 6)
             gain = somme / this.getDiviseur();
 
@@ -229,20 +236,4 @@ public class Zone {
         this.setNbRessourcesZone(this.getNbRessourcesZone()-gain);
         retirerOuvrierSurZone(inventaire, getNbOuvirerDuJoueur(nJoueur), nJoueur);
     }
-
-//            case CHAMP:
-//                inventairejoueur.setNiveauAgriculture(inventairejoueur.getNiveauAgriculture()+1);
-//                retirerOuvrierSurZone(inventairejoueur, getNbOuvirerDuJoueur(nJoueur), nJoueur);
-//                break;
-//
-//            case HUTTE:
-//                inventairejoueur.setNbOuvrier(inventairejoueur.getNbOuvrier() + 1);
-//                retirerOuvrierSurZone(inventairejoueur, getNbOuvirerDuJoueur(nJoueur), nJoueur);
-//                break;
-//
-//            case FABRIQUE:
-//                inventairejoueur.setNbOutils(inventairejoueur.getNbOutils() + 1);
-//                retirerOuvrierSurZone(inventairejoueur, getNbOuvirerDuJoueur(nJoueur), nJoueur);
-//
-
 }
