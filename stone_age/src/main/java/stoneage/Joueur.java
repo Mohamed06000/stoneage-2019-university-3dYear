@@ -132,10 +132,10 @@ class Joueur {
                 alea = rand.nextInt(inventaire.getNbOuvrier()) + 1; //le +1 a l'exterieur de rand sinon ca peut retourner 0.
             }
             else {
-                if (choixZone.getClass().getSimpleName()=="Champ" |choixZone.getClass().getSimpleName()=="Fabrique"){
+                if (choixZone.getClass().getSimpleName().equals("Champ") | choixZone.getClass().getSimpleName().equals("Fabrique")){
                     alea = 1;
                 }
-                if (choixZone.getClass().getSimpleName()=="Hutte") {
+                if (choixZone.getClass().getSimpleName().equals("Hutte")) {
                     alea = 2;
                 }
             }
