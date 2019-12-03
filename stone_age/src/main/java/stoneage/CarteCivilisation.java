@@ -296,6 +296,7 @@ public class CarteCivilisation {
 	    	 tab[3] = listeInventaire.get(indexOfInventaire).getNbOr();
 	    	 tab[4] = listeInventaire.get(indexOfInventaire).getNbOutils();
 	    	 tab[5] = listeInventaire.get(indexOfInventaire).getNiveauAgriculture();
+	    	
 	    	 
 	    	 tab[a] +=1;//on ajoute plus 1  a la ressource choisi par le joueur . on suppose que chaque joueur faire le jet de de et choisir directement la ressource
 	    	 
