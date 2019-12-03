@@ -240,6 +240,7 @@ public class CarteCivilisation {
 			  else {
 			  i.setNbPierre(this.nbRessourceCarte);
 			  
+			  
 			  }
 			  break;
 		  case POINT:
