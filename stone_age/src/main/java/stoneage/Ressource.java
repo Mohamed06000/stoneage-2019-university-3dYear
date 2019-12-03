@@ -8,5 +8,6 @@ public enum Ressource {
     PIERRE,
     POINT,
     OUTIL,
-    AGRICULTURE;
+    AGRICULTURE,
+    RESSOURCE_AU_CHOIX,
 }

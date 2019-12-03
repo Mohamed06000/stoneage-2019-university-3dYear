@@ -21,13 +21,9 @@ public class CarteCivilisation {
 	{
 			CarteCivilisation carte1 =new CarteCivilisation(5, Couleur.VERTE, Ressource.BOIS);
 			Inventaire i = new Inventaire();
+
 			
-			i.setNbBois(5);
-			
-			carte1.placeOuvrierSurCarte(i);
-			
-			carte1.recupererCarte(i, 0);
-			
+			carte1.ressource_au_choix(i);
 			
 			
 		
@@ -224,7 +220,11 @@ public class CarteCivilisation {
 			  break;
 		  case AGRICULTURE:
 			  i.setNiveauAgriculture(this.nbRessourceCarte);
-		    break;
+			  break;
+		  case RESSOURCE_AU_CHOIX:
+			  
+			  this.ressource_au_choix(i);
+			  break;
 		  
 		}
 		
@@ -241,6 +241,32 @@ public class CarteCivilisation {
 
 
 	
+	public void ressource_au_choix(Inventaire i) {
+
+		int[] tab = new int[4];
+		tab[0] = i.getNbBois();
+		tab[1] = i.getNbArgile();
+		tab[2] = i.getNbPierre();
+		tab[3] = i.getNbOr();
+		
+		int index =rand.nextInt(4);
+		
+		tab[index] +=1 ;
+		index =rand.nextInt(4);
+		tab[index]+=1;
+		
+		i.setNbBois(tab[0]);
+		i.setNbArgile(tab[1]);
+		i.setNbPierre(tab[2]);
+		i.setNbOr(tab[3]);
+		
+
+		
+		
+		
+		
+	}
+
 	public static void de()
 	{	
 		
@@ -283,6 +309,9 @@ public class CarteCivilisation {
 		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.OUTIL));
 		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.AGRICULTURE));
 		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.AGRICULTURE));
+		cards.add(new CarteCivilisation(0, Couleur.VERTE, Ressource.AGRICULTURE));//cette carte pour le calcul de score final donc lapartie superieure n' a pas d'effet (voir description cartes de civilisations )
+		cards.add(new CarteCivilisation(2, Couleur.VERTE, Ressource.RESSOURCE_AU_CHOIX));
+		
 		
 		
 		
