@@ -230,7 +230,7 @@ public class Plateau {
      * Récupère la liste des inventaires
      * @return Les inventaires
      */
-    public ArrayList<Inventaire> getListeInventaire() {
+    public   ArrayList<Inventaire> getListeInventaire() {
         return listeInventaire;
     }
 

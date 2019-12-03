@@ -9,6 +9,6 @@ public enum Ressource {
     POINT,
     OUTIL,
     AGRICULTURE,
-    RESSOURCE_AU_CHOIX,
+    RESSOURCE_AU_CHOIX,MULTI,
     AUCUNE;
 }

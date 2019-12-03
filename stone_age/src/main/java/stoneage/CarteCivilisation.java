@@ -182,7 +182,7 @@ public class CarteCivilisation {
 
 	}
 
-	public void recupererCarte(Inventaire i, int positionCards) {
+	public void recupererCarte(Inventaire i, int positionCards,Plateau p ) {
 
 		if (payement(i, positionCards) == true)
 
@@ -190,7 +190,7 @@ public class CarteCivilisation {
 			retirerOuvrierSurCarte(i);
 			i.stockCards.add(this);
 			
-			gainCarte(i);
+			gainCarte(i,p);
 			
 			Plateau.cards.remove(positionCards);
 
@@ -202,7 +202,7 @@ public class CarteCivilisation {
 	}
 	
 	
-	private void gainCarte(Inventaire i ) {
+	private void gainCarte(Inventaire i ,Plateau p ) {
 
 		Ressource r = this.getressourceCarte();
 		
@@ -210,7 +210,7 @@ public class CarteCivilisation {
 		  case OR:
 			  if(this.avec_jet_de)
 			  {
-				  ressource_avec_jet_de(i,r);
+				  this.ressource_avec_jet_de(i,r);
 			  }
 			  else {
 			  i.setNbOr(this.nbRessourceCarte);
@@ -225,7 +225,7 @@ public class CarteCivilisation {
 		  case BOIS:
 			  if(this.avec_jet_de)
 			  {
-				  ressource_avec_jet_de(i,r);
+				  this.ressource_avec_jet_de(i,r);
 			  }
 			  else {
 			  i.setNbBois(this.nbRessourceCarte);
@@ -235,12 +235,10 @@ public class CarteCivilisation {
 		  case PIERRE:
 			  if(this.avec_jet_de)
 			  {
-				  ressource_avec_jet_de(i,r);
+				  this.ressource_avec_jet_de(i,r);
 			  }
 			  else {
 			  i.setNbPierre(this.nbRessourceCarte);
-			  
-			  
 			  
 			  }
 			  break;
@@ -249,6 +247,11 @@ public class CarteCivilisation {
 			  break;
 		  case OUTIL:
 			  i.setNbOutils(this.nbRessourceCarte);
+			  break;
+		  case MULTI:
+
+			  this.multiRessource(i,p);
+			  
 			  break;
 		  case AGRICULTURE:
 			  i.setNiveauAgriculture(this.nbRessourceCarte);
@@ -273,6 +276,63 @@ public class CarteCivilisation {
 	
 
 	
+	private void multiRessource(Inventaire i,Plateau p) {
+	     ArrayList<Inventaire> listeInventaire =p.getListeInventaire();
+	     
+	     
+	     int size = listeInventaire.size();
+	     
+	     int indexOfInventaire= listeInventaire.indexOf(i);
+	     
+	     for (int k = 0 ; k<size;k++) 
+	     {
+	    	 
+	    	 int a =rand.nextInt(6)+1;
+
+	    	 int[] tab = new int[6];
+	    	 tab[0] = listeInventaire.get(indexOfInventaire).getNbBois();
+	    	 tab[1] = listeInventaire.get(indexOfInventaire).getNbArgile();
+	    	 tab[2] = listeInventaire.get(indexOfInventaire).getNbPierre();
+	    	 tab[3] = listeInventaire.get(indexOfInventaire).getNbOr();
+	    	 tab[4] = listeInventaire.get(indexOfInventaire).getNbOutils();
+	    	 tab[5] = listeInventaire.get(indexOfInventaire).getNiveauAgriculture();
+	    	 
+	    	 tab[a] +=1;//on ajoute plus 1  a la ressource choisi par le joueur . on suppose que chaque joueur faire le jet de de et choisir directement la ressource
+	    	 
+	    	 listeInventaire.get(indexOfInventaire).setNbBois(tab[0]);
+	    	 listeInventaire.get(indexOfInventaire).setNbArgile(tab[1]);
+	    	 listeInventaire.get(indexOfInventaire).setNbPierre(tab[2]);
+	    	 listeInventaire.get(indexOfInventaire).setNbOr(tab[3]);
+	    	 listeInventaire.get(indexOfInventaire).setNbOutils(tab[4]);
+	    	 listeInventaire.get(indexOfInventaire).setNiveauAgriculture(tab[5]);
+	    	 
+	    	 
+	    	 //le tour pass a le joueur suivant 
+	    	 
+	    	 indexOfInventaire = (indexOfInventaire+1) % size ; 
+	    	 
+	    	 
+	    	 
+	    	 
+	    	 
+	    	 
+	     }
+	     
+	     
+	     
+	     
+	     
+	     
+	     
+	     
+	     
+	     
+	     
+
+
+
+		
+	}	
 	private void ressource_avec_jet_de(Inventaire i,Ressource r) {
 		/*
 		 * cette méthode utilisée dans la méthode gain Carte .elle permet le joueur  de gagner des ressources selon le jet de et le type de ressource fournie par la carte		 * on a supposé que  le joueur va gagner immediatement ces deux ressources pour simplifier le travail.
@@ -354,28 +414,60 @@ public class CarteCivilisation {
 	public static ArrayList<CarteCivilisation> CreationCarte() {
 
 		ArrayList<CarteCivilisation> cards = new ArrayList<CarteCivilisation> ();
-		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.NOURRITURE));
+		
+		
+		//5 cartes ressources 
 		cards.add(new CarteCivilisation(5, Couleur.VERTE, Ressource.PIERRE));
-		cards.add(new CarteCivilisation(3, Couleur.VERTE, Ressource.NOURRITURE));
 		cards.add(new CarteCivilisation(2, Couleur.VERTE, Ressource.PIERRE));
 		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.ARGILE));
+		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.PIERRE));
+		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.OR));
+		
+		
+		// 7 cartes nourritures 
+		cards.add(new CarteCivilisation(3, Couleur.VERTE, Ressource.NOURRITURE));
 		cards.add(new CarteCivilisation(4, Couleur.VERTE, Ressource.NOURRITURE));
+		cards.add(new CarteCivilisation(6, Couleur.VERTE, Ressource.NOURRITURE));
 		cards.add(new CarteCivilisation(7, Couleur.VERTE, Ressource.NOURRITURE));
 		cards.add(new CarteCivilisation(2, Couleur.VERTE, Ressource.NOURRITURE));
-		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.OR));
 		cards.add(new CarteCivilisation(5, Couleur.VERTE, Ressource.NOURRITURE));
-		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.PIERRE));
+		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.NOURRITURE));
+		
+		//3 cartes point de victoire 
 		cards.add(new CarteCivilisation(3, Couleur.VERTE, Ressource.POINT));
 		cards.add(new CarteCivilisation(3, Couleur.VERTE, Ressource.POINT));
 		cards.add(new CarteCivilisation(3, Couleur.VERTE, Ressource.POINT));
+		
+		//2 cartes agriculture 
+		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.AGRICULTURE));
+		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.AGRICULTURE));
+		
+		// 1 carte tuile outil 
 		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.OUTIL));
-		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.AGRICULTURE));
-		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.AGRICULTURE));
-		cards.add(new CarteCivilisation(0, Couleur.VERTE, Ressource.AGRICULTURE));//cette carte pour le calcul de score final donc lapartie superieure n' a pas d'effet (voir description cartes de civilisations )
+
+		// 1 carte ressource au choix
 		cards.add(new CarteCivilisation(2, Couleur.VERTE, Ressource.RESSOURCE_AU_CHOIX));
+		
+		
+		// 1 carte pour le calcul  du score 
+		cards.add(new CarteCivilisation(0, Couleur.VERTE, Ressource.AGRICULTURE));//cette carte pour le calcul de score final donc lapartie superieure n' a pas d'effet (voir description cartes de civilisations )
+		
+		//3 cartes Ressources avec jet de dés 
 		cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.OR,true));
 		cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.PIERRE,true));
 		cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.BOIS,true));
+		
+		// 10 cartes  jet de dés
+		cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.MULTI,true));
+		cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.MULTI,true));
+		cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.MULTI,true));
+		cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.MULTI,true));
+		cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.MULTI,true));
+		cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.MULTI,true));
+		cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.MULTI,true));
+		cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.MULTI,true));
+		cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.MULTI,true));
+		cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.MULTI,true));
 		
 		
 		
