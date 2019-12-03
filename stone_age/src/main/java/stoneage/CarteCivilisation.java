@@ -39,9 +39,21 @@ public class CarteCivilisation {
 	private int nbRessourceCarte;
 	private Couleur couleur;
 	private boolean PlaceReserver = false;
+	private boolean avec_jet_de = false;
 
 	CarteCivilisation(int nbRessourceCarte, Couleur couleur, Ressource ressourceCarte) {
 		this.nbRessourceCarte = nbRessourceCarte;
+		this.couleur = couleur;
+		this.ressourceCarte = ressourceCarte;
+		this.PlaceReserver=false;
+	}
+	CarteCivilisation(Couleur couleur, Ressource ressourceCarte,boolean jetDe) {
+		this.couleur = couleur;
+		this.ressourceCarte = ressourceCarte;
+		this.PlaceReserver=false;
+		this.avec_jet_de=jetDe;
+	}
+	CarteCivilisation(Couleur couleur, Ressource ressourceCarte) {
 		this.couleur = couleur;
 		this.ressourceCarte = ressourceCarte;
 		this.PlaceReserver=false;
@@ -196,9 +208,13 @@ public class CarteCivilisation {
 		
 		switch(r) {
 		  case OR:
-			  
+			  if(this.avec_jet_de)
+			  {
+				  ressource_avec_jet_de(i,r);
+			  }
+			  else {
 			  i.setNbOr(this.nbRessourceCarte);
-			  
+			  }
 		    break;
 		  case NOURRITURE:
 			  i.setNbNourriture(this.nbRessourceCarte);
@@ -207,10 +223,23 @@ public class CarteCivilisation {
 			  i.setNbArgile(this.nbRessourceCarte);
 			  break;
 		  case BOIS:
+			  if(this.avec_jet_de)
+			  {
+				  ressource_avec_jet_de(i,r);
+			  }
+			  else {
 			  i.setNbBois(this.nbRessourceCarte);
+			  }
+			  
 			  break;
 		  case PIERRE:
+			  if(this.avec_jet_de)
+			  {
+				  ressource_avec_jet_de(i,r);
+			  }
+			  else {
 			  i.setNbPierre(this.nbRessourceCarte);
+			  }
 			  break;
 		  case POINT:
 			  i.setNbPointTotal(this.nbRessourceCarte);
@@ -225,23 +254,55 @@ public class CarteCivilisation {
 			  
 			  this.ressource_au_choix(i);
 			  break;
+		  case AUCUNE:
+			  
+			  break;
+		 
 		  
 		}
 		
 		
 		
 		
-		
-		
-		
-		
-		
-		
 	}
 
+	
+	
+	
 
 	
+	private void ressource_avec_jet_de(Inventaire i,Ressource r) {
+		/*
+		 * cette méthode utilisée dans la méthode gain Carte .elle permet le joueur  de gagner des ressources selon le jet de et le type de ressource fournie par la carte		 * on a supposé que  le joueur va gagner immediatement ces deux ressources pour simplifier le travail.
+		 * 
+		 * */
+		
+		int resultat = rand.nextInt(12) + 1 ;
+		
+		if (r==Ressource.OR) {
+			i.setNbOr(resultat / 6);
+		}
+		else if (r==Ressource.PIERRE) {
+			i.setNbOr(resultat / 5);
+		}
+		else if (r==Ressource.BOIS) {
+		i.setNbOr(resultat / 3);
+		}
+
+
+		
+	}
+	
+	
+	
+
 	public void ressource_au_choix(Inventaire i) {
+		/*
+		 * cette methode utilisée dans la methode gainCarte .elle permet le joueur  de gagner ,immédiatement ou plus tard ,deux ressources au choix (identiques ou differentes)
+		 * on a supposé que  le joueur va gagner immediatement ces deux ressources pour simplifier le travail.
+		 * on a récupéré les ressources de l'inventaire dans un tableau . et à chaque fois on joute 1 à une ressource choisi par hasard 
+		
+		 * */
 
 		int[] tab = new int[4];
 		tab[0] = i.getNbBois();
@@ -311,6 +372,9 @@ public class CarteCivilisation {
 		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.AGRICULTURE));
 		cards.add(new CarteCivilisation(0, Couleur.VERTE, Ressource.AGRICULTURE));//cette carte pour le calcul de score final donc lapartie superieure n' a pas d'effet (voir description cartes de civilisations )
 		cards.add(new CarteCivilisation(2, Couleur.VERTE, Ressource.RESSOURCE_AU_CHOIX));
+		cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.OR,true));
+		cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.PIERRE,true));
+		cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.BOIS,true));
 		
 		
 		
