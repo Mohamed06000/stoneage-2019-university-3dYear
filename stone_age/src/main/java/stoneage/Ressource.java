@@ -10,4 +10,5 @@ public enum Ressource {
     OUTIL,
     AGRICULTURE,
     RESSOURCE_AU_CHOIX,
+    AUCUNE;
 }

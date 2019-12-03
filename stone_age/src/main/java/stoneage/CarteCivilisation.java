@@ -257,7 +257,6 @@ public class CarteCivilisation {
 		  case AUCUNE:
 			  
 			  break;
-		 
 		  
 		}
 		
@@ -301,7 +300,6 @@ public class CarteCivilisation {
 		 * cette methode utilisée dans la methode gainCarte .elle permet le joueur  de gagner ,immédiatement ou plus tard ,deux ressources au choix (identiques ou differentes)
 		 * on a supposé que  le joueur va gagner immediatement ces deux ressources pour simplifier le travail.
 		 * on a récupéré les ressources de l'inventaire dans un tableau . et à chaque fois on joute 1 à une ressource choisi par hasard 
-		
 		 * */
 
 		int[] tab = new int[4];
