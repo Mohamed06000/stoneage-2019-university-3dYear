@@ -67,7 +67,7 @@ public class CarteCivilisation {
 		if (nbOuvrierAplacer == 1) {
 			inventaireJoueur.setNbOuvrier(inventaireJoueur.getNbOuvrier() - 1);
 			this.PlaceReserver=true;
-		}  
+		}
 	}
 
 
