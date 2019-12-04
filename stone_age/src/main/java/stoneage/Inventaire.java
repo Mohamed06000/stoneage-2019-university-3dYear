@@ -61,8 +61,16 @@ public class Inventaire {
     /**
      * tableau qui contient les cartes des civilisations gagnées par le joueur
      * */
+    
+    ArrayList<CarteCivilisation> stockCards = new ArrayList<CarteCivilisation>();
+    
+    
+    
+    /**
+     * tableau qui contient les cartes des civilisations "outils a usage unique "
+     * */
 
-     ArrayList<CarteCivilisation> stockCards = new ArrayList<CarteCivilisation>();
+     ArrayList<CarteCivilisation> outilUsageUnique = new ArrayList<CarteCivilisation>();
     /**
      * La liste des outils du joueur
      */

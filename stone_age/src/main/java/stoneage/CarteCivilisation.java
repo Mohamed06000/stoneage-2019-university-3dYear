@@ -10,7 +10,7 @@ public class CarteCivilisation {
 	static Random rand = new Random();
 
 	public enum Couleur {
-		VERTE, JAUNE;
+		VERTE, SABLE;
 	}
 
 	/*public static void main(String[] args) {
@@ -231,9 +231,14 @@ public class CarteCivilisation {
 				i.setNiveauAgriculture(this.nbRessourceCarte);
 				break;
 			case RESSOURCE_AU_CHOIX:
-
+				
 				this.ressource_au_choix(i);
 				break;
+			/*case OUTIL_USAGE_UNIQUE:
+
+				i.outilUsageUnique.add(this);
+				break;
+				*/
 			case AUCUNE:
 
 				break;
@@ -337,29 +342,29 @@ public class CarteCivilisation {
 		ArrayList<CarteCivilisation> cards = new ArrayList<CarteCivilisation> ();
 
 		//5 cartes ressources 
-		cards.add(new CarteCivilisation(5, Couleur.VERTE, Ressource.PIERRE));
-		cards.add(new CarteCivilisation(2, Couleur.VERTE, Ressource.PIERRE));
-		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.ARGILE));
 		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.PIERRE));
-		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.OR));
+		cards.add(new CarteCivilisation(2, Couleur.VERTE, Ressource.PIERRE));
+		cards.add(new CarteCivilisation(1, Couleur.SABLE, Ressource.ARGILE));
+		cards.add(new CarteCivilisation(1, Couleur.SABLE, Ressource.PIERRE));
+		cards.add(new CarteCivilisation(1, Couleur.SABLE, Ressource.OR));
 
 		// 7 cartes nourritures 
 		cards.add(new CarteCivilisation(3, Couleur.VERTE, Ressource.NOURRITURE));
-		cards.add(new CarteCivilisation(4, Couleur.VERTE, Ressource.NOURRITURE));
-		cards.add(new CarteCivilisation(6, Couleur.VERTE, Ressource.NOURRITURE));
+		cards.add(new CarteCivilisation(4, Couleur.SABLE, Ressource.NOURRITURE));
+		cards.add(new CarteCivilisation(3, Couleur.SABLE, Ressource.NOURRITURE));
 		cards.add(new CarteCivilisation(7, Couleur.VERTE, Ressource.NOURRITURE));
-		cards.add(new CarteCivilisation(2, Couleur.VERTE, Ressource.NOURRITURE));
+		cards.add(new CarteCivilisation(2, Couleur.SABLE, Ressource.NOURRITURE));
 		cards.add(new CarteCivilisation(5, Couleur.VERTE, Ressource.NOURRITURE));
 		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.NOURRITURE));
 
 		//3 cartes point de victoire 
 		cards.add(new CarteCivilisation(3, Couleur.VERTE, Ressource.POINT));
 		cards.add(new CarteCivilisation(3, Couleur.VERTE, Ressource.POINT));
-		cards.add(new CarteCivilisation(3, Couleur.VERTE, Ressource.POINT));
+		cards.add(new CarteCivilisation(3, Couleur.SABLE, Ressource.POINT));
 
 		//2 cartes agriculture 
 		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.AGRICULTURE));
-		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.AGRICULTURE));
+		cards.add(new CarteCivilisation(1, Couleur.SABLE, Ressource.AGRICULTURE));
 
 		// 1 carte tuile outil 
 		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.OUTIL));
@@ -372,8 +377,8 @@ public class CarteCivilisation {
 
 		//3 cartes Ressources avec jet de dés 
 		cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.OR, true));
-		cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.PIERRE, true));
-		cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.BOIS, true));
+		cards.add(new CarteCivilisation(Couleur.SABLE, Ressource.PIERRE, true));
+		cards.add(new CarteCivilisation(Couleur.SABLE, Ressource.BOIS, true));
 
 		// 10 cartes  jet de dés
 		cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.MULTI, true));
@@ -381,11 +386,16 @@ public class CarteCivilisation {
 		cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.MULTI, true));
 		cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.MULTI, true));
 		cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.MULTI, true));
-		cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.MULTI, true));
-		cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.MULTI, true));
-		cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.MULTI, true));
-		cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.MULTI, true));
-		cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.MULTI, true));
+		cards.add(new CarteCivilisation(Couleur.SABLE, Ressource.MULTI, true));
+        cards.add(new CarteCivilisation(Couleur.SABLE, Ressource.MULTI, true));
+		cards.add(new CarteCivilisation(Couleur.SABLE, Ressource.MULTI, true));
+		cards.add(new CarteCivilisation(Couleur.SABLE, Ressource.MULTI, true));
+		cards.add(new CarteCivilisation(Couleur.SABLE, Ressource.MULTI, true));
+		
+		// 3 cartes   "outils a usage unique "
+		cards.add(new CarteCivilisation(4, Couleur.SABLE, Ressource.OUTIL_USAGE_UNIQUE));
+		cards.add(new CarteCivilisation(3, Couleur.SABLE, Ressource.OUTIL_USAGE_UNIQUE));
+		cards.add(new CarteCivilisation(2, Couleur.SABLE, Ressource.OUTIL_USAGE_UNIQUE));
 
 		return cards;
 	}
