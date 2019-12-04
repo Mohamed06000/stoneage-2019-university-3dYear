@@ -27,19 +27,19 @@ public class CarteCivilisation {
 	private boolean PlaceReserver = false;
 	private boolean avec_jet_de = false;
 
-	CarteCivilisation(int nbRessourceCarte, Couleur couleur, Ressource ressourceCarte) {
+	CarteCivilisation(int nbRessourceCarte, Couleur couleur, Ressource ressourceCarte, PartieInferieure inf ) {
 		this.nbRessourceCarte = nbRessourceCarte;
 		this.couleur = couleur;
 		this.ressourceCarte = ressourceCarte;
 		this.PlaceReserver = false;
 	}
-	CarteCivilisation(Couleur couleur, Ressource ressourceCarte, boolean jetDe) {
+	CarteCivilisation(Couleur couleur, Ressource ressourceCarte, boolean jetDe,PartieInferieure inf ) {
 		this.couleur = couleur;
 		this.ressourceCarte = ressourceCarte;
 		this.PlaceReserver = false;
 		this.avec_jet_de = jetDe;
 	}
-	CarteCivilisation(Couleur couleur, Ressource ressourceCarte) {
+	CarteCivilisation(Couleur couleur, Ressource ressourceCarte,PartieInferieure inf ) {
 		this.couleur = couleur;
 		this.ressourceCarte = ressourceCarte;
 		this.PlaceReserver = false;
@@ -342,60 +342,60 @@ public class CarteCivilisation {
 		ArrayList<CarteCivilisation> cards = new ArrayList<CarteCivilisation> ();
 
 		//5 cartes ressources 
-		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.PIERRE));
-		cards.add(new CarteCivilisation(2, Couleur.VERTE, Ressource.PIERRE));
-		cards.add(new CarteCivilisation(1, Couleur.SABLE, Ressource.ARGILE));
-		cards.add(new CarteCivilisation(1, Couleur.SABLE, Ressource.PIERRE));
-		cards.add(new CarteCivilisation(1, Couleur.SABLE, Ressource.OR));
+		//cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.PIERRE,PartieInferieure.CHAMANE,1));
+		//cards.add(new CarteCivilisation(2, Couleur.VERTE, Ressource.PIERRE,PartieInferieure.TRANSPORT));
+		//cards.add(new CarteCivilisation(1, Couleur.SABLE, Ressource.ARGILE,PartieInferieure.CHAMANE,2));
+		//cards.add(new CarteCivilisation(1, Couleur.SABLE, Ressource.PIERRE,PartieInferieure.PAYSANT,1));
+		//cards.add(new CarteCivilisation(1, Couleur.SABLE, Ressource.OR,PartieInferieure.CHAMANE,1));
 
 		// 7 cartes nourritures 
-		cards.add(new CarteCivilisation(3, Couleur.VERTE, Ressource.NOURRITURE));
-		cards.add(new CarteCivilisation(4, Couleur.SABLE, Ressource.NOURRITURE));
-		cards.add(new CarteCivilisation(3, Couleur.SABLE, Ressource.NOURRITURE));
-		cards.add(new CarteCivilisation(7, Couleur.VERTE, Ressource.NOURRITURE));
-		cards.add(new CarteCivilisation(2, Couleur.SABLE, Ressource.NOURRITURE));
-		cards.add(new CarteCivilisation(5, Couleur.VERTE, Ressource.NOURRITURE));
-		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.NOURRITURE));
+		//cards.add(new CarteCivilisation(3, Couleur.SABLE, Ressource.NOURRITURE,PartieInferieure.PAYSANT,2));
+		//cards.add(new CarteCivilisation(4, Couleur.SABLE, Ressource.NOURRITURE,PartieInferieure.CONSTRUCTEUR,1));
+		//cards.add(new CarteCivilisation(3, Couleur.VERTE, Ressource.NOURRITURE,PartieInferieure.TISSAGE));
+		//cards.add(new CarteCivilisation(7, Couleur.VERTE, Ressource.NOURRITURE,PartieInferieure.POTERIE));
+		//cards.add(new CarteCivilisation(2, Couleur.SABLE, Ressource.,PartieInferieure.CONSTRUCTEUR,2));
+		//cards.add(new CarteCivilisation(5, Couleur.VERTE, Ressource.NOURRITURE,PartieInferieure.MEDECINE));
+		//cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.NOURRITURE,PartieInferieure.TISSAGE));
 
 		//3 cartes point de victoire 
-		cards.add(new CarteCivilisation(3, Couleur.VERTE, Ressource.POINT));
-		cards.add(new CarteCivilisation(3, Couleur.VERTE, Ressource.POINT));
-		cards.add(new CarteCivilisation(3, Couleur.SABLE, Ressource.POINT));
+		//cards.add(new CarteCivilisation(3, Couleur.VERTE, Ressource.POINT,PartieInferieure.MEDECINE));
+		//cards.add(new CarteCivilisation(3, Couleur.VERTE, Ressource.POINT,PartieInferieure.MEDECINE));
+		//cards.add(new CarteCivilisation(3, Couleur.SABLE, Ressource.POINT,PartieInferieure.CONSTRUCTEUR,3));
 
 		//2 cartes agriculture 
-		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.AGRICULTURE));
-		cards.add(new CarteCivilisation(1, Couleur.SABLE, Ressource.AGRICULTURE));
+		//cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.AGRICULTURE,PartieInferieure.CADRAN_SALAIRE));
+		//cards.add(new CarteCivilisation(1, Couleur.SABLE, Ressource.AGRICULTURE?PartieInferieure.PAYSANT,1));
 
 		// 1 carte tuile outil 
-		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.OUTIL));
+		//cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.OUTIL,PartieInferieure.ART));
 
 		// 1 carte ressource au choix
-		cards.add(new CarteCivilisation(2, Couleur.VERTE, Ressource.RESSOURCE_AU_CHOIX));
+		//cards.add(new CarteCivilisation(2, Couleur.VERTE, Ressource.RESSOURCE_AU_CHOIX,PartieInferieure.MEDECINE));
 
 		// 1 carte pour le calcul  du score 
-		cards.add(new CarteCivilisation(0, Couleur.VERTE, Ressource.AGRICULTURE)); //cette carte pour le calcul de score final donc lapartie superieure n' a pas d'effet (voir description cartes de civilisations )
+		//cards.add(new CarteCivilisation(0, Couleur.VERTE, Ressource.AGRICULTURE,PartieInferieure.ECRITURE)); //cette carte pour le calcul de score final donc lapartie superieure n' a pas d'effet (voir description cartes de civilisations )
 
 		//3 cartes Ressources avec jet de dés 
-		cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.OR, true));
-		cards.add(new CarteCivilisation(Couleur.SABLE, Ressource.PIERRE, true));
-		cards.add(new CarteCivilisation(Couleur.SABLE, Ressource.BOIS, true));
+		//cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.OR, true,PartieInferieure.ART));
+		cards.add(new CarteCivilisation(Couleur.SABLE, Ressource.PIERRE, true?PartieInferieure.CHAMANE,1));
+		cards.add(new CarteCivilisation(Couleur.SABLE, Ressource.BOIS, true,PartieInferieure.CHAMANE,2));
 
 		// 10 cartes  jet de dés
-		cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.MULTI, true));
-		cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.MULTI, true));
-		cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.MULTI, true));
-		cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.MULTI, true));
-		cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.MULTI, true));
-		cards.add(new CarteCivilisation(Couleur.SABLE, Ressource.MULTI, true));
-        cards.add(new CarteCivilisation(Couleur.SABLE, Ressource.MULTI, true));
-		cards.add(new CarteCivilisation(Couleur.SABLE, Ressource.MULTI, true));
-		cards.add(new CarteCivilisation(Couleur.SABLE, Ressource.MULTI, true));
-		cards.add(new CarteCivilisation(Couleur.SABLE, Ressource.MULTI, true));
+		//cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.MULTI, true,PartieInferieure.MEDECINE));
+		//cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.MULTI, true,PartieInferieure.ECRITURE));
+		//cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.MULTI, true,PartieInferieure.TRANSPORT));
+		//cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.MULTI, true,PartieInferieure.POTERIE));
+		//cards.add(new CarteCivilisation(Couleur.VERTE, Ressource.MULTI, true,PartieInferieure.POTERIE));
+		cards.add(new CarteCivilisation(Couleur.SABLE, Ressource.MULTI, true,PartieInferieure.CONSTRUCTEUR,1));
+        cards.add(new CarteCivilisation(Couleur.SABLE, Ressource.MULTI, true,PartieInferieure.PAYSANT,2));
+		cards.add(new CarteCivilisation(Couleur.SABLE, Ressource.MULTI, true,PartieInferieure.PAYSANT,1));
+		cards.add(new CarteCivilisation(Couleur.SABLE, Ressource.MULTI, true,PartieInferieure.FABRICANT,2));
+		cards.add(new CarteCivilisation(Couleur.SABLE, Ressource.MULTI, true,PartieInferieure.FABRICANT,2));
 		
 		// 3 cartes   "outils a usage unique "
-		cards.add(new CarteCivilisation(4, Couleur.SABLE, Ressource.OUTIL_USAGE_UNIQUE));
-		cards.add(new CarteCivilisation(3, Couleur.SABLE, Ressource.OUTIL_USAGE_UNIQUE));
-		cards.add(new CarteCivilisation(2, Couleur.SABLE, Ressource.OUTIL_USAGE_UNIQUE));
+		cards.add(new CarteCivilisation(4, Couleur.SABLE, Ressource.OUTIL_USAGE_UNIQUE,PartieInferieure.FABRICANT,1));
+		cards.add(new CarteCivilisation(3, Couleur.SABLE, Ressource.OUTIL_USAGE_UNIQUE,PartieInferieure.FABRICANT,1));
+		cards.add(new CarteCivilisation(2, Couleur.SABLE, Ressource.OUTIL_USAGE_UNIQUE,PartieInferieure.FABRICANT,2));
 
 		return cards;
 	}
