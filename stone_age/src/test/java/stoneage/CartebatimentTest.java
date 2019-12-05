@@ -185,6 +185,17 @@ class CartebatimentTest {
         assertEquals(3, inventaire.getNbPierre());
         assertEquals(3, inventaire.getNbOr());
 
+        inventaire.setNbBois(3);
+        inventaire.setNbArgile(4);
+        inventaire.setNbPierre(4);
+        inventaire.setNbOr(4);
+
+        carte25.payement(inventaire, 4);
+        assertEquals(3, inventaire.getNbBois());
+        assertEquals(4, inventaire.getNbArgile());
+        assertEquals(4, inventaire.getNbPierre());
+        assertEquals(0, inventaire.getNbOr());
+
 
     }
 }
