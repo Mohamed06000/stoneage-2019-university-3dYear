@@ -93,7 +93,7 @@ public class Inventaire {
 
 
     /**
-     * La liste des outils du joueur
+     * La liste des outils de l'inventaire
      */
     private ArrayList<Integer> outils;
 
