@@ -1,6 +1,11 @@
-package stoneage;
+package stoneage.plateaudejeu.cartes;
 
 import org.jetbrains.annotations.NotNull;
+import stoneage.partie.Partie;
+import stoneage.plateaudejeu.Inventaire;
+import stoneage.plateaudejeu.Plateau;
+import stoneage.plateaudejeu.Ressource;
+
 import java.util.Random;
 
 import java.util.ArrayList;

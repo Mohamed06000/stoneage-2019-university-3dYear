@@ -1,8 +1,12 @@
 
-package stoneage;
+package stoneage.plateaudejeu;
+
+import stoneage.plateaudejeu.cartes.CarteCivilisation;
+import stoneage.plateaudejeu.cartes.Cartebatiment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * La classe de l'inventaire du joueur
@@ -62,7 +66,7 @@ public class Inventaire {
      * tableau qui contient les cartes des civilisations gagnées par le joueur
      * */
 
-     ArrayList<CarteCivilisation> stockCards = new ArrayList<CarteCivilisation>();
+    public ArrayList<CarteCivilisation> stockCards = new ArrayList<CarteCivilisation>();
     /**
      * La liste des outils du joueur
      */
@@ -78,6 +82,9 @@ public class Inventaire {
      */
     private ArrayList<Integer> outilsNonDispo;
 
+    /**
+     * La liste des cartes Batiments
+     */
     private ArrayList<Cartebatiment> cartesBatiments;
 
 
@@ -103,8 +110,7 @@ public class Inventaire {
     }
 
 
-    //METHODES
-
+    // ================================== GETTERS & SETTERS ============================== //
 
     public ArrayList<Cartebatiment> getCartesBatiments() {
         return cartesBatiments;
@@ -160,18 +166,6 @@ public class Inventaire {
      */
     public int getNbOuvrier() {
         return nbOuvrier;
-    }
-    
-    public String toString() {
-    	return "nb d'ouvrier= " +nbOuvrier+
-    		     "\nnb bois = " +nbBois+
-    		     "\nnbd'Argile = " +nbArgile+
-    		     "\nnb Pierre = " +nbPierre+
-    		     "\nnb d'or  = " +nbOr+
-    		     "\nnb d'outils  = " +nbOutils+
-    		     "\nnb nourriture = " +nbNourriture+
-    		     "\nLe niveau d'agriculture = " +niveauAgriculture+
-    		     "\nnb de points  = " +nbPointTotal ;
     }
 
     /**
@@ -276,6 +270,33 @@ public class Inventaire {
     }
 
     /**
+     * Rècupère le nombre de ressource total du joueur
+     * @return Le nombre de ressource
+     */
+    public int getNbRessourceTotal() {
+        return getNbBois()+getNbArgile()+getNbPierre()+getNbOr();
+    }
+
+
+
+    // ===================================    METHODES   ======================================== //
+
+
+
+    public String toString() {
+    	return "nb d'ouvrier= " +nbOuvrier+
+    		     "\nnb bois = " +nbBois+
+    		     "\nnbd'Argile = " +nbArgile+
+    		     "\nnb Pierre = " +nbPierre+
+    		     "\nnb d'or  = " +nbOr+
+    		     "\nnb d'outils  = " +nbOutils+
+    		     "\nnb nourriture = " +nbNourriture+
+    		     "\nLe niveau d'agriculture = " +niveauAgriculture+
+    		     "\nnb de points  = " +nbPointTotal ;
+    }
+
+
+    /**
      * Calcule les points du joueur
      * @return Un nombre de points
      */
@@ -310,10 +331,16 @@ public class Inventaire {
     }
 
     /**
-     * Rècupère le nombre de ressource total du joueur
-     * @return Le nombre de ressource
+     * En cas d'égalité entre joueur,
+     * on compte le nombre d'ouvrier, d'outils et du niveau d'agriculture de l'inventaire
+     * pour le départager entre les autres joueur
+     * @return la somme du nombre d'ouvrier, d'outils et du niveau d'agriculture
      */
-    public int getNbRessourceTotal() {
-        return getNbBois()+getNbArgile()+getNbPierre()+getNbOr();
+    public int pointDeDepartage(){
+        int sommeOutils = 0 ;
+        for (int outil: this.outils) {
+            sommeOutils+=outil;
+        }
+        return this.niveauAgriculture + this.nbOuvrier + sommeOutils;
     }
 }

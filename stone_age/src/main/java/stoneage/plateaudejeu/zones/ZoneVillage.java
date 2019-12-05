@@ -1,4 +1,7 @@
-package stoneage;
+package stoneage.plateaudejeu.zones;
+
+import stoneage.joueur.Joueur;
+import stoneage.plateaudejeu.Inventaire;
 
 import java.util.ArrayList;
 
@@ -37,7 +40,7 @@ public class ZoneVillage extends Zone{
      * @param nbOuvrierSurZone    Le nombre d'ouvriers sur la zone
      * @param nbOuvrierMaxSurZone Le nombre d'ouviers maximum sur la zone
      */
-    ZoneVillage(int nbOuvrierSurZone, int nbOuvrierMaxSurZone, int type_zone) {
+    public ZoneVillage(int nbOuvrierSurZone, int nbOuvrierMaxSurZone, int type_zone) {
         super( nbOuvrierSurZone, nbOuvrierMaxSurZone);
         this.type_zone = type_zone;
     }

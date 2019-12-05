@@ -1,5 +1,7 @@
 package  stoneage ;
 
+import stoneage.partie.Partie;
+
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 

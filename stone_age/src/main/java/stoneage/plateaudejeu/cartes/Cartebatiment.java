@@ -1,10 +1,10 @@
-package stoneage;
+package stoneage.plateaudejeu.cartes;
 
 
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
+import stoneage.plateaudejeu.Inventaire;
+import stoneage.plateaudejeu.Ressource;
+
 import java.util.ArrayList;
-import java.util.Collection;
 
 
 /**
@@ -32,7 +32,7 @@ public class Cartebatiment {
      * @param point
      * @param ressource
      */
-    Cartebatiment(int point, ArrayList<Ressource> ressource) {
+    public Cartebatiment(int point, ArrayList<Ressource> ressource) {
         this.nbOuvrierSurCarte = 1;
         this.nbRessourceApayer = 3;
         this.point = point;
@@ -42,7 +42,7 @@ public class Cartebatiment {
 
     }
 
-    Cartebatiment(int nbRessourceApayer, int nbRessourceDiff, int type_carte) {
+    public Cartebatiment(int nbRessourceApayer, int nbRessourceDiff, int type_carte) {
         this.nbOuvrierSurCarte = 1;
         this.nbRessourceApayer = nbRessourceApayer;
         this.point = point;
