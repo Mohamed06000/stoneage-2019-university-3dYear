@@ -11,6 +11,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
+
+/**
+ * Classe Tour : Traite les actions liées à un tour avec la phase de placement, de récupération
+ * et la phase nourrissage.
+ */
 public class Tour {
 
     Plateau plateau;
@@ -229,7 +234,7 @@ public class Tour {
 
 
     /**
-     * Affiche les informations du joueur
+     * Affiche les informations du joueur numero numJ
      * @param numJ Le numero du joueur
      * @param z Une zone
      * @param ZoneVisitees La  liste des zones visitées par le joueur
@@ -251,6 +256,14 @@ public class Tour {
         }
     }
 
+    /**
+     * Affiche les informations du joueur numero numJ
+     * @param numJ
+     * @param c
+     * @param ZoneVisitees
+     * @param CarteVisitees
+     * @param inventaire
+     */
     public static void AfficheInfoJoueur(int numJ, Cartebatiment c,
                                          ArrayList<ArrayList<Zone>> ZoneVisitees,
                                          ArrayList<ArrayList<Cartebatiment>> CarteVisitees,

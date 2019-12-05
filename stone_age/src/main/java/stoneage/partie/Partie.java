@@ -31,8 +31,15 @@ public class Partie {
      */
     private int[] score;
 
+    /**
+     * Active l'affichage des actions en details (Desactiver par défaut)
+     */
     private boolean affichage = false;
 
+    /**
+     * Instance de Tour
+     * Le déroulement d'un tour
+     */
     private Tour unTour;
 
 
@@ -108,6 +115,14 @@ public class Partie {
 
     }
 
+
+    /**
+     * Departage les joueur à égalité: l'index du joueur gagnant est changé (ou pas) en fonction
+     * de la valeur renvoyée par pointDeDepartage() de son inventaire (l'inventaire du même index).
+     * @param score
+     * @param equal
+     * @param indexDuPremier
+     */
     private void departage(int[] score, int equal, int indexDuPremier) {
         for (int i = 0; i < score.length; i++) {
             if ( (i != indexDuPremier) && (score[i] == score[indexDuPremier]) ){
@@ -133,6 +148,12 @@ public class Partie {
         }
     }
 
+    /**
+     * Calcule s'il y a des joueurs à égalité à la fin d'une partie
+     * @param points
+     * @param indexDuPremier
+     * @return Le nombre de joueurs à égalité.
+     */
     public int egalite(int[] points, int indexDuPremier){
         int equal = 0;
         for (int i = 1; i < points.length; i++) {

@@ -26,14 +26,6 @@ public class Plateau {
      */
     private Zone Riviere;
 
-    public boolean isTwoPlayers() {
-        return twoPlayers;
-    }
-
-    public boolean isThreePlayers() {
-        return threePlayers;
-    }
-
     /**
      * Zone chasse
      */
@@ -59,38 +51,6 @@ public class Plateau {
      */
     private Zone Champ;
 
-    public Zone getRiviere() {
-        return Riviere;
-    }
-
-    public Zone getChasse() {
-        return Chasse;
-    }
-
-    public Zone getForet() {
-        return Foret;
-    }
-
-    public Zone getGlaisiere() {
-        return Glaisiere;
-    }
-
-    public Zone getCarriere() {
-        return Carriere;
-    }
-
-    public Zone getChamp() {
-        return Champ;
-    }
-
-    public Zone getHutte() {
-        return Hutte;
-    }
-
-    public Zone getFabriqueOutils() {
-        return FabriqueOutils;
-    }
-
     /**
      * Zone Hutte
      */
@@ -101,13 +61,10 @@ public class Plateau {
      */
     private Zone FabriqueOutils;
     
-    /*
+    /**
      * tableau qui contient toutes les cartes de civilisations .
      * */
-    
-    
    public static  ArrayList<CarteCivilisation> cards=CarteCivilisation.CreationCarte();
-
 
     /**
      * La liste des zones disponibles au placement
@@ -168,39 +125,9 @@ public class Plateau {
             carte24,carte25,carte26,carte27,carte28;
 
 
-    //CONSTRUTEUR
 
-    public static ArrayList<CarteCivilisation> getCards() {
-        return cards;
-    }
 
-    public ArrayList<ArrayList<Zone>> getZoneVisitees() {
-        return ZoneVisitees;
-    }
-
-    public ArrayList<ArrayList<Cartebatiment>> getCarteVisitees() {
-        return CarteVisitees;
-    }
-
-    public Joueur getIA() {
-        return IA;
-    }
-
-    public ArrayList<Integer> getTableauFirstPlayer() {
-        return tableauFirstPlayer;
-    }
-
-    public Zone[] getTabAllZone() {
-        return tabAllZone;
-    }
-
-    public ArrayList<Cartebatiment> getCartetotale() {
-        return cartetotale;
-    }
-
-    public ArrayList<ArrayList<Cartebatiment>> getListeCarteTotale() {
-        return listeCarteTotale;
-    }
+    //===================  CONSTRUTEUR  ==============================//
 
     /**
      * Constructeur de la classe
@@ -285,6 +212,7 @@ public class Plateau {
     }
 
     //METHODES
+    // ============================ GETTERS =========================== //
 
     /**
      * Récupère les zones disponibles lors du placement
@@ -306,10 +234,86 @@ public class Plateau {
      * Récupère la liste des inventaires
      * @return Les inventaires
      */
-    public   ArrayList<Inventaire> getListeInventaire() {
+    public ArrayList<Inventaire> getListeInventaire() {
         return listeInventaire;
     }
 
+
+    public boolean isTwoPlayers() {
+        return twoPlayers;
+    }
+
+    public boolean isThreePlayers() {
+        return threePlayers;
+    }
+
+    public static ArrayList<CarteCivilisation> getCards() {
+        return cards;
+    }
+
+    public ArrayList<ArrayList<Zone>> getZoneVisitees() {
+        return ZoneVisitees;
+    }
+
+    public ArrayList<ArrayList<Cartebatiment>> getCarteVisitees() {
+        return CarteVisitees;
+    }
+
+    public Joueur getIA() {
+        return IA;
+    }
+
+    public ArrayList<Integer> getTableauFirstPlayer() {
+        return tableauFirstPlayer;
+    }
+
+    public Zone[] getTabAllZone() {
+        return tabAllZone;
+    }
+
+    public ArrayList<Cartebatiment> getCartetotale() {
+        return cartetotale;
+    }
+
+    public ArrayList<ArrayList<Cartebatiment>> getListeCarteTotale() {
+        return listeCarteTotale;
+    }
+
+
+    public Zone getRiviere() {
+        return Riviere;
+    }
+
+    public Zone getChasse() {
+        return Chasse;
+    }
+
+    public Zone getForet() {
+        return Foret;
+    }
+
+    public Zone getGlaisiere() {
+        return Glaisiere;
+    }
+
+    public Zone getCarriere() {
+        return Carriere;
+    }
+
+    public Zone getChamp() {
+        return Champ;
+    }
+
+    public Zone getHutte() {
+        return Hutte;
+    }
+
+    public Zone getFabriqueOutils() {
+        return FabriqueOutils;
+    }
+
+
+    // ====================== METHODES =============================//
     /**
      * Récupère le nombre d'ouvriers total qui ne sont pas encore placés
      * @return Le nombre d'ouvriers
