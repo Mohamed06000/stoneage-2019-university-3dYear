@@ -26,8 +26,6 @@ public class Partie {
      * Objet qui represente le plateau de jeu
      */
     private final Plateau plateau;
-
-
     /**
      * Liste des scores des joueurs
      */
@@ -121,8 +119,12 @@ public class Partie {
             departage(score, equal, indexDuPremier);
         }
         this.JoueurGagnant(indexDuPremier);
-
-
+        for (int i = 0; i < nbJoueur; i++) {
+            System.out.println("*****************");
+            System.out.println("joueur numero "+i);
+            JoueurGagnant(i);
+            System.out.println("***************");
+        }
     }
 
 

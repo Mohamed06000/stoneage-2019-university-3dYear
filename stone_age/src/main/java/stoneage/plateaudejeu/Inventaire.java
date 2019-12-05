@@ -327,7 +327,7 @@ public class Inventaire {
 
 
     public String toString() {
-    	return "nb d'ouvrier= " +nbOuvrier+
+    	return "nb d'ouvrier= " +nbOuvrierTotal+
     		     "\nnb bois = " +nbBois+
     		     "\nnbd'Argile = " +nbArgile+
     		     "\nnb Pierre = " +nbPierre+
@@ -335,7 +335,7 @@ public class Inventaire {
     		     "\nnb d'outils  = " +nbOutils+
     		     "\nnb nourriture = " +nbNourriture+
     		     "\nLe niveau d'agriculture = " +niveauAgriculture+
-    		     "\nnb de points  = " +nbPointTotal ;
+    		     "\nnb de points  = " + this.calculPoint() ;
     }
 
 
