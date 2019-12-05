@@ -389,5 +389,6 @@ public class Inventaire {
             sommeOutils+=outil;
         }
         return this.niveauAgriculture + this.nbOuvrier + sommeOutils;
+        
     }
 }
