@@ -74,7 +74,7 @@ public class Partie {
     public void jouer() {
         int tour = 1;
         System.out.println("Nb de joueur : " + nbJoueur);
-        System.out.println("Nb d'ouvriers total non place : " + plateau.nbOuvrierDispoTotal(plateau.getListeInventaire()));
+        //System.out.println("Nb d'ouvriers total non place : " + plateau.nbOuvrierDispoTotal(plateau.getListeInventaire()));
 
 
         while(plateau.verifierNbCarteBatiment()) { //plateau.verifierNbCarteCivilisation() && plateau.verifierNbCarteBatiment()
@@ -170,6 +170,7 @@ public class Partie {
      */
     public void JoueurGagnant(int indexDuGagnant){
         System.out.println("Le Gagnant est le joueur " + (indexDuGagnant+1));
+        System.out.println(plateau.getListeInventaire().get(indexDuGagnant));
     }
 
     /**

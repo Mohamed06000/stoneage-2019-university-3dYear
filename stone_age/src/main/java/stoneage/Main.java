@@ -22,7 +22,7 @@ public class Main {
         //partie.jouer() ;
 
         Partie partie;
-        partie = new Partie(4,true) ;
+        partie = new Partie(4,false) ;
         partie.jouer() ;
 
   //      System.out.println("Simulation 500 parties");

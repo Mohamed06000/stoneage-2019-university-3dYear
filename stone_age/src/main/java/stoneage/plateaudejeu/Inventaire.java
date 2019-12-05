@@ -341,6 +341,6 @@ public class Inventaire {
         for (int outil: this.outils) {
             sommeOutils+=outil;
         }
-        return this.niveauAgriculture + this.nbOuvrier + sommeOutils;
+        return this.niveauAgriculture + this.nbOuvrierTotal + sommeOutils;
     }
 }
