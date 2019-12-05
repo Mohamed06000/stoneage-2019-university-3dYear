@@ -49,7 +49,8 @@
 * [ ] Implémenter les cartes des civilisations dans le jeu ,
 * [ ] Test CarteCivilisation,
 * [ ] Le joueur fera des choix stratégiques,
-* [ ] Creation d'un 2eme IA 
+* [ ] Creation d'un 2eme IA ,
+* [ ] Remplacement des switch ,
 
 
 ---
