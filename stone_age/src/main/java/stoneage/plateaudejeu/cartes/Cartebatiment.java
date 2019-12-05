@@ -50,10 +50,14 @@ public class Cartebatiment {
         this.nbRessourceDiff = nbRessourceDiff;
         this.PlaceReserver = false;
 
+
     }
 
-    public void point() {
-
+    Cartebatiment( int nbRessourceDiff, int type_carte) {
+        this.nbOuvrierSurCarte = 1;
+        this.type_carte = type_carte;
+        this.nbRessourceDiff = nbRessourceDiff;
+        this.PlaceReserver = false;
     }
 
 
@@ -86,6 +90,7 @@ public class Cartebatiment {
      * @param inventaireJoueur L'inventaire du joueur
      */
     public void payement(Inventaire inventaireJoueur, int choixNbRessource) {
+        int somme = inventaireJoueur.getNbOr()+ inventaireJoueur.getNbPierre()+inventaireJoueur.getNbArgile()+inventaireJoueur.getNbBois();
 
 
         if (this.type_carte==3) {
@@ -93,75 +98,323 @@ public class Cartebatiment {
             for (int i = 0; i < choixNbRessource; i++) {
                 if (inventaireJoueur.getNbBois() > 0) {
                     inventaireJoueur.setNbBois(inventaireJoueur.getNbBois() - 1);
-                    point += 1 * 3;
+                    point += 3;
+                    continue;
                 }
                 if (inventaireJoueur.getNbArgile() > 0) {
                     inventaireJoueur.setNbArgile(inventaireJoueur.getNbArgile() - 1);
-                    point += 1 * 4;
+                    point +=4;
+                    continue;
                 }
                 if (inventaireJoueur.getNbPierre() > 0) {
                     inventaireJoueur.setNbPierre(inventaireJoueur.getNbPierre() - 1);
-                    point += 1 * 5;
+                    point += 5;
+                    continue;
                 }
                 if (inventaireJoueur.getNbOr() > 0) {
                     inventaireJoueur.setNbOr(inventaireJoueur.getNbOr() - 1);
-                    point += 1 * 6;
+                    point += 6;
+                    continue;
                 }
             }
+            inventaireJoueur.setNbOuvrier(inventaireJoueur.getNbOuvrier()-1);
         }
 
         if (this.type_carte==2) {
             switch (nbRessourceDiff) {
                 case 1 :
-                    if (inventaireJoueur.getNbBois() > 0) {
-                        inventaireJoueur.setNbBois(inventaireJoueur.getNbBois() - 1);
-                        point += 1 * 3;
+                    if (inventaireJoueur.getNbOr() >= nbRessourceApayer) {
+                            inventaireJoueur.setNbOr(inventaireJoueur.getNbOr() - nbRessourceApayer);
+                            point = point + nbRessourceApayer*6;
+                            break;
+
+
                     }
+                    if (inventaireJoueur.getNbPierre() >= nbRessourceApayer) {
+                            inventaireJoueur.setNbPierre(inventaireJoueur.getNbPierre() - nbRessourceApayer);
+                            point = point + nbRessourceApayer*5;
+                            break;
+
+
+                    }
+                    if (inventaireJoueur.getNbArgile() >= nbRessourceApayer) {
+                        inventaireJoueur.setNbArgile(inventaireJoueur.getNbPierre() - nbRessourceApayer);
+                        point = point + nbRessourceApayer*4;
+                        break;
+
+                    }
+                    if (inventaireJoueur.getNbBois() >= nbRessourceApayer) {
+                        inventaireJoueur.setNbBois(inventaireJoueur.getNbBois() - nbRessourceApayer);
+                        point = point + nbRessourceApayer*3;
+                        break;
+                    }
+                    inventaireJoueur.setNbOuvrier(inventaireJoueur.getNbOuvrier()-1);
+                    break;
+
                 case 2 :
-                    for (int i = 0; i < 2; i++) {
-                        if (inventaireJoueur.getNbBois() > 0) {
-                            inventaireJoueur.setNbBois(inventaireJoueur.getNbBois() - 1);
-                            point += 1 * 3;
-                        }
-                        if (inventaireJoueur.getNbArgile() > 0) {
-                            inventaireJoueur.setNbArgile(inventaireJoueur.getNbArgile() - 1);
-                            point += 1 * 4;
+                    int[] tab = new int[]{inventaireJoueur.getNbOr(),inventaireJoueur.getNbPierre(),inventaireJoueur.getNbArgile(),
+                        inventaireJoueur.getNbBois()};
+                    for (int i = 0; i < tab.length; i++) {
+                        for (int j = i + 1; j < tab.length; j++) {
+                            if ((tab[i] > 0) && (tab[j] > 0)) {
+                                if (tab[i] + tab[j] >= nbRessourceApayer) {
+                                    if ((i == 0) || (j == 1)) {
+                                        if (nbRessourceApayer <= tab[i]) {
+                                            inventaireJoueur.setNbOr(inventaireJoueur.getNbOr() - (nbRessourceApayer - 1));
+                                            inventaireJoueur.setNbPierre(inventaireJoueur.getNbPierre() - 1);
+                                            point = point + (nbRessourceApayer - 1) * 6 + 5;
+                                            break;
+                                        } else {
+                                            point = inventaireJoueur.getNbOr() * 6 + (nbRessourceApayer - (inventaireJoueur.getNbOr())) * 5;
+                                            inventaireJoueur.setNbOr(0);
+                                            nbRessourceApayer -= inventaireJoueur.getNbOr();
+                                            inventaireJoueur.setNbPierre(inventaireJoueur.getNbPierre() - nbRessourceApayer);
+                                            break;
+                                        }
+                                    }
+                                    if ((i == 0) || (j == 2)) {
+                                        if (nbRessourceApayer <= tab[i]) {
+                                            inventaireJoueur.setNbOr(inventaireJoueur.getNbOr() - (nbRessourceApayer - 1));
+                                            inventaireJoueur.setNbArgile(inventaireJoueur.getNbArgile() - 1);
+                                            point = point + (nbRessourceApayer - 1) * 6 + 4;
+
+                                        } else {
+                                            point = inventaireJoueur.getNbOr() * 6 + (nbRessourceApayer - (inventaireJoueur.getNbOr())) * 4;
+                                            inventaireJoueur.setNbOr(0);
+                                            nbRessourceApayer -= inventaireJoueur.getNbOr();
+                                            inventaireJoueur.setNbArgile(inventaireJoueur.getNbArgile() - nbRessourceApayer);
+
+                                        }
+
+                                    }
+                                    if ((i == 0) || (j == 3)) {
+                                        if (nbRessourceApayer <= tab[i]) {
+                                            inventaireJoueur.setNbOr(inventaireJoueur.getNbOr() - (nbRessourceApayer - 1));
+                                            inventaireJoueur.setNbBois(inventaireJoueur.getNbBois() - 1);
+                                            point = point + (nbRessourceApayer - 1) * 6 + 3;
+
+                                        } else {
+                                            point = inventaireJoueur.getNbOr() * 6 + (nbRessourceApayer - (inventaireJoueur.getNbOr())) * 3;
+                                            inventaireJoueur.setNbOr(0);
+                                            nbRessourceApayer -= inventaireJoueur.getNbOr();
+                                            inventaireJoueur.setNbBois(inventaireJoueur.getNbBois() - nbRessourceApayer);
+                                        }
+
+                                    }
+                                    if ((i == 1) || (j == 2)) {
+                                        if (nbRessourceApayer <= tab[i]) {
+                                            inventaireJoueur.setNbPierre(inventaireJoueur.getNbPierre() - (nbRessourceApayer - 1));
+                                            inventaireJoueur.setNbArgile(inventaireJoueur.getNbArgile() - 1);
+                                            point = point + (nbRessourceApayer - 1) * 5 + 4;
+
+                                        } else {
+                                            point = inventaireJoueur.getNbPierre() * 5 + (nbRessourceApayer - (inventaireJoueur.getNbPierre())) * 4;
+                                            inventaireJoueur.setNbPierre(0);
+                                            nbRessourceApayer -= inventaireJoueur.getNbPierre();
+                                            inventaireJoueur.setNbArgile(inventaireJoueur.getNbArgile() - nbRessourceApayer);
+                                        }
+
+                                    }
+                                    if ((i == 1) || (j == 3)) {
+                                        if (nbRessourceApayer <= tab[i]) {
+                                            inventaireJoueur.setNbPierre(inventaireJoueur.getNbPierre() - (nbRessourceApayer - 1));
+                                            inventaireJoueur.setNbBois(inventaireJoueur.getNbBois() - 1);
+                                            point = point + (nbRessourceApayer - 1) * 5 + 3;
+
+                                        } else {
+                                            point = inventaireJoueur.getNbPierre() * 5 + (nbRessourceApayer - (inventaireJoueur.getNbPierre())) * 3;
+                                            inventaireJoueur.setNbPierre(0);
+                                            nbRessourceApayer -= inventaireJoueur.getNbPierre();
+                                            inventaireJoueur.setNbBois(inventaireJoueur.getNbBois() - nbRessourceApayer);
+
+
+                                        }
+                                    }
+                                    if ((i == 2) || (j == 3)) {
+                                        if (nbRessourceApayer <= tab[i]) {
+                                            inventaireJoueur.setNbArgile(inventaireJoueur.getNbArgile() - (nbRessourceApayer - 1));
+                                            inventaireJoueur.setNbBois(inventaireJoueur.getNbBois() - 1);
+                                            point = point + (nbRessourceApayer - 1) * 5 + 3;
+
+                                        } else {
+                                            point = inventaireJoueur.getNbArgile() * 4 + (nbRessourceApayer - (inventaireJoueur.getNbArgile())) * 3;
+                                            inventaireJoueur.setNbArgile(0);
+                                            nbRessourceApayer -= inventaireJoueur.getNbArgile();
+                                            inventaireJoueur.setNbBois(inventaireJoueur.getNbBois() - nbRessourceApayer);
+
+                                        }
+
+
+                                    }
+                                }
+                            }
                         }
                     }
+                    tab[0] = inventaireJoueur.getNbOr();
+                    tab[1] = inventaireJoueur.getNbPierre();
+                    tab[2] = inventaireJoueur.getNbArgile();
+                    tab[3] = inventaireJoueur.getNbBois();
+                    inventaireJoueur.setNbOuvrier(inventaireJoueur.getNbOuvrier()-1);
+
                 case 3:
-                    for (int i = 0; i < 3; i++) {
-                        if (inventaireJoueur.getNbBois() > 0) {
-                            inventaireJoueur.setNbBois(inventaireJoueur.getNbBois() - 1);
-                            point += 1 * 3;
-                        }
-                        if (inventaireJoueur.getNbArgile() > 0) {
-                            inventaireJoueur.setNbArgile(inventaireJoueur.getNbArgile() - 1);
-                            point += 1 * 4;
-                        }
-                        if (inventaireJoueur.getNbPierre() > 0) {
-                            inventaireJoueur.setNbPierre(inventaireJoueur.getNbPierre() - 1);
-                            point += 1 * 5;
-                        }
-                    }
-                case 4 :
-                    for (int i = 0; i < 4; i++) {
-                        if (inventaireJoueur.getNbBois() > 0) {
-                            inventaireJoueur.setNbBois(inventaireJoueur.getNbBois() - 1);
-                            point += 1 * 3;
-                        }
-                        if (inventaireJoueur.getNbArgile() > 0) {
-                            inventaireJoueur.setNbArgile(inventaireJoueur.getNbArgile() - 1);
-                            point += 1 * 4;
-                        }
-                        if (inventaireJoueur.getNbPierre() > 0) {
-                            inventaireJoueur.setNbPierre(inventaireJoueur.getNbPierre() - 1);
-                            point += 1 * 5;
-                        }
-                        if (inventaireJoueur.getNbOr() > 0) {
+                    if(inventaireJoueur.getNbOr()>0 &&(inventaireJoueur.getNbPierre()>0 && inventaireJoueur.getNbArgile()>0)) {
+                        if (nbRessourceApayer == 3) {
                             inventaireJoueur.setNbOr(inventaireJoueur.getNbOr() - 1);
-                            point += 1 * 6;
+                            inventaireJoueur.setNbPierre(inventaireJoueur.getNbPierre() - 1);
+                            inventaireJoueur.setNbArgile(inventaireJoueur.getNbArgile() - 1);
+                            point = point +6 + 5 + 4;
+                            break;
+
+                        }
+                        if (nbRessourceApayer > 3 && (inventaireJoueur.getNbOr() > 1)) {
+                            inventaireJoueur.setNbOr(inventaireJoueur.getNbOr() - 2);
+                            inventaireJoueur.setNbPierre(inventaireJoueur.getNbPierre() - 1);
+                            inventaireJoueur.setNbArgile(inventaireJoueur.getNbArgile() - 1);
+                            point = point +2*6 + 5 + 4;
+                            break;
+
+                        }
+                        if (nbRessourceApayer > 3 && (inventaireJoueur.getNbPierre() > 1 && inventaireJoueur.getNbOr() == 1)) {
+                            inventaireJoueur.setNbOr(inventaireJoueur.getNbOr() - 1);
+                            inventaireJoueur.setNbPierre(inventaireJoueur.getNbPierre() - 2);
+                            inventaireJoueur.setNbArgile(inventaireJoueur.getNbArgile() - 1);
+                            point = point +6 + 2*5 + 4;
+                            break;
+
+                        } else {
+                            inventaireJoueur.setNbOr(inventaireJoueur.getNbOr() - 1);
+                            inventaireJoueur.setNbPierre(inventaireJoueur.getNbPierre() - 1);
+                            inventaireJoueur.setNbArgile(inventaireJoueur.getNbArgile() - 2);
+                            point = point +6 + 5 + 2*4;
+                            break;
                         }
                     }
+                    if(inventaireJoueur.getNbOr()>0 &&(inventaireJoueur.getNbPierre()>0 && inventaireJoueur.getNbBois()>0)) {
+                        if (nbRessourceApayer == 3) {
+                            inventaireJoueur.setNbOr(inventaireJoueur.getNbOr() - 1);
+                            inventaireJoueur.setNbPierre(inventaireJoueur.getNbPierre() - 1);
+                            inventaireJoueur.setNbBois(inventaireJoueur.getNbBois() - 1);
+                            point = point +6 + 5 + 3;
+                            break;
+
+
+                        }
+                        if (nbRessourceApayer > 3 && (inventaireJoueur.getNbOr() > 1)) {
+                            inventaireJoueur.setNbOr(inventaireJoueur.getNbOr() - 2);
+                            inventaireJoueur.setNbPierre(inventaireJoueur.getNbPierre() - 1);
+                            inventaireJoueur.setNbBois(inventaireJoueur.getNbBois() - 1);
+                            point = point + 2*6 + 5 + 3;
+                            break;
+
+                        }
+                        if (nbRessourceApayer > 3 && (inventaireJoueur.getNbPierre() > 1 && inventaireJoueur.getNbOr() == 1)) {
+                            inventaireJoueur.setNbOr(inventaireJoueur.getNbOr() - 1);
+                            inventaireJoueur.setNbPierre(inventaireJoueur.getNbPierre() - 2);
+                            inventaireJoueur.setNbBois(inventaireJoueur.getNbBois() - 1);
+                            point = point + 6 + 2*5 + 3;
+                            break;
+
+
+                        } else {
+                            inventaireJoueur.setNbOr(inventaireJoueur.getNbOr() - 1);
+                            inventaireJoueur.setNbPierre(inventaireJoueur.getNbPierre() - 1);
+                            inventaireJoueur.setNbBois(inventaireJoueur.getNbBois() - 2);
+                            point = point + 6 + 5 + 2*3;
+                            break;
+
+                        }
+
+                    }
+                    if(inventaireJoueur.getNbArgile()>0 &&(inventaireJoueur.getNbPierre()>0 && inventaireJoueur.getNbBois()>0)) {
+                        if (nbRessourceApayer == 3) {
+                            inventaireJoueur.setNbBois(inventaireJoueur.getNbBois()- 1);
+                            inventaireJoueur.setNbPierre(inventaireJoueur.getNbPierre() - 1);
+                            inventaireJoueur.setNbArgile(inventaireJoueur.getNbBois() - 1);
+                            point = point + 5 +4+ 3;
+                            break;
+
+
+                        }
+                        if (nbRessourceApayer > 3 && (inventaireJoueur.getNbPierre() > 1)) {
+                            inventaireJoueur.setNbPierre(inventaireJoueur.getNbPierre() - 2);
+                            inventaireJoueur.setNbBois(inventaireJoueur.getNbBois() - 1);
+                            inventaireJoueur.setNbArgile(inventaireJoueur.getNbArgile() - 1);
+                            point = point + 2*5 +4+ 3;
+                            break;
+
+
+                        }
+                        if (nbRessourceApayer > 3 && (inventaireJoueur.getNbArgile() > 1 && inventaireJoueur.getNbPierre() == 1)) {
+                            inventaireJoueur.setNbPierre(inventaireJoueur.getNbPierre() - 1);
+                            inventaireJoueur.setNbArgile(inventaireJoueur.getNbArgile() - 2);
+                            inventaireJoueur.setNbBois(inventaireJoueur.getNbBois() - 1);
+                            point =point + 5+ 2*4 + 3;
+                            break;
+
+                        } else {
+                            inventaireJoueur.setNbArgile(inventaireJoueur.getNbArgile() - 1);
+                            inventaireJoueur.setNbPierre(inventaireJoueur.getNbPierre() - 1);
+                            inventaireJoueur.setNbArgile(inventaireJoueur.getNbBois() - 2);
+                            point = point + 5 +4 +2*3;
+                            break;
+                        }
+
+                    }
+                        case 4 :
+                            if(inventaireJoueur.getNbOr()>0 &&(inventaireJoueur.getNbPierre()>0 && inventaireJoueur.getNbArgile()>0)
+                            && (inventaireJoueur.getNbBois()>0)) {
+                                if (somme > nbRessourceApayer) {
+                                    if (nbRessourceApayer == 4) {
+                                        inventaireJoueur.setNbOr(inventaireJoueur.getNbOr() - 1);
+                                        inventaireJoueur.setNbPierre(inventaireJoueur.getNbPierre() - 1);
+                                        inventaireJoueur.setNbArgile(inventaireJoueur.getNbArgile() - 1);
+                                        inventaireJoueur.setNbBois(inventaireJoueur.getNbBois() - 1);
+                                        point = point + 6 + 5 + 4 + 3;
+                                        break;
+                                    }
+                                    if (nbRessourceApayer == 5) {
+                                        if (inventaireJoueur.getNbOr() > 1) {
+                                            inventaireJoueur.setNbOr(inventaireJoueur.getNbOr() - 2);
+                                            inventaireJoueur.setNbPierre(inventaireJoueur.getNbPierre() - 1);
+                                            inventaireJoueur.setNbArgile(inventaireJoueur.getNbArgile() - 1);
+                                            inventaireJoueur.setNbBois(inventaireJoueur.getNbBois() - 1);
+                                            point = point + 2 * 6 + 5 + 4 + 3;
+                                            break;
+
+                                        }
+                                        if (inventaireJoueur.getNbPierre() > 1 && (inventaireJoueur.getNbOr() == 1)) {
+                                            inventaireJoueur.setNbOr(inventaireJoueur.getNbOr() - 1);
+                                            inventaireJoueur.setNbPierre(inventaireJoueur.getNbPierre() - 2);
+                                            inventaireJoueur.setNbArgile(inventaireJoueur.getNbArgile() - 1);
+                                            inventaireJoueur.setNbBois(inventaireJoueur.getNbBois() - 1);
+                                            point = point + 6 + 2 * 5 + 4 + 3;
+                                            break;
+
+                                        }
+                                        if (inventaireJoueur.getNbArgile() > 1 && (inventaireJoueur.getNbOr() == 1) && inventaireJoueur.getNbPierre() == 1) {
+                                            inventaireJoueur.setNbOr(inventaireJoueur.getNbOr() - 1);
+                                            inventaireJoueur.setNbPierre(inventaireJoueur.getNbPierre() - 1);
+                                            inventaireJoueur.setNbArgile(inventaireJoueur.getNbArgile() - 2);
+                                            inventaireJoueur.setNbBois(inventaireJoueur.getNbBois() - 1);
+                                            point = point + 6 + 5 + 2 * 4 + 3;
+                                            break;
+
+                                        } else {
+                                            inventaireJoueur.setNbOr(inventaireJoueur.getNbOr() - 1);
+                                            inventaireJoueur.setNbPierre(inventaireJoueur.getNbPierre() - 1);
+                                            inventaireJoueur.setNbArgile(inventaireJoueur.getNbArgile() - 2);
+                                            inventaireJoueur.setNbBois(inventaireJoueur.getNbBois() - 2);
+                                            point = point + 6 + 5 + 4 + 2 * 3;
+                                            break;
+                                        }
+
+                                    }
+                                }
+                            }
+
+                    inventaireJoueur.setNbOuvrier(inventaireJoueur.getNbOuvrier()-1);
+
+
             }
         }
         if (this.type_carte==1){

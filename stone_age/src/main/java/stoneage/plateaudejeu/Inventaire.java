@@ -53,6 +53,12 @@ public class Inventaire {
     private int nbOutils;
 
     /**
+     * La quantité d'outils a usage unique pour les cartes de civilisation  du joueur
+     */
+    private int OutilUsageUnique=0;
+
+
+	/**
      *  Le niveau d'agriculture du joueur
      */
     private int niveauAgriculture;
@@ -66,7 +72,26 @@ public class Inventaire {
      * tableau qui contient les cartes des civilisations gagnées par le joueur
      * */
 
-    public ArrayList<CarteCivilisation> stockCards = new ArrayList<CarteCivilisation>();
+    ArrayList<CarteCivilisation> stockCards = new ArrayList<CarteCivilisation>();
+
+
+
+
+    public void addCarteToStockCards(CarteCivilisation carte)
+    {
+    stockCards.add(carte);
+    }
+
+
+    /**
+     * tableau qui contient les cartes des civilisations "outils a usage unique "
+     * */
+
+     ArrayList<CarteCivilisation> outilUsageUnique = new ArrayList<CarteCivilisation>();
+
+
+
+
     /**
      * La liste des outils du joueur
      */
@@ -167,6 +192,24 @@ public class Inventaire {
     public int getNbOuvrier() {
         return nbOuvrier;
     }
+
+
+/**
+     * Recupere le nombre des outils a usaqge unique  du joueur
+     * */
+
+    public int getOutilUsageUnique() {
+		return OutilUsageUnique;
+	}
+
+
+    public void setOutilUsageUnique(int outilUsageUnique) {
+    	this.OutilUsageUnique = outilUsageUnique;
+    }
+	public void addOutilUsageUnique(int outilUsageUnique) {
+		this.OutilUsageUnique += outilUsageUnique;
+	}
+
 
     /**
      * Affecte un nombre d'ouvrier au joueur
