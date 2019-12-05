@@ -4,7 +4,9 @@ package stoneage.partie;
 import stoneage.plateaudejeu.Inventaire;
 import stoneage.plateaudejeu.Plateau;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 /**
@@ -96,9 +98,30 @@ public class Partie {
 
         System.out.println("_____RESULTAT_____");
         resultat(plateau.getListeInventaire());
-        int max = this.indexGagnant(score);
-        this.JoueurGagnant(score);
+        int indexDuPremier = this.indexGagnant(score);
+        int equal = egalite(score, indexDuPremier);
+        if (equal != 0){
+            departage(score, equal, indexDuPremier);
+        }
+        this.JoueurGagnant(indexDuPremier);
+
+
     }
+
+    private void departage(int[] score, int equal, int indexDuPremier) {
+        for (int i = 0; i < score.length; i++) {
+            if ( (i != indexDuPremier) && (score[i] == score[indexDuPremier]) ){
+                if( plateau.getListeInventaire().get(i).pointDeDepartage() > plateau.getListeInventaire().get(indexDuPremier).pointDeDepartage()){
+                    indexDuPremier = i;
+                }
+                equal--;
+            }
+            if(equal <= 0){
+                break;
+            }
+        }
+    }
+
 
     /**
      * Stocke les scores des joueurs dans la liste score
@@ -110,13 +133,22 @@ public class Partie {
         }
     }
 
+    public int egalite(int[] points, int indexDuPremier){
+        int equal = 0;
+        for (int i = 1; i < points.length; i++) {
+            if (points[i] == points[indexDuPremier]) {
+                equal++;
+            }
+        }
+        return equal;
+    }
+
     /**
      * Affiche le gagnant du jeu
-     * @param points La liste des scores
+     * @param indexDuGagnant L'index du joueur gagnant
      */
-    public void JoueurGagnant(int[] points){
-        int gagnant = indexGagnant(points);
-        System.out.println("Le Gagnant est le joueur " + (gagnant+1));
+    public void JoueurGagnant(int indexDuGagnant){
+        System.out.println("Le Gagnant est le joueur " + (indexDuGagnant+1));
     }
 
     /**

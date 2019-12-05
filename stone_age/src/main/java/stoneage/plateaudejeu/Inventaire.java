@@ -6,6 +6,7 @@ import stoneage.plateaudejeu.cartes.Cartebatiment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * La classe de l'inventaire du joueur
@@ -318,5 +319,13 @@ public class Inventaire {
      */
     public int getNbRessourceTotal() {
         return getNbBois()+getNbArgile()+getNbPierre()+getNbOr();
+    }
+
+    public int pointDeDepartage(){
+        int sommeOutils = 0 ;
+        for (int outil: this.outils) {
+            sommeOutils+=outil;
+        }
+        return this.niveauAgriculture + this.nbOuvrier + sommeOutils;
     }
 }
