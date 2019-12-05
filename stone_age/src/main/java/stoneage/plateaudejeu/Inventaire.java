@@ -388,8 +388,7 @@ public class Inventaire {
     }
 
 
-	public int getNbCartesBatiments() {
-		return  this.cartesBatiments.size();
-
-	}
+    public int getNbCartesBatiments() {
+        return this.cartesBatiments.size();
+    }
 }
