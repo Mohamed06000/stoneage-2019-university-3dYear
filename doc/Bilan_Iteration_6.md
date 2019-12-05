@@ -5,7 +5,7 @@
  ###  *Dans cette iteration nous avons*
  
 * [x] Refactory implementation des zones villages,
- - suppression de l'~~Enum~~ CarteRessource
+   - suppression de l'~~Enum~~ CarteRessource
  
 * [x] Refactory implementation CarteCivilisation,
   
@@ -18,9 +18,8 @@
 * [x] Ajouté du 2ème type de carte, carte Batiment (28),
 
 * [x] Ajouté l'UserStory : le joueur peut avoir le choix de ne pas choisir de nourrir tous ses ouvriers,
-  
-* [x] 
-  - Spécifications des cartes Civilisations
+
+* [x] Spécifications des cartes Civilisations
   - bon nbr de carte,
   - Haut de carte : Différents bonus; Bas de carte : différents multiplicateur (selon les règles),
   
