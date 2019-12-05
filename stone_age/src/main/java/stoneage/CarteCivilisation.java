@@ -10,14 +10,8 @@ public class CarteCivilisation {
 
 	static Random rand = new Random();
 
-	public enum Couleur {
-		VERTE, SABLE;
-	}
 
-	public static void main(String[] args) {
-
-		System.out.println(CarteCivilisation.CreationCarte());
-	}
+	
 
 	private Ressource ressourceCarte;
 	private int nbRessourceCarte;
@@ -26,7 +20,17 @@ public class CarteCivilisation {
 	private boolean avec_jet_de = false;
 	private PartieInferieure inf;
 	private int coefficient;
-
+    public enum Couleur {
+		VERTE, SABLE;
+	}
+    
+    
+    /*5 constructeurs : 
+     * selon le fond de la carte  verte ou jaune (il existe un coefficient pour le jaune ) 
+     *  selon le gain (par jet de dé ou pas )*/
+    * pour une carte sans partie Supérieure
+    
+    
 	CarteCivilisation(int nbRessourceCarte, Couleur couleur, Ressource ressourceCarte, PartieInferieure inf, int coefficient) {
 		this.nbRessourceCarte = nbRessourceCarte;
 		this.couleur = couleur;
@@ -116,9 +120,7 @@ public class CarteCivilisation {
 	//methode de classe :
 
 	/**
-	 *
-	 * @param inventaireJoueur
-	 * @param nbOuvrierAplacer
+	 * placer un ouvrier sur une carte
 	 */
 	public void placeOuvrierSurCarte(Inventaire inventaireJoueur) {
 
@@ -129,7 +131,7 @@ public class CarteCivilisation {
 
 	/**
 	 *
-	 * @param inventaireJoueur
+	 *retirer un ouvrier de carte
 	 */
 	public void retirerOuvrierSurCarte(@NotNull Inventaire inventaireJoueur) {
 		inventaireJoueur.setNbOuvrier(inventaireJoueur.getNbOuvrier() + 1);
@@ -143,7 +145,8 @@ public class CarteCivilisation {
 	}
 
 	/**
-	 * méthode qui permet au Joueur  de payer la carte si celui ci posséde les ressources suffisantes .
+	 * méthode qui permet de verifier si le joueur  posséde les ressources suffisantes pour acheter une carte .
+	 * cette methode est utilisée dans la methode recupererCarte .elle retourne un boolean
 	 * @param inventaireJoueur
 	 */
 	public boolean payement(Inventaire inventaireJoueur, int positionCards) {
@@ -197,6 +200,14 @@ public class CarteCivilisation {
 
 	}
 
+	
+	
+	/*
+	 * une methode qui permet le joueur  de recuperer une carte sinon retirer son ouvrier le cas contraire
+	 * 
+	 * */
+	
+	
 	public void recupererCarte(Inventaire i, int positionCards, Plateau p) {
 
 		if (payement(i, positionCards) == true)
@@ -215,6 +226,10 @@ public class CarteCivilisation {
 
 		}
 	}
+	
+	
+	
+	/*methode qui permet de recuperer le gain d'une carte civilisation selon le type de ressource qui 'elle contient */
 
 	private void gainCarte(Inventaire i, Plateau p) {
 
@@ -268,11 +283,11 @@ public class CarteCivilisation {
 
 				this.ressource_au_choix(i);
 				break;
-				case OUTIL_USAGE_UNIQUE:
+			case OUTIL_USAGE_UNIQUE:
 
-					i.addOutilUsageUnique(this.getNbRessourceCarte());
-					break;
-					
+				i.addOutilUsageUnique(this.getNbRessourceCarte());
+				break;
+
 			case AUCUNE:
 
 				break;
@@ -280,6 +295,10 @@ public class CarteCivilisation {
 		}
 
 	}
+	
+	
+	
+	/*methode utilise dans la methode gainCarte pour calculer le gain de la carte de type multiRessource */
 
 	private void multiRessource(Inventaire i, Plateau p) {
 		ArrayList<Inventaire> listeInventaire = p.getListeInventaire();
@@ -316,6 +335,10 @@ public class CarteCivilisation {
 		}
 
 	}
+	
+	
+	/*methode utilise dans la methode gainCarte pour calculer le gain de la carte qui nécessite un jet de de */
+
 	private void ressource_avec_jet_de(Inventaire i, Ressource r) {
 		/*
 		 * cette méthode utilisée dans la méthode gain Carte .elle permet le joueur  de gagner des ressources selon le jet de et le type de ressource fournie par la carte		 * on a supposé que  le joueur va gagner immediatement ces deux ressources pour simplifier le travail.
@@ -334,12 +357,14 @@ public class CarteCivilisation {
 
 	}
 
+	
+	/*
+	 * cette methode utilisée dans la methode gainCarte .elle permet le joueur  de gagner ,immédiatement ou plus tard ,deux ressources au choix (identiques ou differentes)
+	 * on a supposé que  le joueur va gagner immediatement ces deux ressources pour simplifier le travail.
+	 * on a récupéré les ressources de l'inventaire dans un tableau . et à chaque fois on joute 1 à une ressource choisi par hasard 
+	 */
 	public void ressource_au_choix(Inventaire i) {
-		/*
-		 * cette methode utilisée dans la methode gainCarte .elle permet le joueur  de gagner ,immédiatement ou plus tard ,deux ressources au choix (identiques ou differentes)
-		 * on a supposé que  le joueur va gagner immediatement ces deux ressources pour simplifier le travail.
-		 * on a récupéré les ressources de l'inventaire dans un tableau . et à chaque fois on joute 1 à une ressource choisi par hasard 
-		 * */
+		
 
 		int[] tab = new int[4];
 		tab[0] = i.getNbBois();
@@ -360,6 +385,8 @@ public class CarteCivilisation {
 
 	}
 
+	
+	/*methode utiliser dans methode ressource_avec_jet_de */
 	public static void de() {
 
 		int nbJoueur = Partie.getNbJoueur();
@@ -371,69 +398,38 @@ public class CarteCivilisation {
 
 	}
 
-	public static int find(ArrayList<CarteCivilisation> stockCardsGreen, PartieInferieure f) {
-		int occ = 0;
+	
+	/*methode qui calcule le score finale pour les cartes qui sont gagné par chaque joueur  */
 
-		for (CarteCivilisation carte: stockCardsGreen) {
-			if (carte.getInf() == f) {
-				occ++;
-			}
-		}
-		return occ;
-	}
-
-	public static int find2(ArrayList<CarteCivilisation> stockCardsGreen, PartieInferieure f) {
-		int occ = 0;
-
-		for (CarteCivilisation carte: stockCardsGreen) {
-			if (carte.getInf() == f) {
-				occ += carte.getCoefficient();
-			}
-		}
-		return occ;
-	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	public static int decompteFinal(Inventaire i, ArrayList<CarteCivilisation> cards) {
-		
-		ArrayList<CarteCivilisation> stockCardsSable =new ArrayList<CarteCivilisation>();
-		ArrayList<CarteCivilisation> stockCardsGreen =new ArrayList<CarteCivilisation>();
-		
+
+		ArrayList<CarteCivilisation> stockCardsSable = new ArrayList<CarteCivilisation> ();
+		ArrayList<CarteCivilisation> stockCardsGreen = new ArrayList<CarteCivilisation> ();
+
 		int score = 0;
-		
-		for (CarteCivilisation carte : cards)
-		{
-			if (carte.couleur== Couleur.VERTE) 
-				{
+
+		for (CarteCivilisation carte: cards) {
+			if (carte.couleur == Couleur.VERTE) {
 				stockCardsGreen.add(carte);
-				}
-			else
-				{
-				
+			} else {
+
 				stockCardsSable.add(carte);
-				
-				}
-			
+
+			}
+
 		}
-			
-		
-		score=decompteFinalSableCards( i,stockCardsSable);
-		score+=decompteFinalGreenCards( i,stockCardsGreen);
-		
-		
-		
+
+		score = decompteFinalSableCards(i, stockCardsSable);
+		score += decompteFinalGreenCards(i, stockCardsGreen);
 
 		return score;
 	}
+	
+	
+	/*methode qui calcule le score finale pour les cartes qui ont un fond Sable gagné par chaque joueur  
+	 * 	 * cette methode est utilisée dans la methode decompteFinal */
+
+
 	public static int decompteFinalSableCards(Inventaire i, ArrayList<CarteCivilisation> stockCardsSable) {
 		int score = 0;
 		int[] tab = new int[4];
@@ -448,6 +444,12 @@ public class CarteCivilisation {
 
 		return score;
 	}
+	
+	
+	
+	
+	/*methode qui calcule le score finale pour les cartes qui ont un fond verte gagné par chaque joueur 
+	 * cette methode est utilisée dans la methode decompteFinal */
 
 	public static int decompteFinalGreenCards(Inventaire i, ArrayList<CarteCivilisation> stockCardsGreen)
 
@@ -486,9 +488,44 @@ public class CarteCivilisation {
 		return score;
 	}
 
+	
+	
+	
+	/*methode utilise dans la methode decompteFinalGreenCards pour calculer le score final de joueur 
+	 * cette methode est utilisée dans le calcule du score finale pour les cartes qui ont un fond Verte */
+	
+	public static int find(ArrayList<CarteCivilisation> stockCardsGreen, PartieInferieure f) {
+		int occ = 0;
+		
+		for (CarteCivilisation carte: stockCardsGreen) {
+			if (carte.getInf() == f) {
+				occ++;
+			}
+		}
+		return occ;
+	}
+	
+	
+	
+	
+	/*methode utilise dans la methode decompteFinalSableCards pour calculer le score final de joueur 
+	 * cette methode est utilisée dans le calcule du score finale pour les cartes qui ont un fond Sable */
+	public static int find2(ArrayList<CarteCivilisation> stockCardsGreen, PartieInferieure f) {
+		int occ = 0;
+		
+		for (CarteCivilisation carte: stockCardsGreen) {
+			if (carte.getInf() == f) {
+				occ += carte.getCoefficient();
+			}
+		}
+		return occ;
+	}
+	
+	
+	/* methode static qui permet de creer l'ensemble des cartes de civilisations pour les  différents types de carte*/
 	public static ArrayList<CarteCivilisation> CreationCarte() {
 
-		ArrayList<CarteCivilisation> cards = new ArrayList<CarteCivilisation> ();
+		 ArrayList<CarteCivilisation> cards = new ArrayList<CarteCivilisation> ();
 
 		//5 cartes ressources 
 		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.PIERRE, PartieInferieure.CHAMANE, 1));
@@ -545,8 +582,8 @@ public class CarteCivilisation {
 		cards.add(new CarteCivilisation(4, Couleur.SABLE, Ressource.OUTIL_USAGE_UNIQUE, PartieInferieure.FABRICANT, 1));
 		cards.add(new CarteCivilisation(3, Couleur.SABLE, Ressource.OUTIL_USAGE_UNIQUE, PartieInferieure.FABRICANT, 1));
 		cards.add(new CarteCivilisation(2, Couleur.SABLE, Ressource.OUTIL_USAGE_UNIQUE, PartieInferieure.FABRICANT, 2));
-			
-		 Collections.shuffle(cards);// pour mélanger les cartes de façon aléatoire
+
+		Collections.shuffle(cards); // pour mélanger les cartes de façon aléatoire
 		return cards;
 	}
 
