@@ -70,7 +70,11 @@ public class Inventaire {
      * tableau qui contient les cartes des civilisations "outils a usage unique "
      * */
 
-     ArrayList<CarteCivilisation> outilUsageUnique = new ArrayList<CarteCivilisation>();
+   //  ArrayList<CarteCivilisation> outilUsageUnique = new ArrayList<CarteCivilisation>();
+    
+    
+    
+    
     /**
      * La liste des outils du joueur
      */
@@ -116,6 +120,10 @@ public class Inventaire {
 
     public ArrayList<Cartebatiment> getCartesBatiments() {
         return cartesBatiments;
+    }
+    public int getNbCartesBatiments()
+    {
+    	return this.cartesBatiments.size();
     }
 
     public int getNbOuvrierTotal() {
