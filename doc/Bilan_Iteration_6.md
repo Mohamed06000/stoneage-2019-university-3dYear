@@ -34,7 +34,11 @@
 
 * [x] Le joueur pourra utiliser ses outils pour augmenter son gain sur une zone ,
 
-* [x] Update Le jeu : le jeu permet de départager une égalité
+* [x] Modifier l'affichage : affichage bref a la fin de la Partie ,
+
+* [x] Amelioration de la javadoc,
+
+* [x] Update Le jeu : le jeu permet de départager une égalité,
 
 
 
