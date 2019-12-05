@@ -26,6 +26,11 @@ public class Partie {
      * Objet qui represente le plateau de jeu
      */
     private final Plateau plateau;
+
+    public int[] getScore() {
+        return score;
+    }
+
     /**
      * Liste des scores des joueurs
      */
@@ -111,8 +116,12 @@ public class Partie {
             departage(score, equal, indexDuPremier);
         }
         this.JoueurGagnant(indexDuPremier);
-
-
+        for (int i = 0; i < nbJoueur; i++) {
+            System.out.println("*****************");
+            System.out.println("joueur numero "+i);
+            JoueurGagnant(i);
+            System.out.println("***************");
+        }
     }
 
 
@@ -157,7 +166,7 @@ public class Partie {
     public int egalite(int[] points, int indexDuPremier){
         int equal = 0;
         for (int i = 1; i < points.length; i++) {
-            if (points[i] == points[indexDuPremier]) {
+            if ( (i != indexDuPremier) && (points[i] == points[indexDuPremier])) {
                 equal++;
             }
         }
