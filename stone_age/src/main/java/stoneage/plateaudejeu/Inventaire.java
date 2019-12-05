@@ -1,5 +1,8 @@
 
-package stoneage;
+package stoneage.plateaudejeu;
+
+import stoneage.plateaudejeu.cartes.CarteCivilisation;
+import stoneage.plateaudejeu.cartes.Cartebatiment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -62,7 +65,7 @@ public class Inventaire {
      * tableau qui contient les cartes des civilisations gagnées par le joueur
      * */
 
-     ArrayList<CarteCivilisation> stockCards = new ArrayList<CarteCivilisation>();
+    public ArrayList<CarteCivilisation> stockCards = new ArrayList<CarteCivilisation>();
     /**
      * La liste des outils du joueur
      */

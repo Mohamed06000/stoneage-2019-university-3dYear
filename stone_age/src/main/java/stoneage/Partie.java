@@ -1,10 +1,10 @@
 
 package stoneage;
 
-import org.apache.commons.lang.ArrayUtils;
+import stoneage.plateaudejeu.Inventaire;
+import stoneage.plateaudejeu.Plateau;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * La classe qui gère le déroulement du jeu

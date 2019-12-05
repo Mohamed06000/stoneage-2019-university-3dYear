@@ -1,5 +1,12 @@
-package stoneage;
+package stoneage.plateaudejeu;
 
+
+import stoneage.joueur.Joueur;
+import stoneage.Partie;
+import stoneage.plateaudejeu.cartes.CarteCivilisation;
+import stoneage.plateaudejeu.cartes.Cartebatiment;
+import stoneage.plateaudejeu.zones.Zone;
+import stoneage.plateaudejeu.zones.ZoneVillage;
 
 import java.util.*;
 
@@ -127,7 +134,7 @@ public class Plateau {
      * Constructeur de la classe
      * @param nbjoueur Le nombre de joueurs dans le jeu
      */
-    Plateau(int nbjoueur){
+    public Plateau(int nbjoueur){
 
         this.carte1=new Cartebatiment(10,new ArrayList<Ressource>(Arrays.asList(Ressource.BOIS,Ressource.BOIS,Ressource.ARGILE)));
         this.carte2=new Cartebatiment(11,new ArrayList<Ressource>(Arrays.asList(Ressource.BOIS,Ressource.BOIS,Ressource.PIERRE)));
@@ -238,7 +245,7 @@ public class Plateau {
      * Récupère le nombre d'ouvriers total qui ne sont pas encore placés
      * @return Le nombre d'ouvriers
      */
-    protected int nbOuvrierDispoTotal() {
+    public int nbOuvrierDispoTotal() {
         int n = 0;
         for (int i = 0; i<listeInventaire.size(); i++){
             n += listeInventaire.get(i).getNbOuvrier(); //On reste que sur nbOuvriers et on ne travaille plus avec nbOuvriersDispo

@@ -1,6 +1,9 @@
 package stoneage;
 
 import org.junit.jupiter.api.Test;
+import stoneage.plateaudejeu.Plateau;
+import stoneage.plateaudejeu.Ressource;
+import stoneage.plateaudejeu.zones.Zone;
 
 import java.util.ArrayList;
 

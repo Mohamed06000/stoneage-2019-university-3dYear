@@ -1,5 +1,9 @@
 
-package stoneage;
+package stoneage.joueur;
+
+import stoneage.plateaudejeu.cartes.Cartebatiment;
+import stoneage.plateaudejeu.Inventaire;
+import stoneage.plateaudejeu.zones.Zone;
 
 import java.util.* ;
 
@@ -7,7 +11,7 @@ import java.util.* ;
 /**
  * La classe qui représente les informations et actions du joueur
  */
-class Joueur {
+public class Joueur {
 
 
     //CHAMPS
@@ -33,7 +37,7 @@ class Joueur {
     /**
      * Constructeur de la classe
      */
-    Joueur(){
+    public Joueur(){
         nbJoueur ++;
         num = nbJoueur;
     }
