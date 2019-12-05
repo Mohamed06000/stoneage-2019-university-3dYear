@@ -386,4 +386,8 @@ public class Inventaire {
         }
         return this.niveauAgriculture + this.nbOuvrierTotal + sommeOutils;
     }
+
+    public int getNbCartesBatiments() {
+        return this.cartesBatiments.size();
+    }
 }
