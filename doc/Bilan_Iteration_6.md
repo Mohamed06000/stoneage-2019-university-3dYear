@@ -20,9 +20,9 @@
 * [x] Ajouté l'UserStory : le joueur peut avoir le choix de ne pas choisir de nourrir tous ses ouvriers,
   
 * [x] 
-   - Spécifications des cartes Civilisations
-   - bon nbr de carte,
-   - Haut de carte : Différents bonus; Bas de carte : différents multiplicateur (selon les règles),
+  - Spécifications des cartes Civilisations
+  - bon nbr de carte,
+  - Haut de carte : Différents bonus; Bas de carte : différents multiplicateur (selon les règles),
   
 * [x] Le jeu s'arrête quand l'une des piles batiments est vide ,
 
