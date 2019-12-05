@@ -53,6 +53,14 @@ public class Plateau {
      * Zone FabriqueOutils
      */
     private Zone FabriqueOutils;
+    
+    /*
+     * tableau qui contient toutes les cartes de civilisations .
+     * */
+    
+    
+   public static  ArrayList<CarteCivilisation> cards=CarteCivilisation.CreationCarte();
+
 
     /**
      * La liste des zones disponibles au placement
@@ -92,10 +100,6 @@ public class Plateau {
      */
     private Zone [] tabAllZone;
 
-    /**
-     * La liste de tout les cartes batiment visible sur le plateau
-     */
-    private ArrayList<Cartebatiment> listeCarteVisible;
 
     /**
      * La liste de toutes les cartes batiment
@@ -107,10 +111,6 @@ public class Plateau {
      */
     private ArrayList<ArrayList<Cartebatiment>> listeCarteTotale;
 
-    /**
-     * Liste des cartes batiments acheteé , plus disponible dans le deck ni sur le plateau
-     */
-    private ArrayList<Cartebatiment> listeCarteReserve;
 
     /**
      * Creation de cartes batiments
@@ -118,7 +118,7 @@ public class Plateau {
     private Cartebatiment carte1,carte2,carte3,carte4,carte5,carte6,carte7,
             carte8,carte9,carte10,carte11,carte12,carte13,carte14,carte15,
             carte16,carte17,carte18,carte19,carte20,carte21,carte22,carte23,
-            carte24,carte25;
+            carte24,carte25,carte26,carte27,carte28;
 
 
     //CONSTRUTEUR
@@ -146,14 +146,17 @@ public class Plateau {
         this.carte15=new Cartebatiment(15,new ArrayList<Ressource>(Arrays.asList(Ressource.ARGILE,Ressource.PIERRE,Ressource.OR)));
         this.carte16=new Cartebatiment(15,new ArrayList<Ressource>(Arrays.asList(Ressource.ARGILE,Ressource.PIERRE,Ressource.OR)));
         this.carte17=new Cartebatiment(15,new ArrayList<Ressource>(Arrays.asList(Ressource.PIERRE,Ressource.PIERRE,Ressource.OR)));
-        this.carte18=new Cartebatiment(5,4);
-        this.carte19=new Cartebatiment(5,3);
-        this.carte20=new Cartebatiment(5,2);
-        this.carte21=new Cartebatiment(5,1);
-        this.carte22=new Cartebatiment(4,4);
-        this.carte23=new Cartebatiment(4,3);
-        this.carte24=new Cartebatiment(4,2);
-        this.carte25=new Cartebatiment(4,1);
+        this.carte18=new Cartebatiment(5,4,2);
+        this.carte19=new Cartebatiment(5,3,2);
+        this.carte20=new Cartebatiment(5,2,2);
+        this.carte21=new Cartebatiment(5,1,2);
+        this.carte22=new Cartebatiment(4,4,2);
+        this.carte23=new Cartebatiment(4,3,2);
+        this.carte24=new Cartebatiment(4,2,2);
+        this.carte25=new Cartebatiment(4,1,2);
+        this.carte26=new Cartebatiment(7,3);
+        this.carte27=new Cartebatiment(7,3);
+        this.carte28=new Cartebatiment(7,3);
 
         this.cartetotale = new ArrayList<Cartebatiment>(Arrays.asList(this.carte1,this.carte2,this.carte3,this.carte4,
                 this.carte5,this.carte6,this.carte7,this.carte8,
@@ -161,11 +164,9 @@ public class Plateau {
                 this.carte13,this.carte14,this.carte15,this.carte16,
                 this.carte17,this.carte18,this.carte19,this.carte20,
                 this.carte21,this.carte22,this.carte23,this.carte24,
-                this.carte25));
+                this.carte25,this.carte26,this.carte27,this.carte28));
         Collections.shuffle(cartetotale);
         this.listeCarteTotale= new ArrayList<ArrayList<Cartebatiment>>();
-        this.listeCarteVisible= new ArrayList<Cartebatiment>(Arrays.asList(this.carte1,this.carte2,this.carte3,this.carte4));
-        this.listeCarteReserve=new ArrayList<Cartebatiment>();
 
         this.Riviere = new Zone(Ressource.OR, 12, 6, 0, 7);
         this.Chasse = new Zone(Ressource.NOURRITURE, 12, 2, 0, Integer.MAX_VALUE);
@@ -192,10 +193,12 @@ public class Plateau {
             ZoneVisitees.add(zp);
             cp = new ArrayList<Cartebatiment>();
             CarteVisitees.add(cp);
+
             carteTuiles = new ArrayList<Cartebatiment>();
             listeCarteTotale.add(carteTuiles);
             for (int j = 0; j < 7; j++) {
-                listeCarteTotale.get(i).add(cartetotale.get(i));
+                listeCarteTotale.get(i).add(cartetotale.get(0));
+                cartetotale.remove(0);
             }
             tableauFirstPlayer.add(i);
         }
@@ -227,7 +230,7 @@ public class Plateau {
      * Récupère la liste des inventaires
      * @return Les inventaires
      */
-    public ArrayList<Inventaire> getListeInventaire() {
+    public   ArrayList<Inventaire> getListeInventaire() {
         return listeInventaire;
     }
 
@@ -288,20 +291,20 @@ public class Plateau {
                             placed = false;
                             if(affichage)
                             {
-                                AfficheInfoJoueur(i,choixZone, ZoneVisitees, listeInventaire.get(i));
+                                AfficheInfoJoueur(i,choixZone, ZoneVisitees,CarteVisitees, listeInventaire.get(i));
                             }
                             if(accVillage==2){ ZonesDispo.remove(ZonesDispo.size()-1);}
 
                         }
                     }
                     if (choixCarteOuZone==2) {
-                        choixCarte = IA.choixCarte(listeCarteVisible);
+                        choixCarte = IA.choixCartePlacement(listeCarteTotale);
                         listeInventaire.get(i).setNbOuvrier(listeInventaire.get(i).getNbOuvrier() - 1);
                         CarteVisitees.get(i).add(choixCarte);
                         placed = false;
                         if(affichage)
                         {
-                            AfficheInfoJoueur(i,choixCarte, CarteVisitees, listeInventaire.get(i));
+                            AfficheInfoJoueur(i,choixCarte,ZoneVisitees, CarteVisitees, listeInventaire.get(i));
                         }
                     }
 
@@ -334,21 +337,28 @@ public class Plateau {
                     }
                     ZoneVisitees.get(i).remove(zoneCourant);
                     if(affichage){
-                        AfficheInfoJoueur(i,zoneCourant, ZoneVisitees, listeInventaire.get(i));
+                        AfficheInfoJoueur(i,zoneCourant, ZoneVisitees, CarteVisitees,listeInventaire.get(i));
                     }
                 }
 
                 if (choixCarteOuZone==2 && CarteVisitees.get(i).size()>0){
-                    carteCourant = IA.choixCarte(CarteVisitees.get(i));
-                    if (listeInventaire.get(i).getNbRessourceTotal()>=carteCourant.getNbRessourceApayer()) {
-                        carteCourant.payement(listeInventaire.get(i));
+                    carteCourant = IA.choixCarteRecuperation(CarteVisitees.get(i));
+                    if (listeInventaire.get(i).getNbRessourceTotal()>=carteCourant.getNbRessourceApayer() && IA.choixUtiliser()) {
+                        int choixNbRessource = IA.choixNbRessource();
+                        carteCourant.payement(listeInventaire.get(i),choixNbRessource);
+                        listeInventaire.get(i).getCartesBatiments().add(carteCourant);
+                        for (int j = 0; j < listeCarteTotale.size(); j++) {
+                            if (listeCarteTotale.get(j).contains(carteCourant)){
+                                listeCarteTotale.get(j).remove(carteCourant);
+                            }
+                        }
                     }
                     else {
                         carteCourant.retirerOuvrierSurCarte(listeInventaire.get(i));
                     }
                     CarteVisitees.get(i).remove(carteCourant);
                     if(affichage){
-                        AfficheInfoJoueur(i,carteCourant, CarteVisitees, listeInventaire.get(i));
+                        AfficheInfoJoueur(i,carteCourant,ZoneVisitees, CarteVisitees, listeInventaire.get(i));
                     }
                 }
 
@@ -357,7 +367,6 @@ public class Plateau {
             CarteVisitees.get(i).clear();
         }
         resetZone();
-        resetCarte();
     }
 
     /**
@@ -378,32 +387,34 @@ public class Plateau {
      * @param ZoneVisitees La  liste des zones visitées par le joueur
      * @param inventaire L'inventaire du joueur
      */
-    public static void AfficheInfoJoueur(int numJ, Zone z, ArrayList<ArrayList<Zone>> ZoneVisitees, Inventaire inventaire) {
+    public static void AfficheInfoJoueur(int numJ, Zone z, ArrayList<ArrayList<Zone>> ZoneVisitees,ArrayList<ArrayList<Cartebatiment>> CarteVisitees, Inventaire inventaire) {
         System.out.println("********Joueur " + (numJ+1) + "********");
-        System.out.println("Nb d'ouvrier total dans la zone " + z + " : " + z.getNbOuvrierSurZone());
+            System.out.println("Nb d'ouvrier total dans la zone " + z + " : " + z.getNbOuvrierSurZone());
         System.out.println("Nb d'ouvrier du joueur dans la zone " + z + " : " + z.getNbOuvirerDuJoueur(numJ));
         System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + (numJ+1) + " : " + inventaire.getNbOuvrier());
         if (ZoneVisitees.get(numJ).size()>0) {
             System.out.println("Les zones visitées : " + (ZoneVisitees.get(numJ)));
         }
-    }
-
-    /**
-     * Affiche les informations du joueur
-     * @param numJ Le numero du joueur
-     //* @param z Une zone
-     //* @param ZoneVisitees La  liste des zones visitées par le joueur
-     * @param inventaire L'inventaire du joueur
-     */
-    public static void AfficheInfoJoueur(int numJ, Cartebatiment carte, ArrayList<ArrayList<Cartebatiment>> CarteVisitees, Inventaire inventaire) {
-        System.out.println("********Joueur " + (numJ+1) + "********");
-        //System.out.println("Nb d'ouvrier total dans la zone " + carte + " : " + carte.getNbOuvrierSurZone());
-        //System.out.println("Nb d'ouvrier du joueur dans la zone " + carte + " : " + z.getNbOuvirerDuJoueur(numJ));
-        System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + (numJ+1) + " : " + inventaire.getNbOuvrier());
         if (CarteVisitees.get(numJ).size()>0) {
-            System.out.println("Les zones visitées : " + (CarteVisitees.get(numJ)));
+            System.out.println("Les cartes visitées : " + (CarteVisitees.get(numJ)));
         }
     }
+
+    public static void AfficheInfoJoueur(int numJ, Cartebatiment c, ArrayList<ArrayList<Zone>> ZoneVisitees,ArrayList<ArrayList<Cartebatiment>> CarteVisitees, Inventaire inventaire) {
+        System.out.println("********Joueur " + (numJ+1) + "********");
+       // System.out.println("Nb d'ouvrier total dans la zone " + z + " : " + z.getNbOuvrierSurZone());
+        //System.out.println("Nb d'ouvrier du joueur dans la zone " + z + " : " + z.getNbOuvirerDuJoueur(numJ));
+        System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + (numJ+1) + " : " + inventaire.getNbOuvrier());
+        if (ZoneVisitees.get(numJ).size()>0) {
+            System.out.println("Les zones visitées : " + (ZoneVisitees.get(numJ)));
+        }
+        if (CarteVisitees.get(numJ).size()>0) {
+            System.out.println("Les cartes visitées : " + (CarteVisitees.get(numJ)));
+        }
+    }
+
+
+
 
     /**
      * Restaure la liste des outils disponibles
@@ -426,21 +437,6 @@ public class Plateau {
         for (Zone z: tabAllZone) {
             ZonesDispo.add(z);
         }
-    }
-    /**
-     * Restaure la liste des zones disponibles
-     */
-    public void resetCarte() {
-
-        listeCarteVisible.clear();
-        //ZonesDispo.addAll(Arrays.asList(tabAllZone));
-
-        if (listeCarteVisible.size()<Partie.getNbJoueur()){
-            for (int i = 0; i < Partie.getNbJoueur()-listeCarteVisible.size(); i++) {
-                listeCarteVisible.add(listeCarteTotale.get(i).get(1));
-            }
-        }
-
     }
 
     /**
@@ -504,14 +500,14 @@ public class Plateau {
 //        else
 //            return true;
 //    }
-//
-//    public boolean verifierNbCarteBatiment() {
-//        for (int i = 0; i < carteBatiment.size(); i++) {
-//            if (carteBatiment.get(i).size()<1) {
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
+
+    public boolean verifierNbCarteBatiment() {
+        for (int i = 0; i < listeCarteTotale.size(); i++) {
+            if (listeCarteTotale.get(i).size()<1) {
+                return false;
+            }
+        }
+        return true;
+    }
 
 }

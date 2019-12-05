@@ -103,10 +103,14 @@ class Joueur {
         return rand.nextInt(2)+1;
     }
 
-    public Cartebatiment choixCarte(ArrayList<Cartebatiment> carteDispo) {
+    public Cartebatiment choixCartePlacement(ArrayList<ArrayList<Cartebatiment>> listeCarteTotale) {
+        int alea = rand.nextInt(listeCarteTotale.size()); // Sans +1 a l'interieur de rand sinon ca peut retourner alea=8 alors qu'on a index max = 7.
+        return listeCarteTotale.get(alea).get(0);
+    }
 
-        int alea = rand.nextInt(carteDispo.size()); // Sans +1 a l'interieur de rand sinon ca peut retourner alea=8 alors qu'on a index max = 7.
-        return carteDispo.get(alea);
+    public Cartebatiment choixCarteRecuperation(ArrayList<Cartebatiment> CarteVisitees) {
+        int alea = rand.nextInt(CarteVisitees.size());
+        return CarteVisitees.get(alea);
     }
 
     /**
@@ -132,10 +136,10 @@ class Joueur {
                 alea = rand.nextInt(inventaire.getNbOuvrier()) + 1; //le +1 a l'exterieur de rand sinon ca peut retourner 0.
             }
             else {
-                if (choixZone.getClass().getSimpleName()=="Champ" |choixZone.getClass().getSimpleName()=="Fabrique"){
+                if (choixZone.getClass().getSimpleName().equals("Champ") | choixZone.getClass().getSimpleName().equals("Fabrique")){
                     alea = 1;
                 }
-                if (choixZone.getClass().getSimpleName()=="Hutte") {
+                if (choixZone.getClass().getSimpleName().equals("Hutte")) {
                     alea = 2;
                 }
             }
@@ -156,6 +160,10 @@ class Joueur {
         else {
             return false;
         }
+    }
+
+    public int choixNbRessource(){
+        return rand.nextInt(7)+1;
     }
 
     /**

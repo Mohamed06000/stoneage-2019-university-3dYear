@@ -3,7 +3,6 @@ package stoneage;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * La classe de l'inventaire du joueur
@@ -59,8 +58,7 @@ public class Inventaire {
      */
     private int nbPointTotal;
 
-    /*
-     * 
+    /**
      * tableau qui contient les cartes des civilisations gagnées par le joueur
      * */
 
@@ -79,6 +77,8 @@ public class Inventaire {
      * La liste des outils non-dispo du joueur
      */
     private ArrayList<Integer> outilsNonDispo;
+
+    private ArrayList<Cartebatiment> cartesBatiments;
 
 
     //CONSTRUCTEUR
@@ -99,11 +99,16 @@ public class Inventaire {
         this.outils = new ArrayList<Integer>(Arrays.asList(0,0,0));
         this.outilsDispo = new ArrayList<Integer>(Arrays.asList(0,0,0));
         this.outilsNonDispo = new ArrayList<Integer>(Arrays.asList(0,0,0));
+        this.cartesBatiments = new ArrayList<>();
     }
 
 
     //METHODES
 
+
+    public ArrayList<Cartebatiment> getCartesBatiments() {
+        return cartesBatiments;
+    }
 
     public int getNbOuvrierTotal() {
         return nbOuvrierTotal;
@@ -309,6 +314,6 @@ public class Inventaire {
      * @return Le nombre de ressource
      */
     public int getNbRessourceTotal() {
-        return getNbNourriture()+getNbBois()+getNbArgile()+getNbPierre()+getNbOr();
+        return getNbBois()+getNbArgile()+getNbPierre()+getNbOr();
     }
 }
