@@ -40,8 +40,8 @@ class ZoneTest {
 
         zone.placeOuvrierSurZone(nbOuvrierAplacer, 0);
 
-        assertEquals(5, zone.getNbOuvirerDuJoueur(0));
-        assertEquals(5,zone.getNbOuvrierSurZone());
+        assertEquals(10, zone.getNbOuvirerDuJoueur(0));
+        assertEquals(17,zone.getNbOuvrierSurZone());
 
         zone = new Zone(Ressource.OR,6,2,2,10);
         zone.placeOuvrierSurZone(nbOuvrierAplacer, 0);
