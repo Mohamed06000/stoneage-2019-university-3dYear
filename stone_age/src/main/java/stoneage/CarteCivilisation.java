@@ -16,16 +16,7 @@ public class CarteCivilisation {
 
 	public static void main(String[] args) {
 
-		ArrayList<CarteCivilisation> stockCards = new ArrayList<CarteCivilisation> ();
-
-		Inventaire i = new Inventaire();
-		i.setNiveauAgriculture(5);
-		i.setNbOutils(3);
-		stockCards.add(new CarteCivilisation(Couleur.SABLE, Ressource.MULTI, true, PartieInferieure.PAYSANT, 2));
-		stockCards.add(new CarteCivilisation(Couleur.SABLE, Ressource.MULTI, true, PartieInferieure.FABRICANT, 2));
-		stockCards.add(new CarteCivilisation(Couleur.SABLE, Ressource.MULTI, true, PartieInferieure.CHAMANE, 2));
-
-		System.out.println(decompteFinalSableCards(i, stockCards));
+		System.out.println(CarteCivilisation.CreationCarte());
 	}
 
 	private Ressource ressourceCarte;
@@ -277,11 +268,11 @@ public class CarteCivilisation {
 
 				this.ressource_au_choix(i);
 				break;
-				/*case OUTIL_USAGE_UNIQUE:
+				case OUTIL_USAGE_UNIQUE:
 
-					i.outilUsageUnique.add(this);
+					i.addOutilUsageUnique(this.getNbRessourceCarte());
 					break;
-					*/
+					
 			case AUCUNE:
 
 				break;
@@ -402,6 +393,47 @@ public class CarteCivilisation {
 		return occ;
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public static int decompteFinal(Inventaire i, ArrayList<CarteCivilisation> cards) {
+		
+		ArrayList<CarteCivilisation> stockCardsSable =new ArrayList<CarteCivilisation>();
+		ArrayList<CarteCivilisation> stockCardsGreen =new ArrayList<CarteCivilisation>();
+		
+		int score = 0;
+		
+		for (CarteCivilisation carte : cards)
+		{
+			if (carte.couleur== Couleur.VERTE) 
+				{
+				stockCardsGreen.add(carte);
+				}
+			else
+				{
+				
+				stockCardsSable.add(carte);
+				
+				}
+			
+		}
+			
+		
+		score=decompteFinalSableCards( i,stockCardsSable);
+		score+=decompteFinalGreenCards( i,stockCardsGreen);
+		
+		
+		
+
+		return score;
+	}
 	public static int decompteFinalSableCards(Inventaire i, ArrayList<CarteCivilisation> stockCardsSable) {
 		int score = 0;
 		int[] tab = new int[4];
@@ -513,7 +545,8 @@ public class CarteCivilisation {
 		cards.add(new CarteCivilisation(4, Couleur.SABLE, Ressource.OUTIL_USAGE_UNIQUE, PartieInferieure.FABRICANT, 1));
 		cards.add(new CarteCivilisation(3, Couleur.SABLE, Ressource.OUTIL_USAGE_UNIQUE, PartieInferieure.FABRICANT, 1));
 		cards.add(new CarteCivilisation(2, Couleur.SABLE, Ressource.OUTIL_USAGE_UNIQUE, PartieInferieure.FABRICANT, 2));
-
+			
+		 Collections.shuffle(cards);// pour mélanger les cartes de façon aléatoire
 		return cards;
 	}
 
