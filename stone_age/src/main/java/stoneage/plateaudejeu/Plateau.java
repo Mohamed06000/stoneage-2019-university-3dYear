@@ -314,6 +314,9 @@ public class Plateau {
 
 
     // ====================== METHODES =============================//
+
+
+
     /**
      * Récupère le nombre d'ouvriers total qui ne sont pas encore placés
      * @return Le nombre d'ouvriers
