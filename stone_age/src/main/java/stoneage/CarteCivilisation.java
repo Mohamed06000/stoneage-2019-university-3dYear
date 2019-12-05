@@ -37,6 +37,7 @@ public class CarteCivilisation {
 	private boolean avec_jet_de = false;
 	private PartieInferieure inf;
 	private int coefficient ; 
+	
 
 	CarteCivilisation(int nbRessourceCarte, Couleur couleur, Ressource ressourceCarte, PartieInferieure inf ,int coefficient ) {
 		this.nbRessourceCarte = nbRessourceCarte;
