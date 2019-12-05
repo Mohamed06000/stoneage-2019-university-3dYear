@@ -1,4 +1,4 @@
-package stoneage;
+package stoneage.plateaudejeu.cartes;
 
 public enum PartieInferieure {
 		

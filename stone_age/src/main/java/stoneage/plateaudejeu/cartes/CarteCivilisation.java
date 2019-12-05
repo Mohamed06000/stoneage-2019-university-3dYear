@@ -1,6 +1,11 @@
-package stoneage;
+package stoneage.plateaudejeu.cartes;
 
 import org.jetbrains.annotations.NotNull;
+import stoneage.partie.Partie;
+import stoneage.plateaudejeu.Inventaire;
+import stoneage.plateaudejeu.Plateau;
+import stoneage.plateaudejeu.Ressource;
+
 import java.util.Random;
 
 import java.util.ArrayList;
@@ -27,8 +32,8 @@ public class CarteCivilisation {
     
     /*5 constructeurs : 
      * selon le fond de la carte  verte ou jaune (il existe un coefficient pour le jaune ) 
-     *  selon le gain (par jet de dé ou pas )*/
-    * pour une carte sans partie Supérieure
+     *  selon le gain (par jet de dé ou pas )
+    * pour une carte sans partie Supérieure*/
     
     
 	CarteCivilisation(int nbRessourceCarte, Couleur couleur, Ressource ressourceCarte, PartieInferieure inf, int coefficient) {
@@ -120,13 +125,18 @@ public class CarteCivilisation {
 	//methode de classe :
 
 	/**
+<<<<<<< HEAD:stone_age/src/main/java/stoneage/CarteCivilisation.java
 	 * placer un ouvrier sur une carte
+=======
+	 *
+	 * @param inventaireJoueur
+>>>>>>> 547e31d8641b8d68081939b1853164c29509f491:stone_age/src/main/java/stoneage/plateaudejeu/cartes/CarteCivilisation.java
 	 */
+
 	public void placeOuvrierSurCarte(Inventaire inventaireJoueur) {
 
 		inventaireJoueur.setNbOuvrier(inventaireJoueur.getNbOuvrier() - 1);
 		setPlaceReservee(true);
-
 	}
 
 	/**
@@ -214,7 +224,7 @@ public class CarteCivilisation {
 
 		{
 			retirerOuvrierSurCarte(i);
-			i.stockCards.add(this);
+			i.addCarteToStockCards(this);
 
 			gainCarte(i, p);
 

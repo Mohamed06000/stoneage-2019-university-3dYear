@@ -1,6 +1,8 @@
 package stoneage;
 
 import org.junit.jupiter.api.Test;
+import stoneage.joueur.Joueur;
+import stoneage.plateaudejeu.Inventaire;
 
 import static org.junit.jupiter.api.Assertions.*;
 

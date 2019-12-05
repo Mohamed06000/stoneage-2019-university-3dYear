@@ -1,4 +1,9 @@
-package stoneage;
+package stoneage.plateaudejeu.zones;
+
+import stoneage.joueur.Joueur;
+import stoneage.partie.Partie;
+import stoneage.plateaudejeu.Inventaire;
+import stoneage.plateaudejeu.Ressource;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -56,7 +61,7 @@ public class Zone {
      * @param nbOuvrierSurZone Le nombre d'ouvriers sur la zone
      * @param nbOuvrierMaxSurZone Le nombre d'ouviers maximum sur la zone
      */
-    Zone(Ressource ressource, int nbRessourcesZone, int diviseur, int nbOuvrierSurZone, int nbOuvrierMaxSurZone) {
+    public Zone(Ressource ressource, int nbRessourcesZone, int diviseur, int nbOuvrierSurZone, int nbOuvrierMaxSurZone) {
         this.ressource = ressource;
         this.nbRessourcesZone = nbRessourcesZone;
         this.diviseur = diviseur;
@@ -74,7 +79,7 @@ public class Zone {
      * @param nbOuvrierMaxSurZone
      */
 
-    Zone(int nbOuvrierSurZone, int nbOuvrierMaxSurZone) {
+    public Zone(int nbOuvrierSurZone, int nbOuvrierMaxSurZone) {
         this.nbOuvrierSurZone = nbOuvrierSurZone;
         this.nbOuvrierMaxSurZone = nbOuvrierMaxSurZone;
         for (int i = 0; i < Partie.getNbJoueur(); i++) { //Initialisation de la liste nbOuvrierDuJoueur par des valeurs 0.
