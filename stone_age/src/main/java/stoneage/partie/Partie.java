@@ -169,7 +169,7 @@ public class Partie {
     public int egalite(int[] points, int indexDuPremier){
         int equal = 0;
         for (int i = 1; i < points.length; i++) {
-            if (points[i] == points[indexDuPremier]) {
+            if (points[i] == points[indexDuPremier]&& i!=indexDuPremier) {
                 equal++;
             }
         }
