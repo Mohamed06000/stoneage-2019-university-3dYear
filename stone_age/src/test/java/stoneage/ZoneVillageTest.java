@@ -25,7 +25,6 @@ class ZoneVillageTest {
         }
 
         assertEquals(10, inventaire.getNbOuvrierTotal());
-        //assertEquals(6, inventaire.getNbOutils());
         assertEquals(3, inventaire.getOutils().size());
         assertEquals(12, inventaire.getNbOutils());
 

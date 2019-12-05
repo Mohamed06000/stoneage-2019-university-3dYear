@@ -125,12 +125,8 @@ public class CarteCivilisation {
 	//methode de classe :
 
 	/**
-<<<<<<< HEAD:stone_age/src/main/java/stoneage/CarteCivilisation.java
 	 * placer un ouvrier sur une carte
-=======
-	 *
 	 * @param inventaireJoueur
->>>>>>> 547e31d8641b8d68081939b1853164c29509f491:stone_age/src/main/java/stoneage/plateaudejeu/cartes/CarteCivilisation.java
 	 */
 
 	public void placeOuvrierSurCarte(Inventaire inventaireJoueur) {
