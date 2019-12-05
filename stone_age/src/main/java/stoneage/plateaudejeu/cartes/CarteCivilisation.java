@@ -1,7 +1,7 @@
 package stoneage.plateaudejeu.cartes;
 
 import org.jetbrains.annotations.NotNull;
-import stoneage.Partie;
+import stoneage.partie.Partie;
 import stoneage.plateaudejeu.Inventaire;
 import stoneage.plateaudejeu.Plateau;
 import stoneage.plateaudejeu.Ressource;

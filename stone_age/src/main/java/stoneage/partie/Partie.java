@@ -1,10 +1,11 @@
 
-package stoneage;
+package stoneage.partie;
 
 import stoneage.plateaudejeu.Inventaire;
 import stoneage.plateaudejeu.Plateau;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * La classe qui gère le déroulement du jeu
@@ -30,6 +31,8 @@ public class Partie {
 
     private boolean affichage = false;
 
+    private Tour unTour;
+
 
     //CONSTRUCTEUR
 
@@ -37,11 +40,12 @@ public class Partie {
      * Constructeur de la classe
      * @param nbJoueur Le nombre de joueurs
      */
-    Partie(int nbJoueur, boolean affichage){
+    public Partie(int nbJoueur, boolean affichage){
         this.nbJoueur = nbJoueur;
         plateau = new Plateau(nbJoueur);
         score = new int[nbJoueur];
         this.affichage = affichage;
+        this.unTour = new Tour(plateau);
     }
 
 
@@ -61,7 +65,7 @@ public class Partie {
     public void jouer() {
         int tour = 1;
         System.out.println("Nb de joueur : " + nbJoueur);
-        System.out.println("Nb d'ouvriers total non place : " + plateau.nbOuvrierDispoTotal());
+        System.out.println("Nb d'ouvriers total non place : " + plateau.nbOuvrierDispoTotal(plateau.getListeInventaire()));
 
 
         while(plateau.verifierNbCarteBatiment()) { //plateau.verifierNbCarteCivilisation() && plateau.verifierNbCarteBatiment()
@@ -72,18 +76,20 @@ public class Partie {
 
             System.out.println("================PHASE DE PLACEMENT================");
             }
-
-            plateau.placementPhase(affichage);
+            unTour.placementPhase(affichage);
+            //plateau.placementPhase(affichage);
 
             if (affichage){
             System.out.println("================PHASE DE RECUPERATION================");
             }
-            plateau.recuperationPhase(affichage);
+            unTour.recuperationPhase(affichage);
+            //plateau.recuperationPhase(affichage);
             if(affichage){
             System.out.println("================PHASE NOURRIR================");
             }
-            plateau.phaseNourrir();
-
+            unTour.phaseNourrir();
+            //plateau.phaseNourrir();
+            swap(plateau.getTableauFirstPlayer());
             tour++;
         }
 
@@ -129,5 +135,16 @@ public class Partie {
         }
         return maxIndex;
     }
+
+    /**
+     * Permutation de l'ordre du premier joueur à jouer
+     * @param tableauFirstPlayer Le tableau des numéros des joueurs
+     */
+    public void swap (ArrayList<Integer> tableauFirstPlayer) {
+        for (int i =0;i < tableauFirstPlayer.size()-1; i++) {
+            Collections.swap(tableauFirstPlayer, i, i+1);
+        }
+    }
+
 }
 

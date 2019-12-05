@@ -2,7 +2,7 @@ package stoneage.plateaudejeu;
 
 
 import stoneage.joueur.Joueur;
-import stoneage.Partie;
+import stoneage.partie.Partie;
 import stoneage.plateaudejeu.cartes.CarteCivilisation;
 import stoneage.plateaudejeu.cartes.Cartebatiment;
 import stoneage.plateaudejeu.zones.Zone;
@@ -25,6 +25,14 @@ public class Plateau {
      * Zone riviere
      */
     private Zone Riviere;
+
+    public boolean isTwoPlayers() {
+        return twoPlayers;
+    }
+
+    public boolean isThreePlayers() {
+        return threePlayers;
+    }
 
     /**
      * Zone chasse
@@ -50,6 +58,38 @@ public class Plateau {
      * Zone Champ
      */
     private Zone Champ;
+
+    public Zone getRiviere() {
+        return Riviere;
+    }
+
+    public Zone getChasse() {
+        return Chasse;
+    }
+
+    public Zone getForet() {
+        return Foret;
+    }
+
+    public Zone getGlaisiere() {
+        return Glaisiere;
+    }
+
+    public Zone getCarriere() {
+        return Carriere;
+    }
+
+    public Zone getChamp() {
+        return Champ;
+    }
+
+    public Zone getHutte() {
+        return Hutte;
+    }
+
+    public Zone getFabriqueOutils() {
+        return FabriqueOutils;
+    }
 
     /**
      * Zone Hutte
@@ -129,6 +169,38 @@ public class Plateau {
 
 
     //CONSTRUTEUR
+
+    public static ArrayList<CarteCivilisation> getCards() {
+        return cards;
+    }
+
+    public ArrayList<ArrayList<Zone>> getZoneVisitees() {
+        return ZoneVisitees;
+    }
+
+    public ArrayList<ArrayList<Cartebatiment>> getCarteVisitees() {
+        return CarteVisitees;
+    }
+
+    public Joueur getIA() {
+        return IA;
+    }
+
+    public ArrayList<Integer> getTableauFirstPlayer() {
+        return tableauFirstPlayer;
+    }
+
+    public Zone[] getTabAllZone() {
+        return tabAllZone;
+    }
+
+    public ArrayList<Cartebatiment> getCartetotale() {
+        return cartetotale;
+    }
+
+    public ArrayList<ArrayList<Cartebatiment>> getListeCarteTotale() {
+        return listeCarteTotale;
+    }
 
     /**
      * Constructeur de la classe
@@ -212,9 +284,6 @@ public class Plateau {
 
     }
 
-
-
-
     //METHODES
 
     /**
@@ -245,260 +314,12 @@ public class Plateau {
      * Récupère le nombre d'ouvriers total qui ne sont pas encore placés
      * @return Le nombre d'ouvriers
      */
-    public int nbOuvrierDispoTotal() {
+    public static int nbOuvrierDispoTotal(ArrayList<Inventaire> listeInventaire) {
         int n = 0;
         for (int i = 0; i<listeInventaire.size(); i++){
             n += listeInventaire.get(i).getNbOuvrier(); //On reste que sur nbOuvriers et on ne travaille plus avec nbOuvriersDispo
         }
         return n;
-    }
-
-
-
-    /**
-     * Lance la phase de placement
-     * @param affichage Si l'affichage se fait
-     */
-    public void placementPhase(boolean affichage){
-        /**
-         * Accumulateur pour savoir quand deux zones village sont occupeés affin de supprimer le 3eme !
-         */
-        int accVillage=0;
-
-        boolean disponibiliteZone;
-        boolean placed;
-        int choixNbOuvrier;
-        Zone choixZone;
-        Cartebatiment choixCarte;
-
-
-        while (nbOuvrierDispoTotal()>0) { // J'utilise la methode et non plus une variable afin que le compteur s'actualise
-            for (int i : tableauFirstPlayer) {
-                if (listeInventaire.get(i).getNbOuvrier()==0){ //S'il a déjà posé tous ses ouvriers, il passe son tour.
-                    continue;
-                }
-                do {
-                    placed = true;
-                    int choixCarteOuZone = IA.choixCarteOuZone();
-                    if (choixCarteOuZone==1) {
-                        choixZone = IA.choixZone(ZonesDispo);
-                        choixNbOuvrier = IA.choixNbOuvrier(listeInventaire.get(i), choixZone);
-                        disponibiliteZone = verifierDisponibiliteZone(choixZone, choixNbOuvrier,i);
-
-                        if (disponibiliteZone){
-                            listeInventaire.get(i).setNbOuvrier(listeInventaire.get(i).getNbOuvrier() - choixNbOuvrier);
-                            choixZone.placeOuvrierSurZone(choixNbOuvrier, i); //J'ajoute le num du joueur en parametre.
-                            ZoneVisitees.get(i).add(choixZone);
-                            if (twoPlayers && choixZone!=Chasse) { ZonesPleines.add(choixZone);}
-                            if (twoPlayers| threePlayers)
-                            {
-                                if (choixZone instanceof ZoneVillage) { accVillage++; }
-                            }
-                            updateStatutZone(); // Je fais l'uptade apres la placement et non plus avant afin que l'autre joueur beneficie de l'uptade pour le choix de la zone.
-                            placed = false;
-                            if(affichage)
-                            {
-                                AfficheInfoJoueur(i,choixZone, ZoneVisitees,CarteVisitees, listeInventaire.get(i));
-                            }
-                            if(accVillage==2){ ZonesDispo.remove(ZonesDispo.size()-1);}
-
-                        }
-                    }
-                    if (choixCarteOuZone==2) {
-                        choixCarte = IA.choixCartePlacement(listeCarteTotale);
-                        listeInventaire.get(i).setNbOuvrier(listeInventaire.get(i).getNbOuvrier() - 1);
-                        CarteVisitees.get(i).add(choixCarte);
-                        placed = false;
-                        if(affichage)
-                        {
-                            AfficheInfoJoueur(i,choixCarte,ZoneVisitees, CarteVisitees, listeInventaire.get(i));
-                        }
-                    }
-
-
-                }
-                while (placed);
-
-            }
-        }
-    }
-
-    /**
-     * Lance la phase de récupération
-     * @param affichage Si l'affichage se fait
-     */
-    public void recuperationPhase(boolean affichage){
-        Zone zoneCourant;
-        Cartebatiment carteCourant;
-        for (int i :tableauFirstPlayer) {
-            while((ZoneVisitees.get(i).size()+CarteVisitees.get(i).size())>0) { // Je parcoure la taille de la sous-liste et non plus de la liste afin d'eviter Out-Bound
-                int choixCarteOuZone = IA.choixCarteOuZone();
-
-                if (choixCarteOuZone==1 && ZoneVisitees.get(i).size()>0) {
-                    zoneCourant = IA.choixZone(ZoneVisitees.get(i));
-                    if (IA.choixUtiliser()) { //IA choisit d'utiliser ses ouvriers ou non --> && verifier si getNbRessourde>=prixCarte
-                        zoneCourant.gainZone(listeInventaire.get(i),i,IA); // J'ajoute le num du joueur.
-                    }
-                    else {
-                        zoneCourant.retirerOuvrierSurZone(listeInventaire.get(i), zoneCourant.getNbOuvirerDuJoueur(i), i);
-                    }
-                    ZoneVisitees.get(i).remove(zoneCourant);
-                    if(affichage){
-                        AfficheInfoJoueur(i,zoneCourant, ZoneVisitees, CarteVisitees,listeInventaire.get(i));
-                    }
-                }
-
-                if (choixCarteOuZone==2 && CarteVisitees.get(i).size()>0){
-                    carteCourant = IA.choixCarteRecuperation(CarteVisitees.get(i));
-                    if (listeInventaire.get(i).getNbRessourceTotal()>=carteCourant.getNbRessourceApayer() && IA.choixUtiliser()) {
-                        int choixNbRessource = IA.choixNbRessource();
-                        carteCourant.payement(listeInventaire.get(i),choixNbRessource);
-                        listeInventaire.get(i).getCartesBatiments().add(carteCourant);
-                        for (int j = 0; j < listeCarteTotale.size(); j++) {
-                            if (listeCarteTotale.get(j).contains(carteCourant)){
-                                listeCarteTotale.get(j).remove(carteCourant);
-                            }
-                        }
-                    }
-                    else {
-                        carteCourant.retirerOuvrierSurCarte(listeInventaire.get(i));
-                    }
-                    CarteVisitees.get(i).remove(carteCourant);
-                    if(affichage){
-                        AfficheInfoJoueur(i,carteCourant,ZoneVisitees, CarteVisitees, listeInventaire.get(i));
-                    }
-                }
-
-            }
-            ZoneVisitees.get(i).clear();
-            CarteVisitees.get(i).clear();
-        }
-        resetZone();
-    }
-
-    /**
-     * Lance la phase nourrir
-     */
-    public void phaseNourrir(){
-        for (int i :tableauFirstPlayer) {
-            IA.nourrir(listeInventaire.get(i));
-            resetOutils(i);
-        }
-        swap(tableauFirstPlayer);
-    }
-
-    /**
-     * Affiche les informations du joueur
-     * @param numJ Le numero du joueur
-     * @param z Une zone
-     * @param ZoneVisitees La  liste des zones visitées par le joueur
-     * @param inventaire L'inventaire du joueur
-     */
-    public static void AfficheInfoJoueur(int numJ, Zone z, ArrayList<ArrayList<Zone>> ZoneVisitees,ArrayList<ArrayList<Cartebatiment>> CarteVisitees, Inventaire inventaire) {
-        System.out.println("********Joueur " + (numJ+1) + "********");
-            System.out.println("Nb d'ouvrier total dans la zone " + z + " : " + z.getNbOuvrierSurZone());
-        System.out.println("Nb d'ouvrier du joueur dans la zone " + z + " : " + z.getNbOuvirerDuJoueur(numJ));
-        System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + (numJ+1) + " : " + inventaire.getNbOuvrier());
-        if (ZoneVisitees.get(numJ).size()>0) {
-            System.out.println("Les zones visitées : " + (ZoneVisitees.get(numJ)));
-        }
-        if (CarteVisitees.get(numJ).size()>0) {
-            System.out.println("Les cartes visitées : " + (CarteVisitees.get(numJ)));
-        }
-    }
-
-    public static void AfficheInfoJoueur(int numJ, Cartebatiment c, ArrayList<ArrayList<Zone>> ZoneVisitees,ArrayList<ArrayList<Cartebatiment>> CarteVisitees, Inventaire inventaire) {
-        System.out.println("********Joueur " + (numJ+1) + "********");
-       // System.out.println("Nb d'ouvrier total dans la zone " + z + " : " + z.getNbOuvrierSurZone());
-        //System.out.println("Nb d'ouvrier du joueur dans la zone " + z + " : " + z.getNbOuvirerDuJoueur(numJ));
-        System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + (numJ+1) + " : " + inventaire.getNbOuvrier());
-        if (ZoneVisitees.get(numJ).size()>0) {
-            System.out.println("Les zones visitées : " + (ZoneVisitees.get(numJ)));
-        }
-        if (CarteVisitees.get(numJ).size()>0) {
-            System.out.println("Les cartes visitées : " + (CarteVisitees.get(numJ)));
-        }
-    }
-
-
-
-
-    /**
-     * Restaure la liste des outils disponibles
-     */
-    public void resetOutils(int i) {
-        listeInventaire.get(i).getOutilsNonDispo().clear();
-        listeInventaire.get(i).getOutilsDispo().clear();
-        for (int o : listeInventaire.get(i).getOutils()) {
-            listeInventaire.get(i).getOutilsDispo().add(o);
-        }
-    }
-
-    /**
-     * Restaure la liste des zones disponibles
-     */
-    public void resetZone() {
-        ZonesPleines.clear();
-        ZonesDispo.clear();
-        //ZonesDispo.addAll(Arrays.asList(tabAllZone));
-        for (Zone z: tabAllZone) {
-            ZonesDispo.add(z);
-        }
-    }
-
-    /**
-     * Met à jour le status des zones : disponible ou pleine
-     */
-    public void updateStatutZone(){
-        Iterator<Zone> iter = ZonesDispo.iterator();
-        while (iter.hasNext()) {
-            Zone z = iter.next();
-
-            if (z.getNbOuvrierSurZone() >= z.getNbOuvrierMaxSurZone()){
-                ZonesPleines.add(z);
-                iter.remove();
-            }
-
-            if (threePlayers && ZonesDispo.contains(z)){
-                int acc=0;
-                for (int i = 0; i <3; i++) {
-                    if (z.getNbOuvirerDuJoueur(i)>0){acc++;}
-                }
-                if (acc==2)
-                {
-                    ZonesPleines.add(z);
-                    iter.remove();
-                }
-            }
-        }
-    }
-
-    /**
-     * Vérifie si la zone est disponible pour pouvoir placer des ouvriers
-     * @param choixZone La zone de placement
-     * @param choixNbOuvrier Le nombre d'ouvriers à placer
-     * @param i Le numéro du joueur
-     * @return True ou False
-     */
-    public boolean verifierDisponibiliteZone(Zone choixZone, int choixNbOuvrier, int i) {
-        if ((ZonesPleines.contains(choixZone)) | (choixNbOuvrier > choixZone.getNbOuvrierMaxSurZone()-choixZone.getNbOuvrierSurZone()) | (listeInventaire.get(i).getNbOuvrier()<choixNbOuvrier) ){
-            return false;
-        }
-        return !(ZoneVisitees.get(i).contains(choixZone) & choixZone != Chasse);
-    }
-
-
-
-    /**
-     * Permutation de l'ordre du premier joueur à jouer
-     * @param tableauFirstPlayer Le tableau des numéros des joueurs
-     */
-    public void swap (ArrayList<Integer> tableauFirstPlayer) {
-        int a;
-        for (int i =0;i < tableauFirstPlayer.size()-1; i++) {
-            Collections.swap(tableauFirstPlayer, i, i+1);
-
-        }
     }
 
 //    public boolean verifierNbCarteCivilisation() {

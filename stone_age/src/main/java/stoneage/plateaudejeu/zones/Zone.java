@@ -1,7 +1,7 @@
 package stoneage.plateaudejeu.zones;
 
 import stoneage.joueur.Joueur;
-import stoneage.Partie;
+import stoneage.partie.Partie;
 import stoneage.plateaudejeu.Inventaire;
 import stoneage.plateaudejeu.Ressource;
 
