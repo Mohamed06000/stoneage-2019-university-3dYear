@@ -26,6 +26,8 @@ public class Partie {
      * Objet qui represente le plateau de jeu
      */
     private final Plateau plateau;
+
+
     /**
      * Liste des scores des joueurs
      */
@@ -66,6 +68,14 @@ public class Partie {
      */
     public static int getNbJoueur() {
         return nbJoueur;
+    }
+
+    /**
+     * Recupère la liste des scors
+     * @return la liste des scors
+     */
+    public int[] getScore() {
+        return score;
     }
 
     /**
