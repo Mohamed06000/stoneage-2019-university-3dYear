@@ -55,30 +55,37 @@
 --- 
 
   * *Dans Partie*:
-  * [x] On a initialiser , affin de nous permetre de mieux faire les tests dans cette Classe :
+  * [x] On a initialiser , afin de nous permettre de mieux faire les tests dans cette Classe :
     - une Partie partie ,
     - un Plateau plateau ,
     - un tableau d'entier tab {2,4,6,8,10,1,3,5,7,9} ,
   
   
   * [x] resultat
-    - Partie appelle resultat avec comme paramétre (la liste des inventaires presents sur le plateau) ,
+    - Partie appelle resultat avec comme paramètre (la liste des inventaires presents sur le plateau) ,
     - On s'attend a ce que le tableau de score ne soit pas null ,
-    - On s'attend a ce que la taille du  tableau de score soit egale a celle de la liste des inventaires des joueurs ,
-    - Test avec succes !
+    - On s'attend a ce que la taille du  tableau de score soit égale a celle de la liste des inventaires des joueurs ,
+    - Test avec succès !
     
   * [x] egalite
-    - Partie appelle egalite avec comme parametre (le tableau test "tab", l'index du gagnant dans le tableau "tab") ,
-    - On s'attend à ce qu'il n'y a pas d'egalité,
-    - Test avec succes !
+    - Partie appelle egalite avec comme paramètre (le tableau test "tab", l'index du gagnant dans le tableau "tab") ,
+    - On s'attend à ce qu'il n'y a pas d'égalité,
+    - Test avec succès !
     
   * [x] indexGagnant
-    - Partie appelle indexGagnant avec comme parametre (le tableau test "tab" ),
+    - Partie appelle indexGagnant avec comme paramètre (le tableau test "tab" ),
     - On s'attend a ce que l'index du joueur gagnant == 5,
-    - Test avec succes !
+    - Test avec succès !
     
 ---
 ---
+  * *Dans Plateau*:
+   * [x] nbOuvrierDispoTotal
+     - Création d'un plateau avec 2 joueurs,
+     - On s'attend a avoir 10 ouvriers au total car 5 ouvriers par joueur ,
+     - Test avec succès !
+     - Test avec d'autres exemples...
+ 
 
     
 
