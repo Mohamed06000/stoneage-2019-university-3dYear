@@ -1,4 +1,4 @@
-package stoneage;
+package stoneage.joueur;
 
 import org.junit.jupiter.api.Test;
 import stoneage.joueur.Joueur;

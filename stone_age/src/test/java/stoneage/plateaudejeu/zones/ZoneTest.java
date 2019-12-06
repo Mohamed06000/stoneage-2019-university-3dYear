@@ -1,4 +1,4 @@
-package stoneage;
+package stoneage.plateaudejeu.zones;
 
 import org.junit.jupiter.api.Test;
 import stoneage.joueur.Joueur;

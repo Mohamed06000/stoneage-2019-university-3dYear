@@ -1,4 +1,4 @@
-package stoneage;
+package stoneage.partie;
 
 import org.junit.jupiter.api.Test;
 import stoneage.partie.Tour;

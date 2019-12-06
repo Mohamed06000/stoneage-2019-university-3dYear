@@ -1,4 +1,4 @@
-package stoneage;
+package stoneage.plateaudejeu;
 
 import org.junit.jupiter.api.Test;
 import stoneage.plateaudejeu.Plateau;
