@@ -65,11 +65,6 @@ class ZoneTest {
     @Test
     void retirerOuvrierSurZone() {
 
-    }
-
-    @Test
-    void de() {
-
         Inventaire i =new Inventaire();
         Zone zone = new Zone(Ressource.OR,6,2,0,10);
         zone.placeOuvrierSurZone(3, 0);

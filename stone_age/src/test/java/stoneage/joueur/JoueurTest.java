@@ -17,10 +17,10 @@ class JoueurTest {
 //        inventaire.setNbOuvrier(-1);
 //        assertEquals(7, inventaire.getNbNourriture());
 
-        inventaire.setNbNourriture(4);
+        //inventaire.setNbNourriture(4);
 //        inventaire.setNbBois(1);
         IA.nourrir(inventaire);
-        assertEquals(-10, inventaire.getNbPointTotal());
+        assertEquals(7, inventaire.getNbNourriture());
 
     }
 }
