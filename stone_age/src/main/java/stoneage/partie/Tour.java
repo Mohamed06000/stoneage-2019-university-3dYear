@@ -3,6 +3,7 @@ package stoneage.partie;
 import stoneage.joueur.Joueur;
 import stoneage.plateaudejeu.Inventaire;
 import stoneage.plateaudejeu.Plateau;
+import stoneage.plateaudejeu.Ressource;
 import stoneage.plateaudejeu.cartes.Cartebatiment;
 import stoneage.plateaudejeu.zones.Zone;
 import stoneage.plateaudejeu.zones.ZoneVillage;
@@ -116,12 +117,19 @@ public class Tour {
                     zoneCourant = plateau.getIA().get(i).choixZone(plateau.getZoneVisitees().get(i));
 
                     if (plateau.getIA().get(i).choixUtiliser()) { //IA choisit d'utiliser ses ouvriers ou non --> && verifier si getNbRessourde>=prixCarte
-                        /* On lance les dés et on recupère combien le joueur i gagne*/
-                        gainDeZone = zoneCourant.gainZone(plateau.getListeInventaire().get(i),i,plateau.getIA().get(i)); // J'ajoute le num du joueur.
-                        /* On rend au joueur i (son inventaire) ses ouvriers qui étaient sur la zone */
-                        plateau.getListeInventaire().get(i).setNbOuvrier(plateau.getListeInventaire().get(i).getNbOuvrier() + zoneCourant.getNbOuvirerDuJoueur(i));
-                        /* On eleve de la Zone les ouvriers du Joueur i*/
-                        zoneCourant.retirerOuvrierSurZone(plateau.getListeInventaire().get(i), zoneCourant.getNbOuvirerDuJoueur(i), i);
+                        if (zoneCourant instanceof ZoneVillage) {
+                            /* On lance les dés et on recupère combien le joueur i gagne*/
+                            gainDeZone = zoneCourant.gainZone(plateau.getListeInventaire().get(i), i, plateau.getIA().get(i)); // J'ajoute le num du joueur.
+                            /* On lui attribue ses gains*/
+                            attributionGain(plateau.getListeInventaire().get(i), zoneCourant.getRessource(), gainDeZone);
+                            /* On rend au joueur i (son inventaire) ses ouvriers qui étaient sur la zone */
+                            plateau.getListeInventaire().get(i).setNbOuvrier(plateau.getListeInventaire().get(i).getNbOuvrier() + zoneCourant.getNbOuvirerDuJoueur(i));
+                            /* On eleve de la Zone les ouvriers du Joueur i*/
+                            zoneCourant.retirerOuvrierSurZone(plateau.getListeInventaire().get(i), zoneCourant.getNbOuvirerDuJoueur(i), i);
+                        }
+                        else {
+                            zoneCourant.gainZone(plateau.getListeInventaire().get(i),i, plateau.getIA().get(i));
+                        }
 
                     }
                     else {
@@ -293,6 +301,27 @@ public class Tour {
     }
 
 
+
+
+    public void attributionGain(Inventaire inventaire, Ressource ressourceDeLaZone, int gain){
+        if (ressourceDeLaZone == Ressource.OR){
+            inventaire.setNbOr(inventaire.getNbOr()+gain);
+        }
+        else if (ressourceDeLaZone == Ressource.NOURRITURE){
+            inventaire.setNbNourriture(inventaire.getNbNourriture()+gain);
+        }
+        else if (ressourceDeLaZone == Ressource.BOIS){
+            inventaire.setNbBois(inventaire.getNbBois()+gain);
+        }
+        else if (ressourceDeLaZone == Ressource.ARGILE){
+            inventaire.setNbArgile(inventaire.getNbArgile()+gain);
+        }
+        else if (ressourceDeLaZone == Ressource.PIERRE){
+            inventaire.setNbPierre(inventaire.getNbPierre()+gain);
+        }
+        else {
+        }
+    }
 
 
 

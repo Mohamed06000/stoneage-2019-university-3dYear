@@ -18,7 +18,7 @@ public class Main {
         }
 
         Partie partie;
-        partie = new Partie(4,false) ;
+        partie = new Partie(2,true) ;
         partie.jouer() ;
 
   //      System.out.println("Simulation 500 parties");
