@@ -237,7 +237,7 @@ public class CarteCivilisation {
 	
 	/*methode qui permet de recuperer le gain d'une carte civilisation selon le type de ressource qui 'elle contient */
 
-	private void gainCarte(Inventaire i, Plateau p) {
+	public void gainCarte(Inventaire i, Plateau p) {
 
 		Ressource r = this.getressourceCarte();
 
@@ -246,20 +246,20 @@ public class CarteCivilisation {
 				if (this.avec_jet_de) {
 					this.ressource_avec_jet_de(i, r);
 				} else {
-					i.setNbOr(this.nbRessourceCarte);
+					i.setNbOr(this.nbRessourceCarte+i.getNbOr());
 				}
 				break;
 			case NOURRITURE:
-				i.setNbNourriture(this.nbRessourceCarte);
+				i.setNbNourriture(i.getNbNourriture()+this.nbRessourceCarte);
 				break;
 			case ARGILE:
-				i.setNbArgile(this.nbRessourceCarte);
+				i.setNbArgile(this.nbRessourceCarte+i.getNbArgile());
 				break;
 			case BOIS:
 				if (this.avec_jet_de) {
 					this.ressource_avec_jet_de(i, r);
 				} else {
-					i.setNbBois(this.nbRessourceCarte);
+					i.setNbBois(this.nbRessourceCarte+i.getNbBois());
 				}
 
 				break;
@@ -267,15 +267,15 @@ public class CarteCivilisation {
 				if (this.avec_jet_de) {
 					this.ressource_avec_jet_de(i, r);
 				} else {
-					i.setNbPierre(this.nbRessourceCarte);
+					i.setNbPierre(this.nbRessourceCarte+i.getNbPierre());
 
 				}
 				break;
 			case POINT:
-				i.setNbPointTotal(this.nbRessourceCarte);
+				i.setNbPointTotal(this.nbRessourceCarte+i.getNbPointTotal());
 				break;
 			case OUTIL:
-				i.setNbOutils(this.nbRessourceCarte);
+				i.setNbOutils(this.nbRessourceCarte+i.getNbOutils());
 				break;
 			case MULTI:
 
@@ -315,7 +315,7 @@ public class CarteCivilisation {
 
 		for (int k = 0; k<size; k++) {
 
-			int a = rand.nextInt(6) + 1;
+			int a = rand.nextInt(6) ;
 
 			int[] tab = new int[6];
 			tab[0] = listeInventaire.get(indexOfInventaire).getNbBois();
@@ -351,14 +351,14 @@ public class CarteCivilisation {
 		 * 
 		 * */
 
-		int resultat = rand.nextInt(12) + 1;
+		int resultat = rand.nextInt(11) + 2;
 
 		if (r == Ressource.OR) {
-			i.setNbOr(resultat / 6);
+			i.setNbOr(i.getNbOr()+(resultat / 6));
 		} else if (r == Ressource.PIERRE) {
-			i.setNbOr(resultat / 5);
+			i.setNbPierre(i.getNbPierre()+(resultat / 5));
 		} else if (r == Ressource.BOIS) {
-			i.setNbOr(resultat / 3);
+			i.setNbBois(i.getNbBois()+(resultat / 3));
 		}
 
 	}
@@ -534,7 +534,7 @@ public class CarteCivilisation {
 		 ArrayList<CarteCivilisation> cards = new ArrayList<CarteCivilisation> ();
 
 		//5 cartes ressources 
-		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.PIERRE, PartieInferieure.CHAMANE, 1));
+		cards.add(new CarteCivilisation(1, Couleur.SABLE, Ressource.PIERRE, PartieInferieure.CHAMANE, 1));
 		cards.add(new CarteCivilisation(2, Couleur.VERTE, Ressource.PIERRE, PartieInferieure.TRANSPORT));
 		cards.add(new CarteCivilisation(1, Couleur.SABLE, Ressource.ARGILE, PartieInferieure.CHAMANE, 2));
 		cards.add(new CarteCivilisation(1, Couleur.SABLE, Ressource.PIERRE, PartieInferieure.PAYSANT, 1));
