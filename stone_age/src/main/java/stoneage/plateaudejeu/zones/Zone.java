@@ -1,5 +1,6 @@
 package stoneage.plateaudejeu.zones;
 
+import stoneage.joueur.IaAlea;
 import stoneage.joueur.Joueur;
 import stoneage.partie.Partie;
 import stoneage.plateaudejeu.Inventaire;
@@ -193,7 +194,7 @@ public class Zone {
      * @param nJoueur Le numéro du joueur
      */
     public void retirerOuvrierSurZone(Inventaire inventaireJoueur, int nbOuvrierAretirer, int nJoueur) {
-        inventaireJoueur.setNbOuvrier(inventaireJoueur.getNbOuvrier() + nbOuvrierAretirer);
+        //inventaireJoueur.setNbOuvrier(inventaireJoueur.getNbOuvrier() + nbOuvrierAretirer);
         this.nbOuvrierSurZone -= nbOuvrierAretirer;
         this.nbOuvirerDuJoueur.set(nJoueur, 0); // On réinitialise a 0 une fois les ouvriers récuperés.
     }
@@ -213,12 +214,12 @@ public class Zone {
      * @param inventaire L'inventaire du joueur
      * @param nJoueur Le numéro du joueur
      */
-    public void gainZone(Inventaire inventaire, int nJoueur, Joueur IA) {
-        /* gainZone renvoie un entier nb de ressources gagnées /// c'est dans plateau qu'on gere l'attribution des gains*/
+    public int gainZone(Inventaire inventaire, int nJoueur, IaAlea IA) {
+        /* gainZone renvoie un entier nb de ressources gagnées /// c'est dans tour qu'on gere l'attribution des gains*/
         int somme = 0;
         int gain = 0;
 
-        for (int i = 0; i < this.getNbOuvirerDuJoueur(nJoueur); i++) { //Le nbOuvrierDuJoueur sur la zone en question et non pas de tous ses ouvriers.
+        for (int i = 0; i < this.getNbOuvirerDuJoueur(nJoueur); i++) { // On le lance le de autant de fois qu'il y a d'ouvrier du joueur sur la Zone
             somme += de();
         }
 
@@ -226,36 +227,11 @@ public class Zone {
             somme += IA.choixNbOutils(inventaire);
         }
 
-        if (somme >= 6)
+        if (somme >= 6){
             gain = somme / this.getDiviseur();
-
-        switch (this.getRessource()) {
-
-            case OR:
-                inventaire.setNbOr(inventaire.getNbOr() + gain);
-
-                break;
-            case NOURRITURE:
-                inventaire.setNbNourriture(inventaire.getNbNourriture() + gain);
-
-                break;
-            case BOIS:
-                inventaire.setNbBois(inventaire.getNbBois() + gain);
-
-                break;
-            case ARGILE:
-                inventaire.setNbArgile(inventaire.getNbArgile() + gain);
-
-                break;
-            case PIERRE:
-                inventaire.setNbPierre(inventaire.getNbPierre() + gain);
-
-                break;
-
-            default:
-                break;
         }
+
         this.setNbRessourcesZone(this.getNbRessourcesZone()-gain);
-        retirerOuvrierSurZone(inventaire, getNbOuvirerDuJoueur(nJoueur), nJoueur);
+        return gain;
     }
 }

@@ -1,6 +1,7 @@
 package stoneage.plateaudejeu;
 
 
+import stoneage.joueur.IaAlea;
 import stoneage.joueur.Joueur;
 import stoneage.partie.Partie;
 import stoneage.plateaudejeu.cartes.CarteCivilisation;
@@ -90,10 +91,17 @@ public class Plateau {
      * Liste des inventaires des joueurs
      */
     private ArrayList<Inventaire> listeInventaire = new ArrayList<Inventaire>();
+
     /**
-     * L'IA qui fait les choix de jeu
+     * Le tableau des IAs qui font les choix de jeu
      */
-    Joueur IA = new Joueur();
+    private ArrayList<IaAlea> IA = new ArrayList<>();
+
+    /**
+     * Le tableau qui contient les joueurs
+     */
+    private ArrayList<Joueur> joueurs = new ArrayList<>();
+
     /**
      * La liste des numéro des joueurs
      */
@@ -103,7 +111,6 @@ public class Plateau {
      * Le tableau de toutes les zones
      */
     private Zone [] tabAllZone;
-
 
     /**
      * La liste de toutes les cartes batiment
@@ -193,6 +200,8 @@ public class Plateau {
         ArrayList<Cartebatiment> cp;
         ArrayList<Cartebatiment> carteTuiles;
         for (int i = 0; i < nbjoueur ; i++) {
+            this.IA.add(new IaAlea());
+            this.joueurs.add(new Joueur());
             Inventaire inventaire = new Inventaire();
             listeInventaire.add(inventaire);
             zp = new ArrayList<Zone>();
@@ -238,6 +247,13 @@ public class Plateau {
         return listeInventaire;
     }
 
+    /**
+     * Récupère la liste des Joueurs
+     * @return Liste de Joueurs
+     */
+    public ArrayList<Joueur> getJoueurs(){
+        return this.joueurs;
+    }
 
     public boolean isTwoPlayers() {
         return twoPlayers;
@@ -259,7 +275,7 @@ public class Plateau {
         return CarteVisitees;
     }
 
-    public Joueur getIA() {
+    public ArrayList<IaAlea> getIA() {
         return IA;
     }
 

@@ -43,7 +43,7 @@ public class Partie {
     private Tour unTour;
 
 
-    //CONSTRUCTEUR
+    //========================= CONSTRUCTEUR =====================================//
 
     /**
      * Constructeur de la classe
@@ -119,12 +119,12 @@ public class Partie {
             departage(score, equal, indexDuPremier);
         }
         this.JoueurGagnant(indexDuPremier);
-        for (int i = 0; i < nbJoueur; i++) {
-            System.out.println("*****************");
-            System.out.println("joueur numero "+i);
-            JoueurGagnant(i);
-            System.out.println("***************");
-        }
+//        for (int i = 0; i < nbJoueur; i++) {
+//            System.out.println("*****************");
+//            System.out.println("joueur numero "+i);
+//            JoueurGagnant(i);
+//            System.out.println("***************");
+//        }
     }
 
 
@@ -182,7 +182,7 @@ public class Partie {
      */
     public void JoueurGagnant(int indexDuGagnant){
         System.out.println("Le Gagnant est le joueur " + (indexDuGagnant+1));
-        System.out.println(plateau.getListeInventaire().get(indexDuGagnant));
+//        System.out.println(plateau.getListeInventaire().get(indexDuGagnant));
     }
 
     /**

@@ -9,6 +9,7 @@ import stoneage.plateaudejeu.zones.ZoneVillage;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Dictionary;
 import java.util.Iterator;
 
 
@@ -19,19 +20,12 @@ import java.util.Iterator;
 public class Tour {
 
     Plateau plateau;
+    Dictionary placementZone;
 
     public Tour(Plateau p){
         this.plateau = p;
     }
 
-//    /**
-//     * Lance la phase de placement
-//     * @param affichage Si l'affichage se fait
-//     */
-//    public void placementPhase(boolean affichage, ArrayList<ArrayList<Cartebatiment>> listeCarteTotale,
-//                               ArrayList<Inventaire> listeInventaire, ArrayList<Integer> tableauFirstPlayer,
-//                               Joueur IA, ArrayList<Zone> ZonesDispo, ArrayList<Zone> ZonesPleines,
-//                               ArrayList<ArrayList<Zone>> ZoneVisitees, ArrayList<ArrayList<Cartebatiment>> CarteVisitees)
 
     /**
      * Lance la phase de placement
@@ -39,7 +33,7 @@ public class Tour {
      */
     public void placementPhase(boolean affichage){
         /**
-         * Accumulateur pour savoir quand deux zones village sont occupeés affin de supprimer le 3eme !
+         * Accumulateur pour savoir quand deux zones village sont occupeés afin de supprimer le 3eme !
          */
         int accVillage=0;
 
@@ -58,10 +52,10 @@ public class Tour {
                 }
                 do {
                     placed = true;
-                    int choixCarteOuZone = plateau.getIA().choixCarteOuZone();
+                    int choixCarteOuZone = plateau.getIA().get(i).choixCarteOuZone();
                     if (choixCarteOuZone==1) {
-                        choixZone = plateau.getIA().choixZone(plateau.getZonesDispo());
-                        choixNbOuvrier = plateau.getIA().choixNbOuvrier(plateau.getListeInventaire().get(i), choixZone);
+                        choixZone = plateau.getIA().get(i).choixZone(plateau.getZonesDispo());
+                        choixNbOuvrier = plateau.getIA().get(i).choixNbOuvrier(plateau.getListeInventaire().get(i), choixZone);
                         disponibiliteZone = verifierDisponibiliteZone(choixZone, choixNbOuvrier,i);
 
                         if (disponibiliteZone){
@@ -84,7 +78,7 @@ public class Tour {
                         }
                     }
                     if (choixCarteOuZone==2) {
-                        choixCarte = plateau.getIA().choixCartePlacement(plateau.getListeCarteTotale());
+                        choixCarte = plateau.getIA().get(i).choixCartePlacement(plateau.getListeCarteTotale());
                         plateau.getListeInventaire().get(i).setNbOuvrier(plateau.getListeInventaire().get(i).getNbOuvrier() - 1);
                         plateau.getCarteVisitees().get(i).add(choixCarte);
                         placed = false;
@@ -104,10 +98,6 @@ public class Tour {
     }
 
 
-//    public void recuperationPhase(boolean affichage, ArrayList<ArrayList<Cartebatiment>> listeCarteTotale,
-//                                  ArrayList<Inventaire> listeInventaire, ArrayList<Integer> tableauFirstPlayer, Joueur IA,
-//                                  ArrayList<Zone> ZonesDispo, ArrayList<Zone> ZonesPleines,
-//                                  ArrayList<ArrayList<Zone>> ZoneVisitees, ArrayList<ArrayList<Cartebatiment>> CarteVisitees, Zone[] tabAllZone)
 
     /**
      * Lance la phase de récupération
@@ -116,14 +106,23 @@ public class Tour {
     public void recuperationPhase(boolean affichage){
         Zone zoneCourant;
         Cartebatiment carteCourant;
+        int gainDeZone;
+        //Inventaire inventaireTemp; Peut-être faire comme ça pour rendre la lecture du code plus simple
         for (int i :plateau.getTableauFirstPlayer()) {
             while((plateau.getZoneVisitees().get(i).size()+plateau.getCarteVisitees().get(i).size())>0) { // Je parcoure la taille de la sous-liste et non plus de la liste afin d'eviter Out-Bound
-                int choixCarteOuZone = plateau.getIA().choixCarteOuZone();
+                int choixCarteOuZone = plateau.getIA().get(i).choixCarteOuZone();
 
                 if (choixCarteOuZone==1 && plateau.getZoneVisitees().get(i).size()>0) {
-                    zoneCourant = plateau.getIA().choixZone(plateau.getZoneVisitees().get(i));
-                    if (plateau.getIA().choixUtiliser()) { //IA choisit d'utiliser ses ouvriers ou non --> && verifier si getNbRessourde>=prixCarte
-                        zoneCourant.gainZone(plateau.getListeInventaire().get(i),i,plateau.getIA()); // J'ajoute le num du joueur.
+                    zoneCourant = plateau.getIA().get(i).choixZone(plateau.getZoneVisitees().get(i));
+
+                    if (plateau.getIA().get(i).choixUtiliser()) { //IA choisit d'utiliser ses ouvriers ou non --> && verifier si getNbRessourde>=prixCarte
+                        /* On lance les dés et on recupère combien le joueur i gagne*/
+                        gainDeZone = zoneCourant.gainZone(plateau.getListeInventaire().get(i),i,plateau.getIA().get(i)); // J'ajoute le num du joueur.
+                        /* On rend au joueur i (son inventaire) ses ouvriers qui étaient sur la zone */
+                        plateau.getListeInventaire().get(i).setNbOuvrier(plateau.getListeInventaire().get(i).getNbOuvrier() + zoneCourant.getNbOuvirerDuJoueur(i));
+                        /* On eleve de la Zone les ouvriers du Joueur i*/
+                        zoneCourant.retirerOuvrierSurZone(plateau.getListeInventaire().get(i), zoneCourant.getNbOuvirerDuJoueur(i), i);
+
                     }
                     else {
                         zoneCourant.retirerOuvrierSurZone(plateau.getListeInventaire().get(i), zoneCourant.getNbOuvirerDuJoueur(i), i);
@@ -135,9 +134,9 @@ public class Tour {
                 }
 
                 if (choixCarteOuZone==2 && plateau.getCarteVisitees().get(i).size()>0){
-                    carteCourant = plateau.getIA().choixCarteRecuperation(plateau.getCarteVisitees().get(i));
-                    if (plateau.getListeInventaire().get(i).getNbRessourceTotal()>=carteCourant.getNbRessourceApayer() && plateau.getIA().choixUtiliser()) {
-                        int choixNbRessource = plateau.getIA().choixNbRessource();
+                    carteCourant = plateau.getIA().get(i).choixCarteRecuperation(plateau.getCarteVisitees().get(i));
+                    if (plateau.getListeInventaire().get(i).getNbRessourceTotal()>=carteCourant.getNbRessourceApayer() && plateau.getIA().get(i).choixUtiliser()) {
+                        int choixNbRessource = plateau.getIA().get(i).choixNbRessource();
                         carteCourant.payement(plateau.getListeInventaire().get(i),choixNbRessource);
                         plateau.getListeInventaire().get(i).getCartesBatiments().add(carteCourant);
                         for (int j = 0; j < plateau.getListeCarteTotale().size(); j++) {
@@ -169,7 +168,7 @@ public class Tour {
      */
     public void phaseNourrir(){
         for (int i :plateau.getTableauFirstPlayer()) {
-            plateau.getIA().nourrir(plateau.getListeInventaire().get(i));
+            plateau.getJoueurs().get(i).nourrir(plateau.getListeInventaire().get(i));
             resetOutils(i);
         }
     }
