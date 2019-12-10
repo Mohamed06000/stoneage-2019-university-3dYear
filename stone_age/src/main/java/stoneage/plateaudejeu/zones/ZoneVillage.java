@@ -1,5 +1,6 @@
 package stoneage.plateaudejeu.zones;
 
+import stoneage.joueur.IaAlea;
 import stoneage.joueur.Joueur;
 import stoneage.plateaudejeu.Inventaire;
 
@@ -44,6 +45,8 @@ public class ZoneVillage extends Zone{
         super( nbOuvrierSurZone, nbOuvrierMaxSurZone);
         this.type_zone = type_zone;
     }
+
+
 
     public void gainZone(Inventaire inventaire, int nJoueur, Joueur IA){
         if(this.type_zone==0){

@@ -117,7 +117,12 @@ public class Tour {
                     zoneCourant = plateau.getIA().get(i).choixZone(plateau.getZoneVisitees().get(i));
 
                     if (plateau.getIA().get(i).choixUtiliser()) { //IA choisit d'utiliser ses ouvriers ou non --> && verifier si getNbRessourde>=prixCarte
-                        if (zoneCourant instanceof ZoneVillage) {
+                        if (zoneCourant.equals(plateau.getHutte()) || zoneCourant.equals(plateau.getChamp()) || zoneCourant.equals(plateau.getFabriqueOutils())) {
+                            attributionGainVillage(plateau.getListeInventaire().get(i), zoneCourant);
+//                            zoneCourant.gainZone(plateau.getListeInventaire().get(i),i, plateau.getIA().get(i));
+                        }
+                        else {
+//                            System.out.println("zoneCourant de type" + zoneCourant);
                             /* On lance les dés et on recupère combien le joueur i gagne*/
                             gainDeZone = zoneCourant.gainZone(plateau.getListeInventaire().get(i), i, plateau.getIA().get(i)); // J'ajoute le num du joueur.
                             /* On lui attribue ses gains*/
@@ -126,9 +131,6 @@ public class Tour {
                             plateau.getListeInventaire().get(i).setNbOuvrier(plateau.getListeInventaire().get(i).getNbOuvrier() + zoneCourant.getNbOuvirerDuJoueur(i));
                             /* On eleve de la Zone les ouvriers du Joueur i*/
                             zoneCourant.retirerOuvrierSurZone(plateau.getListeInventaire().get(i), zoneCourant.getNbOuvirerDuJoueur(i), i);
-                        }
-                        else {
-                            zoneCourant.gainZone(plateau.getListeInventaire().get(i),i, plateau.getIA().get(i));
                         }
 
                     }
@@ -254,7 +256,8 @@ public class Tour {
         System.out.println("********Joueur " + (numJ+1) + "********");
         System.out.println("Nb d'ouvrier total dans la zone " + z + " : " + z.getNbOuvrierSurZone());
         System.out.println("Nb d'ouvrier du joueur dans la zone " + z + " : " + z.getNbOuvirerDuJoueur(numJ));
-        System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + (numJ+1) + " : " + inventaire.getNbOuvrier());
+        System.out.println("Nb d'ouvrier dispo dans l'inventaire du joueur " + (numJ+1) + " : " + inventaire.getNbOuvrier());
+        System.out.println("Nb d'ouvrier total dans l'inventaire du joueur " + (numJ+1) + " : " + inventaire.getNbOuvrierTotal());
         if (ZoneVisitees.get(numJ).size()>0) {
             System.out.println("Les zones visitées : " + (ZoneVisitees.get(numJ)));
         }
@@ -278,7 +281,8 @@ public class Tour {
         System.out.println("********Joueur " + (numJ+1) + "********");
         // System.out.println("Nb d'ouvrier total dans la zone " + z + " : " + z.getNbOuvrierSurZone());
         //System.out.println("Nb d'ouvrier du joueur dans la zone " + z + " : " + z.getNbOuvirerDuJoueur(numJ));
-        System.out.println("Nb d'ouvrier dans l'inventaire du joueur " + (numJ+1) + " : " + inventaire.getNbOuvrier());
+        System.out.println("Nb d'ouvrier dispo dans l'inventaire du joueur " + (numJ+1) + " : " + inventaire.getNbOuvrier());
+        System.out.println("Nb d'ouvrier total dans l'inventaire du joueur " + (numJ+1) + " : " + inventaire.getNbOuvrierTotal());
         if (ZoneVisitees.get(numJ).size()>0) {
             System.out.println("Les zones visitées : " + (ZoneVisitees.get(numJ)));
         }
@@ -323,7 +327,54 @@ public class Tour {
         }
     }
 
+    public void attributionGainVillage(Inventaire inventaire, Zone zone){
+        if (zone.equals(plateau.getChamp())){
+            /* On augmente le niveau d'agriculture de l'inventaire*/
+            inventaire.setNiveauAgriculture(inventaire.getNiveauAgriculture()+1);
+        }
 
+        else if (zone.equals(plateau.getFabriqueOutils())){
+            /* On augmente le nombre d'outils total de l'inventaire ( et on rajoute le niveau de l'outils dans le tableau Outils))*/
+            if (inventaire.getNbOutils()<12){
+                inventaire.setNbOutils(inventaire.getNbOutils()+1);
+                for (int i = 0; i < 3; i++) {
+                    if (inventaire.getNbOutils()<4) {
+                        if (inventaire.getOutils().get(i)<1) {
+                            inventaire.getOutils().set(i, 1);
+                            break;
+                        }
+                    }
+                    if (inventaire.getNbOutils()>=3 && inventaire.getNbOutils()<7) {
+                        if (inventaire.getOutils().get(i)<2) {
+                            inventaire.getOutils().set(i, 2);
+                            break;
+                        }
+                    }
+                    if (inventaire.getNbOutils()>=6 && inventaire.getNbOutils()<10) {
+                        if (inventaire.getOutils().get(i)<3) {
+                            inventaire.getOutils().set(i, 3);
+                            break;
+                        }
+                    }
+                    if (inventaire.getNbOutils()>=9 && inventaire.getNbOutils()<13) {
+                        if (inventaire.getOutils().get(i)<4) {
+                            inventaire.getOutils().set(i, 4);
+                            break;
+                        }
+                    }
+
+                }
+            }
+
+        }
+
+        else {
+            if (inventaire.getNbOuvrierTotal()<10){
+                inventaire.setNbOuvrier(inventaire.getNbOuvrier()+1);
+                inventaire.setNbOuvrierTotal(inventaire.getNbOuvrierTotal()+1);
+            }
+        }
+    }
 
 
 }

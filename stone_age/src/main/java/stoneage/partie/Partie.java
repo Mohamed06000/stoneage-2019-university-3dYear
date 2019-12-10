@@ -85,7 +85,7 @@ public class Partie {
         //System.out.println("Nb d'ouvriers total non place : " + plateau.nbOuvrierDispoTotal(plateau.getListeInventaire()));
 
 
-        while(plateau.verifierNbCarteBatiment()) { //plateau.verifierNbCarteCivilisation() && plateau.verifierNbCarteBatiment()
+        while(plateau.verifierNbCarteBatiment() && tour<200) { //plateau.verifierNbCarteCivilisation() && plateau.verifierNbCarteBatiment()
             if (affichage){
             System.out.println("_________________________________________________");
             System.out.println("|                TOUR : "+tour+"                      |");
