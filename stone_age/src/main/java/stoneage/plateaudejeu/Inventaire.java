@@ -119,8 +119,8 @@ public class Inventaire {
      * Constructeur de la classe
      */
     public Inventaire(){
-        this.nbOuvrier = 5;
-        this.nbOuvrierTotal=nbOuvrier;
+        this.nbOuvrierTotal=5;
+        this.nbOuvrier = nbOuvrierTotal;
         this.nbNourriture = 12;
         this.nbBois = 0;
         this.nbArgile = 0;
@@ -387,6 +387,9 @@ public class Inventaire {
         return this.niveauAgriculture + this.nbOuvrierTotal + sommeOutils;
     }
 
+    public void resetNbOuvrierDispo(){
+        this.nbOuvrier = this.nbOuvrierTotal;
+    }
 
     public int getNbCartesBatiments() {
         return this.cartesBatiments.size();

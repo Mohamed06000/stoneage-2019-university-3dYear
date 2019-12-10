@@ -107,6 +107,7 @@ public class Partie {
             unTour.phaseNourrir();
             //plateau.phaseNourrir();
             swap(plateau.getTableauFirstPlayer());
+            unTour.resetOuvrierDispoDesInventaires();
             tour++;
         }
 

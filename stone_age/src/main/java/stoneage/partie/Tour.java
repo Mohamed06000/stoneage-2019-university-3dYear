@@ -60,7 +60,9 @@ public class Tour {
                         disponibiliteZone = verifierDisponibiliteZone(choixZone, choixNbOuvrier,i);
 
                         if (disponibiliteZone){
-                            plateau.getListeInventaire().get(i).setNbOuvrier(plateau.getListeInventaire().get(i).getNbOuvrier() - choixNbOuvrier);
+                            /* Le Joueur place ses ouvriers sur la Zone choisie*/
+                            plateau.getJoueurs().get(i).placementOuvrierSurZone(plateau.getListeInventaire().get(i), choixNbOuvrier);
+                            //plateau.getListeInventaire().get(i).setNbOuvrier(plateau.getListeInventaire().get(i).getNbOuvrier() - choixNbOuvrier);
                             choixZone.placeOuvrierSurZone(choixNbOuvrier, i); //J'ajoute le num du joueur en parametre.
                             plateau.getZoneVisitees().get(i).add(choixZone);
                             if (plateau.isTwoPlayers() && choixZone!=plateau.getChasse()) { plateau.getZonesPleines().add(choixZone);}
@@ -80,7 +82,9 @@ public class Tour {
                     }
                     if (choixCarteOuZone==2) {
                         choixCarte = plateau.getIA().get(i).choixCartePlacement(plateau.getListeCarteTotale());
-                        plateau.getListeInventaire().get(i).setNbOuvrier(plateau.getListeInventaire().get(i).getNbOuvrier() - 1);
+                        /* Le Joueur place ses ouvriers sur la Carte choisie*/
+                        plateau.getJoueurs().get(i).placementOuvrierSurZone(plateau.getListeInventaire().get(i), 1);
+                        //plateau.getListeInventaire().get(i).setNbOuvrier(plateau.getListeInventaire().get(i).getNbOuvrier() - 1);
                         plateau.getCarteVisitees().get(i).add(choixCarte);
                         placed = false;
                         if(affichage)
@@ -128,15 +132,16 @@ public class Tour {
                             /* On lui attribue ses gains*/
                             attributionGain(plateau.getListeInventaire().get(i), zoneCourant.getRessource(), gainDeZone);
                             /* On rend au joueur i (son inventaire) ses ouvriers qui étaient sur la zone */
-                            plateau.getListeInventaire().get(i).setNbOuvrier(plateau.getListeInventaire().get(i).getNbOuvrier() + zoneCourant.getNbOuvirerDuJoueur(i));
+                            plateau.getJoueurs().get(i).retraitOuvrierSurZone(plateau.getListeInventaire().get(i), zoneCourant.getNbOuvirerDuJoueur(i));
+                            //plateau.getListeInventaire().get(i).setNbOuvrier(plateau.getListeInventaire().get(i).getNbOuvrier() + zoneCourant.getNbOuvirerDuJoueur(i));
                             /* On eleve de la Zone les ouvriers du Joueur i*/
                             zoneCourant.retirerOuvrierSurZone(plateau.getListeInventaire().get(i), zoneCourant.getNbOuvirerDuJoueur(i), i);
                         }
 
                     }
-                    else {
-                        zoneCourant.retirerOuvrierSurZone(plateau.getListeInventaire().get(i), zoneCourant.getNbOuvirerDuJoueur(i), i);
-                    }
+//                    else {
+//                        zoneCourant.retirerOuvrierSurZone(plateau.getListeInventaire().get(i), zoneCourant.getNbOuvirerDuJoueur(i), i);
+//                    }
                     plateau.getZoneVisitees().get(i).remove(zoneCourant);
                     if(affichage){
                         AfficheInfoJoueur(i,zoneCourant, plateau.getZoneVisitees(), plateau.getCarteVisitees(),plateau.getListeInventaire().get(i));
@@ -158,6 +163,7 @@ public class Tour {
                     else {
                         carteCourant.retirerOuvrierSurCarte(plateau.getListeInventaire().get(i));
                     }
+                    plateau.getJoueurs().get(i).retraitOuvrierSurZone(plateau.getListeInventaire().get(i), 1);
                     plateau.getCarteVisitees().get(i).remove(carteCourant);
                     if(affichage){
                         AfficheInfoJoueur(i,carteCourant,plateau.getZoneVisitees(), plateau.getCarteVisitees(), plateau.getListeInventaire().get(i));
@@ -291,6 +297,12 @@ public class Tour {
         }
     }
 
+
+    public void resetOuvrierDispoDesInventaires(){
+        for (Inventaire inventaire : plateau.getListeInventaire()) {
+            inventaire.resetNbOuvrierDispo();
+        }
+    }
 
     /**
      * Restaure la liste des zones disponibles

@@ -53,6 +53,19 @@ public class Joueur {
         return num;
     }
 
+
+
+    public void placementOuvrierSurZone(Inventaire inventaire, int nbOuvrierAPlacerSurLaZone){
+        inventaire.setNbOuvrier(inventaire.getNbOuvrier() - nbOuvrierAPlacerSurLaZone);
+    }
+
+
+    public void retraitOuvrierSurZone(Inventaire inventaire, int nbOuvrierPlaceSurCetteZone){
+        inventaire.setNbOuvrier(inventaire.getNbOuvrier() + nbOuvrierPlaceSurCetteZone);
+    }
+
+
+
     /**
      * Nourrir ses ouvriers (1 nourriture/ouvrier)
      * @param i L'inventaire du joueur
