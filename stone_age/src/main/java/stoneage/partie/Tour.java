@@ -8,6 +8,8 @@ import stoneage.plateaudejeu.cartes.Cartebatiment;
 import stoneage.plateaudejeu.zones.Zone;
 import stoneage.plateaudejeu.zones.ZoneVillage;
 
+import javax.sound.midi.Soundbank;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Dictionary;
@@ -62,7 +64,6 @@ public class Tour {
                         if (disponibiliteZone){
                             /* Le Joueur place ses ouvriers sur la Zone choisie*/
                             plateau.getJoueurs().get(i).placementOuvrierSurZone(plateau.getListeInventaire().get(i), choixNbOuvrier);
-                            //plateau.getListeInventaire().get(i).setNbOuvrier(plateau.getListeInventaire().get(i).getNbOuvrier() - choixNbOuvrier);
                             choixZone.placeOuvrierSurZone(choixNbOuvrier, i); //J'ajoute le num du joueur en parametre.
                             plateau.getZoneVisitees().get(i).add(choixZone);
                             if (plateau.isTwoPlayers() && choixZone!=plateau.getChasse()) { plateau.getZonesPleines().add(choixZone);}
@@ -72,9 +73,8 @@ public class Tour {
                             }
                             updateStatutZone(); // Je fais l'uptade apres la placement et non plus avant afin que l'autre joueur beneficie de l'uptade pour le choix de la zone.
                             placed = false;
-                            if(affichage)
-                            {
-                                AfficheInfoJoueur(i,choixZone, plateau.getZoneVisitees(), plateau.getCarteVisitees(), plateau.getListeInventaire().get(i));
+                            if(affichage) {
+                                AfficheInfoJoueur(i,choixZone, 0, plateau.getZoneVisitees(), plateau.getCarteVisitees(), plateau.getListeInventaire().get(i));
                             }
                             if(accVillage==2){ plateau.getZonesDispo().remove(plateau.getZonesDispo().size()-1);}
 
@@ -89,7 +89,7 @@ public class Tour {
                         placed = false;
                         if(affichage)
                         {
-                            AfficheInfoJoueur(i,choixCarte,plateau.getZoneVisitees(), plateau.getCarteVisitees(), plateau.getListeInventaire().get(i));
+                            AfficheInfoJoueur(i,choixCarte,0,plateau.getZoneVisitees(), plateau.getCarteVisitees(), plateau.getListeInventaire().get(i));
                         }
                     }
 
@@ -144,7 +144,7 @@ public class Tour {
 //                    }
                     plateau.getZoneVisitees().get(i).remove(zoneCourant);
                     if(affichage){
-                        AfficheInfoJoueur(i,zoneCourant, plateau.getZoneVisitees(), plateau.getCarteVisitees(),plateau.getListeInventaire().get(i));
+                        AfficheInfoJoueur(i,zoneCourant,1, plateau.getZoneVisitees(), plateau.getCarteVisitees(),plateau.getListeInventaire().get(i));
                     }
                 }
 
@@ -166,7 +166,7 @@ public class Tour {
                     plateau.getJoueurs().get(i).retraitOuvrierSurZone(plateau.getListeInventaire().get(i), 1);
                     plateau.getCarteVisitees().get(i).remove(carteCourant);
                     if(affichage){
-                        AfficheInfoJoueur(i,carteCourant,plateau.getZoneVisitees(), plateau.getCarteVisitees(), plateau.getListeInventaire().get(i));
+                        AfficheInfoJoueur(i,carteCourant, 1, plateau.getZoneVisitees(), plateau.getCarteVisitees(), plateau.getListeInventaire().get(i));
                     }
                 }
 
@@ -250,25 +250,41 @@ public class Tour {
 
     /**
      * Affiche les informations du joueur numero numJ
+     * Si phase est égale à 0 alors on est dans la phase de placement, sinon on est dans la phase de récuperation
      * @param numJ Le numero du joueur
      * @param z Une zone
      * @param ZoneVisitees La  liste des zones visitées par le joueur
      * @param inventaire L'inventaire du joueur
+     * @param phase Indique dans quelle phase l'affichage doit se faire
      */
-    public static void AfficheInfoJoueur(int numJ, Zone z,
+    public static void AfficheInfoJoueur(int numJ, Zone z, int phase,
                                          ArrayList<ArrayList<Zone>> ZoneVisitees,
                                          ArrayList<ArrayList<Cartebatiment>> CarteVisitees,
                                          Inventaire inventaire) {
         System.out.println("********Joueur " + (numJ+1) + "********");
-        System.out.println("Nb d'ouvrier total dans la zone " + z + " : " + z.getNbOuvrierSurZone());
-        System.out.println("Nb d'ouvrier du joueur dans la zone " + z + " : " + z.getNbOuvirerDuJoueur(numJ));
-        System.out.println("Nb d'ouvrier dispo dans l'inventaire du joueur " + (numJ+1) + " : " + inventaire.getNbOuvrier());
-        System.out.println("Nb d'ouvrier total dans l'inventaire du joueur " + (numJ+1) + " : " + inventaire.getNbOuvrierTotal());
-        if (ZoneVisitees.get(numJ).size()>0) {
-            System.out.println("Les zones visitées : " + (ZoneVisitees.get(numJ)));
+        if (phase == 0){
+            System.out.println("Il place " + z.getNbOuvirerDuJoueur(numJ)+" ouvrier(s) dans la Zone " + z);
+            System.out.println("Il y a au total " + z.getNbOuvrierSurZone() + " ouvrier(s) dans la Zone " +z);
+            System.out.println("Il reste au Joueur "+ (numJ+1) +", "+ inventaire.getNbOuvrier() + " ouvrier(s) à placer");
+            System.out.println("Nombre d'ouvrier total dans l'inventaire du joueur " + (numJ+1) + " : " + inventaire.getNbOuvrierTotal());
+            if (ZoneVisitees.get(numJ).size()>0) {
+                System.out.println("Les zones visitées : " + (ZoneVisitees.get(numJ)));
+            }
+            if (CarteVisitees.get(numJ).size()>0) {
+                System.out.println("Les cartes visitées : " + (CarteVisitees.get(numJ)));
+            }
         }
-        if (CarteVisitees.get(numJ).size()>0) {
-            System.out.println("Les cartes visitées : " + (CarteVisitees.get(numJ)));
+        else{
+            System.out.println("Il recupère son/ses  " + z.getNbOuvirerDuJoueur(numJ)+" ouvrier(s) dans la Zone " + z);
+            System.out.println("Il reste au total " + z.getNbOuvrierSurZone() + " ouvrier(s) dans la Zone " +z);
+            System.out.println("Il reste au Joueur "+ (numJ+1) +", "+ (inventaire.getNbOuvrierTotal() - inventaire.getNbOuvrier()) + " ouvrier(s) à récupérer");
+            System.out.println("Nombre d'ouvrier total dans l'inventaire du joueur " + (numJ+1) + " : " + inventaire.getNbOuvrierTotal());
+            if (ZoneVisitees.get(numJ).size()>0) {
+                System.out.println("Les zones visitées : " + (ZoneVisitees.get(numJ)));
+            }
+            if (CarteVisitees.get(numJ).size()>0) {
+                System.out.println("Les cartes visitées : " + (CarteVisitees.get(numJ)));
+            }
         }
     }
 
@@ -279,16 +295,23 @@ public class Tour {
      * @param ZoneVisitees
      * @param CarteVisitees
      * @param inventaire
+     * @param phase Indique dans quelle phase l'affichage doit se faire
      */
-    public static void AfficheInfoJoueur(int numJ, Cartebatiment c,
+    public static void AfficheInfoJoueur(int numJ, Cartebatiment c, int phase,
                                          ArrayList<ArrayList<Zone>> ZoneVisitees,
                                          ArrayList<ArrayList<Cartebatiment>> CarteVisitees,
                                          Inventaire inventaire) {
         System.out.println("********Joueur " + (numJ+1) + "********");
-        // System.out.println("Nb d'ouvrier total dans la zone " + z + " : " + z.getNbOuvrierSurZone());
-        //System.out.println("Nb d'ouvrier du joueur dans la zone " + z + " : " + z.getNbOuvirerDuJoueur(numJ));
-        System.out.println("Nb d'ouvrier dispo dans l'inventaire du joueur " + (numJ+1) + " : " + inventaire.getNbOuvrier());
-        System.out.println("Nb d'ouvrier total dans l'inventaire du joueur " + (numJ+1) + " : " + inventaire.getNbOuvrierTotal());
+        if (phase == 0){
+            System.out.println("Il place un ouvrier sur la Carte "+ c);
+            System.out.println("Il reste au Joueur "+ (numJ+1) +", "+ inventaire.getNbOuvrier() + " ouvrier(s) à placer");
+            System.out.println("Nombre d'ouvrier total dans l'inventaire du joueur " + (numJ+1) + " : " + inventaire.getNbOuvrierTotal());
+        }
+        if (phase != 0){
+            System.out.println("Il récupère son ouvrier placé sur la Carte "+ c);
+            System.out.println("Il reste au Joueur "+ (numJ+1) +", "+ (inventaire.getNbOuvrierTotal() - inventaire.getNbOuvrier()) + " ouvrier(s) à récupérer");
+            System.out.println("Nombre d'ouvrier total dans l'inventaire du joueur " + (numJ+1) + " : " + inventaire.getNbOuvrierTotal());
+        }
         if (ZoneVisitees.get(numJ).size()>0) {
             System.out.println("Les zones visitées : " + (ZoneVisitees.get(numJ)));
         }
