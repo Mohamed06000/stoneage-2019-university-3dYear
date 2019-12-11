@@ -94,10 +94,11 @@ public class Affichage {
     }
 
 
-    public void AfficheInfoTour(int nbTour){
+    public void AfficheInfoTour(int nbTour, int premierAjouer){
         if (this.affichage){
             System.out.println("_________________________________________________");
             System.out.println("|                TOUR : "+nbTour+"                      |");
+            System.out.println("Le joueur " + (premierAjouer+1) + " est le premier à jouer");
             System.out.println("_________________________________________________");
             System.out.println("================PHASE DE PLACEMENT================");
         }
@@ -106,49 +107,101 @@ public class Affichage {
 
 
     public void AfficheRecup(){
-        System.out.println(" ");
-        System.out.println("================PHASE DE RECUPERATION================");
+        if (this.affichage){
+            System.out.println(" ");
+            System.out.println("================PHASE DE RECUPERATION================");
+        }
     }
 
     public void AfficheNourrir(){
-        System.out.println(" ");
-        System.out.println("================PHASE NOURRIR================");
+        if (this.affichage){
+            System.out.println(" ");
+            System.out.println("================PHASE NOURRIR================");
+        }
     }
 
     public void AfficheLanceDe(int numJ, int resultat){
-        System.out.println("Le Joueur " + numJ + " lance le dé");
-        System.out.println("Il obtient : "+ resultat);
+        if (this.affichage){
+            System.out.println("Le Joueur " + numJ + " lance le dé");
+            System.out.println("Il obtient : "+ resultat);
+        }
     }
 
-    public void AfficheGain(int gain, Ressource ressource){
-        System.out.println("Il a alors gagné "+ gain + " " + ressource);
+    public void AfficheGain(int somme, int diviseur,int gain){
+        if (this.affichage) {
+            System.out.println("Il a un gain de  "+ somme +" divisé par " + diviseur + " soit : " + gain);
+        }
     }
 
     public void AffichageNumJoueur(int numJ){
-        System.out.println(" ");
-        System.out.println("********Joueur " + (numJ+1) + "********");
+        if (this.affichage){
+            System.out.println(" ");
+            System.out.println("********Joueur " + (numJ+1) + "********");
+        }
     }
 
     public void AffichePlacement(int numJ, Zone z){
-        System.out.println("Il place " + z.getNbOuvirerDuJoueur(numJ)+ " ouvrier(s) dans la Zone " + z);
+        if (this.affichage){
+            if (z.getNbOuvirerDuJoueur(numJ)>1){
+                System.out.println("Il place " + z.getNbOuvirerDuJoueur(numJ)+ " ouvriers dans la Zone " + z);
+            }
+            else {
+                System.out.println("Il place " + z.getNbOuvirerDuJoueur(numJ)+ " ouvrier dans la Zone " + z);
+            }
+        }
     }
 
     public void AffichePlacement(Cartebatiment c){
-        System.out.println("Il place un ouvrier sur la Carte "+ c);
+        if (this.affichage){
+            System.out.println("Il place un ouvrier sur la Carte "+ c);
+        }
     }
+
+
 
     public void AfficheRecup(int numJ, Zone z){
-        System.out.println("Il recupère son/ses  " + z.getNbOuvirerDuJoueur(numJ)+" ouvrier(s) dans la Zone " + z);
+        if (this.affichage){
+            if (z.getNbOuvirerDuJoueur(numJ)>1){
+                System.out.println("Il utilise ses  " + z.getNbOuvirerDuJoueur(numJ)+" ouvriers dans la Zone " + z);
+            }
+            else {
+                System.out.println("Il utilise son ouvrier dans la Zone " + z);
+            }
+        }
     }
 
+
     public void AfficheRecup(Cartebatiment c){
-        System.out.println("Il récupère son ouvrier placé sur la Carte "+ c);
+        if (this.affichage) {
+            System.out.println("Il utilise son ouvrier placé sur la Carte " + c);
+        }
+    }
+
+
+    public void AfficheGainRessource(int gain, Ressource ressourceDeLaZone) {
+        if (this.affichage) {
+            System.out.println("Il produit " + gain + " " + ressourceDeLaZone);
+        }
+    }
+
+    public void AfficheGainVillage(int type_zone){ /* 0 est le champ*/
+        if (this.affichage) {
+            if (type_zone == 0) {
+                System.out.println("Il gagne 1 niveau d'agriculture");
+            } else if (type_zone == 1) { /* 1 zone outils*/
+                System.out.println("Il gagne un outils");
+            } else { /* zone Hutte*/
+                System.out.println("Il gagne un ouvrier");
+            }
+        }
     }
 
 
     public void AfficheMessageFin() {
-        System.out.println(" ");
-        System.out.println("====================== RESULTAT  =========================");
+        if (this.affichage) {
+            System.out.println(" ");
+            System.out.println("====================== RESULTAT  =========================");
+        }
     }
 
     /**
@@ -156,8 +209,10 @@ public class Affichage {
      * @param indexDuPremier L'index du joueur gagnant
      */
     public void AfficheGagnant(int indexDuPremier) {
-        System.out.println(" ");
-        System.out.println(" Le Joueur " + indexDuPremier+
-                " a gagné !!!");
+        if (this.affichage) {
+            System.out.println(" ");
+            System.out.println(" Le Joueur " + indexDuPremier + " a gagné !!!");
+        }
     }
+
 }

@@ -233,6 +233,7 @@ public class Zone {
             gain = somme / this.getDiviseur();
         }
         this.setNbRessourcesZone(this.getNbRessourcesZone()-gain);
+        affichage.AfficheGain(somme,this.getDiviseur(), gain);
         return gain;
     }
 }

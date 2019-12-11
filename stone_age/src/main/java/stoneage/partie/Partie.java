@@ -86,8 +86,8 @@ public class Partie {
 
 
         while(plateau.verifierNbCarteBatiment()) { //plateau.verifierNbCarteCivilisation() && plateau.verifierNbCarteBatiment()
-            /* On affiche le message du tour*/
-            affichage.AfficheInfoTour(tour);
+            /* On affiche le message des infos du tour (nbr de tours, 1er joueur)*/
+            affichage.AfficheInfoTour(tour, plateau.getTableauFirstPlayer().get(0));
 
             /* On execute la phase de placement*/
             unTour.placementPhase();

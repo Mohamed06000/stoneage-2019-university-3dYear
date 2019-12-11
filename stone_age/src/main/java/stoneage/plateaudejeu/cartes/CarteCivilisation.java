@@ -389,7 +389,7 @@ public class CarteCivilisation {
 
 	
 	/*methode utiliser dans methode ressource_avec_jet_de */
-	public static void de() {
+	public void de() {
 
 		int nbJoueur = Partie.getNbJoueur();
 		int resultat = 0;
