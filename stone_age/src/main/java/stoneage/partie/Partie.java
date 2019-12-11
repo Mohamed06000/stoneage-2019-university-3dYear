@@ -20,7 +20,7 @@ public class Partie {
      * Le nombre de joueur
      */
 
-    private static int nbJoueur = 4;
+    private static int nbJoueur = 2;
 
     /**
      * Objet qui represente le plateau de jeu
@@ -34,7 +34,7 @@ public class Partie {
     /**
      * Active l'affichage des actions en details (Desactiver par défaut)
      */
-    private boolean affichage = false;
+    private Affichage affichage;
 
     /**
      * Instance de Tour
@@ -53,7 +53,7 @@ public class Partie {
         this.nbJoueur = nbJoueur;
         plateau = new Plateau(nbJoueur);
         score = new int[nbJoueur];
-        this.affichage = affichage;
+        this.affichage = new Affichage(affichage);
         this.unTour = new Tour(plateau);
     }
 
@@ -85,24 +85,26 @@ public class Partie {
         //System.out.println("Nb d'ouvriers total non place : " + plateau.nbOuvrierDispoTotal(plateau.getListeInventaire()));
 
 
-        while(plateau.verifierNbCarteBatiment() && tour<200) { //plateau.verifierNbCarteCivilisation() && plateau.verifierNbCarteBatiment()
+        while(plateau.verifierNbCarteBatiment() && tour<3) { //plateau.verifierNbCarteCivilisation() && plateau.verifierNbCarteBatiment()
             if (affichage){
-            System.out.println("_________________________________________________");
-            System.out.println("|                TOUR : "+tour+"                      |");
-            System.out.println("_________________________________________________");
+                System.out.println("_________________________________________________");
+                System.out.println("|                TOUR : "+tour+"                      |");
+                System.out.println("_________________________________________________");
 
-            System.out.println("================PHASE DE PLACEMENT================");
+                System.out.println("================PHASE DE PLACEMENT================");
             }
             unTour.placementPhase(affichage);
             //plateau.placementPhase(affichage);
 
             if (affichage){
-            System.out.println("================PHASE DE RECUPERATION================");
+                System.out.println("================PHASE DE RECUPERATION================");
+                System.out.println(" ");
             }
             unTour.recuperationPhase(affichage);
             //plateau.recuperationPhase(affichage);
             if(affichage){
-            System.out.println("================PHASE NOURRIR================");
+                System.out.println("================PHASE NOURRIR================");
+                System.out.println(" ");
             }
             unTour.phaseNourrir();
             //plateau.phaseNourrir();
