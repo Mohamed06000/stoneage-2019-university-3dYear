@@ -13,11 +13,7 @@ import java.util.Collections;
 
 public class CarteCivilisation {
 
-	static Random rand = new Random();
-
-
-	
-
+	Random rand = new Random();
 	private Ressource ressourceCarte;
 	private int nbRessourceCarte;
 	private Couleur couleur;
@@ -25,7 +21,7 @@ public class CarteCivilisation {
 	private boolean avec_jet_de = false;
 	private PartieInferieure inf;
 	private int coefficient;
-    public enum Couleur {
+        public enum Couleur {
 		VERTE, SABLE;
 	}
     
