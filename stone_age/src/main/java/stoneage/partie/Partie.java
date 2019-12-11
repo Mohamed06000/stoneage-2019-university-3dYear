@@ -54,7 +54,7 @@ public class Partie {
         plateau = new Plateau(nbJoueur);
         score = new int[nbJoueur];
         this.affichage = new Affichage(affichage);
-        this.unTour = new Tour(plateau);
+        this.unTour = new Tour(plateau, this.affichage);
     }
 
 
@@ -86,28 +86,13 @@ public class Partie {
 
 
         while(plateau.verifierNbCarteBatiment() && tour<3) { //plateau.verifierNbCarteCivilisation() && plateau.verifierNbCarteBatiment()
-            if (affichage){
-                System.out.println("_________________________________________________");
-                System.out.println("|                TOUR : "+tour+"                      |");
-                System.out.println("_________________________________________________");
-
-                System.out.println("================PHASE DE PLACEMENT================");
-            }
-            unTour.placementPhase(affichage);
-            //plateau.placementPhase(affichage);
-
-            if (affichage){
-                System.out.println("================PHASE DE RECUPERATION================");
-                System.out.println(" ");
-            }
-            unTour.recuperationPhase(affichage);
-            //plateau.recuperationPhase(affichage);
-            if(affichage){
-                System.out.println("================PHASE NOURRIR================");
-                System.out.println(" ");
-            }
+            /* On affiche le tour*/
+            affichage.AfficheInfoTour(tour);
+            unTour.placementPhase();
+            affichage.AfficheRecup();
+            unTour.recuperationPhase();
+            affichage.AfficheNourrir();
             unTour.phaseNourrir();
-            //plateau.phaseNourrir();
             swap(plateau.getTableauFirstPlayer());
             unTour.resetOuvrierDispoDesInventaires();
             tour++;

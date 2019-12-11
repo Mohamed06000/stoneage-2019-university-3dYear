@@ -92,9 +92,22 @@ public class Affichage {
     }
 
 
-    public void AfficheInfoTour(){
-
+    public void AfficheInfoTour(int nbTour){
+        if (this.affichage){
+            System.out.println("_________________________________________________");
+            System.out.println("|                TOUR : "+nbTour+"                      |");
+            System.out.println("_________________________________________________");
+            System.out.println("================PHASE DE PLACEMENT================");
+        }
     }
 
+    public void AfficheRecup(){
+        System.out.println("================PHASE DE RECUPERATION================");
+        System.out.println(" ");
+    }
 
+    public void AfficheNourrir(){
+        System.out.println("================PHASE NOURRIR================");
+        System.out.println(" ");
+    }
 }

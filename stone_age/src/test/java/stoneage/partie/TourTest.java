@@ -13,7 +13,7 @@ class TourTest {
         Plateau plateau = new Plateau(2);
         Tour tour = new Tour(plateau);
 
-        tour.placementPhase(false);
+        tour.placementPhase();
 
         assertTrue(plateau.getListeInventaire().get(0).getNbOuvrier()==0);
         assertTrue(plateau.nbOuvrierDispoTotal(plateau.getListeInventaire())==0);
@@ -24,8 +24,8 @@ class TourTest {
         Plateau plateau = new Plateau(2);
         Tour tour = new Tour(plateau);
 
-        tour.placementPhase(false);
-        tour.recuperationPhase(false);
+        tour.placementPhase();
+        tour.recuperationPhase();
 
         assertTrue(plateau.getListeInventaire().get(0).getNbOuvrier()>=5);
 

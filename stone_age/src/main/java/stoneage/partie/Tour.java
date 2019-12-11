@@ -23,18 +23,23 @@ import java.util.Iterator;
 public class Tour {
 
     Plateau plateau;
-    Dictionary placementZone;
+    Affichage affichage;
 
     public Tour(Plateau p){
         this.plateau = p;
+        this.affichage = new Affichage(false);
+    }
+
+    public Tour(Plateau p, Affichage affichage){
+        this.plateau = p;
+        this.affichage = affichage;
     }
 
 
     /**
      * Lance la phase de placement
-     * @param affichage Si l'affichage se fait
      */
-    public void placementPhase(boolean affichage){
+    public void placementPhase(){
         /**
          * Accumulateur pour savoir quand deux zones village sont occupeés afin de supprimer le 3eme !
          */
@@ -73,9 +78,7 @@ public class Tour {
                             }
                             updateStatutZone(); // Je fais l'uptade apres la placement et non plus avant afin que l'autre joueur beneficie de l'uptade pour le choix de la zone.
                             placed = false;
-                            if(affichage) {
-                                AfficheInfoJoueur(i,choixZone, 0, plateau.getZoneVisitees().get(i), plateau.getCarteVisitees().get(i), plateau.getListeInventaire().get(i));
-                            }
+                            affichage.AfficheInfoJoueur(i,choixZone, 0, plateau.getZoneVisitees().get(i), plateau.getCarteVisitees().get(i), plateau.getListeInventaire().get(i));
                             if(accVillage==2){ plateau.getZonesDispo().remove(plateau.getZonesDispo().size()-1);}
 
                         }
@@ -87,10 +90,7 @@ public class Tour {
                         //plateau.getListeInventaire().get(i).setNbOuvrier(plateau.getListeInventaire().get(i).getNbOuvrier() - 1);
                         plateau.getCarteVisitees().get(i).add(choixCarte);
                         placed = false;
-                        if(affichage)
-                        {
-                            AfficheInfoJoueur(i,choixCarte,0,plateau.getZoneVisitees().get(i), plateau.getCarteVisitees().get(i), plateau.getListeInventaire().get(i));
-                        }
+                        affichage.AfficheInfoJoueur(i,choixCarte,0,plateau.getZoneVisitees().get(i), plateau.getCarteVisitees().get(i), plateau.getListeInventaire().get(i));
                     }
 
 
@@ -106,9 +106,8 @@ public class Tour {
 
     /**
      * Lance la phase de récupération
-     * @param affichage Si l'affichage se fait
      */
-    public void recuperationPhase(boolean affichage){
+    public void recuperationPhase(){
         Zone zoneCourant;
         Cartebatiment carteCourant;
         int gainDeZone;
@@ -144,9 +143,7 @@ public class Tour {
 //                        zoneCourant.retirerOuvrierSurZone(plateau.getListeInventaire().get(i), zoneCourant.getNbOuvirerDuJoueur(i), i);
 //                    }
                     plateau.getZoneVisitees().get(i).remove(zoneCourant);
-                    if(affichage){
-                        AfficheInfoJoueur(i,zoneCourant,1, plateau.getZoneVisitees().get(i), plateau.getCarteVisitees().get(i),plateau.getListeInventaire().get(i));
-                    }
+                    affichage.AfficheInfoJoueur(i,zoneCourant,1, plateau.getZoneVisitees().get(i), plateau.getCarteVisitees().get(i),plateau.getListeInventaire().get(i));
                 }
 
                 if (choixCarteOuZone==2 && plateau.getCarteVisitees().get(i).size()>0){
@@ -166,9 +163,7 @@ public class Tour {
                     }
                     plateau.getJoueurs().get(i).retraitOuvrierSurZone(plateau.getListeInventaire().get(i), 1);
                     plateau.getCarteVisitees().get(i).remove(carteCourant);
-                    if(affichage){
-                        AfficheInfoJoueur(i,carteCourant, 1, plateau.getZoneVisitees().get(i), plateau.getCarteVisitees().get(i) , plateau.getListeInventaire().get(i));
-                    }
+                    affichage.AfficheInfoJoueur(i,carteCourant, 1, plateau.getZoneVisitees().get(i), plateau.getCarteVisitees().get(i) , plateau.getListeInventaire().get(i));
                 }
 
             }
