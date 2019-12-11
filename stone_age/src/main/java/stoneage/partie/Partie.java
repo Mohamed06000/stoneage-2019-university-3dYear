@@ -85,28 +85,38 @@ public class Partie {
         //System.out.println("Nb d'ouvriers total non place : " + plateau.nbOuvrierDispoTotal(plateau.getListeInventaire()));
 
 
-        while(plateau.verifierNbCarteBatiment() && tour<3) { //plateau.verifierNbCarteCivilisation() && plateau.verifierNbCarteBatiment()
-            /* On affiche le tour*/
+        while(plateau.verifierNbCarteBatiment()) { //plateau.verifierNbCarteCivilisation() && plateau.verifierNbCarteBatiment()
+            /* On affiche le message du tour*/
             affichage.AfficheInfoTour(tour);
+
+            /* On execute la phase de placement*/
             unTour.placementPhase();
+
+            /* On affiche le message de la phase recup*/
             affichage.AfficheRecup();
+
+            /* On execute la phase de Recup*/
             unTour.recuperationPhase();
+
+            /* On affiche le message de la phase nourrir*/
             affichage.AfficheNourrir();
+
+            /* On execute la phase nourrir*/
             unTour.phaseNourrir();
+
             swap(plateau.getTableauFirstPlayer());
             unTour.resetOuvrierDispoDesInventaires();
             tour++;
         }
-
-
-        System.out.println("_____RESULTAT_____");
+        affichage.AfficheMessageFin();
         resultat(plateau.getListeInventaire());
         int indexDuPremier = this.indexGagnant(score);
         int equal = egalite(score, indexDuPremier);
         if (equal != 0){
             departage(score, equal, indexDuPremier);
         }
-        this.JoueurGagnant(indexDuPremier);
+        affichage.AfficheGagnant(indexDuPremier);
+
 //        for (int i = 0; i < nbJoueur; i++) {
 //            System.out.println("*****************");
 //            System.out.println("joueur numero "+i);
@@ -164,14 +174,6 @@ public class Partie {
         return equal;
     }
 
-    /**
-     * Affiche le gagnant du jeu
-     * @param indexDuGagnant L'index du joueur gagnant
-     */
-    public void JoueurGagnant(int indexDuGagnant){
-        System.out.println("Le Gagnant est le joueur " + (indexDuGagnant+1));
-//        System.out.println(plateau.getListeInventaire().get(indexDuGagnant));
-    }
 
     /**
      * Récupère le numero du joueur gagnant

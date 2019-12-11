@@ -1,10 +1,12 @@
 package stoneage.partie;
 
 import stoneage.plateaudejeu.Inventaire;
+import stoneage.plateaudejeu.Ressource;
 import stoneage.plateaudejeu.cartes.Cartebatiment;
 import stoneage.plateaudejeu.zones.Zone;
 
 import java.util.ArrayList;
+import java.util.logging.SocketHandler;
 
 public class Affichage {
     private boolean affichage;
@@ -29,18 +31,18 @@ public class Affichage {
                                          ArrayList<Cartebatiment> CarteVisitees,
                                          Inventaire inventaire) {
         if(this.affichage){
-            System.out.println("********Joueur " + (numJ+1) + "********");
+            AffichageNumJoueur(numJ);
             if (phase == 0){
-                System.out.println("Il place " + z.getNbOuvirerDuJoueur(numJ)+" ouvrier(s) dans la Zone " + z);
-                System.out.println("Il y a au total " + z.getNbOuvrierSurZone() + " ouvrier(s) dans la Zone " +z);
-                System.out.println("Il reste au Joueur "+ (numJ+1) +", "+ inventaire.getNbOuvrier() + " ouvrier(s) à placer");
-                System.out.println("Nombre d'ouvrier total dans l'inventaire du joueur " + (numJ+1) + " : " + inventaire.getNbOuvrierTotal());
+                //System.out.println("Il place " + z.getNbOuvirerDuJoueur(numJ)+" ouvrier(s) dans la Zone " + z);
+                //System.out.println("Il y a au total " + z.getNbOuvrierSurZone() + " ouvrier(s) dans la Zone " +z);
+                //System.out.println("Il reste au Joueur "+ (numJ+1) +", "+ inventaire.getNbOuvrier() + " ouvrier(s) à placer");
+                //System.out.println("Nombre d'ouvrier total dans l'inventaire du joueur " + (numJ+1) + " : " + inventaire.getNbOuvrierTotal());
             }
             if (phase != 0){
                 System.out.println("Il recupère son/ses  " + z.getNbOuvirerDuJoueur(numJ)+" ouvrier(s) dans la Zone " + z);
                 System.out.println("Il reste au total " + z.getNbOuvrierSurZone() + " ouvrier(s) dans la Zone " +z);
                 System.out.println("Il reste au Joueur "+ (numJ+1) +", "+ (inventaire.getNbOuvrierTotal() - inventaire.getNbOuvrier()) + " ouvrier(s) à récupérer");
-                System.out.println("Nombre d'ouvrier total dans l'inventaire du joueur " + (numJ+1) + " : " + inventaire.getNbOuvrierTotal());
+                //System.out.println("Nombre d'ouvrier total dans l'inventaire du joueur " + (numJ+1) + " : " + inventaire.getNbOuvrierTotal());
             }
             if (ZoneVisitees.size()>0) {
                 System.out.println("Les zones visitées : " + (ZoneVisitees));
@@ -68,9 +70,9 @@ public class Affichage {
                                          ArrayList<Cartebatiment> CarteVisitees,
                                          Inventaire inventaire) {
         if(this.affichage){
-            System.out.println("********Joueur " + (numJ+1) + "********");
+
             if (phase == 0){
-                System.out.println("Il place un ouvrier sur la Carte "+ c);
+                //System.out.println("Il place un ouvrier sur la Carte "+ c);
                 System.out.println("Il reste au Joueur "+ (numJ+1) +", "+ inventaire.getNbOuvrier() + " ouvrier(s) à placer");
                 System.out.println("Nombre d'ouvrier total dans l'inventaire du joueur " + (numJ+1) + " : " + inventaire.getNbOuvrierTotal());
             }
@@ -101,13 +103,61 @@ public class Affichage {
         }
     }
 
+
+
     public void AfficheRecup(){
-        System.out.println("================PHASE DE RECUPERATION================");
         System.out.println(" ");
+        System.out.println("================PHASE DE RECUPERATION================");
     }
 
     public void AfficheNourrir(){
-        System.out.println("================PHASE NOURRIR================");
         System.out.println(" ");
+        System.out.println("================PHASE NOURRIR================");
+    }
+
+    public void AfficheLanceDe(int numJ, int resultat){
+        System.out.println("Le Joueur " + numJ + " lance le dé");
+        System.out.println("Il obtient : "+ resultat);
+    }
+
+    public void AfficheGain(int gain, Ressource ressource){
+        System.out.println("Il a alors gagné "+ gain + " " + ressource);
+    }
+
+    public void AffichageNumJoueur(int numJ){
+        System.out.println(" ");
+        System.out.println("********Joueur " + (numJ+1) + "********");
+    }
+
+    public void AffichePlacement(int numJ, Zone z){
+        System.out.println("Il place " + z.getNbOuvirerDuJoueur(numJ)+ " ouvrier(s) dans la Zone " + z);
+    }
+
+    public void AffichePlacement(Cartebatiment c){
+        System.out.println("Il place un ouvrier sur la Carte "+ c);
+    }
+
+    public void AfficheRecup(int numJ, Zone z){
+        System.out.println("Il recupère son/ses  " + z.getNbOuvirerDuJoueur(numJ)+" ouvrier(s) dans la Zone " + z);
+    }
+
+    public void AfficheRecup(Cartebatiment c){
+        System.out.println("Il récupère son ouvrier placé sur la Carte "+ c);
+    }
+
+
+    public void AfficheMessageFin() {
+        System.out.println(" ");
+        System.out.println("====================== RESULTAT  =========================");
+    }
+
+    /**
+     * Affiche le gagnant du jeu
+     * @param indexDuPremier L'index du joueur gagnant
+     */
+    public void AfficheGagnant(int indexDuPremier) {
+        System.out.println(" ");
+        System.out.println(" Le Joueur " + indexDuPremier+
+                " a gagné !!!");
     }
 }

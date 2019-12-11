@@ -67,9 +67,13 @@ public class Tour {
                         disponibiliteZone = verifierDisponibiliteZone(choixZone, choixNbOuvrier,i);
 
                         if (disponibiliteZone){
+                            /* On affiche le num du joueur*/
+                            affichage.AffichageNumJoueur(i);
                             /* Le Joueur place ses ouvriers sur la Zone choisie*/
                             plateau.getJoueurs().get(i).placementOuvrierSurZone(plateau.getListeInventaire().get(i), choixNbOuvrier);
                             choixZone.placeOuvrierSurZone(choixNbOuvrier, i); //J'ajoute le num du joueur en parametre.
+                            /* Affichage du placement*/
+                            affichage.AffichePlacement(i,choixZone);
                             plateau.getZoneVisitees().get(i).add(choixZone);
                             if (plateau.isTwoPlayers() && choixZone!=plateau.getChasse()) { plateau.getZonesPleines().add(choixZone);}
                             if (plateau.isTwoPlayers()| plateau.isThreePlayers())
@@ -78,19 +82,22 @@ public class Tour {
                             }
                             updateStatutZone(); // Je fais l'uptade apres la placement et non plus avant afin que l'autre joueur beneficie de l'uptade pour le choix de la zone.
                             placed = false;
-                            affichage.AfficheInfoJoueur(i,choixZone, 0, plateau.getZoneVisitees().get(i), plateau.getCarteVisitees().get(i), plateau.getListeInventaire().get(i));
+                            //affichage.AfficheInfoJoueur(i,choixZone, 0, plateau.getZoneVisitees().get(i), plateau.getCarteVisitees().get(i), plateau.getListeInventaire().get(i));
                             if(accVillage==2){ plateau.getZonesDispo().remove(plateau.getZonesDispo().size()-1);}
 
                         }
                     }
                     if (choixCarteOuZone==2) {
+                        /* On affiche le num du joueur*/
+                        affichage.AffichageNumJoueur(i);
                         choixCarte = plateau.getIA().get(i).choixCartePlacement(plateau.getListeCarteTotale());
                         /* Le Joueur place ses ouvriers sur la Carte choisie*/
                         plateau.getJoueurs().get(i).placementOuvrierSurZone(plateau.getListeInventaire().get(i), 1);
-                        //plateau.getListeInventaire().get(i).setNbOuvrier(plateau.getListeInventaire().get(i).getNbOuvrier() - 1);
+                        /* On affiche le placement*/
+                        affichage.AffichePlacement(choixCarte);
                         plateau.getCarteVisitees().get(i).add(choixCarte);
                         placed = false;
-                        affichage.AfficheInfoJoueur(i,choixCarte,0,plateau.getZoneVisitees().get(i), plateau.getCarteVisitees().get(i), plateau.getListeInventaire().get(i));
+                        //affichage.AfficheInfoJoueur(i,choixCarte,0,plateau.getZoneVisitees().get(i), plateau.getCarteVisitees().get(i), plateau.getListeInventaire().get(i));
                     }
 
 
@@ -119,21 +126,24 @@ public class Tour {
 
                 if (choixCarteOuZone==1 && plateau.getZoneVisitees().get(i).size()>0) {
                     zoneCourant = plateau.getIA().get(i).choixZone(plateau.getZoneVisitees().get(i));
-
+                    /* On affiche le num du Joueur*/
+                    affichage.AffichageNumJoueur(i);
                     if (plateau.getIA().get(i).choixUtiliser()) { //IA choisit d'utiliser ses ouvriers ou non --> && verifier si getNbRessourde>=prixCarte
                         if (zoneCourant.equals(plateau.getHutte()) || zoneCourant.equals(plateau.getChamp()) || zoneCourant.equals(plateau.getFabriqueOutils())) {
+                            affichage.AfficheRecup(i,zoneCourant);
                             attributionGainVillage(plateau.getListeInventaire().get(i), zoneCourant);
 //                            zoneCourant.gainZone(plateau.getListeInventaire().get(i),i, plateau.getIA().get(i));
                         }
                         else {
-//                            System.out.println("zoneCourant de type" + zoneCourant);
                             /* On lance les dés et on recupère combien le joueur i gagne*/
-                            gainDeZone = zoneCourant.gainZone(plateau.getListeInventaire().get(i), i, plateau.getIA().get(i)); // J'ajoute le num du joueur.
+                            gainDeZone = zoneCourant.gainZone(plateau.getListeInventaire().get(i), i, plateau.getIA().get(i), affichage);
+                            affichage.AfficheGain(gainDeZone, zoneCourant.getRessource());
                             /* On lui attribue ses gains*/
                             attributionGain(plateau.getListeInventaire().get(i), zoneCourant.getRessource(), gainDeZone);
                             /* On rend au joueur i (son inventaire) ses ouvriers qui étaient sur la zone */
                             plateau.getJoueurs().get(i).retraitOuvrierSurZone(plateau.getListeInventaire().get(i), zoneCourant.getNbOuvirerDuJoueur(i));
-                            //plateau.getListeInventaire().get(i).setNbOuvrier(plateau.getListeInventaire().get(i).getNbOuvrier() + zoneCourant.getNbOuvirerDuJoueur(i));
+                            /* On affiche la recupération*/
+                            affichage.AfficheRecup(i, zoneCourant);
                             /* On eleve de la Zone les ouvriers du Joueur i*/
                             zoneCourant.retirerOuvrierSurZone(plateau.getListeInventaire().get(i), zoneCourant.getNbOuvirerDuJoueur(i), i);
                         }
@@ -143,7 +153,7 @@ public class Tour {
 //                        zoneCourant.retirerOuvrierSurZone(plateau.getListeInventaire().get(i), zoneCourant.getNbOuvirerDuJoueur(i), i);
 //                    }
                     plateau.getZoneVisitees().get(i).remove(zoneCourant);
-                    affichage.AfficheInfoJoueur(i,zoneCourant,1, plateau.getZoneVisitees().get(i), plateau.getCarteVisitees().get(i),plateau.getListeInventaire().get(i));
+                    //affichage.AfficheInfoJoueur(i,zoneCourant,1, plateau.getZoneVisitees().get(i), plateau.getCarteVisitees().get(i),plateau.getListeInventaire().get(i));
                 }
 
                 if (choixCarteOuZone==2 && plateau.getCarteVisitees().get(i).size()>0){
@@ -151,6 +161,8 @@ public class Tour {
                     if (plateau.getListeInventaire().get(i).getNbRessourceTotal()>=carteCourant.getNbRessourceApayer() && plateau.getIA().get(i).choixUtiliser()) {
                         int choixNbRessource = plateau.getIA().get(i).choixNbRessource();
                         carteCourant.payement(plateau.getListeInventaire().get(i),choixNbRessource);
+                        /* On affiche la recupération*/
+                        affichage.AfficheRecup(carteCourant);
                         plateau.getListeInventaire().get(i).getCartesBatiments().add(carteCourant);
                         for (int j = 0; j < plateau.getListeCarteTotale().size(); j++) {
                             if (plateau.getListeCarteTotale().get(j).contains(carteCourant)){
@@ -163,7 +175,7 @@ public class Tour {
                     }
                     plateau.getJoueurs().get(i).retraitOuvrierSurZone(plateau.getListeInventaire().get(i), 1);
                     plateau.getCarteVisitees().get(i).remove(carteCourant);
-                    affichage.AfficheInfoJoueur(i,carteCourant, 1, plateau.getZoneVisitees().get(i), plateau.getCarteVisitees().get(i) , plateau.getListeInventaire().get(i));
+                    //affichage.AfficheInfoJoueur(i,carteCourant, 1, plateau.getZoneVisitees().get(i), plateau.getCarteVisitees().get(i) , plateau.getListeInventaire().get(i));
                 }
 
             }
