@@ -2,6 +2,7 @@ package stoneage.plateaudejeu.zones;
 
 import stoneage.joueur.IaAlea;
 import stoneage.joueur.Joueur;
+import stoneage.partie.Affichage;
 import stoneage.partie.Partie;
 import stoneage.plateaudejeu.Inventaire;
 import stoneage.plateaudejeu.Ressource;
@@ -214,15 +215,16 @@ public class Zone {
      * @param inventaire L'inventaire du joueur
      * @param nJoueur Le numéro du joueur
      */
-    public int gainZone(Inventaire inventaire, int nJoueur, IaAlea IA) {
+    public int gainZone(Inventaire inventaire, int nJoueur, IaAlea IA, Affichage affichage) {
         /* gainZone renvoie un entier nb de ressources gagnées /// c'est dans tour qu'on gere l'attribution des gains*/
         int somme = 0;
         int gain = 0;
-
+        int D = 0;
         for (int i = 0; i < this.getNbOuvirerDuJoueur(nJoueur); i++) { // On le lance le de autant de fois qu'il y a d'ouvrier du joueur sur la Zone
-            somme += de();
+            D = de();
+            affichage.AfficheLanceDe(nJoueur+1,D);
+            somme += D;
         }
-
         if (IA.choixOutils(inventaire)){
             somme += IA.choixNbOutils(inventaire);
         }
@@ -230,7 +232,6 @@ public class Zone {
         if (somme >= 6){
             gain = somme / this.getDiviseur();
         }
-
         this.setNbRessourcesZone(this.getNbRessourcesZone()-gain);
         return gain;
     }
