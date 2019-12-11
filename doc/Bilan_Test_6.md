@@ -80,6 +80,28 @@
 ---
 ---
 
+  * *Dans Tour*:
+  * [x] On a initialiser :
+    - une Partie partie ,
+    - un Tour tour ,
+  
+  
+  * [x] placementphase()
+    - tour appelle placementPhase() ,
+    - On s'attend à ce qu'il n'y ait plus d'Ouvrier (non encore placé) dans l'inventaire du joueur,
+    - Test avec succes !
+ 
+ * [x] recuperationPhase()
+    - tour appelle placementPhase() ,
+    - tour appelle recuperationPhase()
+    - On s'attend à ce qu'il n'y ait au moins 5 d'Ouvrier (disponible) dans l'inventaire du joueur,
+    - Test avec succes !
+
+
+
+
+
+
     
 
  
