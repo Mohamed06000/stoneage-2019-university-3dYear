@@ -14,6 +14,7 @@ class IaAleaTest {
     IaAlea ia = new IaAlea();
     ZoneVillage z1 = new ZoneVillage(0,2,2);
     ZoneVillage z2 = new ZoneVillage(0,2,1);
+    Zone z3 = new Zone(Ressource.OR,10,6,0,7);
 
 
 
@@ -28,33 +29,8 @@ class IaAleaTest {
         int res2 = ia.choixNbOuvrier(inventaire,z1);
         assertEquals(2,res2);
 
-    }
+        int res3 = ia.choixNbOuvrier((inventaire),z3);
+        assertTrue(res3>0);
 
-    @Test
-    void choixCarteOuZone() {
-    }
-
-    @Test
-    void choixCartePlacement() {
-    }
-
-    @Test
-    void choixCarteRecuperation() {
-    }
-
-    @Test
-    void choixZone() {
-    }
-
-    @Test
-    void choixOutils() {
-    }
-
-    @Test
-    void choixNbRessource() {
-    }
-
-    @Test
-    void choixNbOutils() {
     }
 }
