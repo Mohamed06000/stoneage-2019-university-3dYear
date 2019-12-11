@@ -50,17 +50,17 @@ public class Plateau {
     /**
      * Zone Champ
      */
-    private Zone Champ;
+    private ZoneVillage Champ;
 
     /**
      * Zone Hutte
      */
-    private Zone Hutte;
+    private ZoneVillage Hutte;
 
     /**
      * Zone FabriqueOutils
      */
-    private Zone FabriqueOutils;
+    private ZoneVillage FabriqueOutils;
     
     /**
      * tableau qui contient toutes les cartes de civilisations .
