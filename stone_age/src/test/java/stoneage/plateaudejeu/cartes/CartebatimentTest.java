@@ -12,14 +12,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CartebatimentTest {
 
-    @Test
-    void placeOuvrierSurCarte() {
-        //Cartebatiment carte = new Cartebatiment();
+    Inventaire inventaire = new Inventaire();
+    Cartebatiment carte = new Cartebatiment(2,3,3);
 
-    }
 
     @Test
     void retirerOuvrierSurCarte() {
+        int nbOuvriersTotal=6;
+        carte.retirerOuvrierSurCarte(inventaire);
+        int nbTotaledansInventaire=inventaire.getNbOuvrier();
+        assertEquals(nbOuvriersTotal,nbTotaledansInventaire);
+
     }
 
     @Test

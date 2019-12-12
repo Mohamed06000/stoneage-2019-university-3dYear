@@ -3,6 +3,7 @@ package stoneage.joueur;
 import stoneage.plateaudejeu.Inventaire;
 import stoneage.plateaudejeu.cartes.Cartebatiment;
 import stoneage.plateaudejeu.zones.Zone;
+import stoneage.plateaudejeu.zones.ZoneVillage;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -20,20 +21,19 @@ public class IaAlea {
      * @return Un nombre d'ouvriers
      */
     public int choixNbOuvrier(Inventaire inventaire, Zone choixZone) {
-        int alea=0;
+        int alea = 0;
+        //&& (((ZoneVillage) choixZone).getType_zone()== 0 ||
+        //                ((ZoneVillage) choixZone).getType_zone()==1)
 
-        if (choixZone instanceof Zone) {
-            alea = rand.nextInt(inventaire.getNbOuvrier()) + 1; //le +1 a l'exterieur de rand sinon ca peut retourner 0.
+        if ((choixZone instanceof ZoneVillage )) {
+            if ( ((ZoneVillage) choixZone).getType_zone()==2){
+            alea = 2;}
+            else alea=1;
         }
         else {
-            if (choixZone.getClass().getSimpleName().equals("Champ") | choixZone.getClass().getSimpleName().equals("Fabrique")){
-                alea = 1;
-            }
-            if (choixZone.getClass().getSimpleName().equals("Hutte")) {
-                alea = 2;
-            }
-        }
+            alea = rand.nextInt(inventaire.getNbOuvrier()) + 1; //le +1 a l'exterieur de rand sinon ca peut retourner 0.
 
+        }
         return alea;
     }
 

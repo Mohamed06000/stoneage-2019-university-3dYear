@@ -66,14 +66,6 @@ public class Cartebatiment {
     }
 
     /**
-     * Methode de placement d'ouvrier sur une carte batiment
-     */
-    public void placeOuvrierSurCarte() {
-        this.PlaceReserver = true;
-    }
-
-
-    /**
      * Methode pour retirer ouvrier sur une carte batiment
      *
      * @param inventaireJoueur
