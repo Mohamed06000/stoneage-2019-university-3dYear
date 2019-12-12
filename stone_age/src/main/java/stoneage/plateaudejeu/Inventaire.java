@@ -143,7 +143,7 @@ public class Inventaire {
         this.nbOutils = 0;
         this.niveauAgriculture = 0;
         this.listeRessources = new ArrayList<>(Arrays.asList(Ressource.OR,Ressource.NOURRITURE,Ressource.BOIS,Ressource.ARGILE,Ressource.PIERRE));
-        this.listCptRessources = new ArrayList<>(Arrays.asList(0,12,0,0,0));
+        this.listCptRessources = new ArrayList<>(Arrays.asList(this.nbOr,this.nbNourriture,this.nbBois,this.nbArgile,this.nbPierre));
         for (int i = 0; i < listeRessources.size(); i++) {
             dicoDesRessources.put(listeRessources.get(i), listCptRessources.get(i));
         }

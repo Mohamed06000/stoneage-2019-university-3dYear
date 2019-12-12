@@ -109,7 +109,7 @@ public class Affichage {
         if (this.affichage){
             System.out.println("_________________________________________________");
             System.out.println("|                TOUR : "+nbTour+"                      |");
-            System.out.println("Le joueur " + (premierAjouer+1) + " est le premier à jouer");
+            System.out.println("       Le joueur " + (premierAjouer+1) + " est le premier à jouer");
             System.out.println("_________________________________________________");
             System.out.println("================PHASE DE PLACEMENT================");
         }
@@ -129,7 +129,7 @@ public class Affichage {
     /**
      *Affiche un message d'information lorsqu'on entre dans la phase de jeu où les joueurs nourrissent leurs ouvriers.
      */
-    public void AfficheNourrir(){
+    public void AffichePhaseNourrir(){
         if (this.affichage){
             System.out.println(" ");
             System.out.println("================PHASE NOURRIR================");
@@ -276,4 +276,16 @@ public class Affichage {
         }
     }
 
+
+    public void AfficheNourrir(Ressource choixNourrir, int numJ) {
+        if (this.affichage){
+            System.out.println(" ");
+            System.out.println("Le Joueur " + (numJ+1) + " nourrit ses ouvriers avec la ressource "+ choixNourrir);
+        }
+    }
+
+    public void AffichePenalite(int numJ) {
+        System.out.println(" ");
+        System.out.println("Le Joueur " + (numJ+1) + " n'a pas de quoi nourrir ses ouvriers, il prends une pénalité de 10 points");
+    }
 }

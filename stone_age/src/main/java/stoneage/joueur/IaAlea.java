@@ -24,9 +24,6 @@ public class IaAlea {
      */
     public int choixNbOuvrier(Inventaire inventaire, Zone choixZone) {
         int alea = 0;
-        //&& (((ZoneVillage) choixZone).getType_zone()== 0 ||
-        //                ((ZoneVillage) choixZone).getType_zone()==1)
-
         if ((choixZone instanceof ZoneVillage )) {
             if ( ((ZoneVillage) choixZone).getType_zone()==2){
             alea = 2;}

@@ -205,11 +205,34 @@ public class Tour {
      * Lance la phase nourrir
      */
     public void phaseNourrir(){
+        Ressource choixNourrir;
         for (int i :plateau.getTableauFirstPlayer()) {
-            plateau.getJoueurs().get(i).nourrir(plateau.getListeInventaire().get(i));
-            resetOutils(i);
-            /* On ajoute les points d'agriculture au nombre de nourriture pour le tour suivant*/
-            productionAgriculture(plateau.getListeInventaire().get(i));
+            /* On verifie que le joueur a de quoi nourrir*/
+            if (verifierNourriture(plateau.getListeInventaire().get(i))) {
+                /* L'IA choisit avec quelle ressource nourrir ses ouvriers*/
+                choixNourrir = plateau.getIA().get(i).choixNourrir(plateau.getListeInventaire().get(i));
+
+                /* On affiche le messages du joueur nourrissants ses ouvriers*/
+                affichage.AfficheNourrir(choixNourrir, i);
+                /* Le Joueur nourrit ses ouvriers*/
+                plateau.getJoueurs().get(i).nourrir(plateau.getListeInventaire().get(i), choixNourrir);
+
+                resetOutils(i);
+                /* On ajoute les points d'agriculture au nombre de nourriture pour le tour suivant*/
+                productionAgriculture(plateau.getListeInventaire().get(i));
+            }
+
+            else {
+                /* Il n'a pas de ressource pour nourrir,
+                Affiche le message de pénalité*/
+                affichage.AffichePenalite(i);
+                plateau.getListeInventaire().get(i).setNbPointTotal(plateau.getListeInventaire().get(i).getNbPointTotal() - 10);
+
+                resetOutils(i);
+                /* On ajoute les points d'agriculture au nombre de nourriture pour le tour suivant*/
+                productionAgriculture(plateau.getListeInventaire().get(i));
+            }
+
         }
     }
 
@@ -379,5 +402,18 @@ public class Tour {
         }
     }
 
+    /**
+     * Renvoie true si un inventaire a assez de ressources pour nourrir ses ouvriers
+     * @param inventaire
+     * @return
+     */
+    public boolean verifierNourriture(Inventaire inventaire){
+        for (Ressource ressource : inventaire.getDicoDesRessources().keySet()) {
+            if (inventaire.getDicoDesRessources().get(ressource) >= inventaire.getNbOuvrierTotal()){
+                return true;
+            }
+        }
+        return false;
+    }
 
 }

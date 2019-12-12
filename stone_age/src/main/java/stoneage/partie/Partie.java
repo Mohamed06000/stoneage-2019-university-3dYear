@@ -99,7 +99,7 @@ public class Partie {
             unTour.recuperationPhase();
 
             /* On affiche le message de la phase nourrir*/
-            affichage.AfficheNourrir();
+            affichage.AffichePhaseNourrir();
 
             /* On execute la phase nourrir*/
             unTour.phaseNourrir();
