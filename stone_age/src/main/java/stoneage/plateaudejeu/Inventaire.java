@@ -4,9 +4,7 @@ package stoneage.plateaudejeu;
 import stoneage.plateaudejeu.cartes.CarteCivilisation;
 import stoneage.plateaudejeu.cartes.Cartebatiment;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.*;
 
 /**
  * La classe de l'inventaire du joueur
@@ -112,6 +110,22 @@ public class Inventaire {
      */
     private ArrayList<Cartebatiment> cartesBatiments;
 
+    /**
+     * Liste des ressources
+     */
+    private ArrayList<Ressource> listeRessources;
+
+    /**
+     * Liste des compteurs de Ressources
+     */
+    private ArrayList<Integer> listCptRessources;
+
+    /**
+     * le dictionnaire des ressources (keys) que l'inventaire possède avec leur quantité comme valeur.
+     */
+
+    private HashMap<Ressource, Integer> dicoDesRessources = new HashMap<>();
+
 
     //CONSTRUCTEUR
 
@@ -128,6 +142,11 @@ public class Inventaire {
         this.nbOr = 0;
         this.nbOutils = 0;
         this.niveauAgriculture = 0;
+        this.listeRessources = new ArrayList<>(Arrays.asList(Ressource.OR,Ressource.NOURRITURE,Ressource.BOIS,Ressource.ARGILE,Ressource.PIERRE));
+        this.listCptRessources = new ArrayList<>(Arrays.asList(0,12,0,0,0));
+        for (int i = 0; i < listeRessources.size(); i++) {
+            dicoDesRessources.put(listeRessources.get(i), listCptRessources.get(i));
+        }
         this.outils = new ArrayList<Integer>(Arrays.asList(0,0,0));
         this.outilsDispo = new ArrayList<Integer>(Arrays.asList(0,0,0));
         this.outilsNonDispo = new ArrayList<Integer>(Arrays.asList(0,0,0));
@@ -147,6 +166,18 @@ public class Inventaire {
 
     public void setNbOuvrierTotal(int nbOuvrierTotal) {
         this.nbOuvrierTotal = nbOuvrierTotal;
+    }
+
+    public ArrayList<Ressource> getListeRessources() {
+        return listeRessources;
+    }
+
+    public ArrayList<Integer> getListCptRessources() {
+        return listCptRessources;
+    }
+
+    public HashMap<Ressource, Integer> getDicoDesRessources() {
+        return dicoDesRessources;
     }
 
     /**
@@ -394,4 +425,5 @@ public class Inventaire {
     public int getNbCartesBatiments() {
         return this.cartesBatiments.size();
     }
+
 }

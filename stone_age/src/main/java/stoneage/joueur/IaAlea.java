@@ -1,12 +1,14 @@
 package stoneage.joueur;
 
+import org.jetbrains.annotations.NotNull;
 import stoneage.plateaudejeu.Inventaire;
+import stoneage.plateaudejeu.Ressource;
 import stoneage.plateaudejeu.cartes.Cartebatiment;
 import stoneage.plateaudejeu.zones.Zone;
 import stoneage.plateaudejeu.zones.ZoneVillage;
 
-import java.util.ArrayList;
-import java.util.Random;
+import javax.naming.spi.ObjectFactoryBuilder;
+import java.util.*;
 
 public class IaAlea {
 
@@ -101,6 +103,37 @@ public class IaAlea {
         }
 
         return sommeOutils;
+    }
+
+
+    /**
+     * Retourne une ressource aleatoire avec laquelle les ouvriers seront nourris.
+     * @param inventaire
+     * @return
+     */
+    public Ressource choixNourrir(Inventaire inventaire){
+        HashMap<Ressource, Integer> dicoRessources;
+        dicoRessources = dicoDesRessourcesNourrissable(inventaire.getDicoDesRessources(), inventaire.getNbOuvrier());
+        Object[] listKeys = dicoRessources.keySet().toArray();
+        Object keyAlea = listKeys[new Random().nextInt(listKeys.length)];
+        return (Ressource) keyAlea;
+    }
+
+
+    /**
+     * Retourne un dictionnaire dont les valeurs pour chaque clé de dictionaryOfRessources sont supérieur au paramètre nbOuvrier
+     * @param dictionaryOfRessources
+     * @param nbOuvrier
+     * @return
+     */
+    public HashMap<Ressource, Integer> dicoDesRessourcesNourrissable(HashMap<Ressource, Integer> dictionaryOfRessources, int nbOuvrier){
+        HashMap<Ressource, Integer> dico = new HashMap<>();
+        for (Ressource ressource : dictionaryOfRessources.keySet()) {
+            if (dictionaryOfRessources.get(ressource) >= nbOuvrier){
+                dico.put(ressource, dictionaryOfRessources.get(ressource));
+            }
+        }
+        return dico;
     }
 
     /**

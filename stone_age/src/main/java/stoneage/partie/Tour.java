@@ -208,7 +208,13 @@ public class Tour {
         for (int i :plateau.getTableauFirstPlayer()) {
             plateau.getJoueurs().get(i).nourrir(plateau.getListeInventaire().get(i));
             resetOutils(i);
+            /* On ajoute les points d'agriculture au nombre de nourriture pour le tour suivant*/
+            productionAgriculture(plateau.getListeInventaire().get(i));
         }
+    }
+
+    private void productionAgriculture(Inventaire i) {
+        i.setNbNourriture(i.getNbNourriture()+i.getNiveauAgriculture());
     }
 
 

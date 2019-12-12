@@ -6,6 +6,8 @@ import stoneage.plateaudejeu.Ressource;
 import stoneage.plateaudejeu.zones.Zone;
 import stoneage.plateaudejeu.zones.ZoneVillage;
 
+import java.util.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class IaAleaTest {
@@ -32,5 +34,30 @@ class IaAleaTest {
         int res3 = ia.choixNbOuvrier((inventaire),z3);
         assertTrue(res3>0);
 
+    }
+
+    @Test
+    void dicoDesRessourcesNourrissable() {
+        IaAlea ia = new IaAlea();
+        int nbOuvrier = 6;
+        HashMap<Ressource, Integer> dico = new HashMap<>();
+        HashMap<Ressource, Integer> dicoRes;
+        HashMap<Ressource, Integer> dicoAttendu = new HashMap<>();
+        //ArrayList<Ressource> ressourceArrayList= new ArrayList<>(Arrays.asList(Ressource.PIERRE,Ressource.OR,Ressource.NOURRITURE,Ressource.ARGILE));
+
+        dico.put(Ressource.PIERRE,2);
+        dico.put(Ressource.OR,0);
+        dico.put(Ressource.NOURRITURE,11);
+        dico.put(Ressource.BOIS,4);
+        dico.put(Ressource.ARGILE,1);
+
+        dicoRes = ia.dicoDesRessourcesNourrissable(dico, nbOuvrier);
+        dicoAttendu.put(Ressource.NOURRITURE,11);
+        assertEquals(dicoAttendu,dicoRes);
+
+        nbOuvrier = 3;
+        dicoRes = ia.dicoDesRessourcesNourrissable(dico, nbOuvrier);
+        dicoAttendu.put(Ressource.BOIS,4);
+        assertEquals(dicoAttendu,dicoRes);
     }
 }

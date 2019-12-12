@@ -104,6 +104,9 @@ public class Partie {
             /* On execute la phase nourrir*/
             unTour.phaseNourrir();
 
+            /* On met à jour les dictionnaires (Ressources : nbRessources) des inventaires*/
+            plateau.updateDico();
+
             swap(plateau.getTableauFirstPlayer());
             unTour.resetOuvrierDispoDesInventaires();
             tour++;

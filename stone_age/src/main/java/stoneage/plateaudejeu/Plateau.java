@@ -362,4 +362,12 @@ public class Plateau {
         return true;
     }
 
+    public void updateDico() {
+        for (Inventaire inventaire : listeInventaire) {
+            for (int i = 0; i < inventaire.getListeRessources().size(); i++) {
+                inventaire.getDicoDesRessources().put(inventaire.getListeRessources().get(i), inventaire.getListCptRessources().get(i));
+            }
+        }
+    }
+
 }
