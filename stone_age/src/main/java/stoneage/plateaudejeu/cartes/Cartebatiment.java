@@ -5,6 +5,7 @@ import stoneage.plateaudejeu.Inventaire;
 import stoneage.plateaudejeu.Ressource;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 /**
@@ -17,11 +18,9 @@ public class Cartebatiment {
     private int nbOuvrierSurCarte;
     ArrayList<Ressource> ressource;
     private int nbRessourceDiff;
-
     public boolean isPlaceReserver() {
         return PlaceReserver;
     }
-
     private boolean PlaceReserver;
     private int type_carte;
 

@@ -85,7 +85,7 @@ public class Partie {
         //System.out.println("Nb d'ouvriers total non place : " + plateau.nbOuvrierDispoTotal(plateau.getListeInventaire()));
 
 
-        while(plateau.verifierNbCarteBatiment()) { //plateau.verifierNbCarteCivilisation() && plateau.verifierNbCarteBatiment()
+        while(plateau.verifierNbCarteBatiment() && tour<6) { //plateau.verifierNbCarteCivilisation() && plateau.verifierNbCarteBatiment()
             /* On affiche le message des infos du tour (nbr de tours, 1er joueur)*/
             affichage.AfficheInfoTour(tour, plateau.getTableauFirstPlayer().get(0));
 
@@ -118,7 +118,7 @@ public class Partie {
         if (equal != 0){
             departage(score, equal, indexDuPremier);
         }
-        affichage.AfficheGagnant(indexDuPremier);
+        affichage.AfficheGagnant(indexDuPremier, plateau.getListeInventaire().get(indexDuPremier));
 
 //        for (int i = 0; i < nbJoueur; i++) {
 //            System.out.println("*****************");

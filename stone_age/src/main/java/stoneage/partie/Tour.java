@@ -152,8 +152,16 @@ public class Tour {
                             /* On lance les dés et on recupère combien le joueur i gagne*/
                             gainDeZone = zoneCourant.gainZone(plateau.getListeInventaire().get(i), i, plateau.getIA().get(i), affichage);
 
+                            /*  On vérifie S'il le gain est supérieur aux ressource de la zone*/
+
+                            if(gainDeZone>zoneCourant.getNbRessourcesZone()){
+                                gainDeZone = zoneCourant.getNbRessourcesZone();
+                                zoneCourant.setNbRessourcesZone(0);
+                                affichage.AfficheGainFull(zoneCourant, gainDeZone);
+                            }
+
                             /* On lui attribue ses gains*/
-                            attributionGain(plateau.getListeInventaire().get(i), zoneCourant.getRessource(), gainDeZone);
+                            attributionGainRessource(plateau.getListeInventaire().get(i), zoneCourant.getRessource(), gainDeZone);
 
                             /* On rend au joueur i (son inventaire) ses ouvriers qui étaient sur la zone */
                             plateau.getJoueurs().get(i).retraitOuvrierSurZone(plateau.getListeInventaire().get(i), zoneCourant.getNbOuvirerDuJoueur(i));
@@ -170,6 +178,7 @@ public class Tour {
                 }
 
                 if (choixCarteOuZone==2 && plateau.getCarteVisitees().get(i).size()>0){
+                    /* On recupère les ouvriers placés sur les cartes*/
                     carteCourant = plateau.getIA().get(i).choixCarteRecuperation(plateau.getCarteVisitees().get(i));
                     if (plateau.getListeInventaire().get(i).getNbRessourceTotal()>=carteCourant.getNbRessourceApayer() && plateau.getIA().get(i).choixUtiliser()) {
                         int choixNbRessource = plateau.getIA().get(i).choixNbRessource();
@@ -214,10 +223,12 @@ public class Tour {
 
                 /* On affiche le messages du joueur nourrissants ses ouvriers*/
                 affichage.AfficheNourrir(choixNourrir, i);
+
                 /* Le Joueur nourrit ses ouvriers*/
                 plateau.getJoueurs().get(i).nourrir(plateau.getListeInventaire().get(i), choixNourrir);
 
                 resetOutils(i);
+
                 /* On ajoute les points d'agriculture au nombre de nourriture pour le tour suivant*/
                 productionAgriculture(plateau.getListeInventaire().get(i));
             }
@@ -321,7 +332,7 @@ public class Tour {
 
 
 
-    public void attributionGain(Inventaire inventaire, Ressource ressourceDeLaZone, int gain){
+    public void attributionGainRessource(Inventaire inventaire, Ressource ressourceDeLaZone, int gain){
         if (ressourceDeLaZone == Ressource.OR){
             inventaire.setNbOr(inventaire.getNbOr()+gain);
             affichage.AfficheGainRessource(gain,ressourceDeLaZone);

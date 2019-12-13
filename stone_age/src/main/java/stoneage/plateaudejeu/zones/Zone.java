@@ -228,11 +228,10 @@ public class Zone {
         if (IA.choixOutils(inventaire)){
             somme += IA.choixNbOutils(inventaire);
         }
-
-        if (somme >= 6){
-            gain = somme / this.getDiviseur();
-        }
-        this.setNbRessourcesZone(this.getNbRessourcesZone()-gain);
+        gain = somme/this.getDiviseur();
+//        if (somme >= 6){
+//            gain = somme / this.getDiviseur();
+//        }
         affichage.AfficheGain(somme,this.getDiviseur(), gain);
         return gain;
     }

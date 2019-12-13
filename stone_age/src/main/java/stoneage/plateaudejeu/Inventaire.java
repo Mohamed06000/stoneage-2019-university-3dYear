@@ -129,6 +129,7 @@ public class Inventaire {
 
     //CONSTRUCTEUR
 
+
     /**
      * Constructeur de la classe
      */
@@ -174,6 +175,10 @@ public class Inventaire {
 
     public ArrayList<Integer> getListCptRessources() {
         return listCptRessources;
+    }
+
+    public void setListCptRessources(ArrayList<Integer> listCptRessources) {
+        this.listCptRessources = listCptRessources;
     }
 
     public HashMap<Ressource, Integer> getDicoDesRessources() {

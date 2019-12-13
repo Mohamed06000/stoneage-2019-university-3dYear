@@ -269,10 +269,11 @@ public class Affichage {
      * Affiche le gagnant du jeu
      * @param indexDuPremier L'index du joueur gagnant
      */
-    public void AfficheGagnant(int indexDuPremier) {
+    public void AfficheGagnant(int indexDuPremier, Inventaire inventaireDuGagnant) {
         if (this.affichage) {
             System.out.println(" ");
-            System.out.println(" Le Joueur " + indexDuPremier + " a gagné !!!");
+            System.out.println(" Le Joueur " + (indexDuPremier+1) + " a gagné !!!");
+            System.out.println(inventaireDuGagnant);
         }
     }
 
@@ -287,5 +288,10 @@ public class Affichage {
     public void AffichePenalite(int numJ) {
         System.out.println(" ");
         System.out.println("Le Joueur " + (numJ+1) + " n'a pas de quoi nourrir ses ouvriers, il prends une pénalité de 10 points");
+    }
+
+    public void AfficheGainFull(Zone zone, int gain) {
+        System.out.println(" ");
+        System.out.println("Il n'y a plus de " + zone.getRessource() + " dans la zone " + zone + " il prends donc " +gain+ " " + zone.getRessource());
     }
 }

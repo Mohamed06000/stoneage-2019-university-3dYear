@@ -364,6 +364,11 @@ public class Plateau {
 
     public void updateDico() {
         for (Inventaire inventaire : listeInventaire) {
+            /* On update la liste des compteurs d'abord*/
+            inventaire.setListCptRessources(new ArrayList<>(Arrays.asList(inventaire.getNbOr(),inventaire.getNbNourriture(), inventaire.getNbBois(),
+                    inventaire.getNbArgile(), inventaire.getNbPierre())));
+
+            /* On update le dictionnaire*/
             for (int i = 0; i < inventaire.getListeRessources().size(); i++) {
                 inventaire.getDicoDesRessources().put(inventaire.getListeRessources().get(i), inventaire.getListCptRessources().get(i));
             }
