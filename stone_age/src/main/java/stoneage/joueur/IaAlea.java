@@ -104,13 +104,13 @@ public class IaAlea {
 
 
     /**
-     * Retourne une ressource aleatoire avec laquelle les ouvriers seront nourris.
-     * @param inventaire
-     * @return
+     * Représente le choix d'une ressource pour nourrir les ouvriers, le choix est aléatoire parmi les ressources disponibles pour nourrir les ouvriers?
+     * @param inventaire l'inventaire d'un joueur
+     * @return Retourne une ressource aleatoire avec laquelle les ouvriers seront nourris.
      */
     public Ressource choixNourrir(Inventaire inventaire){
         HashMap<Ressource, Integer> dicoRessources;
-        dicoRessources = dicoDesRessourcesNourrissable(inventaire.getDicoDesRessources(), inventaire.getNbOuvrier());
+        dicoRessources = dicoDesRessourcesNourrissable(inventaire.getDicoDesRessources(), inventaire.getNbOuvrierTotal());
         Object[] listKeys = dicoRessources.keySet().toArray();
         Object keyAlea = listKeys[new Random().nextInt(listKeys.length)];
         return (Ressource) keyAlea;
@@ -118,10 +118,10 @@ public class IaAlea {
 
 
     /**
-     * Retourne un dictionnaire dont les valeurs pour chaque clé de dictionaryOfRessources sont supérieur au paramètre nbOuvrier
-     * @param dictionaryOfRessources
-     * @param nbOuvrier
-     * @return
+     * Représente les ressources, avec leur nombre, par lesquelles le joueur peut nourrir ses ouvriers
+     * @param dictionaryOfRessources Représentes toutes les ressources(clé) du joueurs et leur quantité(valeur).
+     * @param nbOuvrier Représente le nombre d'ouvrier que le joueur doit nourrir.
+     * @return Retourne un dictionnaire dont les valeurs pour chaque clé de dictionaryOfRessources sont supérieur au paramètre nbOuvrier
      */
     public HashMap<Ressource, Integer> dicoDesRessourcesNourrissable(HashMap<Ressource, Integer> dictionaryOfRessources, int nbOuvrier){
         HashMap<Ressource, Integer> dico = new HashMap<>();

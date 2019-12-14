@@ -35,25 +35,23 @@ public class Tour {
         this.affichage = affichage;
     }
 
-
     /**
      * Lance la phase de placement
+     * Chaque joueur va placer un certain nombre d'ouvrier dans des zones ou cartes jusqu'à ce que tous les joueurs ont déposés tous leurs ouvriers
      */
     public void placementPhase(){
         /**
          * Accumulateur pour savoir quand deux zones village sont occupeés afin de supprimer le 3eme !
          */
         int accVillage=0;
-
         boolean disponibiliteZone;
         boolean placed;
         int choixNbOuvrier;
         Zone choixZone;
         Cartebatiment choixCarte;
-        int nbOuvrierDispoTotal = plateau.nbOuvrierDispoTotal(plateau.getListeInventaire());
 
 
-        while (nbOuvrierDispoTotal>0) { // J'utilise la methode et non plus une variable afin que le compteur s'actualise
+        while (plateau.nbOuvrierDispoTotal(plateau.getListeInventaire())>0) { // J'utilise la methode et non plus une variable afin que le compteur s'actualise
             for (int i : plateau.getTableauFirstPlayer()) {
                 if (plateau.getListeInventaire().get(i).getNbOuvrier()==0){ //S'il a déjà posé tous ses ouvriers, il passe son tour.
                     continue;
@@ -112,14 +110,12 @@ public class Tour {
                 while (placed);
 
             }
-            nbOuvrierDispoTotal = plateau.nbOuvrierDispoTotal(plateau.getListeInventaire());
         }
     }
 
-
-
     /**
      * Lance la phase de récupération
+     * Tous les joueurs vont utiliser (s'ils le peuvent) leurs ouvriers placés dans les zones ou les cartes
      */
     public void recuperationPhase(){
         Zone zoneCourant;
@@ -208,10 +204,10 @@ public class Tour {
         resetZone();
     }
 
-
-
     /**
      * Lance la phase nourrir
+     * Tous les joueurs vont nourrir leurs ouvriers s'ils le peuvent avec des ressources quelconque sinon ils reçoivent une pénalité de 10 points
+     *
      */
     public void phaseNourrir(){
         Ressource choixNourrir;
@@ -251,7 +247,6 @@ public class Tour {
         i.setNbNourriture(i.getNbNourriture()+i.getNiveauAgriculture());
     }
 
-
     /**
      * Restaure la liste des outils disponibles
      */
@@ -262,8 +257,6 @@ public class Tour {
             plateau.getListeInventaire().get(i).getOutilsDispo().add(o);
         }
     }
-
-
 
     /**
      * Vérifie si la zone est disponible pour pouvoir placer des ouvriers
@@ -281,8 +274,6 @@ public class Tour {
         }
         return !(plateau.getZoneVisitees().get(i).contains(choixZone) && choixZone != plateau.getChasse());
     }
-
-
 
     /**
      * Met à jour le status des zones : disponible ou pleine
@@ -328,9 +319,6 @@ public class Tour {
             plateau.getZonesDispo().add(z);
         }
     }
-
-
-
 
     public void attributionGainRessource(Inventaire inventaire, Ressource ressourceDeLaZone, int gain){
         if (ressourceDeLaZone == Ressource.OR){
