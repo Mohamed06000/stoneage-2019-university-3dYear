@@ -5,6 +5,7 @@ import stoneage.plateaudejeu.Ressource;
 import stoneage.plateaudejeu.cartes.Cartebatiment;
 import stoneage.plateaudejeu.zones.Zone;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Classe Affichage, classe qui affiche les messages d'information sur l'avancée du jeu
@@ -24,7 +25,7 @@ public class Affichage {
 
     /**
      * Affiche les informations du joueur numero numJ
-     * Si phase est égale à 0 alors on est dans la phase de placement, sinon on est dans la phase de récuperation
+     * Si phase est égale à 0, alors on est dans la phase de placement, sinon on est dans la phase de récuperation
      * @param numJ Le numero du joueur
      * @param z Une zone
      * @param ZoneVisitees La  liste des zones visitées par le joueur
@@ -100,7 +101,7 @@ public class Affichage {
 
 
     /**
-     * Affiche un message avec le Tour dans lequel on est et le premier joueur qui va commencer le tour
+     * Affiche un message avec le  numero du tour actuel, le premier joueur qui va commencer le tour,
      * Affiche également un message qui informe qu'on entre dans la première phase de jeu à savoir les placements.
      * @param nbTour
      * @param premierAjouer
@@ -137,14 +138,16 @@ public class Affichage {
     }
 
     /**
-     * Affiche le resultat obtenu après le lancé de dé du joueur numero numJ
+     * Affiche le resultat obtenu après le lancé de(s) dé(s) du joueur numero numJ
      * @param numJ
-     * @param resultat
+     * @param resultat la liste des dés obtenus
+     * @param nbDé Le nombre de dé lancé
      */
-    public void AfficheLanceDe(int numJ, int resultat){
+    public void AfficheLanceDe(int numJ, ArrayList<Integer> resultat,int nbDé){
         if (this.affichage){
-            System.out.println("Le Joueur " + numJ + " lance le dé");
-            System.out.println("Il obtient : "+ resultat);
+            if (nbDé>1){System.out.println("Le Joueur " + numJ + " lance " + nbDé + " dés" );}
+            else {System.out.println("Le Joueur " + numJ + " lance " + nbDé + " dé" );}
+            System.out.println("Il obtient : "+ resultat.toString().replace("[","").replace("]","").replace(","," ~ "));
         }
     }
 
@@ -226,7 +229,7 @@ public class Affichage {
     }
 
     /**
-     * Affiche le message du nombre de ressource que les ouvriers du joueurs ont produit
+     * Affiche le nombre de ressources que les ouvriers du joueur ont produit
      * @param gain
      * @param ressourceDeLaZone
      */
@@ -247,7 +250,7 @@ public class Affichage {
             if (type_zone == 0) {
                 System.out.println("Il gagne 1 niveau d'agriculture");
             } else if (type_zone == 1) { /* 1 zone outils*/
-                System.out.println("Il gagne un outils");
+                System.out.println("Il gagne un outil");
             } else { /* zone Hutte*/
                 System.out.println("Il gagne un ouvrier");
             }
@@ -278,6 +281,11 @@ public class Affichage {
     }
 
 
+    /**
+     * Affiche le moyen que le joueur utilise pour nourrir ses ouvriers
+     * @param choixNourrir
+     * @param numJ
+     */
     public void AfficheNourrir(Ressource choixNourrir, int numJ) {
         if (this.affichage){
             System.out.println(" ");
@@ -285,11 +293,20 @@ public class Affichage {
         }
     }
 
+    /**
+     * Affiche le message de penalité l'orsqu'un joueur ne peut pas nourrir ses ouvriers
+     * @param numJ
+     */
     public void AffichePenalite(int numJ) {
         System.out.println(" ");
         System.out.println("Le Joueur " + (numJ+1) + " n'a pas de quoi nourrir ses ouvriers, il prends une pénalité de 10 points");
     }
 
+    /**
+     * Message affiché lorsque le joueur gagne plus de ressources qu'il ya dans la zone
+     * @param zone
+     * @param gain
+     */
     public void AfficheGainFull(Zone zone, int gain) {
         System.out.println(" ");
         System.out.println("Il n'y a plus de " + zone.getRessource() + " dans la zone " + zone + " il prends donc " +gain+ " " + zone.getRessource());
