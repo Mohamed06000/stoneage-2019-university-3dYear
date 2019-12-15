@@ -34,7 +34,7 @@ public class Joueur {
     //CONSTRUCTEUR
 
     /**
-     * Constructeur de la classe
+     * Constructeur du Joueur.
      */
     public Joueur(){
         nbJoueur ++;
@@ -45,29 +45,37 @@ public class Joueur {
     //METHODES
 
     /**
-     * Recupere le numero du joueur
-     * @return Le numero du joueur
+     *
+     * @return le numéro du Joueur.
      */
     public int getNum(){
         return num;
     }
 
 
-
+    /**
+     *
+     * @param inventaire : L'inventaire du Joueur.
+     * @param nbOuvrierAPlacerSurLaZone : Le nombre d'ouvriers que le joueur veut placer sur une Zone.
+     */
     public void placementOuvrierSurZone(Inventaire inventaire, int nbOuvrierAPlacerSurLaZone){
         inventaire.setNbOuvrier(inventaire.getNbOuvrier() - nbOuvrierAPlacerSurLaZone);
     }
 
-
+    /**
+     *
+     * @param inventaire : l'inventaire du Joueur.
+     * @param nbOuvrierPlaceSurCetteZone : Le nombre d'ouvriers sur cette Zone déjà placer par le joueur précédemment.
+     */
     public void retraitOuvrierSurZone(Inventaire inventaire, int nbOuvrierPlaceSurCetteZone){
         inventaire.setNbOuvrier(inventaire.getNbOuvrier() + nbOuvrierPlaceSurCetteZone);
     }
 
 
-
     /**
-     * Nourrir ses ouvriers (1 nourriture/ouvrier)
-     * @param inventaire L'inventaire du joueur
+     *
+     * @param inventaire : l'inventaire du Joueur.
+     * @param ressource : Une ressource du joueur .
      */
     public void nourrir(Inventaire inventaire, Ressource ressource) {
         for (Ressource r: inventaire.getListeRessources()) {
@@ -126,8 +134,8 @@ public class Joueur {
     }
 
     /**
-     * Lancer un de
-     * @return Valeur du de
+     *
+     * @return la valeur du dé.
      */
     public int de(){
         int result = 0 ;
