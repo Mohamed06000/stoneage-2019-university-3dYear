@@ -20,7 +20,7 @@ public class Partie {
      * Le nombre de joueur
      */
 
-    private static int nbJoueur = 2;
+    private static int nbJoueur;
 
     /**
      * Objet qui represente le plateau de jeu
@@ -85,7 +85,7 @@ public class Partie {
         //System.out.println("Nb d'ouvriers total non place : " + plateau.nbOuvrierDispoTotal(plateau.getListeInventaire()));
 
 
-        while(plateau.verifierNbCarteBatiment() && tour<6) { //plateau.verifierNbCarteCivilisation() && plateau.verifierNbCarteBatiment()
+        while(plateau.verifierNbCarteBatiment()) { //plateau.verifierNbCarteCivilisation() && plateau.verifierNbCarteBatiment()
             /* On affiche le message des infos du tour (nbr de tours, 1er joueur)*/
             affichage.AfficheInfoTour(tour, plateau.getTableauFirstPlayer().get(0));
 
