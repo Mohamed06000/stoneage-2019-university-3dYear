@@ -8,9 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-/**
- * Classe qui represente les cartes btiment
- */
+
 public class Cartebatiment {
 
     private int nbRessourceApayer;
@@ -26,10 +24,11 @@ public class Cartebatiment {
 
 
     /**
-     * Constructeur de Cartebatiment
+     * Constructeur de CarteBatiment
      *
-     * @param point
-     * @param ressource
+     * @param point  : le nombre de point d'une carte.
+     * @param ressource : Une liste De ressources de la carte .
+     *
      */
     public Cartebatiment(int point, ArrayList<Ressource> ressource) {
         this.nbOuvrierSurCarte = 1;
@@ -41,6 +40,12 @@ public class Cartebatiment {
 
     }
 
+    /**
+     *
+     * @param nbRessourceApayer : Le nombre de ressources que le joueur doit payer afin d'acquérir la carte.
+     * @param nbRessourceDiff : le nombre de ressources différentes d'une carte .
+     * @param type_carte
+     */
     public Cartebatiment(int nbRessourceApayer, int nbRessourceDiff, int type_carte) {
         this.nbOuvrierSurCarte = 1;
         this.nbRessourceApayer = nbRessourceApayer;
@@ -65,7 +70,7 @@ public class Cartebatiment {
     }
 
     /**
-     * Methode pour retirer ouvrier sur une carte batiment
+     * Methode qui permet au joueur de pouvoir récuperer son ouvrier sur la carte.
      *
      * @param inventaireJoueur
      */
@@ -76,9 +81,9 @@ public class Cartebatiment {
 
 
     /**
-     * Méthode qui permet au Joueur  de payer la carte si celui ci posséde les ressources suffisantes .
      *
-     * @param inventaireJoueur L'inventaire du joueur
+     * @param inventaireJoueur :l'inventaire du Joueur.
+     * @param choixNbRessource : Le nombre de ressources que le Joueur doit payer afin d'acquérir La carte.
      */
     public void payement(Inventaire inventaireJoueur, int choixNbRessource) {
         int somme = inventaireJoueur.getNbOr()+ inventaireJoueur.getNbPierre()+inventaireJoueur.getNbArgile()+inventaireJoueur.getNbBois();
