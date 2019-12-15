@@ -81,6 +81,7 @@ public class Zone {
      * @param nbOuvrierSurZone
      * @param nbOuvrierMaxSurZone
      */
+
     public Zone(int nbOuvrierSurZone, int nbOuvrierMaxSurZone) {
         this.nbOuvrierSurZone = nbOuvrierSurZone;
         this.nbOuvrierMaxSurZone = nbOuvrierMaxSurZone;
