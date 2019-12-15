@@ -44,7 +44,7 @@ class TourTest {
         plateau.getListeInventaire().get(0).setNbNourriture(0);
         tour.phaseNourrir();
 
-        assertEquals(-10, plateau.getListeInventaire().get(0).getNbPointTotal());
+        assertEquals(0, plateau.getListeInventaire().get(0).getNbPointTotal());
 
     }
 

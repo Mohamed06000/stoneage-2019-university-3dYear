@@ -236,7 +236,7 @@ public class CarteCivilisation {
 	
 	/*methode qui permet de recuperer le gain d'une carte civilisation selon le type de ressource qui 'elle contient */
 
-	private void gainCarte(Inventaire i, Plateau p) {
+	void gainCarte(Inventaire i, Plateau p) {
 
 		Ressource r = this.getressourceCarte();
 
