@@ -120,10 +120,10 @@
 
   * *Dans Plateau*:
 * [x] nbOuvrierDispoTotal() :
-- Instance de plateau, avec deux joueurs.
-- On appelle la methode et on s'attend à ce qu'elle renvoie 10
-- On effectue plusieurs tests avec un nombre d'ouvrier disponible différents 
-- Les tests passent avec succès.
+  - Instance de plateau, avec deux joueurs.
+  - On appelle la methode et on s'attend à ce qu'elle renvoie 10
+  - On effectue plusieurs tests avec un nombre d'ouvrier disponible différents 
+  - Les tests passent avec succès.
 
     
 
