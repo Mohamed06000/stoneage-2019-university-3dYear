@@ -243,6 +243,10 @@ public class Tour {
         }
     }
 
+    /**
+     * Ajoute le niveau d'agriculture à la quantité de nourriture de l'inventaire passé en paramètre
+     * @param i Un inventaire
+     */
     private void productionAgriculture(Inventaire i) {
         i.setNbNourriture(i.getNbNourriture()+i.getNiveauAgriculture());
     }
@@ -302,6 +306,9 @@ public class Tour {
         }
     }
 
+    /**
+     * Reinitialise le nombre d'ouvrier disponible au placement pour chaque inventaire à la fin d'un tour
+     */
     public void resetOuvrierDispoDesInventaires(){
         for (Inventaire inventaire : plateau.getListeInventaire()) {
             inventaire.resetNbOuvrierDispo();
@@ -320,6 +327,9 @@ public class Tour {
         }
     }
 
+    /**
+     * Ajoute à l'inventaire passé en paramètre le nombre gain de ressource ressourceDeLaZone d'une zone Ressource.
+     */
     public void attributionGainRessource(Inventaire inventaire, Ressource ressourceDeLaZone, int gain){
         if (ressourceDeLaZone == Ressource.OR){
             inventaire.setNbOr(inventaire.getNbOr()+gain);
@@ -345,6 +355,14 @@ public class Tour {
         }
     }
 
+    /**
+     * Ajoute à l'inventaire le gain de la zone village zone, les zones Hutte, fabrique d'outils et Champ.
+     * Dans le champ, on incrémente le niveau d'agriculture de l"inventaire.
+     * Dans la fabrique, on lui ajoute un outils dans son inventaire.
+     * Dans la hutte, on ajoute un nouvel ouvrier à l'inventaire
+     * @param inventaire L'inventaire d'un joueur
+     * @param zone Une Zone
+     */
     public void attributionGainVillage(Inventaire inventaire, Zone zone){
         if (zone.equals(plateau.getChamp())){
             /* On augmente le niveau d'agriculture de l'inventaire*/
@@ -402,9 +420,9 @@ public class Tour {
     }
 
     /**
-     * Renvoie true si un inventaire a assez de ressources pour nourrir ses ouvriers
-     * @param inventaire
-     * @return
+     * Vérifie que l'inventaire possède au moins une ressources dont le joueur pourra nourrir ses ouvriers avec.
+     * @param inventaire L'inventaire d'un joueur
+     * @return Renvoie true si un inventaire a assez de ressources pour nourrir ses ouvriers, false dans le cas contraire
      */
     public boolean verifierNourriture(Inventaire inventaire){
         for (Ressource ressource : inventaire.getDicoDesRessources().keySet()) {
