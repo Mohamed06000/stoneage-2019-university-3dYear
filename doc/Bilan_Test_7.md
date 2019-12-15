@@ -1,7 +1,7 @@
-# Bilan des tests pour l'iteration 6
+# Bilan des tests pour l'iteration 7
 ---
 ---
- ##  *Test avec Succés*
+ ##  *Test avec Succès*
  
  * *Dans Inventaire*:
   * [x] calculPoint
@@ -115,6 +115,18 @@
 * à completer
 
     
+---
+---
+
+  * *Dans Plateau*:
+* [x] nbOuvrierDispoTotal() :
+- Instance de plateau, avec deux joueurs.
+- On appelle la methode et on s'attend à ce qu'elle renvoie 10
+- On effectue plusieurs tests avec un nombre d'ouvrier disponible différents 
+- Les tests passent avec succès.
+
+    
+
 
  
  
