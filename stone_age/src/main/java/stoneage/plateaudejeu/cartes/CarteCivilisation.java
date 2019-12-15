@@ -1,6 +1,5 @@
 package stoneage.plateaudejeu.cartes;
 
-import org.jetbrains.annotations.NotNull;
 import stoneage.partie.Partie;
 import stoneage.plateaudejeu.Inventaire;
 import stoneage.plateaudejeu.Plateau;
@@ -13,7 +12,11 @@ import java.util.Collections;
 
 public class CarteCivilisation {
 
-	Random rand = new Random();
+	static Random rand = new Random();
+
+
+	
+
 	private Ressource ressourceCarte;
 	private int nbRessourceCarte;
 	private Couleur couleur;
@@ -21,7 +24,7 @@ public class CarteCivilisation {
 	private boolean avec_jet_de = false;
 	private PartieInferieure inf;
 	private int coefficient;
-        public enum Couleur {
+    public enum Couleur {
 		VERTE, SABLE;
 	}
     
@@ -122,7 +125,7 @@ public class CarteCivilisation {
 
 	/**
 	 * placer un ouvrier sur une carte
-	 * @param inventaireJoueur
+
 	 */
 
 	public void placeOuvrierSurCarte(Inventaire inventaireJoueur) {
@@ -135,7 +138,7 @@ public class CarteCivilisation {
 	 *
 	 *retirer un ouvrier de carte
 	 */
-	public void retirerOuvrierSurCarte(@NotNull Inventaire inventaireJoueur) {
+	public void retirerOuvrierSurCarte( Inventaire inventaireJoueur) {
 		inventaireJoueur.setNbOuvrier(inventaireJoueur.getNbOuvrier() + 1);
 		this.PlaceReserver = false;
 
@@ -220,7 +223,7 @@ public class CarteCivilisation {
 
 			gainCarte(i, p);
 
-			Plateau.cards.remove(positionCards);
+			p.getCards().remove(positionCards);
 
 		} else {
 
@@ -233,7 +236,7 @@ public class CarteCivilisation {
 	
 	/*methode qui permet de recuperer le gain d'une carte civilisation selon le type de ressource qui 'elle contient */
 
-	public void gainCarte(Inventaire i, Plateau p) {
+	private void gainCarte(Inventaire i, Plateau p) {
 
 		Ressource r = this.getressourceCarte();
 
@@ -242,20 +245,20 @@ public class CarteCivilisation {
 				if (this.avec_jet_de) {
 					this.ressource_avec_jet_de(i, r);
 				} else {
-					i.setNbOr(this.nbRessourceCarte+i.getNbOr());
+					i.setNbOr(i.getNbOr()+this.nbRessourceCarte);
 				}
 				break;
 			case NOURRITURE:
 				i.setNbNourriture(i.getNbNourriture()+this.nbRessourceCarte);
 				break;
 			case ARGILE:
-				i.setNbArgile(this.nbRessourceCarte+i.getNbArgile());
+				i.setNbArgile(i.getNbArgile()+this.nbRessourceCarte);
 				break;
 			case BOIS:
 				if (this.avec_jet_de) {
 					this.ressource_avec_jet_de(i, r);
 				} else {
-					i.setNbBois(this.nbRessourceCarte+i.getNbBois());
+					i.setNbBois(i.getNbBois()+this.nbRessourceCarte);
 				}
 
 				break;
@@ -263,15 +266,15 @@ public class CarteCivilisation {
 				if (this.avec_jet_de) {
 					this.ressource_avec_jet_de(i, r);
 				} else {
-					i.setNbPierre(this.nbRessourceCarte+i.getNbPierre());
+					i.setNbPierre(i.getNbPierre()+this.nbRessourceCarte);
 
 				}
 				break;
 			case POINT:
-				i.setNbPointTotal(this.nbRessourceCarte+i.getNbPointTotal());
+				i.setNbPointTotal(i.getNbPointTotal()+this.nbRessourceCarte);
 				break;
 			case OUTIL:
-				i.setNbOutils(this.nbRessourceCarte+i.getNbOutils());
+				i.setNbOutils(i.getNbOutils()+this.nbRessourceCarte);
 				break;
 			case MULTI:
 
@@ -279,7 +282,7 @@ public class CarteCivilisation {
 
 				break;
 			case AGRICULTURE:
-				i.setNiveauAgriculture(this.nbRessourceCarte);
+				i.setNiveauAgriculture(i.getNiveauAgriculture()+this.nbRessourceCarte);
 				break;
 			case RESSOURCE_AU_CHOIX:
 
@@ -347,7 +350,7 @@ public class CarteCivilisation {
 		 * 
 		 * */
 
-		int resultat = rand.nextInt(11) + 2;
+		int resultat = rand.nextInt(12) + 1;
 
 		if (r == Ressource.OR) {
 			i.setNbOr(i.getNbOr()+(resultat / 6));
@@ -389,7 +392,7 @@ public class CarteCivilisation {
 
 	
 	/*methode utiliser dans methode ressource_avec_jet_de */
-	public void de() {
+	public int de() {
 
 		int nbJoueur = Partie.getNbJoueur();
 		int resultat = 0;
@@ -397,6 +400,7 @@ public class CarteCivilisation {
 		for (int i = 0; i<nbJoueur; i++) {
 			resultat += rand.nextInt(6) + 1;
 		}
+		return resultat;
 
 	}
 
@@ -530,7 +534,7 @@ public class CarteCivilisation {
 		 ArrayList<CarteCivilisation> cards = new ArrayList<CarteCivilisation> ();
 
 		//5 cartes ressources 
-		cards.add(new CarteCivilisation(1, Couleur.SABLE, Ressource.PIERRE, PartieInferieure.CHAMANE, 1));
+		cards.add(new CarteCivilisation(1, Couleur.VERTE, Ressource.PIERRE, PartieInferieure.CHAMANE, 1));
 		cards.add(new CarteCivilisation(2, Couleur.VERTE, Ressource.PIERRE, PartieInferieure.TRANSPORT));
 		cards.add(new CarteCivilisation(1, Couleur.SABLE, Ressource.ARGILE, PartieInferieure.CHAMANE, 2));
 		cards.add(new CarteCivilisation(1, Couleur.SABLE, Ressource.PIERRE, PartieInferieure.PAYSANT, 1));
