@@ -83,7 +83,7 @@ public class Plateau {
     private ArrayList<ArrayList<Zone>> ZoneVisitees;
 
     /**
-     * La liste des zones visitées par le joueur
+     * La liste des cartes visitées par le joueur
      */
     private ArrayList<ArrayList<Cartebatiment>> CarteVisitees;
 
