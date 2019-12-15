@@ -19,8 +19,7 @@ public class Partie {
     /**
      * Le nombre de joueur
      */
-
-    private static int nbJoueur;
+    private static  int nbJoueur ;
 
     /**
      * Objet qui represente le plateau de jeu
@@ -69,8 +68,8 @@ public class Partie {
     }
 
     /**
-     * Recupère la liste des scors
-     * @return la liste des scors
+     * Recupère la liste des scores
+     * @return la liste des scores
      */
     public int[] getScore() {
         return score;
@@ -82,10 +81,8 @@ public class Partie {
     public void jouer() {
         int tour = 1;
         System.out.println("Nb de joueur : " + nbJoueur);
-        //System.out.println("Nb d'ouvriers total non place : " + plateau.nbOuvrierDispoTotal(plateau.getListeInventaire()));
 
-
-        while(plateau.verifierNbCarteBatiment()) { //plateau.verifierNbCarteCivilisation() && plateau.verifierNbCarteBatiment()
+        while(plateau.verifierNbCarteBatiment() && tour<6) {
             /* On affiche le message des infos du tour (nbr de tours, 1er joueur)*/
             affichage.AfficheInfoTour(tour, plateau.getTableauFirstPlayer().get(0));
 
@@ -119,20 +116,13 @@ public class Partie {
             departage(score, equal, indexDuPremier);
         }
         affichage.AfficheGagnant(indexDuPremier, plateau.getListeInventaire().get(indexDuPremier));
-
-//        for (int i = 0; i < nbJoueur; i++) {
-//            System.out.println("*****************");
-//            System.out.println("joueur numero "+i);
-//            JoueurGagnant(i);
-//            System.out.println("***************");
-//        }
     }
 
 
     /**
-     * Departage les joueur à égalité: l'index du joueur gagnant est changé (ou pas) en fonction
+     * Departage les joueurs à égalité: l'index du joueur gagnant est changé (ou pas) en fonction
      * de la valeur renvoyée par pointDeDepartage() de son inventaire (l'inventaire du même index).
-     * @param score
+     * @param score tableau des scores
      * @param equal
      * @param indexDuPremier
      */

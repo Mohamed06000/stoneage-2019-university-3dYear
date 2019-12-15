@@ -11,6 +11,9 @@ import java.io.UnsupportedEncodingException;
 public class Main {
     public  static  final  void main(String[] args){
 
+        /**
+         * sortir en utf-8 dans le main :
+         */
         try {
             System.setOut(new PrintStream(System.out, true, "UTF-8"));
         } catch (UnsupportedEncodingException e) {
@@ -18,7 +21,7 @@ public class Main {
         }
 
         Partie partie;
-        partie = new Partie(2,true) ;
+        partie = new Partie(4,true) ;
         partie.jouer() ;
 
   //      System.out.println("Simulation 500 parties");

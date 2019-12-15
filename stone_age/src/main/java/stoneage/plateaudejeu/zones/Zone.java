@@ -12,7 +12,7 @@ import java.util.Random;
 
 
 /**
- * La classe enum qui gère les differentes zone du jeu
+ * La classe enum qui gère les differentes zones du jeu
  */
 public class Zone {
 
@@ -49,16 +49,17 @@ public class Zone {
 
     /**
      * La liste du nombre d'ouvriers placés sur la zone par les joueurs
+     * Pour savoir combien d'ouvriers chaque joueur a placé sur la zone z.
+     * Initialisation de la liste nbOuvrierDuJoueur par des valeurs 0 dans le constructeur.
      */
-    private ArrayList<Integer> nbOuvirerDuJoueur = new ArrayList<Integer>(); //Pour savoir cb d'ouvriers le joueur i a placé sur la zone z.
+    private ArrayList<Integer> nbOuvirerDuJoueur = new ArrayList<Integer>();
 
     //CONSTRUCTEUR
 
     /**
      * Constructeur de la classe
-     *
      * @param ressource Le nom de la ressource
-     * @param nbRessourcesZone Le nombre de ressource de la zone
+     * @param nbRessourcesZone Le nombre de ressources de la zone
      * @param diviseur Le diviseur de gain de la zone
      * @param nbOuvrierSurZone Le nombre d'ouvriers sur la zone
      * @param nbOuvrierMaxSurZone Le nombre d'ouviers maximum sur la zone
@@ -69,14 +70,14 @@ public class Zone {
         this.diviseur = diviseur;
         this.nbOuvrierSurZone = nbOuvrierSurZone;
         this.nbOuvrierMaxSurZone = nbOuvrierMaxSurZone;
-        for (int i = 0; i < Partie.getNbJoueur(); i++) { //Initialisation de la liste nbOuvrierDuJoueur par des valeurs 0.
+        for (int i = 0; i < Partie.getNbJoueur(); i++) {
             this.nbOuvirerDuJoueur.add(0);
         }
     }
 
 
     /**
-     * 2eme Constructeur pour les zones Village
+     * 2eme Constructeur pour les zones Villages
      * @param nbOuvrierSurZone
      * @param nbOuvrierMaxSurZone
      */
@@ -93,6 +94,10 @@ public class Zone {
 
     //METHODES
 
+    /**
+     * Redéfinition de la methode toString pour les zones
+     * @return Le nom de la zone
+     */
     @Override
     public String toString() {
         switch (this.getRessource()) {
@@ -129,8 +134,8 @@ public class Zone {
     }
 
     /**
-     * Récupère le nombre de ressource sur la zone
-     * @return Le nombre de ressource
+     * Récupère le nombre de ressources sur la zone
+     * @return Le nombre de ressources
      */
     public int getNbRessourcesZone() {
         return nbRessourcesZone;
@@ -145,7 +150,7 @@ public class Zone {
     }
 
     /**
-     * Récupère le nom de la ressource de la zone
+     * Récupère le nom de la ressources de la zone
      * @return le nom de la ressource
      */
     public Ressource getRessource() {
@@ -170,7 +175,7 @@ public class Zone {
 
     /**
      * Affecte un nombre de ressources sur la zone
-     * @param nbRessourcesZone Un nombre de ressource
+     * @param nbRessourcesZone Un nombre de ressources
      */
     public void setNbRessourcesZone(int nbRessourcesZone) {
         this.nbRessourcesZone = nbRessourcesZone;
@@ -211,27 +216,30 @@ public class Zone {
     }
 
     /**
-     * Lance la procédure de gain des zones
+     * Procédure de gain des zones
+     * On le lance le de autant de fois que le nombre d'ouvriers du joueur sur la Zone
+     * C'est dans Tour qu'on gere l'attribution des gains
      * @param inventaire L'inventaire du joueur
      * @param nJoueur Le numéro du joueur
+     * @param IA Le bot effectuant les choix
+     * @param affichage Un affichage pour afficher les résultats des dés et les gains.
+     * @return Renvoie le nombre de ressources gagnées
      */
     public int gainZone(Inventaire inventaire, int nJoueur, IaAlea IA, Affichage affichage) {
-        /* gainZone renvoie un entier nb de ressources gagnées /// c'est dans tour qu'on gere l'attribution des gains*/
+        ArrayList<Integer> listDés = new ArrayList<Integer>();
         int somme = 0;
         int gain = 0;
         int D = 0;
-        for (int i = 0; i < this.getNbOuvirerDuJoueur(nJoueur); i++) { // On le lance le de autant de fois qu'il y a d'ouvrier du joueur sur la Zone
+        for (int i = 0; i < this.getNbOuvirerDuJoueur(nJoueur); i++) {
             D = de();
-            affichage.AfficheLanceDe(nJoueur+1,D);
+            listDés.add(D);
             somme += D;
         }
+        affichage.AfficheLanceDe(nJoueur+1,listDés,this.getNbOuvirerDuJoueur(nJoueur));
         if (IA.choixOutils(inventaire)){
             somme += IA.choixNbOutils(inventaire);
         }
         gain = somme/this.getDiviseur();
-//        if (somme >= 6){
-//            gain = somme / this.getDiviseur();
-//        }
         affichage.AfficheGain(somme,this.getDiviseur(), gain);
         return gain;
     }
