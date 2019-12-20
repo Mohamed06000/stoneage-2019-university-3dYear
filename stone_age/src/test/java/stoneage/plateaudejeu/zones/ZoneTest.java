@@ -1,7 +1,9 @@
 //package stoneage.plateaudejeu.zones;
 //
 //import org.junit.jupiter.api.Test;
+//import stoneage.joueur.IaAlea;
 //import stoneage.joueur.Joueur;
+//import stoneage.partie.Affichage;
 //import stoneage.plateaudejeu.Inventaire;
 //import stoneage.plateaudejeu.Ressource;
 //import stoneage.plateaudejeu.zones.Zone;
@@ -96,19 +98,20 @@
 //        Zone zone = new Zone(Ressource.OR,6,2,0,10);
 //        zone.placeOuvrierSurZone(6, 0);
 //        Inventaire i =new Inventaire();
-//        Joueur IA = new Joueur();
-//        zone.gainZone(i,0, IA);
+//        IaAlea IA = new IaAlea();
+//        Affichage aff = new Affichage(false);
+//        zone.gainZone(i,0,IA, aff);
 //
 //        zone = new Zone(Ressource.PIERRE,6,2,0,10);
 //        zone.placeOuvrierSurZone(6, 0);
-//        zone.gainZone(i,0, IA);
+//        zone.gainZone(i,0, IA, aff);
 //        assertTrue(i.getNbOr()>0);
 //        assertTrue(i.getNbPierre()>0);
 //
 //
 //        zone = new Zone(Ressource.ARGILE,6,2,0,10);
 //        zone.placeOuvrierSurZone(6, 0);
-//        zone.gainZone(i,0, IA);
+//        zone.gainZone(i,0, IA,aff);
 //        assertTrue(i.getNbOr()>0);
 //        assertTrue(i.getNbPierre()>0);
 //        assertTrue(i.getNbArgile()>0);
@@ -116,7 +119,7 @@
 //
 //        zone = new Zone(Ressource.BOIS,6,2,0,10);
 //        zone.placeOuvrierSurZone(6, 0);
-//        zone.gainZone(i,0,IA);
+//        zone.gainZone(i,0,IA, aff);
 //        assertTrue(i.getNbOr()>0);
 //        assertTrue(i.getNbPierre()>0);
 //        assertTrue(i.getNbArgile()>0);

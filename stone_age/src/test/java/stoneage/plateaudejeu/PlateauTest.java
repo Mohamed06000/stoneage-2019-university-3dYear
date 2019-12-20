@@ -1,7 +1,6 @@
 package stoneage.plateaudejeu;
 
 import org.junit.jupiter.api.Test;
-import stoneage.plateaudejeu.Plateau;
 
 
 import static org.junit.jupiter.api.Assertions.*;
