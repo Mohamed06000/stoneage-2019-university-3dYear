@@ -82,7 +82,7 @@ public class Partie {
         int tour = 1;
         System.out.println("Nb de joueur : " + nbJoueur);
 
-        while(plateau.verifierNbCarteBatiment() && tour<6) {
+        while(plateau.verifierNbCarteBatiment()) {
             /* On affiche le message des infos du tour (nbr de tours, 1er joueur)*/
             affichage.AfficheInfoTour(tour, plateau.getTableauFirstPlayer().get(0));
 

@@ -15,7 +15,7 @@ class PartieTest {
     @BeforeEach
     void setUp() {
 
-        tab=new int []{2,4,6,8,10,1,3,5,7,9};
+        tab= new int []{2,4,6,8,10,1,3,5,7,9};
         partie = new Partie(3,false);
         plateau= new Plateau(3);
         partie.jouer();

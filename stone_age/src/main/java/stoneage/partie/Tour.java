@@ -49,6 +49,7 @@ public class Tour {
         int choixNbOuvrier;
         Zone choixZone;
         Cartebatiment choixCarte;
+        int nbPlace=0;
 
 
         while (plateau.nbOuvrierDispoTotal(plateau.getListeInventaire())>0) { // J'utilise la methode et non plus une variable afin que le compteur s'actualise
@@ -88,21 +89,24 @@ public class Tour {
                         }
                     }
                     if (choixCarteOuZone==2) {
-                        /* On affiche le num du joueur*/
-                        affichage.AffichageNumJoueur(i);
+                        if (nbPlace<Partie.getNbJoueur()){
+                            /* On affiche le num du joueur*/
+                            affichage.AffichageNumJoueur(i);
 
-                        /* L'IA fait un choix de carte*/
-                        choixCarte = plateau.getIA().get(i).choixCartePlacement(plateau.getListeCarteTotale());
+                            /* L'IA fait un choix de carte*/
+                            choixCarte = plateau.getIA().get(i).choixCartePlacement(plateau.getListeCarteTotale());
 
-                        /* Le Joueur place ses ouvriers sur la Carte choisie*/
-                        plateau.getJoueurs().get(i).placementOuvrierSurZone(plateau.getListeInventaire().get(i), 1);
+                            /* Le Joueur place ses ouvriers sur la Carte choisie*/
+                            plateau.getJoueurs().get(i).placementOuvrierSurZone(plateau.getListeInventaire().get(i), 1);
 
-                        /* On affiche le placement*/
-                        affichage.AffichePlacement(choixCarte);
+                            /* On affiche le placement*/
+                            affichage.AffichePlacement(choixCarte);
 
-                        plateau.getCarteVisitees().get(i).add(choixCarte);
-                        placed = false;
-                        //affichage.AfficheInfoJoueur(i,choixCarte,0,plateau.getZoneVisitees().get(i), plateau.getCarteVisitees().get(i), plateau.getListeInventaire().get(i));
+                            plateau.getCarteVisitees().get(i).add(choixCarte);
+                            placed = false;
+                            nbPlace++;
+                            //affichage.AfficheInfoJoueur(i,choixCarte,0,plateau.getZoneVisitees().get(i), plateau.getCarteVisitees().get(i), plateau.getListeInventaire().get(i));
+                        }
                     }
 
 
