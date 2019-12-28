@@ -6,7 +6,7 @@
 | *Nom et Prenom* | *Pseudo* |
 | ------ | ------ |
 | Baroudi Aymen | Jaguar 16 |
-| Benabdelkarim Mohamed | Mohamed0002 |
+| Benabdelkrim Mohamed | Mohamed0002 |
 | Belhassen Louay | mohamedlouay |
 | Elarays Said | Elarays |
 | Mazy Mohamed | Mohamed06000 |
